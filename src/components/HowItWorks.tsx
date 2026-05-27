@@ -196,16 +196,16 @@ export default function HowItWorks() {
             </div>
 
             {/* Premium Enterprise-grade Image container */}
-            <div className="h-40 bg-slate-950 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-800">
+            <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
               
               <img
-                src="/src/assets/images/companion_app_1779906891255.png"
+                src="/src/assets/images/companion_bright_1779907832283.png"
                 alt="Smartphone syncing vehicle drive log dashboard data"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-955 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
               <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-955 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
