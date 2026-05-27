@@ -46,17 +46,30 @@ export default function ExitIntentModal({ onScrollToSection, onLockDiscount }: E
     setIsOpen(false);
   };
 
-  const handleApplyDiscount = (e: React.FormEvent) => {
+  const handleApplyDiscount = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!emailInput.trim()) return;
 
     setIsSubmitting(true);
-    // Simulate premium verification and discount codes locking
-    setTimeout(() => {
+    try {
+      await fetch('https://formspree.io/f/xeedvalq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: emailInput,
+          type: 'Exit Intent Discount Offer'
+        })
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
       setIsSubmitting(false);
       setIsDone(true);
       onLockDiscount(emailInput);
-    }, 1300);
+    }
   };
 
   if (!isOpen) return null;

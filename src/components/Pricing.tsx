@@ -78,17 +78,33 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
     setCheckoutStep('form');
   };
 
-  const handleCheckoutSubmit = (e: React.FormEvent) => {
+  const handleCheckoutSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!checkoutEmail || !checkoutName) return;
 
     setIsSubmitting(true);
-    // Simulate premium secure checkout handling
-    setTimeout(() => {
+    try {
+      await fetch('https://formspree.io/f/xeedvalq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: checkoutName,
+          email: checkoutEmail,
+          vehicle: vehicleInfo,
+          bundle: selectedBundle?.name || 'Unknown Bundle',
+          type: 'Secure Checkout Pre-Order'
+        })
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
       setIsSubmitting(false);
       setCheckoutStep('success');
       onReserveSuccess(checkoutEmail, selectedBundle.name);
-    }, 1500);
+    }
   };
 
   return (

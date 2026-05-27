@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Heart, Send, Copyright, Instagram, Twitter, MessageSquare } from 'lucide-react';
 
 interface FooterProps {
@@ -5,6 +6,36 @@ interface FooterProps {
 }
 
 export default function Footer({ onScrollToSection }: FooterProps) {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      await fetch('https://formspree.io/f/xeedvalq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          type: 'Technical Announcements Form'
+        })
+      });
+      setIsSubmitted(true);
+      setEmail('');
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="w-full bg-[#0F172A] border-t border-white/10 pt-16 pb-8 relative z-10 text-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,16 +128,24 @@ export default function Footer({ onScrollToSection }: FooterProps) {
                 Get notified on firmware revisions, hardware releases, and Canadian pre-launch slots.
               </p>
               
-              <div className="flex gap-1 bg-slate-900 border border-white/10 p-1 rounded-xl">
+              <form onSubmit={handleSubmit} className="flex gap-1 bg-slate-900 border border-white/10 p-1 rounded-xl">
                 <input
                   type="email"
-                  placeholder="Enter email select"
-                  className="flex-1 bg-transparent px-2 py-1.5 text-[10px] text-white focus:outline-none placeholder-gray-500"
+                  required
+                  value={email}
+                  disabled={isSubmitting}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={isSubmitted ? "Joined Newsletter!" : "Enter email select"}
+                  className="flex-1 bg-transparent px-2 py-1.5 text-[10px] text-white focus:outline-none placeholder-gray-500 disabled:opacity-50"
                 />
-                <button className="bg-indigo-600 hover:bg-indigo-500 text-white px-3.5 py-1.5 rounded-lg text-[9px] font-bold uppercase cursor-pointer transition-colors">
-                  Join
+                <button
+                  type="submit"
+                  disabled={isSubmitting || isSubmitted}
+                  className="bg-indigo-600 hover:bg-indigo-500 text-white px-3.5 py-1.5 rounded-lg text-[9px] font-bold uppercase cursor-pointer transition-colors disabled:opacity-50"
+                >
+                  {isSubmitting ? "..." : isSubmitted ? "Saved" : "Join"}
                 </button>
-              </div>
+              </form>
             </div>
           </div>
 

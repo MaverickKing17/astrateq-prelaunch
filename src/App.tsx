@@ -53,7 +53,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white flex flex-col font-sans relative select-none">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-sans relative select-none">
       
       {/* 1. Announcement Bar */}
       <AnnouncementBar />
@@ -108,23 +108,23 @@ export default function App() {
 
       {/* Non-intrusive Premium Toast Notification Panel */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 animate-scale-up max-w-sm w-full bg-[#131D2E]/95 border-2 border-brand-cyan/25 rounded-2xl p-4 shadow-[0_4px_30px_rgba(0,212,255,0.15)] flex items-start gap-3 backdrop-blur-md">
+        <div className="fixed bottom-6 right-6 z-50 animate-scale-up max-w-sm w-full bg-white border-2 border-indigo-500/20 rounded-2xl p-4 shadow-xl flex items-start gap-3 backdrop-blur-md text-slate-800">
           {toastType === 'success' && (
-            <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+            <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
           )}
           {toastType === 'info' && (
-            <ShieldAlert className="w-5 h-5 text-brand-cyan shrink-0 mt-0.5" />
+            <ShieldAlert className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
           )}
           {toastType === 'gift' && (
-            <Gift className="w-5 h-5 text-warm-accent shrink-0 mt-0.5" />
+            <Gift className="w-5 h-5 text-cyan-500 shrink-0 mt-0.5" />
           )}
           <div className="text-left">
-            <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">
+            <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
               {toastType === 'success' && 'Secure Event Success'}
               {toastType === 'info' && 'System Notice Active'}
               {toastType === 'gift' && 'Voucher Registered'}
             </span>
-            <p className="text-xs text-white/90 leading-normal font-bold mt-0.5">
+            <p className="text-xs text-slate-800 leading-normal font-bold mt-0.5">
               {toastMessage}
             </p>
           </div>

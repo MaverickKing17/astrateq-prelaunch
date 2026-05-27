@@ -11,18 +11,32 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [waitlistNumber, setWaitlistNumber] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
+    try {
+      await fetch('https://formspree.io/f/xeedvalq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          type: 'Waitlist Form'
+        })
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
       // Give them a premium queue position random but believable
       setWaitlistNumber(Math.floor(Math.random() * 450) + 1280);
       onSuccess(email);
-    }, 1200);
+    }
   };
 
   return (
