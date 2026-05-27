@@ -1,6 +1,6 @@
 import { Box, Smartphone, Check, ShieldCheck, Eye } from 'lucide-react';
 
-const smartDashcamImg = '/src/assets/images/smart_dashcam_product_1779905537085.png';
+const smartDashcamImg = '/src/assets/images/windshield_cam_1779906863402.png';
 
 export default function WhatIsIncluded() {
   const specs = [

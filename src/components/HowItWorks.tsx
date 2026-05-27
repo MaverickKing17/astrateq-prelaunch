@@ -60,24 +60,24 @@ export default function HowItWorks() {
             </div>
 
             {/* Premium Enterprise-grade Image container */}
-            <div className="h-40 bg-slate-950 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-800">
+            <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
               
               {/* Image element with required referrer policy */}
               <img
-                src="/src/assets/images/obd_plugin_1779906848052.png"
+                src="/src/assets/images/obd_plug_simple_1779907676774.png"
                 alt="ASTRA OBD-II Secure Sync Harness Click Installation"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-955 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
-              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-955 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
+              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
                 <span className="text-[8px] text-emerald-400 font-mono uppercase tracking-widest font-black">Standard OBD Slot</span>
               </div>
               
-              <div className="absolute top-2.5 left-2.5 bg-slate-955 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-slate-350 font-mono font-black uppercase tracking-widest leading-none z-10">
+              <div className="absolute top-2.5 left-2.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-slate-200 font-mono font-black uppercase tracking-widest leading-none z-10">
                 Safe Passive Link
               </div>
             </div>

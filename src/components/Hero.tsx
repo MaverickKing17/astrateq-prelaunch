@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { ArrowRight, ShieldCheck, Database, Award, WifiOff, Zap, Bluetooth, Activity, RefreshCw, CheckCircle2, Cpu } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
-const smartDashcamImg = '/src/assets/images/smart_dashcam_product_1779905537085.png';
+const activeScanningImg = '/src/assets/images/active_scanning_1779906877154.png';
+const windshieldCamImg = '/src/assets/images/windshield_cam_1779906863402.png';
+const obdPluginImg = '/src/assets/images/obd_plug_simple_1779907676774.png';
 
 interface HeroProps {
   onScrollToSection: (sectionId: string) => void;
@@ -225,43 +227,43 @@ export default function Hero({ onScrollToSection }: HeroProps) {
                 
                 {activeTab === 'privacy' ? (
                   <>
-                    {/* Windshield Mounted Dashcam Product Image */}
-                    <div className="relative w-full h-44 bg-slate-900 rounded-xl overflow-hidden border border-slate-200/80 shadow-inner group">
+                    {/* Active Scanning Windshield HUD Display */}
+                    <div className="relative w-full h-44 bg-slate-950 rounded-xl overflow-hidden border border-slate-200/80 shadow-inner group">
                       <img
-                        src={smartDashcamImg}
-                        alt="ASTRA High-Tech Dual-Lens Smart Dashcam Windshield Mount"
+                        src={activeScanningImg}
+                        alt="ASTRA Real-Time Windshield Safety HUD Active Road Scanning"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         referrerPolicy="no-referrer"
                       />
                       {/* Dynamic Scan Laser scanning line effect overlay */}
                       <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-indigo-400 to-transparent animate-pulse opacity-85 top-1/2 -translate-y-1/2 shadow-[0_0_12px_#6366f1]" />
 
-                      {/* Grid overlay for tech look */}
-                      <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px] opacity-10 pointer-events-none" />
+                      {/* Gradient over image for text contrast */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/45 pointer-events-none" />
 
                       {/* Hardwired Physical Unit Indicator HUD Labels */}
-                      <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                      <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
                         <span className="flex h-2 w-2 relative">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-505"></span>
                         </span>
-                        <span className="text-[9px] font-mono tracking-widest font-black uppercase text-white bg-slate-950/70 border border-slate-800/80 px-2 py-0.5 rounded shadow-sm">
-                          DUAL-LENS ADAS HARDWARE UNIT
+                        <span className="text-[9px] font-mono tracking-widest font-black uppercase text-white bg-slate-950/80 border border-slate-800 px-2 py-0.5 rounded shadow-sm">
+                          ACTIVE SAFETY AI HUD SCAN
                         </span>
                       </div>
 
                       {/* Hardware Bottom Overlay */}
-                      <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent p-3 pt-6 flex justify-between items-end">
+                      <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent p-3 pt-6 flex justify-between items-end z-10">
                         <div className="flex flex-col">
-                          <span className="font-mono text-[9px] tracking-wider text-emerald-400 font-bold">
-                            ● PRIVACY SHIELD ENFORCED
+                          <span className="font-mono text-[9px] tracking-wider text-indigo-305 font-bold">
+                            ● PREDICTIVE LANE DETECTION
                           </span>
                           <span className="text-[10px] text-white font-semibold">
-                            Windshield Guard Camera Setup
+                            Twilight Highway Visual Scan
                           </span>
                         </div>
-                        <span className="text-[8px] bg-slate-900 text-slate-300 font-mono font-medium rounded px-1.5 py-0.5 border border-slate-750">
-                          Secure Local Storage
+                        <span className="text-[8px] bg-slate-900 text-slate-300 font-mono font-medium rounded px-1.5 py-0.5 border border-slate-800">
+                          Secure Local AI Core
                         </span>
                       </div>
                     </div>
@@ -316,30 +318,38 @@ export default function Hero({ onScrollToSection }: HeroProps) {
                 ) : (
                   <>
                     {/* OBD Active Screen Display */}
-                    <div className="relative w-full h-32 bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center justify-center overflow-hidden p-4">
-                      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:12px_12px] opacity-65 pointer-events-none" />
+                    <div className="relative w-full h-44 bg-slate-955 rounded-xl border border-slate-800 flex flex-col items-center justify-center overflow-hidden p-4 group">
+                      
+                      {/* Active photorealistic OBD hardware plugin backdrop */}
+                      <img
+                        src={obdPluginImg}
+                        alt="ASTRA OBD-II Direct Active Hardware Connection"
+                        className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity filter brightness-75 group-hover:scale-[1.03] transition-transform duration-700 pointer-events-none"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/40 pointer-events-none" />
                       
                       {obdScanning ? (
                         <div className="w-full flex flex-col items-center px-2 relative z-10">
                           <RefreshCw className="w-7 h-7 text-indigo-400 mb-1.5 animate-spin" />
                           <span className="font-mono text-[9px] tracking-widest text-indigo-400 font-bold">ECU DEEP PORT SCAN</span>
-                          <div className="w-full bg-slate-800 h-1 rounded-full mt-2 overflow-hidden border border-slate-700">
+                          <div className="w-full bg-slate-800 h-1 rounded-full mt-2 overflow-hidden border border-slate-705">
                             <div className="bg-gradient-to-r from-indigo-500 to-indigo-400 h-full transition-all duration-300" style={{ width: `${obdProgress}%` }} />
                           </div>
                           <p className="text-[8px] text-slate-400 font-mono mt-1 w-full text-center truncate">{obdStatusMsg}</p>
                         </div>
                       ) : (
                         <div className="relative z-10 flex flex-col items-center text-center">
-                          <div className="flex items-center gap-1.5 mb-1">
+                          <div className="flex items-center gap-1.5 mb-1.5">
                             <Bluetooth className="w-4 h-4 text-emerald-400 animate-pulse" />
                             <span className="font-mono text-[10px] tracking-wider text-emerald-400 font-black">
                               OBD-II BLUETOOTH LINK
                             </span>
                           </div>
-                          <span className="text-[10px] text-slate-300 max-w-xs font-semibold">
-                            Live diagnostics streaming to device at the edge
+                          <span className="text-[11px] text-slate-200 max-w-xs font-bold leading-normal tracking-wide">
+                            Direct Hardware Connection Established
                           </span>
-                          <span className="text-[8px] bg-slate-850 text-slate-400 px-1.5 py-0.5 rounded font-mono font-bold mt-2 border border-slate-800/80">
+                          <span className="text-[8.5px] bg-slate-900 border border-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono font-bold mt-2.5">
                             ICES-003 Compliant Passive OBD Monitor
                           </span>
                         </div>
