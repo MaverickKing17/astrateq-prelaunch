@@ -49,9 +49,12 @@ export default function Footer({ onScrollToSection }: FooterProps) {
               className="flex items-center gap-2.5 cursor-pointer group"
               onClick={() => onScrollToSection('hero')}
             >
-              <div className="w-8 h-8 sm:w-9 sm:h-9 bg-indigo-50 border border-indigo-150 rounded-lg flex items-center justify-center shadow-sm transition-colors group-hover:bg-indigo-100">
-                <span className="font-sans font-black text-xs text-indigo-600 tracking-wider">A</span>
-              </div>
+              <img 
+                src="https://i.ibb.co/99HZPdq1/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
+                alt="ASTRA Logo" 
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg object-cover border border-slate-200 bg-white p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
               <div className="flex flex-col">
                 <span className="font-sans font-black text-xs text-slate-900 tracking-[0.12em] uppercase leading-none">ASTRATEQ</span>
                 <span className="text-[9px] text-indigo-650 tracking-[0.14em] uppercase font-bold mt-0.5">GADGETS</span>
@@ -152,10 +155,21 @@ export default function Footer({ onScrollToSection }: FooterProps) {
         </div>
 
         {/* Lower row details */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-1.5 text-[11px] text-slate-450 font-bold">
-            <Copyright className="w-3.5 h-3.5" />
-            <span>2026 Astrateq Gadgets Inc. All Rights Reserved.</span>
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3.5 text-[11px] text-slate-450 font-bold">
+            <img 
+              src="https://i.ibb.co/99HZPdq1/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
+              alt="ASTRA Bottom Logo" 
+              className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl object-cover border border-slate-200 bg-white p-1 shadow-sm shrink-0"
+              referrerPolicy="no-referrer"
+            />
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1.5">
+                <Copyright className="w-3.5 h-3.5" />
+                <span>2026 Astrateq Gadgets Inc. All Rights Reserved.</span>
+              </div>
+              <span className="text-[10px] text-slate-400 font-semibold mt-0.5">Empowering safer journeys custom-built for Canadian roads.</span>
+            </div>
           </div>
 
           <div className="flex items-center gap-2 text-[10px] text-slate-500 font-bold bg-slate-50 border border-slate-200 py-1.5 px-3 rounded-full">

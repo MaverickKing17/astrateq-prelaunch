@@ -43,9 +43,12 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
             className="flex items-center gap-2.5 cursor-pointer group"
             onClick={() => handleLinkClick('hero')}
           >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-indigo-650 rounded-lg flex items-center justify-center shadow-md shadow-indigo-600/10 transition-all duration-300 group-hover:bg-indigo-600">
-              <span className="font-sans font-black text-white text-base sm:text-lg">A</span>
-            </div>
+            <img 
+              src="https://i.ibb.co/99HZPdq1/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
+              alt="ASTRA Logo" 
+              className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg object-cover border border-slate-200 bg-white p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105"
+              referrerPolicy="no-referrer"
+            />
             <div className="flex flex-col">
               <span className="font-sans font-bold text-xs sm:text-sm text-slate-900 tracking-[0.12em] uppercase leading-none">ASTRATEQ</span>
               <span className="text-[9px] text-indigo-600 tracking-[0.15em] uppercase font-semibold mt-0.5">GADGETS</span>
@@ -87,24 +90,26 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
           </nav>
 
           {/* Right: Premium CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <button
-              onClick={() => handleLinkClick('waitlist')}
-              className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 rounded-full text-xs sm:text-sm font-semibold text-white shadow-md shadow-indigo-600/15 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer"
-            >
-              Get Started Free
-            </button>
-          </div>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="hidden md:flex items-center gap-4">
+              <button
+                onClick={() => handleLinkClick('waitlist')}
+                className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 rounded-full text-xs sm:text-sm font-semibold text-white shadow-md shadow-indigo-600/15 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer"
+              >
+                Get Started Free
+              </button>
+            </div>
 
-          {/* Hamburger button for mobile */}
-          <div className="flex md:hidden">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-slate-800 hover:text-indigo-600 p-2 focus:outline-none transition-colors"
-              aria-label="Toggle Menu"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Hamburger button for mobile */}
+            <div className="flex md:hidden">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-slate-800 hover:text-indigo-600 p-2 focus:outline-none transition-colors"
+                aria-label="Toggle Menu"
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
 
         </div>
