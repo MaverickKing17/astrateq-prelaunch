@@ -1,16 +1,27 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, ShieldCheck, Database, Award, WifiOff, Zap } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Database, Award, WifiOff, Zap, Bluetooth, Activity, RefreshCw, CheckCircle2, Cpu } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
+
+const smartDashcamImg = '/src/assets/images/smart_dashcam_product_1779905537085.png';
 
 interface HeroProps {
   onScrollToSection: (sectionId: string) => void;
 }
 
 export default function Hero({ onScrollToSection }: HeroProps) {
+  // Navigation for ASTRA physical device interactive modes
+  const [activeTab, setActiveTab] = useState<'privacy' | 'obd'>('privacy');
+
   // Live fluctuations to make the mock dashboard feel authentic and active
   const [awareness, setAwareness] = useState(98);
   const [latency, setLatency] = useState(12);
-  const [status, setStatus] = useState('Optimal');
+
+  // OBD-II Diagnostics Simulator States
+  const [obdScanning, setObdScanning] = useState(false);
+  const [obdProgress, setObdProgress] = useState(0);
+  const [rpm, setRpm] = useState(752);
+  const [voltage, setVoltage] = useState(14.2);
+  const [obdStatusMsg, setObdStatusMsg] = useState('Idle Standby');
 
   useEffect(() => {
     const awarenessInterval = setInterval(() => {
@@ -29,11 +40,60 @@ export default function Hero({ onScrollToSection }: HeroProps) {
       });
     }, 4500);
 
+    // Simulated ECU engine telemetry over OBD Bluetooth sync
+    const obdInterval = setInterval(() => {
+      setRpm((prev) => {
+        const delta = Math.floor(Math.random() * 12) - 6;
+        const next = prev + delta;
+        return next < 742 ? 742 : next > 768 ? 768 : next;
+      });
+      setVoltage((prev) => {
+        const delta = Math.random() > 0.5 ? 0.02 : -0.02;
+        const next = prev + delta;
+        return Number((next < 14.15 ? 14.15 : next > 14.28 ? 14.28 : next).toFixed(2));
+      });
+    }, 1100);
+
     return () => {
       clearInterval(awarenessInterval);
       clearInterval(latencyInterval);
+      clearInterval(obdInterval);
     };
   }, []);
+
+  // OBD Smart Bluetooth Handshake sequence simulation
+  useEffect(() => {
+    if (!obdScanning) return;
+    
+    setObdStatusMsg('Opening Bluetooth API Port...');
+    
+    const interval = setInterval(() => {
+      setObdProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setObdScanning(false);
+          setObdStatusMsg('Diagnostic Engine Scan Complete: 0 DTC Codes Found.');
+          return 100;
+        }
+        
+        const next = prev + 10;
+        if (next < 30) setObdStatusMsg('Bluetooth API handshake established with OBD-II chip.');
+        else if (next < 60) setObdStatusMsg('Reading engine cylinders & oxygen sensor signals...');
+        else if (next < 90) setObdStatusMsg('Checking diagnostic check-engine system codes...');
+        else setObdStatusMsg('Validating vehicle safety compliance profile...');
+        
+        return next;
+      });
+    }, 320);
+
+    return () => clearInterval(interval);
+  }, [obdScanning]);
+
+  const handleStartObdScan = () => {
+    if (obdScanning) return;
+    setObdProgress(0);
+    setObdScanning(true);
+  };
 
   return (
     <section id="hero" className="relative pt-8 pb-16 sm:pb-24 overflow-hidden">
@@ -106,100 +166,228 @@ export default function Hero({ onScrollToSection }: HeroProps) {
           {/* Right Column: Interactive Hardware Dashboard Mockup */}
           <div className="lg:col-span-5 relative w-full flex items-center justify-center">
             
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-cyan-500/10 rounded-[40px] blur-3xl -z-10"></div>
-            <div className="relative w-full max-w-[420px] aspect-[4/5] bg-white border border-slate-200/80 rounded-3xl overflow-hidden shadow-2xl flex flex-col z-10 transition-all duration-500 hover:border-indigo-500/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-cyan-500/10 rounded-[40px] blur-3xl -z-10" />
+            <div className="relative w-full max-w-[420px] bg-white border border-slate-205 rounded-3xl overflow-hidden shadow-2xl flex flex-col z-10 transition-all duration-500 hover:border-indigo-500/20">
               
               {/* Device Header */}
-              <div className="bg-slate-50 border-b border-slate-100 px-5 py-4 flex items-center justify-between">
+              <div className="bg-slate-50 border-b border-slate-100 px-5 py-4 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse" />
                   <span className="font-display font-semibold text-xs tracking-[0.06em] text-indigo-600 uppercase">
-                    ASTRA-AI DriveGuard
+                    ASTRA-AI Smart DriveGuard
                   </span>
                 </div>
-                <div className="text-[10px] bg-indigo-50 text-indigo-605 px-2 py-0.5 rounded font-mono font-bold">
-                  EDGE INTERNALS
+                <div className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-mono font-bold">
+                  PREMIUM HARDWARE
                 </div>
               </div>
 
+              {/* Secure Bluetooth Interactive Switcher */}
+              <div className="bg-slate-100/50 p-1 mx-5 mt-4 rounded-xl flex gap-1 border border-slate-200/40 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('privacy')}
+                  className={`flex-1 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 focus:outline-none ${
+                    activeTab === 'privacy'
+                      ? 'bg-slate-900 text-white shadow-sm border border-slate-850'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
+                  Smart Dashcam HUD
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('obd')}
+                  className={`flex-1 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 focus:outline-none ${
+                    activeTab === 'obd'
+                      ? 'bg-indigo-600 text-white shadow-md'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  <Activity className="w-3.5 h-3.5 animate-pulse" />
+                  OBD Engine Scan
+                </button>
+              </div>
+
               {/* Edge Visualized Environment Display */}
-              <div className="flex-1 p-6 flex flex-col gap-4">
+              <div className="p-5 flex flex-col gap-4">
                 
-                {/* Visualizer Grid */}
-                <div className="relative w-full h-32 bg-slate-50 rounded-xl border border-slate-100 flex flex-col items-center justify-center overflow-hidden">
-                  
-                  {/* Grid Lines Overlay */}
-                  <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-45 pointer-events-none" />
-                  
-                  {/* Dynamic Scanner Wave */}
-                  <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-indigo-500 to-transparent animate-bounce opacity-40 top-0 bottom-0" />
+                {activeTab === 'privacy' ? (
+                  <>
+                    {/* Windshield Mounted Dashcam Product Image */}
+                    <div className="relative w-full h-44 bg-slate-900 rounded-xl overflow-hidden border border-slate-200/80 shadow-inner group">
+                      <img
+                        src={smartDashcamImg}
+                        alt="ASTRA High-Tech Dual-Lens Smart Dashcam Windshield Mount"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        referrerPolicy="no-referrer"
+                      />
+                      {/* Dynamic Scan Laser scanning line effect overlay */}
+                      <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-indigo-400 to-transparent animate-pulse opacity-85 top-1/2 -translate-y-1/2 shadow-[0_0_12px_#6366f1]" />
 
-                  {/* Realtime Vector Graphic of vehicle */}
-                  <svg className="w-24 h-24 text-indigo-500/5 absolute z-0" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth="1" strokeDasharray="4 8" className="animate-spin" style={{ animationDuration: '60s' }} />
-                    <circle cx="50" cy="50" r="22" stroke="currentColor" strokeWidth="1" strokeDasharray="2 3" />
-                  </svg>
+                      {/* Grid overlay for tech look */}
+                      <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px] opacity-10 pointer-events-none" />
 
-                  {/* Edge HUD Icons */}
-                  <div className="relative z-10 flex flex-col items-center">
-                    <ShieldCheck className="w-8 h-8 text-indigo-505 mb-1 drop-shadow-[0_2px_4px_rgba(99,102,241,0.15)]" />
-                    <span className="font-mono text-[10px] tracking-wider text-slate-800 font-bold">
-                      PRIVACY SHIELD ACTIVE
-                    </span>
-                    <span className="text-[9px] text-slate-500">
-                      Zero External Cloud Connections
-                    </span>
-                  </div>
-                </div>
+                      {/* Hardwired Physical Unit Indicator HUD Labels */}
+                      <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                        <span className="flex h-2 w-2 relative">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span className="text-[9px] font-mono tracking-widest font-black uppercase text-white bg-slate-950/70 border border-slate-800/80 px-2 py-0.5 rounded shadow-sm">
+                          DUAL-LENS ADAS HARDWARE UNIT
+                        </span>
+                      </div>
 
-                {/* Dashboard Technical Metrics */}
-                <div className="flex flex-col gap-2.5">
-                  
-                  {/* Metric 1 */}
-                  <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-2.5 px-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Zap className="w-3.5 h-3.5 text-indigo-500" />
-                      <span className="text-[11px] text-slate-600 font-medium tracking-wide">AI Processing Latency</span>
+                      {/* Hardware Bottom Overlay */}
+                      <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent p-3 pt-6 flex justify-between items-end">
+                        <div className="flex flex-col">
+                          <span className="font-mono text-[9px] tracking-wider text-emerald-400 font-bold">
+                            ● PRIVACY SHIELD ENFORCED
+                          </span>
+                          <span className="text-[10px] text-white font-semibold">
+                            Windshield Guard Camera Setup
+                          </span>
+                        </div>
+                        <span className="text-[8px] bg-slate-900 text-slate-300 font-mono font-medium rounded px-1.5 py-0.5 border border-slate-750">
+                          Secure Local Storage
+                        </span>
+                      </div>
                     </div>
-                    <span className="font-mono text-xs font-bold text-indigo-600">
-                      {latency}ms
-                    </span>
-                  </div>
 
-                  {/* Metric 2 */}
-                  <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-2.5 px-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <WifiOff className="w-3.5 h-3.5 text-amber-500" />
-                      <span className="text-[11px] text-slate-605 font-medium tracking-wide">Privacy Connection</span>
+                    {/* Dashboard Technical Metrics */}
+                    <div className="flex flex-col gap-2">
+                      {/* Metric 1 */}
+                      <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-2 px-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Zap className="w-3.5 h-3.5 text-indigo-500" />
+                          <span className="text-[11px] text-slate-600 font-medium tracking-wide">AI Processing Latency</span>
+                        </div>
+                        <span className="font-mono text-xs font-bold text-indigo-600">
+                          {latency}ms
+                        </span>
+                      </div>
+
+                      {/* Metric 2 */}
+                      <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-2 px-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <WifiOff className="w-3.5 h-3.5 text-amber-500" />
+                          <span className="text-[11px] text-slate-605 font-medium tracking-wide">Privacy Connection</span>
+                        </div>
+                        <span className="text-[10px] bg-amber-50 border border-amber-200/50 text-amber-600 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                          Local-Only
+                        </span>
+                      </div>
+
+                      {/* Metric 3 */}
+                      <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-2 px-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+                          <span className="text-[11px] text-slate-600 font-medium tracking-wide">Driver Awareness Index</span>
+                        </div>
+                        <span className="font-mono text-xs font-bold text-emerald-600 transition-all duration-300">
+                          {awareness}%
+                        </span>
+                      </div>
+
+                      {/* Metric 4 */}
+                      <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-2 px-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Award className="w-3.5 h-3.5 text-indigo-505" />
+                          <span className="text-[11px] text-slate-600 font-medium tracking-wide">Road Condition Assist</span>
+                        </div>
+                        <span className="text-[10px] bg-indigo-50 border border-indigo-200/50 text-indigo-600 px-2 py-0.5 rounded font-bold uppercase">
+                          Ready
+                        </span>
+                      </div>
                     </div>
-                    <span className="text-[10px] bg-amber-50 border border-amber-200/50 text-amber-600 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
-                      Local-Only
-                    </span>
-                  </div>
-
-                  {/* Metric 3 */}
-                  <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-2.5 px-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                      <span className="text-[11px] text-slate-600 font-medium tracking-wide">Driver Awareness Index</span>
+                  </>
+                ) : (
+                  <>
+                    {/* OBD Active Screen Display */}
+                    <div className="relative w-full h-32 bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center justify-center overflow-hidden p-4">
+                      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:12px_12px] opacity-65 pointer-events-none" />
+                      
+                      {obdScanning ? (
+                        <div className="w-full flex flex-col items-center px-2 relative z-10">
+                          <RefreshCw className="w-7 h-7 text-indigo-400 mb-1.5 animate-spin" />
+                          <span className="font-mono text-[9px] tracking-widest text-indigo-400 font-bold">ECU DEEP PORT SCAN</span>
+                          <div className="w-full bg-slate-800 h-1 rounded-full mt-2 overflow-hidden border border-slate-700">
+                            <div className="bg-gradient-to-r from-indigo-500 to-indigo-400 h-full transition-all duration-300" style={{ width: `${obdProgress}%` }} />
+                          </div>
+                          <p className="text-[8px] text-slate-400 font-mono mt-1 w-full text-center truncate">{obdStatusMsg}</p>
+                        </div>
+                      ) : (
+                        <div className="relative z-10 flex flex-col items-center text-center">
+                          <div className="flex items-center gap-1.5 mb-1">
+                            <Bluetooth className="w-4 h-4 text-emerald-400 animate-pulse" />
+                            <span className="font-mono text-[10px] tracking-wider text-emerald-400 font-black">
+                              OBD-II BLUETOOTH LINK
+                            </span>
+                          </div>
+                          <span className="text-[10px] text-slate-300 max-w-xs font-semibold">
+                            Live diagnostics streaming to device at the edge
+                          </span>
+                          <span className="text-[8px] bg-slate-850 text-slate-400 px-1.5 py-0.5 rounded font-mono font-bold mt-2 border border-slate-800/80">
+                            ICES-003 Compliant Passive OBD Monitor
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    <span className="font-mono text-xs font-bold text-emerald-600 transition-all duration-300">
-                      {awareness}%
-                    </span>
-                  </div>
 
-                  {/* Metric 4 */}
-                  <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-2.5 px-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Award className="w-3.5 h-3.5 text-indigo-500" />
-                      <span className="text-[11px] text-slate-600 font-medium tracking-wide">Road Condition Assist</span>
+                    {/* Live OBD Diagnostic Parameters Container */}
+                    <div className="flex flex-col gap-2">
+                      {/* RPM Metric */}
+                      <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-1.5 px-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Activity className="w-3.5 h-3.5 text-indigo-600" />
+                          <span className="text-[11px] text-slate-600 font-semibold tracking-wide">Live Engine RPM</span>
+                        </div>
+                        <span className="font-mono text-xs font-black text-slate-800 transition-all">
+                          {rpm} RPM
+                        </span>
+                      </div>
+
+                      {/* Alternator Battery Metric */}
+                      <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-1.5 px-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Zap className="w-3.5 h-3.5 text-indigo-600" />
+                          <span className="text-[11px] text-slate-600 font-semibold tracking-wide">Sensor Voltage</span>
+                        </div>
+                        <span className="font-mono text-xs font-black text-indigo-650">
+                          {voltage} V
+                        </span>
+                      </div>
+
+                      {/* Diagnostic Codes Metric */}
+                      <div className="bg-slate-50/70 border border-slate-100 rounded-lg py-1.5 px-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Cpu className="w-3.5 h-3.5 text-emerald-555" />
+                          <span className="text-[11px] text-slate-600 font-semibold tracking-wide">Active Engine Codes (DTCs)</span>
+                        </div>
+                        <span className="text-[9px] bg-emerald-50 border border-emerald-250 text-emerald-600 px-2.5 py-0.5 rounded font-black uppercase tracking-wide">
+                          0 Found (Healthy)
+                        </span>
+                      </div>
+
+                      {/* Trigger Scan Button */}
+                      <button
+                        type="button"
+                        onClick={handleStartObdScan}
+                        disabled={obdScanning}
+                        className={`w-full py-2.5 rounded-lg text-[10px] font-black tracking-widest transition-all uppercase flex items-center justify-center gap-1.5 cursor-pointer mt-1 ${
+                          obdScanning
+                            ? 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
+                            : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md shadow-indigo-600/15'
+                        }`}
+                      >
+                        <RefreshCw className={`w-3.5 h-3.5 ${obdScanning ? 'animate-spin' : ''}`} />
+                        {obdScanning ? 'Diagnosing Sensor Lines...' : 'Trigger Smart ECU Diagnostics Scan'}
+                      </button>
                     </div>
-                    <span className="text-[10px] bg-indigo-50 border border-indigo-200/50 text-indigo-600 px-2 py-0.5 rounded font-bold uppercase">
-                      Ready
-                    </span>
-                  </div>
-
-                </div>
+                  </>
+                )}
 
               </div>
 
