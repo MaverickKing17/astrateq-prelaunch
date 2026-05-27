@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Copy, Sparkles, UserCheck } from 'lucide-react';
+import { Send, CheckCircle2, Sparkles } from 'lucide-react';
 
 interface WaitlistSectionProps {
   onSuccess: (email: string) => void;
@@ -40,13 +40,13 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
   };
 
   return (
-    <section id="waitlist" className="py-24 bg-[#0F172A] relative overflow-hidden">
+    <section id="waitlist" className="py-24 bg-white relative overflow-hidden text-center">
       
       {/* Decorative vector grid backgrounds */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center animate-fade-in">
-        <div className="bg-slate-800/40 border border-white/10 rounded-3xl p-8 sm:p-12 backdrop-blur-md shadow-2xl relative">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 animate-fade-in">
+        <div className="bg-slate-50 border border-slate-200/80 rounded-3xl p-8 sm:p-12 shadow-sm relative overflow-hidden">
           
           {/* Subtle Accent Glow */}
           <div className="absolute -top-10 -left-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-[40px] pointer-events-none" />
@@ -55,17 +55,17 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
             <div className="space-y-6">
               
               {/* Early Bird Flag */}
-              <div className="inline-flex items-center gap-1.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-150 text-indigo-650 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5 shrink-0" />
                 FOUNDING SPECIAL ACCESS
               </div>
 
               {/* Headlines */}
-              <h2 className="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight max-w-lg mx-auto leading-tight">
-                Unlock Early Access & Secures Free Vehicle Safety Report
+              <h2 className="font-sans font-bold text-2xl sm:text-3xl text-slate-900 tracking-tight max-w-lg mx-auto leading-tight">
+                Unlock Early Access & Secure Your Free Vehicle Safety Report
               </h2>
               
-              <p className="text-gray-400 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+              <p className="text-slate-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-semibold">
                 Join our private queue. Lock founding rates, get direct launch alerts, and receive a free digital diagnostic setup guide for your car model.
               </p>
 
@@ -78,12 +78,12 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
                   disabled={isSubmitting}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your personal email address"
-                  className="flex-1 bg-slate-900 hover:border-white/25 border border-white/10 rounded-xl px-4 py-3.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 focus:bg-black/40 transition-all duration-300"
+                  className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 shadow-sm transition-all duration-300"
                 />
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold uppercase tracking-wide px-6 py-3.5 rounded-xl transition-all duration-300 shrink-0 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/35"
+                  className="bg-indigo-650 hover:bg-indigo-700 text-white text-xs font-bold uppercase tracking-wide px-6 py-3.5 rounded-xl transition-colors shrink-0 cursor-pointer flex items-center justify-center gap-2 shadow-md shadow-indigo-600/10"
                 >
                   {isSubmitting ? (
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -97,47 +97,47 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
               </form>
 
               {/* Extra value microcopy */}
-              <p className="text-[10px] sm:text-xs text-gray-500 max-w-xs mx-auto text-center font-medium">
+              <p className="text-[10px] sm:text-xs text-slate-450 max-w-xs mx-auto text-center font-bold">
                 🔒 Strictly no spam. Zero cellular diagnostic telemetry leaves the local device. Canadian compliance focus.
               </p>
 
             </div>
           ) : (
-            <div className="space-y-6 max-w-md mx-auto py-4">
+            <div className="space-y-6 max-w-md mx-auto py-2">
               
               {/* Success Badge */}
-              <div className="w-14 h-14 bg-emerald-500/15 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
-                <CheckCircle2 className="w-7 h-7 text-emerald-400 font-bold" />
+              <div className="w-14 h-14 bg-emerald-50 border border-emerald-250 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce shrink-0">
+                <CheckCircle2 className="w-7 h-7 text-emerald-600 font-bold" />
               </div>
 
               {/* Success Messages */}
-              <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white tracking-tight leading-tight">
+              <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-slate-900 tracking-tight leading-tight">
                 You’re on the Founding Waitlist!
               </h3>
               
-              <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-4 text-center">
-                <span className="text-[10px] uppercase font-bold text-gray-500 block tracking-widest">
+              <div className="bg-indigo-50/50 border border-indigo-120 rounded-xl p-4 text-center">
+                <span className="text-[10px] uppercase font-bold text-slate-500 block tracking-widest">
                   Your Founding Priority Queue Spot
                 </span>
-                <span className="font-display font-extrabold text-[#22D3EE] text-2xl sm:text-3xl block mt-1 tracking-tight">
+                <span className="font-display font-extrabold text-indigo-650 text-2xl sm:text-3xl block mt-1 tracking-tight">
                   #{waitlistNumber}
                 </span>
-                <span className="text-[11px] text-gray-400 mt-1 block">
-                  Founding discount locked successfully for <span className="text-white font-bold">{email}</span>.
+                <span className="text-[11px] text-slate-500 mt-1 block font-medium">
+                  Founding discount locked successfully for <span className="text-slate-800 font-extrabold">{email}</span>.
                 </span>
               </div>
 
-              <div className="space-y-2 text-left text-xs bg-black/20 border border-white/5 p-4 rounded-xl text-gray-400 leading-normal font-semibold">
-                <span className="text-white font-bold block mb-1">What happens next:</span>
+              <div className="space-y-2 text-left text-xs bg-white border border-slate-200 p-4 rounded-xl text-slate-500 leading-normal font-semibold shadow-sm">
+                <span className="text-slate-800 font-bold block mb-1 font-sans">What happens next:</span>
                 <p>1. Receipt confirmation delivered directly to {email}.</p>
                 <p>2. Personalized vehicle compatibility report generated.</p>
                 <p>3. Early shipping access invite arriving ahead of June Summer launch.</p>
               </div>
 
               {/* Sharing referral link or extra copy */}
-              <div className="flex items-center justify-between border-t border-white/5 pt-4">
-                <span className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider">Pass code locked</span>
-                <span className="text-[11px] bg-white/5 text-white/80 px-2 py-1 rounded font-mono font-medium">
+              <div className="flex items-center justify-between border-t border-slate-100 pt-4 font-semibold text-xs">
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Pass code locked</span>
+                <span className="text-[11px] bg-slate-100 border border-slate-200/40 text-slate-800 px-2.5 py-1 rounded font-mono font-bold">
                   {Math.random().toString(36).substring(2, 8).toUpperCase()}
                 </span>
               </div>

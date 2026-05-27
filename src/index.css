@@ -4,11 +4,6 @@
 @theme {
   --font-sans: "Inter", sans-serif;
   --font-display: "Poppins", sans-serif;
-  --color-brand-navy: #F8FAFC;
-  --color-brand-cyan: #4F46E5;
-  --color-dark-bg: #F8FAFC;
-  --color-dark-card: #FFFFFF;
-  --color-warm-accent: #06B6D4;
 }
 
 /* Custom fade integrations and scrolling behavior */
@@ -18,8 +13,8 @@ html {
 }
 
 body {
-  background-color: #F8FAFC !important;
-  color: #0F172A !important;
+  background-color: #F8FAFC;
+  color: #0F172A;
   overflow-x: hidden;
 }
 
@@ -30,81 +25,4 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* Redefine section & component defaults dynamically under light theme to maintain pristine contrast */
-#hero, #how-it-works, #trust-guarantees, #compatibility, #pricing, #what-is-included, #waitlist, #faq, #final-cta, footer {
-  background-color: transparent !important;
-  color: #1E293B !important;
-}
-
-/* Map white texts and heading components to deep charcoal slate */
-h1, h2, h3, h4, h5, h6 {
-  color: #0F172A !important;
-}
-
-/* Convert dark cards to beautiful pure-white card systems with delicate slate borders and high-quality shadows */
-.bg-slate-800\/40, 
-.bg-slate-900\/20, 
-.bg-slate-900\/40, 
-.bg-slate-950,
-.bg-\[\#131D2E\]\/40,
-.bg-\[\#131D2E\]\/20,
-.bg-slate-800\/40,
-.bg-white\/3,
-.bg-white\/5 {
-  background-color: #FFFFFF !important;
-  border-color: rgba(226, 232, 240, 0.9) !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02) !important;
-}
-
-/* Overwrite general light gray texts to highly legible slate shades */
-.text-gray-400,
-.text-slate-400,
-.text-gray-300,
-.text-slate-300,
-.text-white\/80,
-.text-white\/70,
-.text-white\/60,
-.text-white\/90 {
-  color: #475569 !important;
-}
-
-/* High contrast inputs and textareas */
-input, select {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border-color: rgba(203, 213, 225, 0.9) !important;
-}
-input::placeholder {
-  color: #94A3B8 !important;
-}
-
-/* Ensure elements with active action backgrounds retain legible crisp white/indigo styling */
-.bg-indigo-600,
-.bg-indigo-600 *,
-.bg-indigo-500,
-.bg-indigo-500 *,
-.bg-indigo-700,
-.bg-indigo-700 *,
-button[type="submit"],
-button[type="submit"] * {
-  color: #FFFFFF !important;
-}
-
-/* Fix Hero Dashboard Mockup aesthetics for light mode */
-.bg-black\/40 {
-  background-color: #F1F5F9 !important;
-  border-color: #E2E8F0 !important;
-}
-
-/* Fix secondary buttons to have soft slate-metallic visual tones */
-.bg-slate-900\/40 {
-  background-color: #F1F5F9 !important;
-  color: #0F172A !important;
-  border-color: #CBD5E1 !important;
-}
-.bg-slate-900 {
-  background-color: #F1F5F9 !important;
-  border-color: #E2E8F0 !important;
 }

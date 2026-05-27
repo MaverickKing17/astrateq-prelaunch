@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 interface FAQ {
   q: string;
@@ -62,18 +62,18 @@ export default function FaqAccordion() {
   };
 
   return (
-    <section id="faq" className="py-20 bg-slate-900/20 border-y border-slate-800/50 relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+    <section id="faq" className="py-20 bg-slate-50 border-y border-slate-200 relative">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center animate-fade-in">
         
         {/* Section header */}
         <div className="max-w-xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-[0.15em] text-indigo-400 font-bold block mb-3">
+          <span className="text-xs uppercase tracking-[0.15em] text-indigo-650 font-bold block mb-3">
             Got Questions?
           </span>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mb-4 text-center">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl text-slate-900 tracking-tight mb-4 text-center">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto">
+          <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto font-semibold">
             Everything you need to know about our automotive safety hardware, shipping schedules, and absolute offline privacy guarantees.
           </p>
         </div>
@@ -85,7 +85,7 @@ export default function FaqAccordion() {
             return (
               <div
                 key={i}
-                className="bg-slate-800/40 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/20"
+                className="bg-white border border-slate-200/80 rounded-2xl overflow-hidden transition-all duration-350 shadow-sm hover:border-indigo-400"
               >
                 <button
                   type="button"
@@ -94,16 +94,16 @@ export default function FaqAccordion() {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-[9px] uppercase font-bold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded">
+                    <span className="text-[9px] uppercase font-bold text-indigo-650 bg-indigo-50 border border-indigo-150 px-2 py-0.5 rounded">
                       {faq.category}
                     </span>
-                    <span className="text-xs sm:text-sm font-bold text-white tracking-wide leading-snug">
+                    <span className="text-xs sm:text-sm font-bold text-slate-800 tracking-wide leading-snug">
                       {faq.q}
                     </span>
                   </div>
                   <ChevronDown
-                    className={`w-4 h-4 text-gray-500 transition-transform duration-300 shrink-0 ${
-                      isOpen ? 'transform rotate-180 text-cyan-400' : ''
+                    className={`w-4 h-4 text-slate-400 transition-transform duration-300 shrink-0 ${
+                      isOpen ? 'transform rotate-180 text-indigo-600' : ''
                     }`}
                   />
                 </button>
@@ -111,10 +111,10 @@ export default function FaqAccordion() {
                 {/* Animated content sliding */}
                 <div
                   className={`transition-all duration-300 ease-in-out ${
-                    isOpen ? 'max-h-[220px] pb-5 px-6 border-t border-white/5 pt-4' : 'max-h-0 overflow-hidden'
+                    isOpen ? 'max-h-[220px] pb-5 px-6 border-t border-slate-100 pt-4' : 'max-h-0 overflow-hidden'
                   }`}
                 >
-                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold">
                     {faq.a}
                   </p>
                 </div>

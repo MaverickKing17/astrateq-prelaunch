@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Check, AlertTriangle, MessageSquare, CornerDownRight, UserCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, AlertTriangle, MessageSquare, CornerDownRight } from 'lucide-react';
 
 interface CompatibilityCheckerProps {
   onCheckSuccess: (vehicle: string) => void;
@@ -93,18 +93,18 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
   };
 
   return (
-    <section id="compatibility" className="py-20 bg-slate-900/20 border-y border-slate-800/50 relative">
+    <section id="compatibility" className="py-20 bg-white border-b border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-[0.15em] text-brand-cyan font-bold block mb-3 animate-pulse">
+          <span className="text-xs uppercase tracking-[0.15em] text-indigo-650 font-bold block mb-3">
             Vehicle Compatibility
           </span>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mb-4">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl text-slate-900 tracking-tight mb-4">
             See if ASTRA Works with Your Vehicle
           </h2>
-          <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto">
+          <p className="text-slate-550 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto font-medium">
             Most 2010+ vehicles driven in Canada are fully supported by OBD-II plug standards. Run your specs in seconds to audit configuration options.
           </p>
         </div>
@@ -112,7 +112,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto items-stretch">
           
           {/* Left Check Compatibility Form Panel */}
-          <div className="lg:col-span-7 bg-slate-800/40 border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-md flex flex-col justify-between shadow-xl">
+          <div className="lg:col-span-7 bg-slate-50 border border-slate-200/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm">
             
             <div className="space-y-6">
               
@@ -121,11 +121,11 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                 
                 {/* Year Selection */}
                 <div className="space-y-1.5 text-left">
-                  <label className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest block">Year</label>
+                  <label className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest block">Year</label>
                   <select
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(e.target.value)}
-                    className="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-3 text-xs sm:text-sm text-white/90 focus:outline-none focus:border-indigo-500/50 cursor-pointer"
+                    className="w-full bg-white border border-slate-200 rounded-xl px-3 py-3 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-indigo-500 cursor-pointer shadow-sm"
                   >
                     <option value="">Select Year</option>
                     {years.map((y) => (
@@ -136,11 +136,11 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
 
                 {/* Make Selection */}
                 <div className="space-y-1.5 text-left">
-                  <label className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest block">Make</label>
+                  <label className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest block">Make</label>
                   <select
                     value={selectedMake}
                     onChange={(e) => handleMakeChange(e.target.value)}
-                    className="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-3 text-xs sm:text-sm text-white/90 focus:outline-none focus:border-indigo-500/50 cursor-pointer"
+                    className="w-full bg-white border border-slate-200 rounded-xl px-3 py-3 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-indigo-500 cursor-pointer shadow-sm"
                   >
                     <option value="">Select Make</option>
                     {Object.keys(makesAndModels).map((m) => (
@@ -151,12 +151,12 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
 
                 {/* Model Selection */}
                 <div className="space-y-1.5 text-left">
-                  <label className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest block">Model</label>
+                  <label className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest block">Model</label>
                   <select
                     value={selectedModel}
                     disabled={!selectedMake}
                     onChange={(e) => setSelectedModel(e.target.value)}
-                    className="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-3 text-xs sm:text-sm text-white/90 focus:outline-none focus:border-indigo-500/50 cursor-pointer disabled:opacity-50"
+                    className="w-full bg-white border border-slate-200 rounded-xl px-3 py-3 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-indigo-500 cursor-pointer disabled:opacity-50 shadow-sm"
                   >
                     <option value="">Select Model</option>
                     {selectedMake &&
@@ -173,7 +173,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                 type="button"
                 disabled={isLoading || !selectedYear || !selectedMake || !selectedModel}
                 onClick={handleCheck}
-                className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 disabled:opacity-40 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/30"
+                className="w-full py-4 bg-indigo-650 hover:bg-indigo-700 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 disabled:opacity-40 cursor-pointer flex items-center justify-center gap-2 shadow-md shadow-indigo-600/15"
               >
                 {isLoading ? (
                   <>
@@ -190,37 +190,37 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
             {/* Results Display Window */}
             <div className="mt-8">
               {result ? (
-                <div className="border border-white/10 bg-[#0B1120]/40 rounded-2xl overflow-hidden shadow-2xl animate-fade-in text-left">
+                <div className="border border-slate-200 bg-white rounded-2xl overflow-hidden shadow-md animate-fade-in text-left">
                   
                   {/* Results Header block */}
                   {result === 'ev' && (
-                    <div className="bg-emerald-500/10 border-b border-emerald-500/25 px-5 py-3.5 flex items-center gap-3">
-                      <div className="w-7 h-7 bg-emerald-500/15 rounded-full flex items-center justify-center">
-                        <Check className="w-4 h-4 text-emerald-400" style={{ strokeWidth: 3 }} />
+                    <div className="bg-emerald-50 border-b border-emerald-100 px-5 py-3.5 flex items-center gap-3">
+                      <div className="w-7 h-7 bg-emerald-100 rounded-full flex items-center justify-center">
+                        <Check className="w-4 h-4 text-emerald-600" style={{ strokeWidth: 3 }} />
                       </div>
-                      <span className="font-display font-bold text-sm text-emerald-400">
+                      <span className="font-sans font-bold text-sm text-emerald-700">
                         Compatible — EV Optimized!
                       </span>
                     </div>
                   )}
 
                   {result === 'standard' && (
-                    <div className="bg-emerald-500/10 border-b border-emerald-500/25 px-5 py-3.5 flex items-center gap-3">
-                      <div className="w-7 h-7 bg-emerald-500/15 rounded-full flex items-center justify-center">
-                        <Check className="w-4 h-4 text-emerald-400" style={{ strokeWidth: 3 }} />
+                    <div className="bg-emerald-50 border-b border-emerald-100 px-5 py-3.5 flex items-center gap-3">
+                      <div className="w-7 h-7 bg-emerald-100 rounded-full flex items-center justify-center">
+                        <Check className="w-4 h-4 text-emerald-600" style={{ strokeWidth: 3 }} />
                       </div>
-                      <span className="font-display font-bold text-sm text-emerald-400">
+                      <span className="font-sans font-bold text-sm text-emerald-700">
                         Compatible — OBD-II Standard!
                       </span>
                     </div>
                   )}
 
                   {result === 'limited' && (
-                    <div className="bg-orange-500/10 border-b border-orange-500/25 px-5 py-3.5 flex items-center gap-3">
-                      <div className="w-7 h-7 bg-orange-500/15 rounded-full flex items-center justify-center">
-                        <AlertTriangle className="w-4 h-4 text-orange-400" style={{ strokeWidth: 3 }} />
+                    <div className="bg-amber-50 border-b border-amber-100 px-5 py-3.5 flex items-center gap-3">
+                      <div className="w-7 h-7 bg-amber-100 rounded-full flex items-center justify-center">
+                        <AlertTriangle className="w-4 h-4 text-amber-650" style={{ strokeWidth: 3 }} />
                       </div>
-                      <span className="font-display font-bold text-sm text-orange-400">
+                      <span className="font-sans font-bold text-sm text-amber-700">
                         Limited Compatibility — May Vary
                       </span>
                     </div>
@@ -230,35 +230,35 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                   <div className="p-5 space-y-4">
                     
                     {/* Recommended device card */}
-                    <div className="bg-white/3 border border-white/5 rounded-xl p-4 flex items-center justify-between">
+                    <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 flex items-center justify-between">
                       <div className="flex flex-col">
-                        <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Recommended Match</span>
-                        <span className="font-display font-bold text-white text-sm mt-0.5">
+                        <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Recommended Match</span>
+                        <span className="font-sans font-bold text-slate-800 text-sm mt-0.5">
                           {result === 'ev' && 'Guardian Pro Bundle'}
                           {result === 'standard' && 'Family Safety Bundle'}
                           {result === 'limited' && 'DriveGuard Solo'}
                         </span>
-                        <span className="text-[11px] text-gray-500 mt-1">
+                        <span className="text-[11px] text-slate-500 mt-1">
                           {result === 'ev' && 'Includes high-voltage EV battery analytics.'}
                           {result === 'standard' && 'Best match for dual vehicle layouts.'}
                           {result === 'limited' && 'Compact edge-processing unit.'}
                         </span>
                       </div>
                       <div className="text-right flex flex-col items-end">
-                        <span className="text-brand-cyan font-bold text-sm">
+                        <span className="text-indigo-650 font-bold text-sm">
                           {result === 'ev' && '$899 CAD'}
                           {result === 'standard' && '$599 CAD'}
                           {result === 'limited' && '$269 CAD'}
                         </span>
-                        <span className="text-[9px] text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded mt-1.5 lowercase">
+                        <span className="text-[9px] text-emerald-700 font-bold bg-emerald-50 border border-emerald-200/50 px-1.5 py-0.5 rounded mt-1.5 lowercase">
                           lock found rate
                         </span>
                       </div>
                     </div>
 
                     {/* Step guidance */}
-                    <div className="flex gap-2 text-xs text-gray-400 leading-relaxed font-semibold">
-                      <CornerDownRight className="w-4 h-4 text-brand-cyan shrink-0 animate-pulse" />
+                    <div className="flex gap-2 text-xs text-slate-605 leading-relaxed font-semibold">
+                      <CornerDownRight className="w-4 h-4 text-indigo-600 shrink-0" />
                       <div>
                         {result === 'ev' && 'Highly Recommended: Standard API connection aligns perfectly. Secure founding spot immediately.'}
                         {result === 'standard' && 'Great news: Ready to ship. Simply plug into standard dashboard port. Locks 3-year warranty.'}
@@ -270,7 +270,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                     <button
                       type="button"
                       onClick={() => onScrollToSection('pricing')}
-                      className="w-full text-center py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all rounded-lg text-xs uppercase cursor-pointer shadow-lg shadow-indigo-600/30"
+                      className="w-full text-center py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all rounded-lg text-xs uppercase cursor-pointer shadow-md"
                     >
                       Secure Founding Price →
                     </button>
@@ -279,7 +279,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
 
                 </div>
               ) : (
-                <p className="text-xs text-center text-gray-500">
+                <p className="text-xs text-center text-slate-500 font-medium">
                   Select your vehicle specifications above to test hardware alignments.
                 </p>
               )}
@@ -288,19 +288,19 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
           </div>
 
           {/* Right Column support contact - fallback interactive simulator */}
-          <div className="lg:col-span-5 bg-slate-800/40 border border-white/10 rounded-3xl p-6 flex flex-col justify-between backdrop-blur-md shadow-xl border-t">
+          <div className="lg:col-span-5 bg-slate-50 border border-slate-200/80 rounded-3xl p-6 flex flex-col justify-between shadow-sm">
             
             <div className="space-y-4">
-              <div className="flex items-center gap-2 pb-2 border-b border-white/5">
-                <MessageSquare className="w-4 h-4 text-brand-cyan" />
-                <h3 className="font-display font-bold text-sm text-white">Not sure? Ask Canadian Support.</h3>
+              <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                <MessageSquare className="w-4 h-4 text-indigo-600" />
+                <h3 className="font-sans font-bold text-sm text-slate-900">Not sure? Ask Canadian Support.</h3>
               </div>
-              <p className="text-xs text-gray-400 leading-relaxed font-semibold">
-                Speak directly with specialized hardware technicians. Real agents, never outsourced.
+              <p className="text-xs text-slate-600 leading-relaxed font-semibold">
+                Speak directly with specialized local hardware technicians. Real agents, based in BC.
               </p>
 
               {/* Chat frame */}
-              <div className="bg-[#0B1120]/60 border border-white/5 rounded-2xl p-4 h-44 overflow-y-auto space-y-3 no-scrollbar">
+              <div className="bg-white border border-slate-150 rounded-2xl p-4 h-44 overflow-y-auto space-y-3 no-scrollbar shadow-inner">
                 {chatHistory.map((item, i) => (
                   <div
                     key={i}
@@ -308,14 +308,14 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                       item.sender === 'user' ? 'ml-auto text-right items-end' : 'mr-auto text-left items-start'
                     }`}
                   >
-                    <span className="text-[9px] uppercase font-bold text-gray-500 tracking-wider mb-0.5">
+                    <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider mb-0.5">
                       {item.sender === 'user' ? 'You' : 'Agent James'}
                     </span>
                     <div
-                      className={`p-2.5 rounded-xl text-xs leading-relaxed font-semibold ${
+                      className={`p-2.5 rounded-xl text-xs leading-relaxed font-semibold transition-all ${
                         item.sender === 'user'
-                          ? 'bg-brand-cyan text-[#0B1120] rounded-tr-none'
-                          : 'bg-white/5 text-white/90 rounded-tl-none border border-white/5'
+                          ? 'bg-indigo-600 text-white rounded-tr-none shadow-sm'
+                          : 'bg-slate-100 text-slate-700 rounded-tl-none border border-slate-200/40'
                       }`}
                     >
                       {item.text}
@@ -323,12 +323,12 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                   </div>
                 ))}
                 {isAgentTyping && (
-                  <div className="text-left max-w-[80%]">
-                    <span className="text-[9px] uppercase font-bold text-gray-500 tracking-wider block mb-1">Agent James</span>
-                    <div className="bg-white/5 border border-white/5 p-2 rounded-xl inline-flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-bounce" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-bounce" style={{ animationDelay: '0.2s' }} />
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-bounce" style={{ animationDelay: '0.4s' }} />
+                  <div className="text-left max-w-[80%] animate-pulse">
+                    <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-1">Agent James</span>
+                    <div className="bg-slate-100 border border-slate-200/40 p-2 rounded-xl inline-flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce" style={{ animationDelay: '0.2s' }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce" style={{ animationDelay: '0.4s' }} />
                     </div>
                   </div>
                 )}
@@ -343,11 +343,11 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                 value={chatMessage}
                 onChange={(e) => setChatMessage(e.target.value)}
                 placeholder="Ask about your specific vehicle fit..."
-                className="flex-1 bg-[#0B1120] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan/50"
+                className="flex-1 bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 shadow-sm"
               />
               <button
                 type="submit"
-                className="bg-brand-cyan text-[#0B1120] hover:bg-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors cursor-pointer"
+                className="bg-indigo-650 text-white hover:bg-indigo-750 text-xs font-bold px-4 py-2.5 rounded-xl transition-colors cursor-pointer shadow-md shadow-indigo-600/10"
               >
                 Send
               </button>
@@ -355,12 +355,12 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
 
             {/* Trust notes */}
             <div className="flex justify-center gap-x-4 gap-y-1 sm:gap-6 mt-6 flex-wrap">
-              <div className="flex items-center gap-1 text-[10px] text-gray-500">
-                <div className="w-1 h-1 rounded-full bg-brand-cyan" />
+              <div className="flex items-center gap-1 text-[10px] text-slate-505">
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
                 <span>OBD-II standards verified</span>
               </div>
-              <div className="flex items-center gap-1 text-[10px] text-gray-500">
-                <div className="w-1 h-1 rounded-full bg-brand-cyan" />
+              <div className="flex items-center gap-1 text-[10px] text-slate-550">
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
                 <span>Standard 30s installation</span>
               </div>
             </div>
