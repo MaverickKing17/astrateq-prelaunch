@@ -1,0 +1,6 @@
+{
+  "name": "Astrateq Gadgets",
+  "description": "Premium AI-powered automotive safety landing page with local edge-computing intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
