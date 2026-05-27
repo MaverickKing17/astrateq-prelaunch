@@ -146,19 +146,29 @@ export default function Hero({ onScrollToSection }: HeroProps) {
             </div>
 
             {/* Live Synchronized Countdown Block */}
-            <div className="border border-slate-200 bg-white rounded-2xl p-5 max-w-md shadow-sm self-start w-full">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs uppercase tracking-wider text-slate-500 font-bold">
-                  ⚠️ Special Founding Allocation
+            <div className="relative border border-indigo-100 bg-gradient-to-br from-indigo-50/40 via-white to-white rounded-2xl p-6 max-w-md shadow-md shadow-indigo-100/10 self-start w-full overflow-hidden transition-all duration-300 hover:shadow-lg">
+              {/* Corner badge ribbon */}
+              <div className="absolute top-0 right-0 bg-red-600 text-white text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-bl-lg shadow-sm font-mono animate-pulse">
+                Rate Locked
+              </div>
+
+              <div className="flex items-center gap-2 mb-2.5">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                 </span>
-                <span className="text-[10px] bg-red-50 text-red-600 border border-red-200/50 px-2 py-0.5 rounded font-mono font-bold">
-                  Rate Locked
+                <span className="text-xs uppercase tracking-wider text-indigo-950 font-black flex items-center gap-1.5 font-display">
+                  Special Founding Allocation
                 </span>
               </div>
-              <p className="text-xs text-slate-600 mb-4 font-semibold leading-snug">
-                Lock in founding pricing. Standard rates apply after launch.
+              
+              <p className="text-xs text-slate-600 mb-4 font-medium leading-relaxed max-w-[90%]">
+                Secure your dual-lens hardware at <span className="text-indigo-600 font-extrabold font-sans">Early-Bird Pricing ($19 fully refundable deposit)</span>. Standard MSRP rates apply after launch.
               </p>
-              <CountdownTimer />
+              
+              <div className="bg-slate-50 border border-slate-100/80 rounded-xl p-4 flex justify-center">
+                <CountdownTimer />
+              </div>
             </div>
 
           </div>

@@ -143,12 +143,17 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
           </p>
 
           {/* Connected Pricing Timer */}
-          <div className="inline-flex flex-col items-center bg-white border border-slate-200 px-6 sm:px-8 py-5 rounded-2xl shadow-sm">
-            <span className="text-slate-500 text-[10px] font-extrabold uppercase tracking-widest mb-3 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-ping inline-block" />
+          <div className="inline-flex flex-col items-center bg-gradient-to-br from-indigo-50/30 to-white border border-indigo-100 px-6 sm:px-8 py-5 rounded-2xl shadow-md shadow-indigo-100/10">
+            <span className="text-indigo-950 text-[10px] font-black uppercase tracking-widest mb-3 flex items-center gap-2">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+              </span>
               Limited Prelaunch spots end in:
             </span>
-            <CountdownTimer />
+            <div className="bg-slate-50/80 border border-slate-100 px-4 py-3 rounded-xl">
+              <CountdownTimer />
+            </div>
           </div>
         </div>
 
