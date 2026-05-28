@@ -41,44 +41,44 @@ export default function Footer({ onScrollToSection }: FooterProps) {
 
   const paymentMethods = [
     { name: 'Visa', logo: (
-      <div className="flex items-center justify-center font-sans tracking-tight font-black text-[9px] text-[#1A1F71] bg-white px-2 py-1 rounded border border-slate-205 shadow-xs leading-none select-none">
+      <div className="flex items-center justify-center font-sans tracking-tight font-black text-xs sm:text-sm text-[#1A1F71] bg-white px-3.5 py-1.5 rounded-lg border-2 border-slate-200 shadow-sm leading-none select-none">
         VISA
       </div>
     )},
     { name: 'Mastercard', logo: (
-      <div className="flex items-center gap-1 bg-white px-2 py-0.5 rounded border border-slate-205 shadow-xs select-none">
-        <div className="flex -space-x-1">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#EB001B]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#F79E1B] opacity-90" />
+      <div className="flex items-center gap-1.5 bg-white px-3.5 py-1 rounded-lg border-2 border-slate-200 shadow-sm select-none">
+        <div className="flex -space-x-1.5">
+          <div className="w-3.5 h-3.5 rounded-full bg-[#EB001B]" />
+          <div className="w-3.5 h-3.5 rounded-full bg-[#F79E1B] opacity-90" />
         </div>
-        <span className="font-sans text-[7px] font-black text-slate-700 leading-none lowercase tracking-tight">mastercard</span>
+        <span className="font-sans text-[10px] sm:text-xs font-black text-slate-700 leading-none lowercase tracking-tight">mastercard</span>
       </div>
     )},
     { name: 'Amex', logo: (
-      <div className="flex items-center justify-center font-sans font-extrabold text-[8px] text-[#0070D2] bg-white px-1.5 py-1 rounded border border-slate-205 shadow-xs leading-none select-none uppercase tracking-tight">
+      <div className="flex items-center justify-center font-sans font-black text-xs sm:text-sm text-[#0070D2] bg-white px-3 py-1.5 rounded-lg border-2 border-slate-200 shadow-sm leading-none select-none uppercase tracking-tight">
         Amex
       </div>
     )},
     { name: 'Interac', logo: (
-      <div className="flex items-center gap-1 bg-white px-1.5 py-1 rounded border border-slate-205 shadow-xs select-none leading-none">
-        <span className="text-[10px] text-red-600 font-black italic select-none">I</span>
-        <span className="font-sans text-[8px] font-black tracking-tight text-[#0060A9] uppercase">Interac</span>
+      <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border-2 border-slate-200 shadow-sm select-none leading-none">
+        <span className="text-sm sm:text-base text-red-600 font-extrabold italic select-none">I</span>
+        <span className="font-sans text-xs sm:text-sm font-black tracking-tight text-[#0060A9] uppercase">Interac</span>
       </div>
     )},
     { name: 'Stripe', logo: (
-      <div className="flex items-center justify-center font-sans font-black text-[9px] text-[#635BFF] bg-white px-2 py-1 rounded border border-slate-205 shadow-xs leading-none select-none lowercase">
+      <div className="flex items-center justify-center font-sans font-black text-xs sm:text-sm text-[#635BFF] bg-white px-3.5 py-1.5 rounded-lg border-2 border-slate-200 shadow-sm leading-none select-none lowercase">
         stripe
       </div>
     )},
     { name: 'Apple Pay', logo: (
-      <div className="flex items-center justify-center font-sans font-medium text-[8px] text-white bg-black px-1.5 py-1 rounded border border-black shadow-xs leading-none select-none">
+      <div className="flex items-center justify-center font-sans font-bold text-xs sm:text-sm text-white bg-black px-3 py-1.5 rounded-lg border-2 border-black shadow-sm leading-none select-none">
          Pay
       </div>
     )},
     { name: 'Google Pay', logo: (
-      <div className="flex items-center gap-0.5 bg-white px-1.5 py-1 rounded border border-slate-205 shadow-xs select-none leading-none">
-        <span className="text-blue-600 font-extrabold text-[9px]">G</span>
-        <span className="text-slate-650 font-bold text-[8px] tracking-tight">Pay</span>
+      <div className="flex items-center gap-1 bg-white px-3 py-1.5 rounded-lg border-2 border-slate-200 shadow-sm select-none leading-none">
+        <span className="text-blue-600 font-black text-xs sm:text-sm">G</span>
+        <span className="text-slate-750 font-extrabold text-xs tracking-tight">Pay</span>
       </div>
     )}
   ];
@@ -285,12 +285,12 @@ export default function Footer({ onScrollToSection }: FooterProps) {
         </div>
 
         {/* Secure Canadian Payment Methods Badge Row */}
-        <div className="py-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex flex-col gap-0.5">
-            <span className="text-[10px] uppercase font-extrabold tracking-widest text-slate-800">Secure Canadian Checkout Partners</span>
-            <span className="text-[10px] text-slate-500 font-bold">Stripe Merchant Services authorized with industry-leading SSL encryption.</span>
+        <div className="py-8 border-b border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="flex flex-col gap-1">
+            <span className="text-xs uppercase font-extrabold tracking-widest text-slate-800">Secure Canadian Checkout Partners</span>
+            <span className="text-xs text-slate-500 font-semibold">Stripe Merchant Services authorized with industry-leading SSL encryption.</span>
           </div>
-          <div className="flex flex-wrap items-center gap-2.5 max-w-full">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 max-w-full">
             {paymentMethods.map((pm, idx) => (
               <div key={idx} title={pm.name} className="transition-all hover:scale-105">
                 {pm.logo}

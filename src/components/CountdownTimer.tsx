@@ -58,14 +58,18 @@ export default function CountdownTimer({ className = '', size = 'md' }: Countdow
 
   if (size === 'sm') {
     return (
-      <div className={`flex items-center gap-1 font-mono text-xs font-semibold text-indigo-400 ${className}`}>
-        <span>{formatNum(timeLeft.days)}d</span>
-        <span>:</span>
-        <span>{formatNum(timeLeft.hours)}h</span>
-        <span>:</span>
-        <span>{formatNum(timeLeft.minutes)}m</span>
-        <span>:</span>
-        <span className="text-cyan-400">{formatNum(timeLeft.seconds)}s</span>
+      <div className={`flex items-center gap-1 font-mono text-sm sm:text-base font-black ${className}`}>
+        <span className="text-amber-400 font-extrabold drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">{formatNum(timeLeft.days)}</span>
+        <span className="text-[10px] text-amber-500/75 font-black mr-0.5">D</span>
+        <span className="text-amber-500/30 font-light">:</span>
+        <span className="text-amber-400 font-extrabold drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">{formatNum(timeLeft.hours)}</span>
+        <span className="text-[10px] text-amber-500/75 font-black mr-0.5">H</span>
+        <span className="text-amber-500/30 font-light">:</span>
+        <span className="text-amber-400 font-extrabold drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">{formatNum(timeLeft.minutes)}</span>
+        <span className="text-[10px] text-amber-500/75 font-black mr-0.5">M</span>
+        <span className="text-amber-500/30 font-light">:</span>
+        <span className="text-rose-500 font-black animate-pulse drop-shadow-[0_0_12px_rgba(244,63,94,0.7)]">{formatNum(timeLeft.seconds)}</span>
+        <span className="text-[10px] text-rose-500/80 font-black">S</span>
       </div>
     );
   }
