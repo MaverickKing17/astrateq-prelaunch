@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/assets/:match*",
+      "destination": "/dist/assets/:match*"
+    },
+    {
+      "source": "/((?!assets/).*)",
+      "destination": "/dist/index.html"
+    }
+  ]
+}
