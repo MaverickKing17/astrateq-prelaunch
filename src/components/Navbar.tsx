@@ -55,15 +55,6 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
               </div>
             </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-sans font-black text-sm sm:text-base text-slate-950 tracking-[0.14em] uppercase leading-none">ASTRATEQ</span>
-                <span className="hidden sm:inline-flex items-center gap-1 bg-rose-50 border border-rose-100 px-1.5 py-0.5 rounded text-[9px] font-bold text-rose-600 tracking-wide">
-                  <span>🍁</span> CANADIAN FOCUS
-                </span>
-              </div>
-              <span className="text-[10px] text-indigo-600 tracking-[0.18em] uppercase font-black mt-1">GADGETS</span>
-            </div>
           </div>
 
           {/* Center: Desktop Navigation Links */}
