@@ -44,7 +44,7 @@ export default function HowItWorks() {
           </div>
           
           <h2 className="font-display font-black text-3.5xl sm:text-5xl text-slate-900 tracking-tight mb-4 leading-tight">
-            How ASTRA Protects You in 4 Steps
+            How Astrateq Gadgets Protects You in 4 Steps
           </h2>
           
           <p className="text-slate-600 text-xs sm:text-base leading-relaxed max-w-xl mx-auto font-medium">
@@ -69,7 +69,7 @@ export default function HowItWorks() {
               {/* Image element with required referrer policy */}
               <img
                 src={obdDongleBrightImg}
-                alt="ASTRA OBD-II Secure Sync Harness Click Installation"
+                alt="Astrateq Gadgets OBD-II Secure Sync Harness Click Installation"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
               />
@@ -114,7 +114,7 @@ export default function HowItWorks() {
               
               <img
                 src={dashcamBrightImg}
-                alt="ASTRA Dual-Lens Smart camera mounted cleanly on windshield"
+                alt="Astrateq Gadgets Dual-Lens Smart camera mounted cleanly on windshield"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
               />
@@ -159,7 +159,7 @@ export default function HowItWorks() {
               
               <img
                 src={activeScanningImg}
-                alt="ASTRA HUD visual interface tracking lanes and obstacles"
+                alt="Astrateq Gadgets HUD visual interface tracking lanes and obstacles"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
               />

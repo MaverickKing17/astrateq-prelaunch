@@ -251,7 +251,7 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
                   <div className="flex items-center gap-1.5">
                     <FileText className="w-4 h-4 text-rose-500 animate-pulse" />
                     <span className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest">
-                      ASTRA DIGITAL BLUEPRINT
+                      ASTRATEQ DIGITAL BLUEPRINT
                     </span>
                   </div>
                   <span className="text-[8px] bg-rose-500/15 text-rose-400 border border-rose-500/20 px-2.5 py-0.5 rounded font-mono font-extrabold tracking-wider uppercase">

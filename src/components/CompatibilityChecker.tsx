@@ -32,7 +32,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
   // Chat Simulator states
   const [chatMessage, setChatMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Array<{ sender: 'user' | 'agent'; text: string }>>([
-    { sender: 'agent', text: 'Bonjour! Hi! I’m James from our Vancouver support team. Any questions about fitting the ASTRA-AI DriveGuard into your vehicle?' }
+    { sender: 'agent', text: 'Bonjour! Hi! I’m James from our Vancouver support team. Any questions about fitting our Astrateq Gadgets DriveGuard units into your vehicle?' }
   ]);
   const [isAgentTyping, setIsAgentTyping] = useState(false);
 
@@ -94,16 +94,16 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
 
     setTimeout(() => {
       setIsAgentTyping(false);
-      let replyText = 'Yes indeed! Standard OBD-II ports work perfectly with ASTRA without any splicing. If it’s built since 2010, you are fully backed.';
+      let replyText = 'Yes indeed! Standard OBD-II ports work perfectly with Astrateq Gadgets without any splicing. If it’s built since 2010, you are fully backed.';
       
       if (question.includes('-35°C')) {
-        replyText = 'Absolutely! ASTRA is winter-hardened with a premium supercapacitor (no explosive lithium batteries) that safely operates from -35°C up to 85°C. Reliable power whether you’re in Calgary, Yellowknife, or Abitibi! ❄️';
+        replyText = 'Absolutely! Astrateq Gadgets is winter-hardened with a premium supercapacitor (no explosive lithium batteries) that safely operates from -35°C up to 85°C. Reliable power whether you’re in Calgary, Yellowknife, or Abitibi! ❄️';
       } else if (question.includes('EVs')) {
         replyText = 'Absolutely. Teslas and modern EVs (like the Ioniq 5 or EV6) are 100% compatible. Our dual-lens unit extracts zero secondary engine stats so it won’t trigger battery system drain warnings. ⚡';
       } else if (question.includes('shipping')) {
         replyText = 'Standard express shipping across Canada is quick & tracked! Usually 2-3 business days to Toronto/Montreal, 3-4 days to Calgary/Edmonton, and next-day within BC from our Vancouver hub. 📦';
       } else if (question.includes('warranty')) {
-        replyText = 'No, it will not void your warranty! ASTRA is a strictly passive OBD-II monitoring device (ices-003 compliant). It does not write commands/hack your vehicle ECU, which is fully compliant with Canada Consumer Protection. 🛠️';
+        replyText = 'No, it will not void your warranty! Astrateq Gadgets is a strictly passive OBD-II monitoring device (ices-003 compliant). It does not write commands/hack your vehicle ECU, which is fully compliant with Canada Consumer Protection. 🛠️';
       }
 
       setChatHistory((prev) => [...prev, { sender: 'agent', text: replyText }]);
@@ -122,14 +122,14 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
     // Simulate reactive support reply
     setTimeout(() => {
       setIsAgentTyping(false);
-      let replyText = 'Thanks for reaching out! Yes, standard OBD-II ports work perfectly with ASTRA without any splicing. If it’s built since 2010, you are fully backed.';
+      let replyText = 'Thanks for reaching out! Yes, standard OBD-II ports work perfectly with Astrateq Gadgets without any splicing. If it’s built since 2010, you are fully backed.';
       
       if (userMsg.toLowerCase().includes('hybrid') || userMsg.toLowerCase().includes('ev') || userMsg.toLowerCase().includes('battery') || userMsg.toLowerCase().includes('tesla')) {
-        replyText = 'Excellent question! ASTRA is optimized for high-voltage systems. Our Guardian Pro kit taps into EV battery telemetry seamlessly without triggering alerts on your dash.';
+        replyText = 'Excellent question! Astrateq Gadgets units are optimized for high-voltage systems. Our Guardian Pro kit taps into EV battery telemetry seamlessly without triggering alerts on your dash.';
       } else if (userMsg.toLowerCase().includes('install') || userMsg.toLowerCase().includes('plug') || userMsg.toLowerCase().includes('how')) {
         replyText = 'Installation is 100% plug-and-play. It simply clicks into the OBD-II port under your steering wheel dashboard. It takes less than 30 seconds!';
       } else if (userMsg.toLowerCase().includes('winter') || userMsg.toLowerCase().includes('cold') || userMsg.toLowerCase().includes('weather') || userMsg.toLowerCase().includes('freeze')) {
-        replyText = 'Designed specifically for harsh climates: ASTRA leverages extreme-grade supercapacitors instead of standard lithium batteries, meaning it stands up to -35°C Canadian winters without failure! 🏔️';
+        replyText = 'Designed specifically for harsh climates: Astrateq Gadgets leverages extreme-grade supercapacitors instead of standard lithium batteries, meaning it stands up to -35°C Canadian winters without failure! 🏔️';
       }
 
       setChatHistory((prev) => [...prev, { sender: 'agent', text: replyText }]);
@@ -141,7 +141,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
     { text: "❄️ Will it freeze in a -35°C winter?", action: "Will this survive a -35°C Calgary/winter weather environment?" },
     { text: "⚡ EV/Tesla compatibility?", action: "Is this compatible with EVs (like Tesla, Ioniq 5, EV6)?" },
     { text: "📦 Shipping times to ON/BC?", action: "How long is standard express shipping to Toronto, Montreal, or Calgary?" },
-    { text: "🛠️ Will OBD-II void my warranty?", action: "Does plugging ASTRA into the OBD-II port void my Canadian vehicle warranty?" }
+    { text: "🛠️ Will OBD-II void my warranty?", action: "Does plugging Astrateq Gadgets into the OBD-II port void my Canadian vehicle warranty?" }
   ];
 
   return (
@@ -164,7 +164,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
           </div>
           
           <h2 className="font-display font-black text-4xl sm:text-5.5xl text-slate-900 tracking-tight mb-4">
-            See if ASTRA Works with Your Vehicle
+            See if Astrateq Gadgets Works with Your Vehicle
           </h2>
           
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-medium">
@@ -289,7 +289,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                     <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
                     <span className="text-[10px] text-slate-500 uppercase tracking-widest font-black ml-2 font-mono">
-                      ASTRA-LINK CONNECT TERMINAL
+                      ASTRATEQ-LINK CONNECT TERMINAL
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5">
@@ -343,7 +343,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                 ) : (
                   <>
                     <Sparkles className="w-4.5 h-4.5 text-rose-200 animate-pulse" />
-                    Verify ASTRA Integration Specs
+                    Verify Astrateq Gadgets Integration Specs
                   </>
                 )}
               </button>
@@ -468,7 +468,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                       <CornerDownRight className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                       <div>
                         {result === 'ev' && 'Verified for electric power structures. Direct connection extracts zero dangerous battery drain specs, making it completely invisible to manufacturer warning logs.'}
-                        {result === 'standard' && 'ASTRA click link verified. System plugs in flawlessly beneath your steering column and secures standard dashboard communication link instantly.'}
+                        {result === 'standard' && 'Astrateq Gadgets link verified. System plugs in flawlessly beneath your steering column and secures standard dashboard communication link instantly.'}
                         {result === 'limited' && 'Prelaunch models older than 2012 support our supercapacitor visual computer 100% fine. Diagnostic warning text readouts may complete with minor delay.'}
                       </div>
                     </div>

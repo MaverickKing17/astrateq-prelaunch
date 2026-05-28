@@ -303,7 +303,7 @@ export default function DigitalOBDScanner() {
                 Remote Link Status
               </span>
               <p className="text-white text-xs font-bold mt-1.5 max-w-[180px] leading-relaxed">
-                ASTRA-OBD Connected. Select a symptom & trigger scan.
+                Astrateq OBD Connected. Select a symptom & trigger scan.
               </p>
             </div>
           )}
@@ -368,7 +368,7 @@ export default function DigitalOBDScanner() {
                   Remote OBD Connector
                 </span>
                 <span className="text-[9px] bg-indigo-50 border border-indigo-100 text-indigo-600 font-bold uppercase py-0.5 px-2 rounded font-mono">
-                  ASTRA Scan Engine
+                  ASTRATEQ Scan Engine
                 </span>
               </div>
 

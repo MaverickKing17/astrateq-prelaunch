@@ -46,7 +46,7 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
             <div className="relative flex-shrink-0">
               <img 
                 src="https://i.ibb.co/99HZPdq1/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
-                alt="ASTRA Logo" 
+                alt="Astrateq Gadgets Logo" 
                 className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl object-cover border-2 border-indigo-600 bg-white p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105 group-hover:rotate-1"
                 referrerPolicy="no-referrer"
               />

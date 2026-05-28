@@ -64,7 +64,7 @@ export default function App() {
   };
 
   const handleLockDiscount = (email: string) => {
-    showToast(`Extra $25 CAD early-access credit applied for ${email}! Code: ASTRA-FND-SAVE25`, 'gift');
+    showToast(`Extra $25 CAD early-access credit applied for ${email}! Code: ASTRATEQ-FND-SAVE25`, 'gift');
   };
 
   const handleCompatibilitySuccess = (vehicle: string) => {

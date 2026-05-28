@@ -4,7 +4,7 @@ export default function RiskReversal() {
   const credentials = [
     {
       title: '60-Day Risk-Free Trial Guarantee Goal',
-      desc: 'Test ASTRA inside your vehicle completely risk-free for 60 days once shipped. If you aren’t 100% satisfied with the safety alerts, return for full deposit restitution.',
+      desc: 'Test Astrateq Gadgets inside your vehicle completely risk-free for 60 days once shipped. If you aren’t 100% satisfied with the safety alerts, return for full deposit restitution.',
       icon: <Award className="w-5 h-5 text-indigo-600" />,
     },
     {

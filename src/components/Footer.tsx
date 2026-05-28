@@ -88,7 +88,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
       title: 'ASTRATEQ Privacy Shield Directive',
       icon: <Shield className="w-5 h-5 text-indigo-650" />,
       text: [
-        'Your digital safety and visual privacy form the fundamental architecture of Astrateq Gadgets Inc. Unlike commercial cloud-based dashcams that stream raw driver video archives to external server farms, all ASTRA devices handle environmental scanning entirely locally at the physical edge.',
+        'Your digital safety and visual privacy form the fundamental architecture of Astrateq Gadgets Inc. Unlike commercial cloud-based dashcams that stream raw driver video archives to external server farms, all Astrateq Gadgets devices handle environmental scanning entirely locally at the physical edge.',
         'No Automated Video Uploads: Real-time highway sweeps, lane orientation, and cabin fatigue tracking are processed inside your device’s neural network. Feeds are overwritten instantly and never persisted on any network host.',
         'Data Control sovereignty: Companion app coordinates, system diagnostics, and trip statistics are encrypted using high-grade local protocols (AES-256) and remain behind your personal device credentials.'
       ]
@@ -108,7 +108,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
       text: [
         'Queue Reservation Deposit: Participants make a fully-refundable $49 CAD reservation authorization today to lock in high pre-order volume discounts and ensure early shipment allocation in Summer 2026.',
         'Cancellation & Immediate Refund: You retain the absolute right to cancel your reservation queue sequence at any point before your specific physical hardware unit enters our Vancouver packaging conveyor line. Refund transactions are instantly debited back to your funding card via Stripe SSL secure processes.',
-        'The Hormozi Double-Risk Guarantee: Following delivery, you receive an unconditional 30-day trial period on Canadian roadways. If ASTRA does not meet your safety standards, you can return the device for a 100% refund of the purchase price and keep the deluxe client tool installation kit ($40-$120 value) completely free.'
+        'The Hormozi Double-Risk Guarantee: Following delivery, you receive an unconditional 30-day trial period on Canadian roadways. If Astrateq Gadgets does not meet your safety standards, you can return the device for a 100% refund of the purchase price and keep the deluxe client tool installation kit ($40-$120 value) completely free.'
       ]
     },
     cookies: {
@@ -133,7 +133,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
       title: 'Transport Canada & Road Safety Advisory',
       icon: <AlertTriangle className="w-5 h-5 text-indigo-650" />,
       text: [
-        'IMPORTANT LEGAL DISCLAIMER FOR CANADIAN MOTORISTS: ASTRATEQ safety gadgets (including AI DriveGuard and RoadGuard Pro) are secondary driver advisory units designed to alert operators of upcoming highway obstacles. They do NOT replace active, focused human command of the vehicle.',
+        'IMPORTANT LEGAL DISCLAIMER FOR CANADIAN MOTORISTS: Astrateq Gadgets safety units (including AI DriveGuard and RoadGuard Pro) are secondary driver advisory units designed to alert operators of upcoming highway obstacles. They do NOT replace active, focused human command of the vehicle.',
         'Provincial Motor Vehicles Statutes: Under laws established across all Canadian provinces (including the BC Motor Vehicle Act and the Highway Traffic Act of Ontario), operators must maintain unimpeded physical control and dedicated viewport attention. Secondary alert tools do not mitigate liability for distracted driving violations.',
         'Hardware Compliance: All on-board sensors operate on minor OBD-II Diagnostic pins in passive read-only protocol. Devices conform strictly to ICES-003 vehicular radio frequency standardizations.'
       ]
@@ -155,7 +155,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             >
               <img 
                 src="https://i.ibb.co/99HZPdq1/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
-                alt="ASTRA Logo" 
+                alt="Astrateq Gadgets Logo" 
                 className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg object-cover border border-slate-200 bg-white p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
@@ -322,7 +322,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
           <div className="flex items-center gap-3.5 text-[11px] text-slate-450 font-bold">
             <img 
               src="https://i.ibb.co/99HZPdq1/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
-              alt="ASTRA Bottom Logo" 
+              alt="Astrateq Gadgets Bottom Logo" 
               className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl object-cover border border-slate-200 bg-white p-1 shadow-sm shrink-0"
               referrerPolicy="no-referrer"
             />

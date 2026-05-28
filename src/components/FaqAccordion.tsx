@@ -13,13 +13,13 @@ export default function FaqAccordion() {
   const faqs: FAQ[] = [
     {
       category: 'Compatibility',
-      q: 'Will ASTRA fit into my older vehicle model?',
-      a: 'ASTRA works seamlessly with nearly all 2010 or newer vehicles driven in Canada, using standard OBD-II terminal ports. If your car is petrol, hybrid, or pure EV, the diagnostic connector establishes full connection in under 30 seconds.'
+      q: 'Will Astrateq Gadgets fit into my older vehicle model?',
+      a: 'Astrateq Gadgets works seamlessly with nearly all 2010 or newer vehicles driven in Canada, using standard OBD-II terminal ports. If your car is petrol, hybrid, or pure EV, the diagnostic connector establishes full connection in under 30 seconds.'
     },
     {
       category: 'Installation',
       q: 'Do I need any specialized tools or mechanic support to set it up?',
-      a: 'Absolutely not. Installation is completely plug-and-play. You simply find your OBD-II port (typically located right beneath the steering wheel dashboard), plug the ASTRA unit in, and follow the simple on-screen guidance on your mobile app.'
+      a: 'Absolutely not. Installation is completely plug-and-play. You simply find your OBD-II port (typically located right beneath the steering wheel dashboard), plug the Astrateq Gadgets unit in, and follow the simple on-screen guidance on your mobile app.'
     },
     {
       category: 'Subscriptions',
@@ -39,12 +39,12 @@ export default function FaqAccordion() {
     {
       category: 'Support',
       q: 'How do I contact your customer support team?',
-      a: 'Our responsive team operates directly out of Vancouver. You can access chat terminals inside your ASTRA companion application, submit questions on our website, or email support@astrateq.com for quick local engineering advice.'
+      a: 'Our responsive team operates directly out of Vancouver. You can access chat terminals inside your Astrateq Gadgets companion application, submit questions on our website, or email support@astrateq.com for quick local engineering advice.'
     },
     {
       category: 'Mobile Apps',
       q: 'Does it support multiple family members tracking the same vehicle?',
-      a: 'Yes, the ASTRA companion app supports multi-profile setups. You can easily share dashboard metrics, daily safety scores, and diagnostic health logs across your household without extra licensing charges.'
+      a: 'Yes, the Astrateq Gadgets companion app supports multi-profile setups. You can easily share dashboard metrics, daily safety scores, and diagnostic health logs across your household without extra licensing charges.'
     },
     {
       category: 'Timeline',
