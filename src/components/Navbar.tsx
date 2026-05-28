@@ -31,33 +31,33 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
     <header
       className={`sticky top-0 w-full z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 border-b border-slate-200/80 backdrop-blur-md shadow-md py-1.5'
-          : 'bg-transparent border-b border-transparent py-3'
+          ? 'bg-white/95 border-b border-slate-200/80 backdrop-blur-md shadow-sm py-1.5'
+          : 'bg-white/80 border-b border-slate-100/50 backdrop-blur-sm py-3.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 sm:h-24 transition-all duration-300">
+        <div className="flex items-center justify-between h-14 sm:h-16 transition-all duration-300">
           
           {/* Left: Brand Logo & Wordmark */}
           <div 
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => handleLinkClick('hero')}
           >
-            <div className="relative">
+            <div className="relative flex-shrink-0">
               <img 
                 src="https://i.ibb.co/99HZPdq1/Gemini-Generated-Image-pta8i9pta8i9pta8.png" 
                 alt="ASTRA Logo" 
-                className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl object-cover border-2 border-indigo-600 bg-white p-0.5 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:rotate-1"
+                className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl object-cover border-2 border-indigo-600 bg-white p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105 group-hover:rotate-1"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute -top-1 -right-1 flex h-3 w-3">
+              <div className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </div>
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="font-sans font-black text-sm sm:text-base md:text-lg text-slate-950 tracking-tight leading-none">Astrateq Gadgets</span>
+                <span className="font-sans font-black text-sm sm:text-base text-slate-950 tracking-tight leading-none whitespace-nowrap">Astrateq Gadgets</span>
                 <span className="hidden sm:inline-flex items-center gap-0.5 bg-rose-50 border border-rose-100 px-1.5 py-0.5 rounded text-[9px] font-black text-rose-600 uppercase tracking-wider">
                   <span>🍁</span> Canada
                 </span>
@@ -66,55 +66,55 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
           </div>
 
           {/* Center: Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-9 lg:gap-11">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-8 xl:gap-10">
             <button
               onClick={() => handleLinkClick('pricing')}
-              className="text-slate-600 hover:text-indigo-650 text-xs sm:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               Shop
             </button>
             <button
               onClick={() => handleLinkClick('how-it-works')}
-              className="text-slate-600 hover:text-indigo-650 text-xs sm:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               How It Works
             </button>
             <button
               onClick={() => handleLinkClick('compatibility')}
-              className="text-slate-600 hover:text-indigo-650 text-xs sm:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               Compatibility
             </button>
             <button
               onClick={() => handleLinkClick('digital-scanner')}
-              className="text-slate-600 hover:text-indigo-650 text-xs sm:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               Diagnostic Scanner
             </button>
             <button
               onClick={() => handleLinkClick('pricing')}
-              className="text-slate-600 hover:text-indigo-650 text-xs sm:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               Bundles
             </button>
             <button
               onClick={() => handleLinkClick('faq')}
-              className="text-slate-600 hover:text-indigo-650 text-xs sm:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               Support
             </button>
           </nav>
 
           {/* Right: Premium CTA */}
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="hidden md:flex flex-col items-end">
+          <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+            <div className="hidden md:flex flex-col items-center justify-center">
               <button
                 onClick={() => handleLinkClick('pricing')}
-                className="px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 hover:shadow-indigo-600/25 active:scale-95 rounded-xl text-xs sm:text-sm font-extrabold text-white shadow-lg shadow-indigo-600/15 transition-all duration-300 cursor-pointer text-center tracking-wide"
+                className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 hover:shadow-indigo-600/25 active:scale-95 rounded-xl text-xs lg:text-sm font-extrabold text-white shadow-lg shadow-indigo-600/15 transition-all duration-300 cursor-pointer text-center tracking-wide whitespace-nowrap"
               >
                 Reserve Space — $49 CAD
               </button>
-              <span className="text-[10px] text-slate-500 font-bold mt-1 tracking-wide uppercase">
+              <span className="text-[9px] text-slate-500 font-bold mt-1 tracking-wider uppercase whitespace-nowrap">
                 🛡️ 100% Fully Refundable
               </span>
             </div>
