@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Send, Copyright, Instagram, Twitter, MessageSquare, X, Shield, Lock, Scale, AlertTriangle, FileText, Sparkles } from 'lucide-react';
+import { Heart, Send, Copyright, Instagram, Twitter, MessageSquare, X, Shield, Lock, Scale, AlertTriangle, FileText, Sparkles, Linkedin } from 'lucide-react';
 
 interface FooterProps {
   onScrollToSection: (sectionId: string) => void;
@@ -160,8 +160,8 @@ export default function Footer({ onScrollToSection }: FooterProps) {
                 referrerPolicy="no-referrer"
               />
               <div className="flex flex-col">
-                <span className="font-sans font-black text-xs text-slate-900 tracking-[0.12em] uppercase leading-none">ASTRATEQ</span>
-                <span className="text-[9px] text-indigo-650 tracking-[0.14em] uppercase font-bold mt-0.5">GADGETS</span>
+                <span className="font-sans font-black text-sm text-slate-900 tracking-tight leading-none">Astrateq Gadgets</span>
+                <span className="text-[9px] text-rose-600 tracking-wider font-extrabold uppercase mt-1">🇨🇦 Canadian Focus</span>
               </div>
             </div>
             
@@ -170,12 +170,25 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             </p>
 
             {/* Social channels */}
-            <div className="flex items-center gap-4 pt-2">
-              <a href="#" className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-550 transition-colors" aria-label="Instagram">
+            <div className="flex flex-wrap items-center gap-2 pt-2">
+              <a href="#" className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-rose-600 transition-colors" aria-label="Instagram">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-550 transition-colors" aria-label="Twitter">
+              <a href="#" className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-900 transition-colors" aria-label="Twitter">
                 <Twitter className="w-4 h-4" />
+              </a>
+              <a href="#" className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-black transition-colors" aria-label="Threads">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.3 11.5c-.83 0-1.5-.67-1.5-1.5v-1c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v1c0 .83-.67 1.5-1.5 1.5zM9 12.5c0-.8.7-1.5 1.5-1.5s1.5.7 1.5 1.5v1c0 .8-.7 1.5-1.5 1.5S9 14.3 9 13.5v-1z" />
+                </svg>
+              </a>
+              <a href="#" className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-red-500 transition-colors" aria-label="TikTok">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.18.94 1.13 2.27 1.87 3.73 2.11v4.18c-1.89-.04-3.71-.8-5.06-2.12v8.52c.04 4.09-2.91 7.63-6.99 8.01-4.7 1.01-9.22-2.52-9.22-7.39 0-3.69 2.76-6.88 6.44-7.24 1.25-.13 2.53.11 3.63.74v-4c-1.15-1.11-1.92-2.61-2.15-4.21-.08-1.54-.01-3.09-.01-4.63h4.15l-.01.03z"/>
+                </svg>
+              </a>
+              <a href="#" className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-blue-700 transition-colors" aria-label="LinkedIn">
+                <Linkedin className="w-4 h-4" />
               </a>
               <a href="#" className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-150 flex items-center justify-center text-indigo-650 transition-colors hover:bg-indigo-100" aria-label="Chat">
                 <MessageSquare className="w-4 h-4" />
@@ -202,6 +215,11 @@ export default function Footer({ onScrollToSection }: FooterProps) {
               <li>
                 <button onClick={() => onScrollToSection('compatibility')} className="hover:text-indigo-650 transition-colors cursor-pointer text-left focus:outline-none">
                   Check OBD Compatibility
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onScrollToSection('digital-scanner')} className="hover:text-indigo-650 transition-colors cursor-pointer text-left focus:outline-none">
+                  Interactive OBD Diagnostic Simulator
                 </button>
               </li>
               <li>
@@ -328,7 +346,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
 
       {/* Interactive Modal for Legal documents */}
       {activeLegalTab && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in">
           <div className="bg-white border border-slate-200 w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh] animate-scale-up text-left">
             <div className="bg-slate-50 px-6 py-4.5 border-b border-slate-200/80 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5">

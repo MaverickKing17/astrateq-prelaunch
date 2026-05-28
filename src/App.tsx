@@ -14,6 +14,7 @@ import FaqAccordion from './components/FaqAccordion';
 import FinalCta from './components/FinalCta';
 import Footer from './components/Footer';
 import ExitIntentModal from './components/ExitIntentModal';
+import DigitalOBDScanner from './components/DigitalOBDScanner';
 import { ShieldAlert, CheckCircle, Gift, ArrowUp } from 'lucide-react';
 
 export default function App() {
@@ -96,6 +97,9 @@ export default function App() {
         onCheckSuccess={handleCompatibilitySuccess} 
         onScrollToSection={handleScrollToSection} 
       />
+
+      {/* 7.5 Interactive Digital OBD-II Diagnostic Scanner */}
+      <DigitalOBDScanner />
 
       {/* 8. Bundles & Pricing Section */}
       <Pricing onReserveSuccess={handleReserveSuccess} />

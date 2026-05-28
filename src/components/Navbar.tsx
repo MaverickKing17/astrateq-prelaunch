@@ -55,6 +55,14 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
               </div>
             </div>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1.5">
+                <span className="font-sans font-black text-sm sm:text-base md:text-lg text-slate-950 tracking-tight leading-none">Astrateq Gadgets</span>
+                <span className="hidden sm:inline-flex items-center gap-0.5 bg-rose-50 border border-rose-100 px-1.5 py-0.5 rounded text-[9px] font-black text-rose-600 uppercase tracking-wider">
+                  <span>🍁</span> Canada
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Center: Desktop Navigation Links */}
@@ -76,6 +84,12 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
               className="text-slate-600 hover:text-indigo-650 text-xs sm:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               Compatibility
+            </button>
+            <button
+              onClick={() => handleLinkClick('digital-scanner')}
+              className="text-slate-600 hover:text-indigo-650 text-xs sm:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+            >
+              Diagnostic Scanner
             </button>
             <button
               onClick={() => handleLinkClick('pricing')}
@@ -141,6 +155,12 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
               className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
             >
               Check Vehicle Compatibility
+            </button>
+            <button
+              onClick={() => handleLinkClick('digital-scanner')}
+              className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
+            >
+              Direct OBD-II Scanner
             </button>
             <button
               onClick={() => handleLinkClick('pricing')}

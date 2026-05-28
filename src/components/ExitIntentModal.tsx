@@ -75,7 +75,7 @@ export default function ExitIntentModal({ onScrollToSection, onLockDiscount }: E
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in">
       <div className="bg-white border border-slate-200/80 w-full max-w-md rounded-2xl overflow-hidden shadow-2xl relative p-6 sm:p-8 animate-scale-up text-left">
         
         {/* Close Button */}
