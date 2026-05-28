@@ -128,7 +128,7 @@ export default function TrustBar() {
           <h2 className="text-3xl sm:text-4xl text-white font-extrabold tracking-tight leading-tight">
             Designed for drivers who demand absolute <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400">privacy and physical control.</span>
           </h2>
-          <p className="text-sm text-slate-400 mt-4 leading-relaxed font-medium">
+          <p className="text-sm text-slate-300 mt-4 leading-relaxed font-medium">
             Astrateq is built on physical sovereignty, offline edge computation, and industrial durability. Read how we are setting a premium new standard for Canadian automotive technology.
           </p>
         </div>
@@ -170,14 +170,14 @@ export default function TrustBar() {
                   </h4>
                 </div>
 
-                <p className="text-xs text-slate-400 mt-4 leading-relaxed font-normal">
+                <p className="text-xs text-slate-100 mt-4 leading-relaxed font-normal">
                   {item.details}
                 </p>
               </div>
 
               {/* Status Indicator Bar */}
               <div className="mt-8 pt-4 border-t border-slate-800/60 flex items-center justify-between">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono flex items-center gap-1.5">
+                <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest font-mono flex items-center gap-1.5 ">
                   <span className={`w-1.5 h-1.5 rounded-full ${item.statusColor} animate-pulse`} />
                   {item.statusText}
                 </span>
