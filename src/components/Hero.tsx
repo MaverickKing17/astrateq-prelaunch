@@ -118,10 +118,10 @@ export default function Hero({ onScrollToSection }: HeroProps) {
             </div>
 
             {/* Headline */}
-            <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-[1.15] mb-6">
-              Predictive AI safety,{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-500">
-                elevated to art.
+            <h1 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-[1.15] mb-6">
+              Smart OBD vehicle defense,{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-500 to-rose-600">
+                built for Canada.
               </span>
             </h1>
 
