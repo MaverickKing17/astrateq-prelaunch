@@ -256,7 +256,7 @@ export default function HowItWorks() {
               </h3>
               
               <p className="text-slate-300 text-xs sm:text-xs leading-relaxed font-semibold">
-                Lock in early-bird savings today with your fully-refundable <span className="text-rose-400 font-black">$19 CAD deposit</span>. Enjoy complete 3-year local warranty and priority express shipment.
+                Lock in early-bird savings today with your fully-refundable <span className="text-rose-400 font-black">$49 CAD deposit</span>. Enjoy complete 3-year local warranty and priority express shipment.
               </p>
               
               {/* Check highlights */}
@@ -291,7 +291,7 @@ export default function HowItWorks() {
                 onClick={() => handleScroll('pricing')}
                 className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-red-650 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 text-center shadow-lg shadow-rose-950/20 active:scale-95"
               >
-                Pre-order Now ($19 Fully Refundable)
+                Pre-order Now ($49 Fully Refundable)
                 <ArrowRight className="w-4 h-4 text-rose-200 animate-pulse" />
               </button>
 

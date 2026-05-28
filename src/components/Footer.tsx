@@ -106,7 +106,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
       title: 'Terms of Prelaunch Reservation',
       icon: <FileText className="w-5 h-5 text-indigo-650" />,
       text: [
-        'Queue Reservation Deposit: Participants make a fully-refundable $19 CAD reservation authorization today to lock in high pre-order volume discounts and ensure early shipment allocation in Summer 2026.',
+        'Queue Reservation Deposit: Participants make a fully-refundable $49 CAD reservation authorization today to lock in high pre-order volume discounts and ensure early shipment allocation in Summer 2026.',
         'Cancellation & Immediate Refund: You retain the absolute right to cancel your reservation queue sequence at any point before your specific physical hardware unit enters our Vancouver packaging conveyor line. Refund transactions are instantly debited back to your funding card via Stripe SSL secure processes.',
         'The Hormozi Double-Risk Guarantee: Following delivery, you receive an unconditional 30-day trial period on Canadian roadways. If ASTRA does not meet your safety standards, you can return the device for a 100% refund of the purchase price and keep the deluxe client tool installation kit ($40-$120 value) completely free.'
       ]

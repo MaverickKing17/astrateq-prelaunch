@@ -14,7 +14,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [checkoutStep, setCheckoutStep] = useState<'form' | 'success'>('form');
 
-  const reservationDeposit = 19; // Hormozi low-barrier deposit
+  const reservationDeposit = 49; // Premium commitment deposit for middle-income security-first parents
 
   const bundles = [
     {
@@ -25,7 +25,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       shipPrice: 269,
       savings: 60,
       badge: 'Starter Tier',
-      cta: 'Reserve for $19 CAD',
+      cta: 'Reserve for $49 CAD',
       warranty: '2-Year Warranty',
       features: [
         'ASTRA-AI DriveGuard Unit',
@@ -47,7 +47,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       shipPrice: 599,
       savings: 179,
       badge: 'Best Value • Most Popular',
-      cta: 'Secure Family Spot for $19',
+      cta: 'Secure Family Spot for $49',
       warranty: '3-Year Warranty',
       isFeatured: true,
       features: [
@@ -72,7 +72,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       shipPrice: 899,
       savings: 258,
       badge: 'Elite Collection',
-      cta: 'Reserve Pro Spot for $19',
+      cta: 'Reserve Pro Spot for $49',
       warranty: '3-Year Warranty + Concierge',
       features: [
         'All 3 Signature ASTRA Devices',
@@ -138,8 +138,8 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
           <h2 className="font-sans font-black text-3xl sm:text-4xl text-slate-900 tracking-tight mb-4">
             Unlock High-Volume Pre-Order Access
           </h2>
-          <p className="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed font-bold max-w-xl mx-auto">
-            We removed all the friction. Reserve your Founding Spot today for a <span className="text-indigo-600">fully refundable $19 CAD</span>. Keep your discount locked, get all premium prelaunch bonuses free, and pay the balance only when we ship in Summer 2026.
+          <p className="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed font-bold max-w-[90%] sm:max-w-xl mx-auto">
+            We removed all the friction. Reserve your Founding Spot today for a <span className="text-indigo-600">fully refundable $49 CAD</span>. Keep your discount locked, get all premium prelaunch bonuses free, and pay the balance only when we ship in Summer 2026.
           </p>
 
           {/* Connected Pricing Timer */}
@@ -332,7 +332,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                     {selectedBundle.name} Spot Reservation
                   </span>
                   <span className="text-xs text-indigo-650 font-bold mt-1.5 bg-white border border-indigo-150 px-2.5 py-1 rounded-md self-start">
-                    Today's Authorized Charge: <span className="text-emerald-700 font-extrabold uppercase">$19 CAD</span> (Fully Refundable)
+                    Today's Authorized Charge: <span className="text-emerald-700 font-extrabold uppercase">$49 CAD</span> (Fully Refundable)
                   </span>
                   <span className="text-[10px] text-slate-500 mt-2 font-semibold">
                     Remaining balance of <strong>${selectedBundle.shipPrice} CAD</strong> billed ONLY in Summer 2026 once tracking shipment begins.

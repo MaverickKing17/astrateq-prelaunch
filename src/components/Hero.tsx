@@ -165,7 +165,7 @@ export default function Hero({ onScrollToSection }: HeroProps) {
               </div>
               
               <p className="text-xs text-slate-600 mb-4 font-medium leading-relaxed max-w-[90%]">
-                Secure your dual-lens hardware at <span className="text-indigo-600 font-extrabold font-sans">Early-Bird Pricing ($19 fully refundable deposit)</span>. Standard MSRP rates apply after launch.
+                Secure your dual-lens hardware at <span className="text-indigo-600 font-extrabold font-sans">Early-Bird Pricing ($49 fully refundable deposit)</span>. Standard MSRP rates apply after launch.
               </p>
               
               <div className="bg-slate-50 border border-slate-100/80 rounded-xl p-4 flex justify-center">
