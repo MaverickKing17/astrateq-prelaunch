@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Activity, ShieldAlert, CheckCircle2, AlertTriangle, MapPin, Wrench, Search, RefreshCw, DollarSign, Settings, Navigation, Navigation2, Check, UserCheck, Star, Radio } from 'lucide-react';
 
-const luxuryObdScanImg = '/src/assets/images/luxury_obd_scan_1779998332271.png';
+import luxuryObdScanImg from '../assets/images/luxury_obd_scan_1779998332271.png';
 
 // Symptom / Warning code options
 interface SymptomIssue {

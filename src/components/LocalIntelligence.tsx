@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { ShieldAlert, Radio, ServerCrash, Cpu, CheckCircle2, Eye, ShieldCheck, Database, Wifi, WifiOff, Car, BellRing, SquareTerminal } from 'lucide-react';
+import smartDashcamProductImg from '../assets/images/smart_dashcam_product_1779905537085.png';
+import cloudServerBrightImg from '../assets/images/cloud_server_bright_1779987924754.png';
 
 export default function LocalIntelligence() {
   const [activeTab, setActiveTab] = useState<'local' | 'cloud'>('local');
@@ -106,7 +108,7 @@ export default function LocalIntelligence() {
                 {activeTab === 'local' ? (
                   <div className="w-full h-full relative animate-fade-in">
                     <img
-                      src="/src/assets/images/smart_dashcam_product_1779905537085.png"
+                      src={smartDashcamProductImg}
                       alt="ASTRA On-Device Smart Hardware"
                       className="w-full h-full object-cover transition-all duration-700 group-hover:scale-103"
                       referrerPolicy="no-referrer"
@@ -141,7 +143,7 @@ export default function LocalIntelligence() {
                 ) : (
                   <div className="w-full h-full relative animate-fade-in">
                     <img
-                      src="/src/assets/images/cloud_server_bright_1779987924754.png"
+                      src={cloudServerBrightImg}
                       alt="Conventional Cloud Processing Servers"
                       className="w-full h-full object-cover transition-all duration-700 group-hover:scale-103"
                       referrerPolicy="no-referrer"

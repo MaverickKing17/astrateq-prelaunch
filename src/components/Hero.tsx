@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { ArrowRight, ShieldCheck, Database, Award, WifiOff, Zap, Bluetooth, Activity, RefreshCw, CheckCircle2, Cpu } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
-const activeScanningImg = '/src/assets/images/active_scanning_1779906877154.png';
-const windshieldCamImg = '/src/assets/images/dashcam_bright_1779908744354.png';
-const obdPluginImg = '/src/assets/images/obd_dongle_bright_1779908121019.png';
+import activeScanningImg from '../assets/images/active_scanning_1779906877154.png';
+import windshieldCamImg from '../assets/images/dashcam_bright_1779908744354.png';
+import obdPluginImg from '../assets/images/obd_dongle_bright_1779908121019.png';
 
 interface HeroProps {
   onScrollToSection: (sectionId: string) => void;

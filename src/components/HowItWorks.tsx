@@ -13,6 +13,10 @@ import {
   CheckCircle2, 
   Milestone 
 } from 'lucide-react';
+import obdDongleBrightImg from '../assets/images/obd_dongle_bright_1779908121019.png';
+import dashcamBrightImg from '../assets/images/dashcam_bright_1779908744354.png';
+import activeScanningImg from '../assets/images/active_scanning_1779906877154.png';
+import companionBrightImg from '../assets/images/companion_bright_1779907832283.png';
 
 export default function HowItWorks() {
   const handleScroll = (elementId: string) => {
@@ -64,7 +68,7 @@ export default function HowItWorks() {
               
               {/* Image element with required referrer policy */}
               <img
-                src="/src/assets/images/obd_dongle_bright_1779908121019.png"
+                src={obdDongleBrightImg}
                 alt="ASTRA OBD-II Secure Sync Harness Click Installation"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
@@ -109,7 +113,7 @@ export default function HowItWorks() {
             <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
               
               <img
-                src="/src/assets/images/dashcam_bright_1779908744354.png"
+                src={dashcamBrightImg}
                 alt="ASTRA Dual-Lens Smart camera mounted cleanly on windshield"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
@@ -154,7 +158,7 @@ export default function HowItWorks() {
             <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
               
               <img
-                src="/src/assets/images/active_scanning_1779906877154.png"
+                src={activeScanningImg}
                 alt="ASTRA HUD visual interface tracking lanes and obstacles"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
@@ -199,7 +203,7 @@ export default function HowItWorks() {
             <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
               
               <img
-                src="/src/assets/images/companion_bright_1779907832283.png"
+                src={companionBrightImg}
                 alt="Smartphone syncing vehicle drive log dashboard data"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
