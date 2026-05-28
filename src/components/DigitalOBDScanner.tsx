@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, ShieldAlert, CheckCircle2, AlertTriangle, MapPin, Wrench, Search, RefreshCw, DollarSign, Settings, Navigation, Navigation2, Check, UserCheck, Star } from 'lucide-react';
+import { Activity, ShieldAlert, CheckCircle2, AlertTriangle, MapPin, Wrench, Search, RefreshCw, DollarSign, Settings, Navigation, Navigation2, Check, UserCheck, Star, Radio } from 'lucide-react';
+
+const luxuryObdScanImg = '/src/assets/images/luxury_obd_scan_1779998332271.png';
 
 // Symptom / Warning code options
 interface SymptomIssue {
@@ -115,7 +117,7 @@ const MECHANICS_BY_PROVINCE: Record<string, ProvincialMechanic[]> = {
     { name: 'Garages Alignement National', rating: 4.6, reviews: 121, distance: '5.9 km away', address: '7500 Boulevard Robert, Saint-Léonard, QC', phone: '(514) 555-8140', specialty: 'Diagnostic Freins ABS & Capteurs de Collision' }
   ],
   DEFAULT: [
-    { name: 'Astrateq Certified Diagnostics Hub', rating: 4.9, reviews: 144, distance: 'Local Partner Hub Network', address: 'National Diagnostic Depot Network', phone: '1-800-555-ASTRA', specialty: 'Passive Diagnostic Optimization Work' },
+    { name: 'Astrateq Gadgets Certified Diagnostics Hub', rating: 4.9, reviews: 144, distance: 'Local Partner Hub Network', address: 'National Diagnostic Depot Network', phone: '1-800-555-ASTRA', specialty: 'Passive Diagnostic Optimization Work' },
     { name: 'Standard Canadian Road-Network Garage', rating: 4.7, reviews: 92, distance: 'Available Locally', address: 'Nearby Provincial Partner', phone: 'Contact Support', specialty: 'Ignition, Exhaust, and Airbag Inspections' }
   ]
 };
@@ -185,91 +187,149 @@ export default function DigitalOBDScanner() {
 
   // Render miniature vehicle SVG with accurate pulsing indicator where the issue is physically located!
   const renderVehicleBlueprintSvg = () => {
-    // Determine target location coordinates on top-down transparent vehicle layout
-    // Vehicle is 200px wide, 380px tall
-    // Coordinates:
-    // engine: (100, 65)
-    // transmission: (100, 110)
-    // cabin: (100, 180)
-    // exhaust: (100, 275)
-    // brakes (front wheel): (50, 115)  Left Front Wheel Hub
-    // fuel: (100, 230)
-    let hotspotX = 100;
-    let hotspotY = 180;
+    // Coordinate mapping (relative to the container size)
+    let spotTop = '50%';
+    let spotLeft = '50%';
 
     switch (activeIssue.location) {
       case 'engine':
-        hotspotX = 100; hotspotY = 70;
+        spotTop = '32%'; spotLeft = '30%';
         break;
       case 'transmission':
-        hotspotX = 100; hotspotY = 120;
+        spotTop = '44%'; spotLeft = '42%';
         break;
       case 'cabin':
-        hotspotX = 100; hotspotY = 180;
+        spotTop = '42%'; spotLeft = '62%';
         break;
       case 'exhaust':
-        hotspotX = 100; hotspotY = 280;
+        spotTop = '72%'; spotLeft = '54%';
         break;
       case 'brakes':
-        hotspotX = 54; hotspotY = 115; // Left Front wheel assembly
+        spotTop = '52%'; spotLeft = '20%';
         break;
       case 'fuel':
-        hotspotX = 100; hotspotY = 230;
+        spotTop = '26%'; spotLeft = '45%';
         break;
     }
 
     return (
-      <div className="relative w-full max-w-[220px] mx-auto bg-slate-950 border-2 border-slate-850 rounded-2xl p-4 overflow-hidden flex flex-col items-center">
-        <span className="text-[8px] font-mono text-indigo-400 uppercase tracking-widest font-black absolute top-3 left-4">
-          Automotive Anatomy Grid
-        </span>
-        
-        {/* SVG Topdown Car wireframe outline */}
-        <svg viewBox="0 0 200 380" className="w-[140px] h-[260px] text-slate-800 my-4" fill="none" stroke="currentColor" strokeWidth="1.5">
-          {/* Main profile */}
-          <path d="M50 80 C 50 40, 150 40, 150 80 L 150 120 C 158 120, 162 135, 160 150 L 154 280 C 154 310, 140 340, 120 345 L 80 345 C 60 340, 46 310, 46 280 L 40 150 C 38 135, 42 120, 50 120 Z" />
-          {/* Windshield */}
-          <path d="M 60 145 L 140 145 C 130 115, 70 115, 60 145 Z" strokeWidth="1.2" strokeOpacity="0.5" />
-          {/* Back windshield */}
-          <path d="M 60 270 L 140 270 C 135 295, 65 295, 60 270 Z" strokeWidth="1.2" strokeOpacity="0.5" />
-          {/* Front Grille */}
-          <line x1="75" y1="42" x2="125" y2="42" stroke="currentColor" strokeWidth="2" strokeOpacity="0.6" />
-          
-          {/* Engine boundary */}
-          <rect x="70" y="55" width="60" height="40" rx="4" strokeDasharray="3,3" stroke="currentColor" strokeOpacity="0.4" />
-          
-          {/* Wheels */}
-          {/* Front Left Wheel */}
-          <rect x="32" y="95" width="14" height="40" rx="3" fill="#0f172a" stroke="currentColor" strokeWidth="1" />
-          {/* Front Right Wheel */}
-          <rect x="154" y="95" width="14" height="40" rx="3" fill="#0f172a" stroke="currentColor" strokeWidth="1" />
-          {/* Rear Left Wheel */}
-          <rect x="32" y="260" width="14" height="40" rx="3" fill="#0f172a" stroke="currentColor" strokeWidth="1" />
-          {/* Rear Right Wheel */}
-          <rect x="154" y="260" width="14" height="40" rx="3" fill="#0f172a" stroke="currentColor" strokeWidth="1" />
+      <div className="relative w-full bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden flex flex-col items-stretch shadow-2xl p-4">
+        {/* Style injection for smooth cyber-HUD elements */}
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes laser-sweep {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { top: 100%; opacity: 0; }
+          }
+          @keyframes target-ripple {
+            0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.2; }
+            50% { opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+          }
+          .hud-sweep-line {
+            animation: laser-sweep 3s infinite linear;
+          }
+          .hud-target-pulse {
+            animation: target-ripple 2s infinite ease-out;
+          }
+        `}} />
 
-          {/* Exhaust piping */}
-          <path d="M 100 95 L 100 310 L 80 340" stroke="currentColor" strokeWidth="1" strokeDasharray="5,5" strokeOpacity="0.3" />
+        {/* Top telemetry status bar */}
+        <div className="flex items-center justify-between border-b border-slate-900 pb-2 mb-3 font-mono">
+          <div className="flex items-center gap-1.5 text-[8.5px] tracking-wider font-extrabold text-indigo-400 uppercase">
+            <Radio className="w-3.5 h-3.5 animate-pulse text-indigo-505 shrink-0" />
+            <span>Telemetry: {scanState === 'idle' ? 'STANDBY' : scanState === 'scanning' ? 'SCAN_RUNNING' : 'ALERT_LOCKED'}</span>
+          </div>
+          <span className="text-[8px] text-slate-500">
+            SYS_REF: ASR-90x2
+          </span>
+        </div>
 
-          {/* Active Sensor Scan beam in scanning phase */}
+        {/* Diagnostic Hologram Image Canvas Wrapper */}
+        <div className="relative w-full aspect-square md:aspect-[4/3] bg-slate-900/60 rounded-xl overflow-hidden border border-slate-900 flex items-center justify-center p-2">
+          {/* Subtle sci-fi backdrop grids */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] pointer-events-none" />
+
+          {/* Luxury vehicle 3D holographic asset */}
+          <img
+            src={luxuryObdScanImg}
+            referrerPolicy="no-referrer"
+            alt="Astrateq Gadgets 3D OBD Diagnostics Live Hologram Preview"
+            className={`w-full h-full object-contain object-center transition-all duration-705 ease-in-out ${
+              scanState === 'idle' 
+                ? 'opacity-40 grayscale-[40%] blur-[0.5px]' 
+                : scanState === 'scanning' 
+                  ? 'opacity-90 saturate-[120%]' 
+                  : 'opacity-100 saturate-[140%] contrast-[105%]'
+            }`}
+          />
+
+          {/* Active Sensor Scan laser beam */}
           {scanState === 'scanning' && (
-            <line x1="20" y1={30 + (scanProgress * 3.1)} x2="180" y2={30 + (scanProgress * 3.1)} stroke="#6366f1" strokeWidth="3" className="opacity-80" strokeLinecap="round" />
+            <div className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-indigo-400 to-transparent shadow-[0_0_12px_rgba(99,102,241,0.8)] pointer-events-none hud-sweep-line" />
           )}
 
-          {/* Glowing Diagnostic hotspots highlighted */}
+          {/* Precision glowing hotspot marker targeting the exact part */}
           {scanState === 'complete' && (
-            <>
-              {/* Target glowing beacon ring */}
-              <circle cx={hotspotX} cy={hotspotY} r="18" fill="rgba(239, 68, 68, 0.15)" stroke="none" />
-              <circle cx={hotspotX} cy={hotspotY} r="10" fill="rgba(239, 68, 68, 0.3)" stroke="rgba(239,68,68,0.5)" strokeWidth="1" className="animate-ping" />
-              <circle cx={hotspotX} cy={hotspotY} r="5.5" fill="#ef4444" stroke="#ffffff" strokeWidth="1.5" className="shadow-lg shadow-red-500" />
-            </>
-          )}
-        </svg>
+            <div 
+              style={{ top: spotTop, left: spotLeft }} 
+              className="absolute -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none"
+            >
+              {/* Pulsing focal radar rings */}
+              <div className="absolute top-1/2 left-1/2 w-20 h-20 bg-red-500/10 rounded-full blur-md hud-target-pulse" />
+              <div className="absolute top-1/2 left-1/2 w-12 h-12 bg-red-500/20 rounded-full border border-red-500/40 hud-target-pulse [animation-delay:0.5s]" />
+              <div className="absolute top-1/2 left-1/2 w-6 h-6 bg-red-500/30 rounded-full border border-red-500/60 hud-target-pulse [animation-delay:1s]" />
 
-        <span className="text-[10px] font-mono font-bold text-center uppercase tracking-wide px-3 py-1 rounded bg-slate-900 text-slate-300 w-full truncate border border-slate-800">
-          {scanState === 'complete' ? activeIssue.locationLabel : 'Awaiting ECU Signal'}
-        </span>
+              {/* Central pinpoint dot */}
+              <div className="w-3.5 h-3.5 rounded-full bg-red-500 border-2 border-white shadow-lg shadow-red-500 animate-pulse relative z-30" />
+
+              {/* Leader-line HUD tag detailing issue code */}
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 bg-slate-950/90 backdrop-blur-sm border border-red-500/40 text-red-455 text-red-500 font-mono text-[9px] font-black uppercase py-1 px-2.5 rounded-lg whitespace-nowrap shadow-xl z-40 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                {activeIssue.code} : FAULT LCK
+              </div>
+            </div>
+          )}
+
+          {/* Passive Standby UI indicator overlay */}
+          {scanState === 'idle' && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-slate-950/50 backdrop-blur-[0.5px]">
+              <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center mb-2">
+                <Activity className="w-5 h-5 text-indigo-400 animate-pulse" />
+              </div>
+              <span className="font-mono text-[8px] text-slate-400 tracking-widest font-black uppercase">
+                Remote Link Status
+              </span>
+              <p className="text-white text-xs font-bold mt-1.5 max-w-[180px] leading-relaxed">
+                ASTRA-OBD Connected. Select a symptom & trigger scan.
+              </p>
+            </div>
+          )}
+
+          {/* Active scanning UI loading overlay */}
+          {scanState === 'scanning' && (
+            <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-sm border border-indigo-500/20 rounded-lg p-2 font-mono text-[8.5px] text-indigo-300 space-y-0.5 pointer-events-none select-none">
+              <div className="flex items-center gap-1 font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping" />
+                <span>ECU_PROBE: ON_LNK</span>
+              </div>
+              <div>PORT: 3000</div>
+              <div>RATE: 500 KB/S</div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer info stream bar */}
+        <div className="flex items-center justify-between mt-3 mb-1 border-t border-slate-900 pt-2 text-[8px] text-slate-500 font-mono">
+          <span className="truncate max-w-[130px]">
+            {scanState === 'complete' ? `ALERT: ${activeIssue.issueName}` : `ECU_STATE: LNK_READY`}
+          </span>
+          <span className="font-mono text-indigo-400 font-extrabold uppercase">
+            {scanState === 'complete' ? activeIssue.locationLabel : 'O2_SYS // PASS'}
+          </span>
+        </div>
       </div>
     );
   };
@@ -287,7 +347,7 @@ export default function DigitalOBDScanner() {
             ⚡ Leads & Drivers Resource
           </div>
           <h2 className="font-display font-black text-3xl sm:text-4.5xl md:text-5xl text-slate-900 tracking-tight leading-tight mb-4">
-            Astrateq Interactive OBD Diagnostic Portal
+            Astrateq Gadgets Interactive OBD Diagnostic Portal
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-medium">
             Got a glowing check-engine light or diagnostic trouble? Use our custom Bluetooth remote simulator to isolate your automotive fault code, estimate labor costs, and review recommended verified mechanics instantly.
@@ -410,31 +470,10 @@ export default function DigitalOBDScanner() {
               )}
             </form>
 
-            {/* Standby screen placeholder */}
-            {scanState === 'idle' && (
-              <div className="mt-5 p-4 bg-slate-950 border border-slate-900 rounded-2xl flex flex-col items-center justify-center text-center h-40">
-                <Activity className="w-8 h-8 text-slate-700 mb-2 animate-pulse" />
-                <span className="font-mono text-[9px] text-slate-500 tracking-widest font-black uppercase">
-                  Remote Scanner Console
-                </span>
-                <p className="text-white text-xs font-bold mt-1.5 max-w-xs leading-normal">
-                  Press &ldquo;Initiate Wireless OBD Scan&rdquo; Above To Probe Selected System Fault Lines.
-                </p>
-              </div>
-            )}
-
-            {/* Scanning Car Graphics Overlay */}
-            {scanState === 'scanning' && (
-              <div className="mt-5">
-                {renderVehicleBlueprintSvg()}
-              </div>
-            )}
-
-            {scanState === 'complete' && (
-              <div className="mt-5">
-                {renderVehicleBlueprintSvg()}
-              </div>
-            )}
+            {/* Direct Multi-State Holographic Console Viewport */}
+            <div className="mt-5">
+              {renderVehicleBlueprintSvg()}
+            </div>
           </div>
 
           {/* Right panel: Scanned code details, ballpark quotes, mechanics near them */}
@@ -589,7 +628,7 @@ export default function DigitalOBDScanner() {
                         Monitor vehicle health 24/7. Avoid catastrophic shop bills.
                       </h4>
                       <p className="text-slate-350 text-xs leading-relaxed max-w-xl">
-                        Instead of reading codes only AFTER the damage is done, Astrateq units stay continuously connected on your dashboard, isolating engine diagnostics in real-time and warning you blocks before structural failures.
+                        Instead of reading codes only AFTER the damage is done, Astrateq Gadgets units stay continuously connected on your dashboard, isolating engine diagnostics in real-time and warning you blocks before structural failures.
                       </p>
                     </div>
 

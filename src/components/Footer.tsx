@@ -88,7 +88,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
       title: 'ASTRATEQ Privacy Shield Directive',
       icon: <Shield className="w-5 h-5 text-indigo-650" />,
       text: [
-        'Your digital safety and visual privacy form the fundamental architecture of Astrateq Inc. Unlike commercial cloud-based dashcams that stream raw driver video archives to external server farms, all ASTRA devices handle environmental scanning entirely locally at the physical edge.',
+        'Your digital safety and visual privacy form the fundamental architecture of Astrateq Gadgets Inc. Unlike commercial cloud-based dashcams that stream raw driver video archives to external server farms, all ASTRA devices handle environmental scanning entirely locally at the physical edge.',
         'No Automated Video Uploads: Real-time highway sweeps, lane orientation, and cabin fatigue tracking are processed inside your device’s neural network. Feeds are overwritten instantly and never persisted on any network host.',
         'Data Control sovereignty: Companion app coordinates, system diagnostics, and trip statistics are encrypted using high-grade local protocols (AES-256) and remain behind your personal device credentials.'
       ]
@@ -116,7 +116,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
       icon: <Sparkles className="w-5 h-5 text-indigo-650" />,
       text: [
         'Our prelaunch portal uses strict functional local storage parameters alongside minor analytical cookie sequences to preserve your layout state, countdown timings, and discount preferences.',
-        'Zero Advertising Retargeting: Astrateq does not use cooperative cross-site commercial trackers. Your navigation across our system remains anonymous.',
+        'Zero Advertising Retargeting: Astrateq Gadgets does not use cooperative cross-site commercial trackers. Your navigation across our system remains anonymous.',
         'Manual Modification: You may opt to disable browser cookie tracking at any point. Your local prelaunch countdown and localized reservation parameters can safely be reset by purging persistent site data.'
       ]
     },
