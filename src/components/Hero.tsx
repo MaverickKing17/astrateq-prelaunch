@@ -3,8 +3,8 @@ import { ArrowRight, ShieldCheck, Database, Award, WifiOff, Zap, Bluetooth, Acti
 import CountdownTimer from './CountdownTimer';
 
 const activeScanningImg = '/src/assets/images/active_scanning_1779906877154.png';
-const windshieldCamImg = '/src/assets/images/windshield_cam_1779906863402.png';
-const obdPluginImg = '/src/assets/images/obd_plug_simple_1779907676774.png';
+const windshieldCamImg = '/src/assets/images/dashcam_bright_1779908744354.png';
+const obdPluginImg = '/src/assets/images/obd_dongle_bright_1779908121019.png';
 
 interface HeroProps {
   onScrollToSection: (sectionId: string) => void;
@@ -318,16 +318,16 @@ export default function Hero({ onScrollToSection }: HeroProps) {
                 ) : (
                   <>
                     {/* OBD Active Screen Display */}
-                    <div className="relative w-full h-44 bg-slate-955 rounded-xl border border-slate-800 flex flex-col items-center justify-center overflow-hidden p-4 group">
+                    <div className="relative w-full h-44 bg-slate-900 rounded-xl border border-slate-200/50 flex flex-col items-center justify-center overflow-hidden p-4 group">
                       
                       {/* Active photorealistic OBD hardware plugin backdrop */}
                       <img
                         src={obdPluginImg}
                         alt="ASTRA OBD-II Direct Active Hardware Connection"
-                        className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity filter brightness-75 group-hover:scale-[1.03] transition-transform duration-700 pointer-events-none"
+                        className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-[1.03] transition-transform duration-700 pointer-events-none"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/40 pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/45 to-slate-950/20 pointer-events-none" />
                       
                       {obdScanning ? (
                         <div className="w-full flex flex-col items-center px-2 relative z-10">

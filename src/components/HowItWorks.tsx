@@ -64,7 +64,7 @@ export default function HowItWorks() {
               
               {/* Image element with required referrer policy */}
               <img
-                src="/src/assets/images/obd_plug_simple_1779907676774.png"
+                src="/src/assets/images/obd_dongle_bright_1779908121019.png"
                 alt="ASTRA OBD-II Secure Sync Harness Click Installation"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
@@ -106,23 +106,23 @@ export default function HowItWorks() {
             </div>
 
             {/* Premium Enterprise-grade Image container */}
-            <div className="h-40 bg-slate-950 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-800">
+            <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
               
               <img
-                src="/src/assets/images/windshield_cam_1779906863402.png"
+                src="/src/assets/images/dashcam_bright_1779908744354.png"
                 alt="ASTRA Dual-Lens Smart camera mounted cleanly on windshield"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-955 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
-              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-955 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-505" />
                 <span className="text-[8px] text-indigo-300 font-mono uppercase tracking-widest font-black">Windshield Mounted</span>
               </div>
 
-              <div className="absolute top-2.5 left-2.5 bg-slate-955 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-emerald-400 font-mono font-black uppercase tracking-widest leading-none z-10">
+              <div className="absolute top-2.5 left-2.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-emerald-400 font-mono font-black uppercase tracking-widest leading-none z-10">
                 Calibration Ready
               </div>
             </div>
@@ -151,23 +151,23 @@ export default function HowItWorks() {
             </div>
 
             {/* Premium Enterprise-grade Image container */}
-            <div className="h-40 bg-slate-950 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-800">
+            <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
               
               <img
                 src="/src/assets/images/active_scanning_1779906877154.png"
                 alt="ASTRA HUD visual interface tracking lanes and obstacles"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
                 referrerPolicy="no-referrer"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-955 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
 
-              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-955 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
+              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-pulse" />
                 <span className="text-[8px] text-amber-400 font-mono uppercase tracking-widest font-black">Predictive Guides</span>
               </div>
 
-              <div className="absolute top-2.5 left-2.5 bg-slate-955 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-amber-400 font-mono font-black uppercase tracking-widest leading-none z-10">
+              <div className="absolute top-2.5 left-2.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-amber-400 font-mono font-black uppercase tracking-widest leading-none z-10">
                 Sub-12ms Active Alert
               </div>
             </div>
