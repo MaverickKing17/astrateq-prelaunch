@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Check, Lock, Gift, ShieldCheck, Sparkles, AlertCircle } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
+import driveguardSoloImg from '../assets/images/driveguard_solo_light_1780008399839.png';
+import familyBundleImg from '../assets/images/family_bundle_light_1780008415368.png';
+import guardianProImg from '../assets/images/guardian_pro_light_1780008434749.png';
 
 interface PricingProps {
   onReserveSuccess: (email: string, bundle: string) => void;
@@ -21,6 +24,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       id: 'solo',
       name: 'DriveGuard Solo',
       type: 'Essential Protection',
+      image: driveguardSoloImg,
       msrp: 329,
       shipPrice: 269,
       savings: 60,
@@ -28,7 +32,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       cta: 'Reserve for $49 CAD',
       warranty: '2-Year Warranty',
       features: [
-        'ASTRA-AI DriveGuard Unit',
+        'Astrateq AI-DriveGuard Unit',
         'Local Edge AI Neural Processor',
         'Real-Time Driver Awareness System',
         'Mobile Companion App Sync',
@@ -43,6 +47,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       id: 'family',
       name: 'Family Safety Bundle',
       type: 'Complete Family Tier',
+      image: familyBundleImg,
       msrp: 778,
       shipPrice: 599,
       savings: 179,
@@ -51,7 +56,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       warranty: '3-Year Warranty',
       isFeatured: true,
       features: [
-        'ASTRA-AI DriveGuard + RoadGuard Pro Dual Hubs',
+        'Astrateq AI-DriveGuard + RoadGuard Pro Dual Hubs',
         'Dual-Vehicle Comprehensive Protection',
         'Family GPS Dashboard with Safety Scorecard',
         'Priority Canadian Customer Support Response',
@@ -68,6 +73,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       id: 'guardian',
       name: 'Guardian Pro Bundle',
       type: 'Ultimate Fleet Protection',
+      image: guardianProImg,
       msrp: 1157,
       shipPrice: 899,
       savings: 258,
@@ -75,7 +81,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       cta: 'Reserve Pro Spot for $49',
       warranty: '3-Year Warranty + Concierge',
       features: [
-        'All 3 Signature ASTRA Devices',
+        'All 3 Signature Astrateq Devices',
         'EV Battery Intelligence Diagnostic Kit',
         'Unified Family Fleet Safety Dashboard',
         'White-Glove Priority VIP Onboarding',
@@ -190,6 +196,20 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                   <h3 className="font-sans font-black text-xl sm:text-2xl mt-1 text-slate-900">
                     {bundle.name}
                   </h3>
+                </div>
+
+                {/* Professional Product Showcase */}
+                <div className="relative mb-5 overflow-hidden rounded-2xl border border-slate-150 bg-slate-50 aspect-[4/3] shadow-inner select-none">
+                  <img
+                    src={bundle.image}
+                    alt={`${bundle.name} premium hardware setup`}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 hover:rotate-0.5"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-2.5 left-2.5 bg-slate-900/75 backdrop-blur-md px-2.5 py-1 rounded-md text-[9px] font-black uppercase tracking-widest text-slate-100 border border-white/10 flex items-center gap-1.5 shadow-sm font-mono">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Authorized Hardware
+                  </div>
                 </div>
 
                 {/* Reservation Hero Pricing Box */}
