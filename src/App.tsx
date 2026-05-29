@@ -35,6 +35,25 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle Stripe checkout redirects
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('checkout_status');
+    if (status === 'success') {
+      const bundleName = params.get('bundle') || 'DriveGuard Setup';
+      const email = params.get('email') || '';
+      const name = params.get('name') || '';
+      
+      showToast(`Stripe Spot Confirmed! Reserved ${bundleName} for ${name || 'your household'}. Receipt sent to ${email}`, 'success');
+      
+      // Clear URL query parameters cleanly
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (status === 'cancelled') {
+      showToast('Stripe pre-reservation checkout was cancelled.', 'info');
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

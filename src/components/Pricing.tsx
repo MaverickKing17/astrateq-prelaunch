@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Check, Lock, Gift, ShieldCheck, Sparkles, AlertCircle } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import driveguardSoloImg from '../assets/images/driveguard_solo_light_1780008399839.png';
@@ -16,6 +16,15 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
   const [vehicleInfo, setVehicleInfo] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [checkoutStep, setCheckoutStep] = useState<'form' | 'success'>('form');
+  const [stripeConfig, setStripeConfig] = useState({ configured: false, publishableKey: '' });
+  const [stripeError, setStripeError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch('/api/stripe-config')
+      .then(res => res.json())
+      .then(data => setStripeConfig(data))
+      .catch(err => console.error('Failed to load Stripe config:', err));
+  }, []);
 
   const reservationDeposit = 49; // Premium commitment deposit for middle-income security-first parents
 
@@ -106,6 +115,42 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
     if (!checkoutEmail || !checkoutName) return;
 
     setIsSubmitting(true);
+    setStripeError(null);
+
+    if (stripeConfig.configured) {
+      try {
+        const response = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            bundleId: selectedBundle?.id,
+            bundleName: selectedBundle?.name,
+            email: checkoutEmail,
+            name: checkoutName,
+            vehicle: vehicleInfo,
+          }),
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to initiate Stripe Checkout session');
+        }
+
+        if (data.url) {
+          // Redirect the browser to Stripe Checkout Hosted Payment Screen
+          window.location.href = data.url;
+          return;
+        } else {
+          throw new Error('Stripe Checkout URL was not returned by server');
+        }
+      } catch (err: any) {
+        console.error("Stripe session creation failed, falling back to simulated booking:", err);
+        setStripeError(err.message || 'Connecting to Stripe failed. Operating in Simulation Mode instead.');
+      }
+    }
+
     try {
       await fetch('https://formspree.io/f/xeedvalq', {
         method: 'POST',
@@ -120,7 +165,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
           bundle: selectedBundle?.name || 'Unknown Bundle',
           deposit: `$${reservationDeposit} CAD`,
           finalPrice: `$${selectedBundle?.shipPrice} CAD`,
-          type: 'Hormozi Reservation Checkout'
+          type: 'Hormozi Reservation Checkout (Simulated)'
         })
       });
     } catch (err) {
@@ -399,24 +444,48 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                   </div>
                 </div>
 
-                {/* Stripe Simulated Credit Card Panel */}
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mt-2">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Simulated Pre-order Card Entry</span>
-                    <span className="text-[9px] text-indigo-650 bg-indigo-50 border border-indigo-150 px-1.5 py-0.5 rounded font-mono font-bold tracking-wider">TEST MODE</span>
+                {/* Stripe dynamic status indicator and checkout panel */}
+                {stripeConfig.configured ? (
+                  <div className="bg-emerald-50/50 border border-emerald-200/65 rounded-xl p-4 mt-2 text-xs">
+                    <div className="flex items-center gap-2 text-emerald-800 font-bold mb-1">
+                      <span className="flex h-2 w-2 relative">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
+                      <span>Stripe Checkout Integration Active</span>
+                    </div>
+                    <p className="text-slate-600 text-[11px] leading-relaxed font-semibold">
+                      Pressing the button below will securely forward you to Stripe's hosted pre-order billing screen. You can complete the 100% refundable <strong>$49 CAD</strong> test transaction.
+                    </p>
                   </div>
-                  <div className="grid grid-cols-4 gap-2 text-xs">
-                    <div className="col-span-4 bg-white border border-slate-205 rounded p-2 text-slate-600">
-                      ••••  ••••  ••••  4242
+                ) : (
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mt-2">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Simulated Pre-order Card Entry</span>
+                      <span className="text-[9px] text-indigo-650 bg-indigo-50 border border-indigo-150 px-1.5 py-0.5 rounded font-mono font-bold tracking-wider">DEMO PREVIEW</span>
                     </div>
-                    <div className="col-span-2 bg-white border border-slate-205 rounded p-2 text-slate-450">
-                      12 / 2029
-                    </div>
-                    <div className="col-span-2 bg-white border border-slate-205 rounded p-2 text-slate-450">
-                      321
+                    <p className="text-[10px] text-slate-500 leading-normal mb-2.5 font-medium">
+                      Stripe test keys not detected. App running in mock sandbox. Store <code>STRIPE_SECRET_KEY</code> in secrets to engage real checkout pages.
+                    </p>
+                    <div className="grid grid-cols-4 gap-2 text-xs font-mono">
+                      <div className="col-span-4 bg-white border border-slate-205 rounded p-2 text-slate-600">
+                        ••••  ••••  ••••  4242
+                      </div>
+                      <div className="col-span-2 bg-white border border-slate-205 rounded p-2 text-slate-450">
+                        12 / 2029
+                      </div>
+                      <div className="col-span-2 bg-white border border-slate-205 rounded p-2 text-slate-450">
+                        321
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+
+                {stripeError && (
+                  <div className="bg-rose-50 border border-rose-150 text-rose-700 p-3 rounded-lg text-[11px] font-bold">
+                    ⚠️ {stripeError}
+                  </div>
+                )}
 
                 <button
                   type="submit"
@@ -426,10 +495,12 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                   {isSubmitting ? (
                     <>
                       <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Authorizing Booking...
+                      {stripeConfig.configured ? "Proceeding to Stripe..." : "Authorizing Booking..."}
                     </>
                   ) : (
-                    `Reserve My Spot ($${reservationDeposit} CAD)`
+                    stripeConfig.configured 
+                      ? "Proceed to Stripe Checkout ($49 CAD)"
+                      : `Reserve My Spot ($${reservationDeposit} CAD)`
                   )}
                 </button>
 
