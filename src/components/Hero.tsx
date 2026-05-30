@@ -4,7 +4,7 @@ import CountdownTimer from './CountdownTimer';
 
 import activeScanningImg from '../assets/images/active_scanning_1779906877154.png';
 import windshieldCamImg from '../assets/images/dashcam_bright_1779908744354.png';
-import obdPluginImg from '../assets/images/obd_dongle_bright_1779908121019.png';
+import obdPluginImg from '../assets/images/obd_plugin_under_dash_1780165262295.png';
 
 interface HeroProps {
   onScrollToSection: (sectionId: string) => void;

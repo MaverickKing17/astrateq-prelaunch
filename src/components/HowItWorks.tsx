@@ -13,7 +13,7 @@ import {
   CheckCircle2, 
   Milestone 
 } from 'lucide-react';
-import obdDongleBrightImg from '../assets/images/obd_dongle_bright_1779908121019.png';
+import obdDongleBrightImg from '../assets/images/obd_plugin_under_dash_1780165262295.png';
 import dashcamBrightImg from '../assets/images/dashcam_bright_1779908744354.png';
 import activeScanningImg from '../assets/images/active_scanning_1779906877154.png';
 import companionBrightImg from '../assets/images/companion_bright_1779907832283.png';
