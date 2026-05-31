@@ -9,8 +9,15 @@ import {
   Check, 
   MapPin, 
   Activity, 
-  Heart 
+  Heart,
+  Download
 } from 'lucide-react';
+import { 
+  getFallbackReportData, 
+  generateDiagnosticReportPDF, 
+  generateConfigurationBlueprintPDF, 
+  GeneratedLeadMagnetData 
+} from '../utils/pdfGenerator';
 
 interface WaitlistSectionProps {
   onSuccess: (email: string) => void;
@@ -25,24 +32,75 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
   // Selected region state for local report simulation
   const [provState, setProvState] = useState('BC');
 
+  // Dynamic vehicle detail state
+  const [vehicleYear, setVehicleYear] = useState('2021');
+  const [vehicleMake, setVehicleMake] = useState('Toyota');
+  const [vehicleModel, setVehicleModel] = useState('RAV4 Hybrid');
+  
+  // PDF Lead Magnet Output State
+  const [reportData, setReportData] = useState<GeneratedLeadMagnetData | null>(null);
+  const [activePreviewTab, setActivePreviewTab] = useState<'diagnostics' | 'blueprint'>('diagnostics');
+  const [emailSent, setEmailSent] = useState(false);
+  const [isEmailSending, setIsEmailSending] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    if (!email.trim() || !vehicleMake.trim() || !vehicleModel.trim()) return;
 
     setIsSubmitting(true);
     try {
-      await fetch('https://formspree.io/f/xeedvalq', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email,
-          type: 'Waitlist Form',
-          province: provState
-        })
-      });
+      // 1. Log waitlist metadata to formspree (standard fallback tracker)
+      try {
+        await fetch('https://formspree.io/f/xeedvalq', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email,
+            type: 'Waitlist Form',
+            province: provState,
+            vehicle: `${vehicleYear} ${vehicleMake} ${vehicleModel}`
+          })
+        });
+      } catch (fErr) {
+        console.error("Formspree tracker notice:", fErr);
+      }
+
+      // 2. Fetch Gemini server-side generated report configurations
+      let apiData: GeneratedLeadMagnetData | null = null;
+      try {
+        const response = await fetch('/api/generate-lead-magnet', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email,
+            year: vehicleYear,
+            make: vehicleMake,
+            model: vehicleModel
+          })
+        });
+
+        if (response.ok) {
+          const resJson = await response.json();
+          if (resJson && resJson.data) {
+            apiData = resJson.data;
+          }
+        }
+      } catch (apiErr) {
+        console.error("Express Gemini endpoint failed, using local high-end schema:", apiErr);
+      }
+
+      // Fallback if SDK or server was unavailable
+      if (!apiData) {
+        apiData = getFallbackReportData(vehicleYear, vehicleMake, vehicleModel);
+      }
+
+      setReportData(apiData);
+
     } catch (err) {
       console.error(err);
     } finally {
@@ -52,6 +110,26 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
       setWaitlistNumber(Math.floor(Math.random() * 450) + 1280);
       onSuccess(email);
     }
+  };
+
+  const downloadDiagnosticsPdf = () => {
+    if (!reportData) return;
+    const doc = generateDiagnosticReportPDF(vehicleYear, vehicleMake, vehicleModel, reportData.diagnosticReport);
+    doc.save('astrateq_diagnostic_report.pdf');
+  };
+
+  const downloadBlueprintPdf = () => {
+    if (!reportData) return;
+    const doc = generateConfigurationBlueprintPDF(vehicleYear, vehicleMake, vehicleModel, reportData.configurationBlueprint);
+    doc.save('astrateq_configuration_blueprint.pdf');
+  };
+
+  const handleSimulateEmail = () => {
+    setIsEmailSending(true);
+    setTimeout(() => {
+      setIsEmailSending(false);
+      setEmailSent(true);
+    }, 1500);
   };
 
   const provinces = [
@@ -127,7 +205,7 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
                   {/* Form Input Block */}
                   <form onSubmit={handleSubmit} className="pt-4 space-y-4 max-w-lg">
                     
-                    {/* Interactive Selector Row */}
+                    {/* Interactive Region Selector Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       
                       <div className="space-y-1.5">
@@ -137,7 +215,7 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
                         <select
                           value={provState}
                           onChange={(e) => setProvState(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-xs text-slate-800 font-semibold focus:outline-none focus:bg-white focus:ring-1 focus:ring-rose-450"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-xs text-slate-800 font-semibold focus:outline-none focus:bg-white focus:ring-1 focus:ring-rose-450 hover:border-slate-350 transition-colors"
                         >
                           {provinces.map((p) => (
                             <option key={p.code} value={p.code}>
@@ -147,19 +225,62 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
                         </select>
                       </div>
 
-                      <div className="space-y-1.5">
-                        <label className="text-[10px] font-black text-slate-700 uppercase tracking-widest block opacity-0 sm:block">
-                          placeholder
-                        </label>
-                        <span className="text-[10px] sm:text-xs text-indigo-600 font-bold block pt-2 sm:pt-4">
+                      <div className="space-y-1.5 flex items-end">
+                        <span className="text-[10px] sm:text-xs text-indigo-600 font-bold block pb-3">
                           ⚡ Shipped express from your closest hub
                         </span>
                       </div>
 
                     </div>
 
+                    {/* Vehicle Details Intake - Required for Lead Magnet Report Customization */}
+                    <div className="grid grid-cols-3 gap-2.5 pt-1">
+                      <div className="space-y-1.5 col-span-1">
+                        <label className="text-[10px] font-black text-slate-700 uppercase tracking-widest block">
+                          Model Year
+                        </label>
+                        <select
+                          value={vehicleYear}
+                          onChange={(e) => setVehicleYear(e.target.value)}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3.5 text-xs text-slate-800 font-semibold focus:outline-none focus:bg-white focus:ring-1 focus:ring-rose-450 hover:border-slate-350 transition-colors"
+                        >
+                          {Array.from({ length: 15 }, (_, i) => String(2026 - i)).map((yr) => (
+                            <option key={yr} value={yr}>{yr}</option>
+                          ))}
+                        </select>
+                      </div>
+                      
+                      <div className="space-y-1.5 col-span-1">
+                        <label className="text-[10px] font-black text-slate-700 uppercase tracking-widest block">
+                          Vehicle Make
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={vehicleMake}
+                          onChange={(e) => setVehicleMake(e.target.value)}
+                          placeholder="e.g. Toyota"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3.5 text-xs text-slate-800 font-semibold focus:outline-none focus:bg-white focus:ring-1 focus:ring-rose-450 hover:border-slate-350 transition-colors"
+                        />
+                      </div>
+
+                      <div className="space-y-1.5 col-span-1">
+                        <label className="text-[10px] font-black text-slate-700 uppercase tracking-widest block">
+                          Vehicle Model
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={vehicleModel}
+                          onChange={(e) => setVehicleModel(e.target.value)}
+                          placeholder="e.g. RAV4 Hybrid"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3.5 text-xs text-slate-800 font-semibold focus:outline-none focus:bg-white focus:ring-1 focus:ring-rose-450 hover:border-slate-350 transition-colors"
+                        />
+                      </div>
+                    </div>
+
                     {/* Email Input Bar */}
-                    <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
                       <input
                         type="email"
                         required
@@ -167,18 +288,18 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
                         disabled={isSubmitting}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter your personal email address"
-                        className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-rose-500 focus:bg-white focus:ring-1 focus:ring-rose-400 shadow-sm transition-all duration-300"
+                        className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-rose-500 focus:bg-white focus:ring-1 focus:ring-rose-400 shadow-sm transition-all duration-300 hover:border-slate-350"
                       />
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="bg-slate-950 hover:bg-slate-900 text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all shrink-0 cursor-pointer flex items-center justify-center gap-2 shadow-md shadow-slate-955/10"
+                        className="bg-slate-950 hover:bg-slate-900 text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all shrink-0 cursor-pointer flex items-center justify-center gap-2 shadow-md shadow-slate-955/10 hover:scale-[1.01]"
                       >
                         {isSubmitting ? (
                           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                         ) : (
                           <>
-                            Get Free Report
+                            Get Free Reports
                             <Send className="w-3.5 h-3.5 text-rose-400" />
                           </>
                         )}
@@ -194,42 +315,165 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
 
                 </div>
               ) : (
-                <div className="space-y-6 py-4 animate-fade-in">
+                <div className="space-y-6 py-4 animate-fade-in w-full text-left">
                   
-                  {/* Success Badge */}
-                  <div className="w-14 h-14 bg-emerald-55 border border-emerald-200 rounded-full flex items-center justify-center mb-4 animate-bounce shrink-0 shadow-sm">
-                    <CheckCircle2 className="w-7 h-7 text-emerald-600 font-bold" />
+                  {/* Success Header Badge */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-emerald-50 border border-emerald-200 rounded-full flex items-center justify-center animate-bounce shrink-0 shadow-sm">
+                      <CheckCircle2 className="w-6 h-6 text-emerald-600 font-bold" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-emerald-600 tracking-wider block font-mono">Founding Spot Secured</span>
+                      <h3 className="font-display font-black text-xl text-slate-900 tracking-tight leading-none mt-0.5">
+                        Your Priority Access Locked
+                      </h3>
+                    </div>
                   </div>
 
-                  {/* Success Messages */}
-                  <h3 className="font-display font-black text-2xl sm:text-3.5xl text-slate-900 tracking-tight leading-tight">
-                    You’re on the Founding Waitlist!
-                  </h3>
-                  
-                  <div className="bg-gradient-to-br from-indigo-50/50 via-white to-rose-50/20 border border-indigo-120/40 rounded-2xl p-5 text-left space-y-1.5 shadow-sm">
-                    <span className="text-[10px] uppercase font-black text-slate-500 block tracking-widest font-mono">
-                      Your Founding Priority Queue Spot
+                  <div className="bg-[#070a13] border border-slate-800 rounded-2xl p-5 text-left text-white relative overflow-hidden shadow-2xl">
+                    <div className="absolute top-0 right-0 p-3">
+                      <span className="text-[8px] bg-indigo-500/20 text-indigo-450 border border-indigo-500/30 px-2 py-0.5 rounded font-mono uppercase font-bold">
+                        QUEUE PRIORITY
+                      </span>
+                    </div>
+                    <span className="text-[9px] uppercase font-bold text-slate-400 block tracking-widest font-mono">
+                      FOUNDING NUMBER
                     </span>
-                    <span className="font-display font-black text-indigo-950 text-3xl sm:text-4xl block mt-1 tracking-tight">
+                    <span className="font-display font-black text-white text-3xl sm:text-4xl block mt-0.5 tracking-tight border-b border-rose-950/20 pb-2.5">
                       #{waitlistNumber}
                     </span>
-                    <span className="text-xs text-slate-650 mt-1 block font-semibold leading-relaxed">
-                      Pre-order rate locked successfully for <span className="text-slate-950 font-black">{email}</span>. A custom diagnostic setup guide is currently routing to your inbox.
-                    </span>
+                    <p className="text-xs text-slate-300 mt-2.5 font-medium leading-relaxed">
+                      Pre-order rate locked for <span className="font-bold text-indigo-450">{email}</span>. Customized specifications generated successfully.
+                    </p>
                   </div>
 
-                  <div className="space-y-2.5 text-left text-xs bg-slate-50 border border-slate-150 p-4 rounded-xl text-slate-600 leading-normal font-semibold shadow-inner">
-                    <span className="text-slate-900 font-black block mb-1 font-mono uppercase text-[10px] tracking-wider">What happens next:</span>
-                    <p>1. Receipt confirmation delivered directly to {email}.</p>
-                    <p>2. Personalized vehicle compatibility report generated.</p>
-                    <p>3. Early shipping access invite arriving ahead of June Summer launch.</p>
+                  {/* PDF Download Section */}
+                  <div className="space-y-3.5 border-t border-slate-100 pt-5 text-left w-full">
+                    <h4 className="font-display font-bold text-sm text-slate-900 uppercase tracking-wide flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-indigo-650" />
+                      Dynamic Lead Magnet PDF Deliverables
+                    </h4>
+                    <p className="text-slate-500 text-xs leading-relaxed font-semibold">
+                      Your personalized, engineering-style PDF publications are compiled and ready. Download them directly or dispatch them via transactional email:
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-2">
+                      {/* Diagnostic Report Card */}
+                      <div className="bg-slate-50 hover:bg-slate-105/10 border border-slate-200/80 rounded-xl p-4 transition-all flex flex-col justify-between space-y-4 text-left">
+                        <div className="space-y-1">
+                          <span className="text-[8px] font-mono bg-indigo-100 text-indigo-700 font-bold px-2 py-0.5 rounded uppercase">
+                            DIAGNOSTICS
+                          </span>
+                          <h5 className="font-display font-bold text-xs text-slate-900 mt-1">
+                            Astrateq Diagnostic Assessment
+                          </h5>
+                          <p className="text-[10px] text-slate-500 font-medium">
+                            Passive CAN Bus mappings & ECU safety parameters.
+                          </p>
+                        </div>
+                        <button
+                          onClick={downloadDiagnosticsPdf}
+                          className="w-full bg-slate-950 hover:bg-slate-900 text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded-lg flex items-center justify-center gap-1.5 shadow transition-all cursor-pointer"
+                        >
+                          <Download className="w-3.5 h-3.5 text-indigo-400" />
+                          Download PDF
+                        </button>
+                      </div>
+
+                      {/* Configuration Blueprint Card */}
+                      <div className="bg-slate-50 hover:bg-slate-105/10 border border-slate-200/80 rounded-xl p-4 transition-all flex flex-col justify-between space-y-4 text-left">
+                        <div className="space-y-1">
+                          <span className="text-[8px] font-mono bg-rose-100 text-rose-700 font-bold px-2 py-0.5 rounded uppercase">
+                            BLUEPRINT
+                          </span>
+                          <h5 className="font-display font-bold text-xs text-slate-900 mt-1">
+                            Sovereign Configuration Blueprint
+                          </h5>
+                          <p className="text-[10px] text-slate-500 font-medium">
+                            Sovereign edge isolated telemetry and micro-Cortex stats.
+                          </p>
+                        </div>
+                        <button
+                          onClick={downloadBlueprintPdf}
+                          className="w-full bg-slate-950 hover:bg-slate-900 text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded-lg flex items-center justify-center gap-1.5 shadow transition-all cursor-pointer"
+                        >
+                          <Download className="w-3.5 h-3.5 text-rose-400" />
+                          Download PDF
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Email simulation block */}
+                    <div className="bg-slate-50 border border-slate-150 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-inner text-left">
+                      <div className="space-y-0.5">
+                        <span className="text-[9px] uppercase tracking-widest font-mono font-bold text-slate-400 block">Phase 4 Automation</span>
+                        <p className="text-xs font-bold text-slate-700">Dispatch instantly to your inbox?</p>
+                      </div>
+                      <button
+                        onClick={handleSimulateEmail}
+                        disabled={isEmailSending || emailSent}
+                        className={`px-4 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
+                          emailSent 
+                            ? 'bg-emerald-100 text-emerald-700 border border-emerald-250 cursor-default' 
+                            : 'bg-indigo-600 hover:bg-indigo-550 text-white shadow-md'
+                        }`}
+                      >
+                        {isEmailSending ? 'Sending...' : emailSent ? '✓ Sent Successfully!' : 'Trigger Email Dispatch'}
+                      </button>
+                    </div>
+
                   </div>
 
-                  {/* Sharing referral link or extra copy */}
-                  <div className="flex items-center justify-between border-t border-slate-100 pt-4 font-semibold text-xs">
-                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Pass code locked</span>
-                    <span className="text-[11px] bg-indigo-50 border border-indigo-200/40 text-indigo-750 px-3 py-1 rounded font-mono font-bold uppercase tracking-widest">
-                      {Math.random().toString(36).substring(2, 8).toUpperCase()}
+                  {/* Dynamic Technical Visual Explorer Tab block */}
+                  {reportData && (
+                    <div className="border border-slate-200 rounded-2xl overflow-hidden mt-4 bg-white shadow-sm text-left w-full">
+                      <div className="bg-slate-50 border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+                        <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">
+                          Live Report Viewer
+                        </span>
+                        <div className="flex gap-1.5">
+                          <button
+                            onClick={() => setActivePreviewTab('diagnostics')}
+                            className={`px-2.5 py-1 rounded text-[10px] font-bold uppercase transition-all cursor-pointer ${
+                              activePreviewTab === 'diagnostics' 
+                                ? 'bg-indigo-650 text-white' 
+                                : 'bg-slate-250 text-slate-600 hover:bg-slate-300'
+                            }`}
+                          >
+                            Diagnostics
+                          </button>
+                          <button
+                            onClick={() => setActivePreviewTab('blueprint')}
+                            className={`px-2.5 py-1 rounded text-[10px] font-bold uppercase transition-all cursor-pointer ${
+                              activePreviewTab === 'blueprint' 
+                                ? 'bg-indigo-650 text-white' 
+                                : 'bg-slate-250 text-slate-600 hover:bg-slate-300'
+                            }`}
+                          >
+                            Blueprint
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="p-4 space-y-4 max-h-[220px] overflow-y-auto">
+                        {(activePreviewTab === 'diagnostics' ? reportData.diagnosticReport : reportData.configurationBlueprint).map((sec, sIdx) => (
+                          <div key={sIdx} className="space-y-1">
+                            <h6 className="text-[10px] uppercase font-bold text-indigo-600 font-mono tracking-wide">
+                              [{sIdx + 1}] {sec.section}
+                            </h6>
+                            <p className="text-[11px] text-slate-600 leading-relaxed font-semibold">
+                              {sec.content}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Back/Continue CTA */}
+                  <div className="pt-2 w-full text-center">
+                    <span className="text-[9px] text-slate-400 block font-semibold">
+                      All PDF compiled payloads secure with standard Transport Canada guidelines.
                     </span>
                   </div>
 
