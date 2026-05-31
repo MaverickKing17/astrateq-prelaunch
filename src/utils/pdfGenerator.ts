@@ -56,90 +56,151 @@ export function getFallbackReportData(year: string, make: string, model: string)
   };
 }
 
-/**
- * Helper to draw a beautiful, premium dark theme layout for Astrateq engineering reports
- */
-function applyPremiumThemeLayout(
-  doc: jsPDF, 
-  title: string, 
-  subtitle: string, 
-  vehicle: string, 
-  pageCount: number, 
-  totalPageCount: number
-) {
-  // Page size is A4 (210 x 297 mm)
-  const pageWidth = 210;
-  const pageHeight = 297;
-
-  // Background deep dark blue/black: #070a13
-  doc.setFillColor(7, 10, 19);
-  doc.rect(0, 0, pageWidth, pageHeight, 'F');
-
-  // Draw thin glowing accent line (Indigo) down the left margin
-  doc.setDrawColor(99, 102, 241); // #6366f1
-  doc.setLineWidth(1.5);
-  doc.line(10, 15, 10, pageHeight - 15);
-
-  // Header Divider logic
-  doc.setDrawColor(30, 41, 59); // Slate-800: #1e293b
-  doc.setLineWidth(0.5);
-  doc.line(15, 30, pageWidth - 15, 30);
-
-  // Header text using our brand
-  doc.setFont('Helvetica', 'bold');
-  doc.setFontSize(8);
-  doc.setTextColor(99, 102, 241); // Indigo
-  doc.text("ASTRATEQ GADGETS LABS", 15, 20);
-
-  doc.setFont('Courier', 'bold');
-  doc.setFontSize(7);
-  doc.setTextColor(148, 163, 184); // Slate-400
-  doc.text(`PROFILE: ${vehicle.toUpperCase()}`, pageWidth - 15, 20, { align: 'right' });
-
-  // Main Report Title
-  doc.setFont('Helvetica', 'bold');
-  doc.setFontSize(18);
-  doc.setTextColor(255, 255, 255);
-  doc.text(title, 15, 42);
-
-  // Document Subtitle / Version Tracker
-  doc.setFont('Helvetica', 'normal');
-  doc.setFontSize(10);
-  doc.setTextColor(148, 163, 184); // Slate-400
-  doc.text(subtitle, 15, 48);
-
-  // Top Accent Box (e.g. system certified badge)
-  doc.setFillColor(99, 102, 241, 0.1); // subtle opacity background
-  doc.setDrawColor(99, 102, 241);
-  doc.setLineWidth(0.3);
-  doc.rect(15, 54, pageWidth - 30, 14, 'FD');
-
-  doc.setFont('Helvetica', 'bold');
-  doc.setFontSize(8);
-  doc.setTextColor(16, 185, 129); // Emerald Success Accent
-  doc.text("INTEGRATION STATUS:", 20, 60);
-  
-  doc.setFont('Helvetica', 'normal');
-  doc.setFontSize(8);
-  doc.setTextColor(255, 255, 255);
-  doc.text(`100% Passive Bypass Verified for OBD-II CAN J1962. Warranty Preservation Mode [ACTIVE]`, 58, 60);
-  doc.text(`ICES-003 Emission Compliance Certified. Extreme Climate Supercapacitor System Checked.`, 20, 64);
-
-  // Footer Divider
-  doc.setDrawColor(30, 41, 59);
-  doc.setLineWidth(0.5);
-  doc.line(15, pageHeight - 20, pageWidth - 15, pageHeight - 20);
-
-  // Footer Text
-  doc.setFont('Courier', 'normal');
-  doc.setFontSize(7);
-  doc.setTextColor(148, 163, 184); // Slate-400
-  doc.text("CLASSIFICATION: CLIENT WAITING WAITING LIST SECURED // DO NOT RE-DISTRIBUTE", 15, pageHeight - 14);
-  doc.text(`PAGE ${pageCount} OF ${totalPageCount}`, pageWidth - 15, pageHeight - 14, { align: 'right' });
+interface CanvaPalette {
+  headerBg: [number, number, number];
+  headerRightTriangle: [number, number, number];
+  headerAccentStripe: [number, number, number];
+  heroGradientEnd: [number, number, number];
+  accentColor: [number, number, number];
+  badgeSuccessBg: [number, number, number];
+  badgeSuccessText: [number, number, number];
+  cardAccentBorder: [number, number, number];
+  bgCanvas: [number, number, number];
+  cardBg: [number, number, number];
+  shadowColor: [number, number, number];
+  textMain: [number, number, number];
+  textMuted: [number, number, number];
 }
 
 /**
- * Generates the Astrateq Diagnostic Report PDF
+ * High-end Canva-Style Layout implementation
+ */
+function drawCanvaHeaderAndCanvas(
+  doc: jsPDF,
+  title: string,
+  subtitle: string,
+  vehicle: string,
+  palette: CanvaPalette
+) {
+  const pageWidth = 210;
+  const pageHeight = 297;
+
+  // 1. Off-white soft-colored background canvas
+  doc.setFillColor(palette.bgCanvas[0], palette.bgCanvas[1], palette.bgCanvas[2]);
+  doc.rect(0, 0, pageWidth, pageHeight, 'F');
+
+  // 2. Main Large Top Content Banner Header
+  doc.setFillColor(palette.headerBg[0], palette.headerBg[1], palette.headerBg[2]);
+  doc.rect(0, 0, pageWidth, 52, 'F');
+
+  // Elegant Overlay Triangles (Canva aesthetic dynamic waves / overlay)
+  doc.setFillColor(palette.headerRightTriangle[0], palette.headerRightTriangle[1], palette.headerRightTriangle[2]);
+  doc.triangle(120, 0, pageWidth, 0, pageWidth, 42, 'F');
+
+  doc.setFillColor(palette.headerAccentStripe[0], palette.headerAccentStripe[1], palette.headerAccentStripe[2]);
+  doc.triangle(150, 0, pageWidth, 0, pageWidth, 18, 'F');
+
+  // Draw light golden glowing dot in header corner
+  doc.setFillColor(245, 158, 11);
+  doc.circle(pageWidth - 10, 8, 1.2, 'F');
+
+  // Decorative Left Brand Line Segment
+  doc.setFillColor(palette.accentColor[0], palette.accentColor[1], palette.accentColor[2]);
+  doc.rect(12, 14, 2.5, 23, 'F');
+
+  // Header Brand Tag text
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(8.5);
+  doc.setTextColor(palette.accentColor[0], palette.accentColor[1], palette.accentColor[2]);
+  doc.text("ASTRATEQ GADGETS LABS", 18, 19);
+
+  // Dynamic Metadata Box right side
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(7.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text(`MAPPED PROFILE: ${vehicle.toUpperCase()}`, pageWidth - 16, 19, { align: 'right' });
+
+  // Sovereign report code badge
+  doc.setFillColor(255, 255, 255, 0.15);
+  doc.roundedRect(pageWidth - 72, 23, 56, 4.5, 1, 1, 'F');
+  doc.setFont('Courier', 'bold');
+  doc.setFontSize(6.2);
+  doc.setTextColor(230, 235, 255);
+  doc.text("SYSSEC SEQ-INTEGRATED CAN PROT:PASSIVE", pageWidth - 16, 26, { align: 'right' });
+
+  // Main Canva Action Title
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(16.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text(title, 18, 29);
+
+  // Dynamic Subtitle Info
+  doc.setFont('Helvetica', 'normal');
+  doc.setFontSize(8.5);
+  doc.setTextColor(191, 203, 217);
+  doc.text(subtitle, 18, 34);
+
+  // 3. Status Ribbon Pill Block (Below Header)
+  doc.setFillColor(palette.cardBg[0], palette.cardBg[1], palette.cardBg[2]);
+  doc.roundedRect(12, 42, pageWidth - 24, 15, 3, 3, 'F');
+
+  // Left colored ribbon strip on status box
+  doc.setFillColor(palette.accentColor[0], palette.accentColor[1], palette.accentColor[2]);
+  doc.rect(12, 42, 3, 15, 'F');
+
+  // Inner details status badge
+  doc.setFillColor(palette.badgeSuccessBg[0], palette.badgeSuccessBg[1], palette.badgeSuccessBg[2]);
+  doc.roundedRect(19, 46.5, 35, 6, 1.2, 1.2, 'F');
+
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(7.5);
+  doc.setTextColor(palette.badgeSuccessText[0], palette.badgeSuccessText[1], palette.badgeSuccessText[2]);
+  doc.text("CONNECTION VERIFIED", 22.5, 51);
+
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(8.5);
+  doc.setTextColor(palette.textMain[0], palette.textMain[1], palette.textMain[2]);
+  doc.text("Sovereign ECU Integrity Sandbox: Passive Bypass Shield [ENABLED]", 59, 50.5);
+
+  doc.setFont('Helvetica', 'normal');
+  doc.setFontSize(7.5);
+  doc.setTextColor(palette.textMuted[0], palette.textMuted[1], palette.textMuted[2]);
+  doc.text("Transport Canada passive diagnostics test standards check: PASS. Pure digital read buffer mode active.", 19, 54);
+
+  // 4. Custom Footer Area
+  const footerY = pageHeight - 18;
+  doc.setDrawColor(226, 232, 240);
+  doc.setLineWidth(0.4);
+  doc.line(12, footerY, pageWidth - 12, footerY);
+
+  // Draw beautiful design agency hallmark
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(7.5);
+  doc.setTextColor(palette.headerBg[0], palette.headerBg[1], palette.headerBg[2]);
+  doc.text("ASTRATEQ SECURE ALLOCATION HARDWARE DEPLOYMENT", 12, footerY + 5.5);
+
+  doc.setFont('Helvetica', 'normal');
+  doc.setFontSize(7);
+  doc.setTextColor(palette.textMuted[0], palette.textMuted[1], palette.textMuted[2]);
+  doc.text("This technical document specifies read-only CAN bus integrations conforming securely to ICES-003 constraints.", 12, footerY + 9.5);
+
+  // Sovereign safety seal badge circles
+  doc.setDrawColor(palette.accentColor[0], palette.accentColor[1], palette.accentColor[2]);
+  doc.setLineWidth(0.3);
+  doc.circle(pageWidth - 42, footerY + 6.5, 4, 'D');
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(5);
+  doc.setTextColor(palette.accentColor[0], palette.accentColor[1], palette.accentColor[2]);
+  doc.text("SECURE", pageWidth - 45.3, footerY + 7);
+
+  doc.setFont('Courier', 'bold');
+  doc.setFontSize(7);
+  doc.setTextColor(palette.textMain[0], palette.textMain[1], palette.textMain[2]);
+  doc.text("PAGE 1 OF 1", pageWidth - 12, footerY + 7.5, { align: 'right' });
+}
+
+/**
+ * Generates the Astrateq Diagnostic Report PDF with a highly-polished, colorful Canva palette
  */
 export function generateDiagnosticReportPDF(
   year: string,
@@ -155,50 +216,88 @@ export function generateDiagnosticReportPDF(
 
   const vehicle = `${year} ${make} ${model}`;
   const pageWidth = 210;
-  
-  applyPremiumThemeLayout(
-    doc, 
-    "PASSIVE DIAGNOSTIC ASSESSMENT REPORT", 
-    `Automated Hardware Mapping & Diagnostic Setup Guide v2026.0`,
-    vehicle, 
-    1, 
-    1
+
+  // Diagnostics Palette: Cobalt Rich Navy + Stunning Teal Highlights + Crisp Slate Light background
+  const diagnosticsPalette: CanvaPalette = {
+    headerBg: [15, 23, 42], // deep dark slate
+    headerRightTriangle: [30, 41, 59], // offset blue-slate
+    headerAccentStripe: [79, 70, 229], // beautiful royal indigo
+    heroGradientEnd: [49, 46, 129],
+    accentColor: [79, 70, 229], // indigo accents
+    badgeSuccessBg: [209, 250, 229], // light mint green
+    badgeSuccessText: [6, 95, 70], // deep forest green
+    cardAccentBorder: [16, 185, 129], // emerald
+    bgCanvas: [241, 245, 249], // elegant clear soft-gray canvassing
+    cardBg: [255, 255, 255], // bright clean card body
+    shadowColor: [226, 232, 240], // soft designer shadow casting
+    textMain: [30, 41, 59], // high contrast text slate-800
+    textMuted: [100, 116, 139] // slate-500
+  };
+
+  drawCanvaHeaderAndCanvas(
+    doc,
+    "PASSIVE DIAGNOSTIC ASSESSMENT REPORT",
+    `Local Hardware Loop Mapped Exclusively for early reservation accounts`,
+    vehicle,
+    diagnosticsPalette
   );
 
-  // Generate sections styled cleanly
-  let currentY = 78;
+  let currentY = 62;
 
-  data.forEach((sec) => {
-    // Section Header
+  // Render individual sections as gorgeous physical floating cards
+  data.forEach((sec, idx) => {
+    const cardHeight = 40;
+    const paddingX = 17;
+    const cardWidth = pageWidth - 24;
+
+    // 1. Draw elegant drop shadow rectangle
+    doc.setFillColor(diagnosticsPalette.shadowColor[0], diagnosticsPalette.shadowColor[1], diagnosticsPalette.shadowColor[2]);
+    doc.roundedRect(12.7, currentY + 0.6, cardWidth, cardHeight, 3.5, 3.5, 'F');
+
+    // 2. Draw actual crisp white floating card
+    doc.setFillColor(diagnosticsPalette.cardBg[0], diagnosticsPalette.cardBg[1], diagnosticsPalette.cardBg[2]);
+    doc.roundedRect(12, currentY, cardWidth, cardHeight, 3.5, 3.5, 'F');
+
+    // 3. Highlight Accent Stripe corresponding to card
+    doc.setFillColor(diagnosticsPalette.accentColor[0], diagnosticsPalette.accentColor[1], diagnosticsPalette.accentColor[2]);
+    doc.rect(12, currentY + 4, 3, 10, 'F');
+
+    // 4. Index Indicator Icon (Numbered Canva badge)
+    doc.setFillColor(diagnosticsPalette.bgCanvas[0], diagnosticsPalette.bgCanvas[1], diagnosticsPalette.bgCanvas[2]);
+    doc.circle(21.5, currentY + 8, 3.5, 'F');
     doc.setFont('Helvetica', 'bold');
-    doc.setFontSize(12);
-    doc.setTextColor(99, 102, 241); // Indigo color for headers
-    doc.text(`[//] ${sec.section.toUpperCase()}`, 15, currentY);
-    
-    // Header underline
-    doc.setDrawColor(30, 41, 59);
+    doc.setFontSize(8.5);
+    doc.setTextColor(diagnosticsPalette.accentColor[0], diagnosticsPalette.accentColor[1], diagnosticsPalette.accentColor[2]);
+    doc.text(`0${idx + 1}`, 20, currentY + 11);
+
+    // 5. Section Header Content
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(10.5);
+    doc.setTextColor(diagnosticsPalette.textMain[0], diagnosticsPalette.textMain[1], diagnosticsPalette.textMain[2]);
+    doc.text(sec.section.toUpperCase(), 28, currentY + 9.5);
+
+    // Decorative dividing rule inside card
+    doc.setDrawColor(241, 245, 249);
     doc.setLineWidth(0.3);
-    doc.line(15, currentY + 2, pageWidth - 15, currentY + 2);
+    doc.line(18, currentY + 14, pageWidth - 18, currentY + 14);
 
-    currentY += 8;
-
-    // Body text
+    // 6. Section Body Content
     doc.setFont('Helvetica', 'normal');
-    doc.setFontSize(9.5);
-    doc.setTextColor(255, 255, 255);
-    
-    // Split text into multi-line paragraphs conforming to PDF width bounds
-    const lines = doc.splitTextToSize(sec.content, pageWidth - 30);
-    doc.text(lines, 15, currentY);
+    doc.setFontSize(8.5);
+    doc.setTextColor(diagnosticsPalette.textMain[0], diagnosticsPalette.textMain[1], diagnosticsPalette.textMain[2]);
 
-    currentY += (lines.length * 5) + 14;
+    const lineLimitWidth = cardWidth - 14;
+    const lines = doc.splitTextToSize(sec.content, lineLimitWidth);
+    doc.text(lines, 18, currentY + 19, { lineHeightFactor: 1.4 });
+
+    currentY += cardHeight + 4.8;
   });
 
   return doc;
 }
 
 /**
- * Generates the Astrateq Configuration Blueprint PDF
+ * Generates the Astrateq Configuration Blueprint PDF with vibrant hot coral and warm amber colors
  */
 export function generateConfigurationBlueprintPDF(
   year: string,
@@ -214,43 +313,80 @@ export function generateConfigurationBlueprintPDF(
 
   const vehicle = `${year} ${make} ${model}`;
   const pageWidth = 210;
-  
-  applyPremiumThemeLayout(
-    doc, 
-    "SOVEREIGN CONFIGURATION BLUEPRINT", 
-    `Edge Computing Specification & Data Isolation Blueprint v2.1`,
-    vehicle, 
-    1, 
-    1
+
+  // Blueprint Theme: Dynamic Sunset charcoal, Hot Rose-Red highlight and energetic Orange accents
+  const blueprintPalette: CanvaPalette = {
+    headerBg: [9, 9, 11], // Charcoal pitch zinc
+    headerRightTriangle: [39, 39, 42], // mid zinc
+    headerAccentStripe: [225, 29, 72], // vibrant hot rose red
+    heroGradientEnd: [217, 70, 239],
+    accentColor: [225, 29, 72], // primary hot action rose red
+    badgeSuccessBg: [254, 243, 199], // mild golden warm background
+    badgeSuccessText: [180, 83, 9], // deep amber mustard text
+    cardAccentBorder: [245, 158, 11], // brilliant secure gold
+    bgCanvas: [248, 250, 252], // ultra-soft slate/off-white clean background
+    cardBg: [255, 255, 255], // paper white
+    shadowColor: [235, 240, 245], // designer soft blue-tinged shadow
+    textMain: [24, 24, 27], // zinc 900
+    textMuted: [113, 113, 122] // zinc 500
+  };
+
+  drawCanvaHeaderAndCanvas(
+    doc,
+    "SOVEREIGN CONFIGURATION BLUEPRINT",
+    `Edge Computing Specification & Data Isolation Mapping Protocol`,
+    vehicle,
+    blueprintPalette
   );
 
-  // Generate sections styled cleanly
-  let currentY = 78;
+  let currentY = 62;
 
-  data.forEach((sec) => {
-    // Section Header
+  // Render individual sections as gorgeous modular Canva components
+  data.forEach((sec, idx) => {
+    const cardHeight = 40;
+    const cardWidth = pageWidth - 24;
+
+    // 1. Draw beautiful offset shadow paper-effect
+    doc.setFillColor(blueprintPalette.shadowColor[0], blueprintPalette.shadowColor[1], blueprintPalette.shadowColor[2]);
+    doc.roundedRect(12.7, currentY + 0.6, cardWidth, cardHeight, 3.5, 3.5, 'F');
+
+    // 2. Draw actual crisp clean card base
+    doc.setFillColor(blueprintPalette.cardBg[0], blueprintPalette.cardBg[1], blueprintPalette.cardBg[2]);
+    doc.roundedRect(12, currentY, cardWidth, cardHeight, 3.5, 3.5, 'F');
+
+    // 3. Left-edge Accent color bar
+    doc.setFillColor(blueprintPalette.accentColor[0], blueprintPalette.accentColor[1], blueprintPalette.accentColor[2]);
+    doc.rect(12, currentY + 4, 3, 10, 'F');
+
+    // 4. Circular tech counter badge
+    doc.setFillColor(blueprintPalette.bgCanvas[0], blueprintPalette.bgCanvas[1], blueprintPalette.bgCanvas[2]);
+    doc.circle(21.5, currentY + 8, 3.5, 'F');
     doc.setFont('Helvetica', 'bold');
-    doc.setFontSize(12);
-    doc.setTextColor(244, 63, 94); // Rose red accent for blueprint
-    doc.text(`[//] ${sec.section.toUpperCase()}`, 15, currentY);
-    
-    // Header underline
-    doc.setDrawColor(30, 41, 59);
+    doc.setFontSize(8.5);
+    doc.setTextColor(blueprintPalette.accentColor[0], blueprintPalette.accentColor[1], blueprintPalette.accentColor[2]);
+    doc.text(`0${idx + 1}`, 20, currentY + 11);
+
+    // 5. Section header title
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(10.5);
+    doc.setTextColor(blueprintPalette.textMain[0], blueprintPalette.textMain[1], blueprintPalette.textMain[2]);
+    doc.text(sec.section.toUpperCase(), 28, currentY + 9.5);
+
+    // Inner dividing line inside card
+    doc.setDrawColor(244, 244, 245);
     doc.setLineWidth(0.3);
-    doc.line(15, currentY + 2, pageWidth - 15, currentY + 2);
+    doc.line(18, currentY + 14, pageWidth - 18, currentY + 14);
 
-    currentY += 8;
-
-    // Body text
+    // 6. Descriptive body context paragraph
     doc.setFont('Helvetica', 'normal');
-    doc.setFontSize(9.5);
-    doc.setTextColor(255, 255, 255);
-    
-    // Split text into multi-line paragraphs conforming to PDF width bounds
-    const lines = doc.splitTextToSize(sec.content, pageWidth - 30);
-    doc.text(lines, 15, currentY);
+    doc.setFontSize(8.5);
+    doc.setTextColor(blueprintPalette.textMain[0], blueprintPalette.textMain[1], blueprintPalette.textMain[2]);
 
-    currentY += (lines.length * 5) + 14;
+    const lineLimitWidth = cardWidth - 14;
+    const lines = doc.splitTextToSize(sec.content, lineLimitWidth);
+    doc.text(lines, 18, currentY + 19, { lineHeightFactor: 1.4 });
+
+    currentY += cardHeight + 4.8;
   });
 
   return doc;

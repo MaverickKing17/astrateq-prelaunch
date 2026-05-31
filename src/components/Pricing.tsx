@@ -718,7 +718,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
               </form>
             ) : (
               // Success Feedback
-              <div className="p-8 text-center space-y-5">
+              <div className="p-8 text-center space-y-5 max-h-[85vh] overflow-y-auto">
                 <div className="w-16 h-16 bg-emerald-50 border border-emerald-250 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
                   <Check className="w-8 h-8 text-emerald-600" style={{ strokeWidth: 3 }} />
                 </div>
