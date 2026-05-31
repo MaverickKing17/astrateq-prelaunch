@@ -20,15 +20,15 @@ export function getFallbackReportData(year: string, make: string, model: string)
     diagnosticReport: [
       {
         section: "Executive Diagnostic Summary",
-        content: `Comprehensive passive monitoring analysis mapped specifically for the ${vehicle}. The Astrateq supercapacitor hardware model establishes an active read-only connection with the vehicle's secondary powertrain CAN bus network. By deploying real-time sovereign edge processing, the DriveGuard system extracts vehicle diagnostic codes without writing active commands, mitigating any possibility of check-engine warnings or power control unit (PCU) malfunctions.`
+        content: `Comprehensive passive monitoring analysis mapped specifically for the ${vehicle}. The Astrateq Gadgets supercapacitor hardware model establishes an active read-only connection with the vehicle's secondary powertrain CAN bus network. By deploying real-time sovereign edge processing, the DriveGuard system extracts vehicle diagnostic codes without writing active commands, mitigating any possibility of check-engine warnings or power control unit (PCU) malfunctions.`
       },
       {
         section: "CAN Bus Protocol & Interface Mapping",
-        content: `The ${vehicle} utilize standard high-speed ISO 15765-4 CAN signals operating at 500 kbps on pins 6 and 14 of the standard 16-pin OBD-II J1962 port configuration. Astrateq's physical interface uses differential receiver transceivers with high electromagnetic immunity (EMI) shielding to prevent noise injection, ensuring zero cross-talk with proprietary steer-by-wire, brake, or active safety stability controllers.`
+        content: `The ${vehicle} utilize standard high-speed ISO 15765-4 CAN signals operating at 500 kbps on pins 6 and 14 of the standard 16-pin OBD-II J1962 port configuration. The Astrateq Gadgets physical interface uses differential receiver transceivers with high electromagnetic immunity (EMI) shielding to prevent noise injection, ensuring zero cross-talk with proprietary steer-by-wire, brake, or active safety stability controllers.`
       },
       {
         section: "Hardware Integration & Current Draw Profile",
-        content: `Astrateq units feature class-leading active energy management Drawing under 15mA in sleeping mode, transitioning seamlessly via low-power sleep wake timers during engine startup cycles. Powered on the 12V terminal line (pin 16), it will not trigger battery drain warnings even during deep freezing Canadian climate periods. Integrated thermal overload protection keeps device operation temperature extremely stable.`
+        content: `Astrateq Gadgets units feature class-leading active energy management. Drawing under 15mA in sleeping mode, transitioning seamlessly via low-power sleep wake timers during engine startup cycles. Powered on the 12V terminal line (pin 16), it will not trigger battery drain warnings even during deep freezing Canadian climate periods. Integrated thermal overload protection keeps device operation temperature extremely stable.`
       },
       {
         section: "ICES-003 & Compliance Validation Status",
@@ -38,15 +38,15 @@ export function getFallbackReportData(year: string, make: string, model: string)
     configurationBlueprint: [
       {
         section: "Executive Overview & System Baseline",
-        content: `This technical configuration blueprint specifies the operational threshold mapping for the ${vehicle} integrating the Astrateq sovereign telemetry loop. By establishing standard hardware integrity layers, the system guarantees instant compatibility with vehicle cabin accessories while retaining high-precision camera visual stabilization loops.`
+        content: `This technical configuration blueprint specifies the operational threshold mapping for the ${vehicle} integrating the Astrateq Gadgets sovereign telemetry loop. By establishing standard hardware integrity layers, the system guarantees instant compatibility with vehicle cabin accessories while retaining high-precision camera visual stabilization loops.`
       },
       {
         section: "Hardware Integrity & Supercapacitor Thermal Shield",
-        content: `Engineered specifically to bypass commercial battery failure thresholds. Unlike lithium-based units which swell, puncture, or fail under peak temperature offsets, Astrateq leverages dual-cell supercapacitors maintaining active buffer charge. Certified for optimal thermal stability from -35°C to 85°C. Reliable power buffer is guaranteed under freezing winter cycles typical of Canadian territories.`
+        content: `Engineered specifically to bypass commercial battery failure thresholds. Unlike lithium-based units which swell, puncture, or fail under peak temperature offsets, Astrateq Gadgets leverages dual-cell supercapacitors maintaining active buffer charge. Certified for optimal thermal stability from -35°C to 85°C. Reliable power buffer is guaranteed under freezing winter cycles typical of Canadian territories.`
       },
       {
         section: "Data Isolation Protocols & Privacy Shunting",
-        content: `Astrateq secures vehicle telemetry data by executing processing entirely at the sovereign edge. No vehicle speed coordinates, sensor mappings, or route trails are transmitted to remote servers during active telemetry scans. Data storage leverages encrypted on-board NAND memory blocks utilizing AES-256 standard, with hardware shunts preventing unauthorized external access over OBD portals.`
+        content: `Astrateq Gadgets secures vehicle telemetry data by executing processing entirely at the sovereign edge. No vehicle speed coordinates, sensor mappings, or route trails are transmitted to remote servers during active telemetry scans. Data storage leverages encrypted on-board NAND memory blocks utilizing AES-256 standard, with hardware shunts preventing unauthorized external access over OBD portals.`
       },
       {
         section: "System Architecture Summary & Core Processing",
@@ -85,11 +85,11 @@ function applyPremiumThemeLayout(
   doc.setLineWidth(0.5);
   doc.line(15, 30, pageWidth - 15, 30);
 
-  // Header Text
+  // Header text using our brand
   doc.setFont('Helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(99, 102, 241); // Indigo
-  doc.text("ASTRATEQ AUTOMOTIVE ENGINEERING LABS", 15, 20);
+  doc.text("ASTRATEQ GADGETS LABS", 15, 20);
 
   doc.setFont('Courier', 'bold');
   doc.setFontSize(7);
