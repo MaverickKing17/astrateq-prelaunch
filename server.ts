@@ -14,11 +14,20 @@ app.use(express.urlencoded({ extended: true }));
 
 // API Route - Stripe Config Info
 app.get("/api/stripe-config", (req, res) => {
-  const isConfigured = !!process.env.STRIPE_SECRET_KEY;
+  const stripeSecret = process.env.STRIPE_SECRET_KEY || "";
+  const isConfigured = !!stripeSecret;
   const publishableKey = process.env.VITE_STRIPE_PUBLISHABLE_KEY || "";
+  
+  // Automatically determine if operating in Validation Mode (test environment or no key)
+  let isValidationMode = true;
+  if (stripeSecret.startsWith("sk_live_")) {
+    isValidationMode = false;
+  }
+  
   res.json({
     configured: isConfigured,
-    publishableKey: publishableKey
+    publishableKey: publishableKey,
+    isValidationMode: isValidationMode
   });
 });
 

@@ -16,14 +16,27 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
   const [vehicleInfo, setVehicleInfo] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [checkoutStep, setCheckoutStep] = useState<'form' | 'success'>('form');
-  const [stripeConfig, setStripeConfig] = useState({ configured: false, publishableKey: '' });
+  const [stripeConfig, setStripeConfig] = useState({ configured: false, publishableKey: '', isValidationMode: true });
   const [stripeError, setStripeError] = useState<string | null>(null);
+
+  // States for interactive mock credit card entries in Validation Mode
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardExpiry, setCardExpiry] = useState('');
+  const [cardCvv, setCardCvv] = useState('');
+  const [billingPostal, setBillingPostal] = useState('');
 
   useEffect(() => {
     fetch('/api/stripe-config')
       .then(res => res.json())
-      .then(data => setStripeConfig(data))
-      .catch(err => console.error('Failed to load Stripe config:', err));
+      .then(data => setStripeConfig({
+        configured: data.configured,
+        publishableKey: data.publishableKey,
+        isValidationMode: data.isValidationMode !== undefined ? data.isValidationMode : true
+      }))
+      .catch(err => {
+        console.error('Failed to load Stripe config:', err);
+        setStripeConfig(prev => ({ ...prev, isValidationMode: true }));
+      });
   }, []);
 
   const reservationDeposit = 49; // Premium commitment deposit for middle-income security-first parents
@@ -117,7 +130,8 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
     setIsSubmitting(true);
     setStripeError(null);
 
-    if (stripeConfig.configured) {
+    // Only attempt real Stripe Checkout redirection if keys are fully configured AND we are in live production mode (sk_live_)
+    if (stripeConfig.configured && !stripeConfig.isValidationMode) {
       try {
         const response = await fetch('/api/create-checkout-session', {
           method: 'POST',
@@ -149,6 +163,9 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
         console.error("Stripe session creation failed, falling back to simulated booking:", err);
         setStripeError(err.message || 'Connecting to Stripe failed. Operating in Simulation Mode instead.');
       }
+    } else if (stripeConfig.isValidationMode) {
+      // Simulate real, luxury-tier payment gateway handshake & reservation seed registration (1.2 seconds)
+      await new Promise((resolve) => setTimeout(resolve, 1200));
     }
 
     try {
@@ -370,161 +387,324 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
 
       {/* Checkout Modal */}
       {selectedBundle && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white border border-slate-200 w-full max-w-md rounded-2xl overflow-hidden shadow-2xl animate-scale-up">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-fade-in">
+          <div className="bg-white border border-slate-250 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl animate-scale-up">
             
-            {/* Header */}
-            <div className="bg-slate-50 px-6 py-4 border-b border-slate-200/85 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-indigo-600" />
-                <span className="font-sans font-bold text-xs text-slate-800">Stripe Pre-launch Booking Portal</span>
+            {/* Elegant Header containing custom titles */}
+            <div className="bg-slate-950 border-b border-slate-850 px-6 py-4 flex items-center justify-between text-white select-none">
+              <div className="flex items-center gap-2.5">
+                <Lock className="w-4 h-4 text-purple-400 animate-pulse" />
+                <span className="font-sans font-black text-xs uppercase tracking-wider text-slate-100">
+                  {stripeConfig.isValidationMode 
+                    ? "SECURE FOUNDING RESERVATION (VALIDATION PHASE)" 
+                    : "Stripe Pre-launch Booking Portal"}
+                </span>
               </div>
               <button
+                type="button"
                 onClick={() => setSelectedBundle(null)}
-                className="text-slate-500 hover:text-slate-850 hover:bg-slate-200 bg-slate-100 font-extrabold py-1 px-2.5 rounded text-xs transition-colors cursor-pointer"
+                className="text-slate-400 hover:text-white hover:bg-slate-800 bg-slate-850/80 font-extrabold py-1 px-3 rounded-lg text-[10px] uppercase tracking-wider transition-all cursor-pointer border border-slate-700/50"
               >
                 Close
               </button>
             </div>
 
             {checkoutStep === 'form' ? (
-              <form onSubmit={handleCheckoutSubmit} className="p-6 space-y-4 text-left">
-                <div className="bg-indigo-50/60 border border-indigo-120 p-4 rounded-xl flex flex-col">
-                  <span className="text-[9px] uppercase font-bold text-slate-500 tracking-wider">
-                    Hormozi Deposit Stack Activated:
+              <form onSubmit={handleCheckoutSubmit} className="p-6 space-y-4 max-h-[85vh] overflow-y-auto text-left">
+                
+                {/* PDF Requirement A: Premium Validation Trust Banner */}
+                {stripeConfig.isValidationMode && (
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-950 via-[#180e38] to-indigo-950 p-4 border border-purple-500/30 shadow-[0_4px_25px_rgba(168,85,247,0.2)] text-center">
+                    {/* Atmospheric glow backdrop */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1),transparent)] pointer-events-none" />
+                    
+                    <span className="text-[9px] font-black uppercase tracking-widest text-purple-400 font-mono block mb-1">
+                      INTELLIGENT CALM PROTECTION
+                    </span>
+                    <h5 className="text-sm font-black text-white tracking-tight uppercase leading-tight">
+                      SECURE TEST MODE: NO REAL CHARGES
+                    </h5>
+                    <p className="text-[10px] text-purple-200/95 font-semibold tracking-wide">
+                      SIMULATED PAYMENT FOR VALIDATION
+                    </p>
+                  </div>
+                )}
+
+                <div className="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl flex flex-col">
+                  <span className="text-[9px] uppercase font-bold text-slate-450 tracking-wider">
+                    Selected Founding Member Bundle:
                   </span>
-                  <span className="font-sans font-black text-slate-900 text-base mt-1">
-                    {selectedBundle.name} Spot Reservation
-                  </span>
-                  <span className="text-xs text-indigo-650 font-bold mt-1.5 bg-white border border-indigo-150 px-2.5 py-1 rounded-md self-start">
-                    Today's Authorized Charge: <span className="text-emerald-700 font-extrabold uppercase">$49 CAD</span> (Fully Refundable)
-                  </span>
-                  <span className="text-[10px] text-slate-500 mt-2 font-semibold">
-                    Remaining balance of <strong>${selectedBundle.shipPrice} CAD</strong> billed ONLY in Summer 2026 once tracking shipment begins.
+                  <div className="flex items-baseline justify-between mt-1">
+                    <span className="font-sans font-black text-slate-900 text-base">
+                      {selectedBundle.name} Spot Reservation
+                    </span>
+                    <span className="text-xs text-indigo-650 font-extrabold font-mono bg-indigo-50 border border-indigo-120 px-2 py-0.5 rounded-md">
+                      $49 CAD today
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-slate-500 mt-2 font-medium leading-relaxed">
+                    Under PIPEDA data transparency guidelines, your reservation secures early hardware access. Remaining balance of <strong>${selectedBundle.shipPrice} CAD</strong> billed only at final shipment in Summer 2026.
                   </span>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Full Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Enter full name"
-                    value={checkoutName}
-                    onChange={(e) => setCheckoutName(e.target.value)}
-                    className="w-full bg-white border border-slate-250 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-400"
-                  />
+                {/* Elegant Simulated Card Graphic */}
+                {stripeConfig.isValidationMode && (
+                  <div className="relative h-40 bg-gradient-to-br from-indigo-950 via-slate-950 to-indigo-950 rounded-2xl p-5 border border-white/10 shadow-lg overflow-hidden flex flex-col justify-between select-none">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_120%,rgba(168,85,247,0.12),transparent)] pointer-events-none" />
+                    
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <span className="text-[8px] font-black uppercase tracking-widest text-purple-400 block font-mono">
+                          ASTRATEQ PLATINUM SYSTEM LINK
+                        </span>
+                        <span className="text-[11px] text-slate-350 font-bold font-sans">SOVEREIGN EDGE PLATFORM</span>
+                      </div>
+                      
+                      {/* NFC Wave and Gold Chip */}
+                      <div className="flex items-center gap-2">
+                        <div className="flex gap-0.5 items-end h-4 pb-0.5">
+                          <span className="w-0.5 h-1 bg-slate-400 rounded-full" />
+                          <span className="w-0.5 h-2 bg-slate-400 rounded-full" />
+                          <span className="w-0.5 h-3 bg-slate-400 rounded-full" />
+                          <span className="w-0.5 h-3.5 bg-slate-405 rounded-full" />
+                        </div>
+                        <div className="w-7 h-5 bg-gradient-to-br from-amber-300 via-amber-400 to-amber-600 rounded border border-amber-600/30" />
+                      </div>
+                    </div>
+
+                    <div className="font-mono text-sm sm:text-base text-slate-100 tracking-[0.22em] font-extrabold my-2">
+                      {cardNumber || "••••  ••••  ••••  4242"}
+                    </div>
+
+                    <div className="flex justify-between items-end">
+                      <div className="max-w-[200px]">
+                        <span className="text-[7px] font-bold text-slate-405 uppercase tracking-widest block leading-none mb-1">
+                          CARDHOLDER NAME
+                        </span>
+                        <span className="text-[11px] font-mono font-bold text-slate-200 block truncate">
+                          {checkoutName ? checkoutName.toUpperCase() : "FOUNDING MEMBER"}
+                        </span>
+                      </div>
+                      <div className="flex gap-4">
+                        <div>
+                          <span className="text-[7px] font-bold text-slate-405 uppercase tracking-widest block leading-none mb-1 text-right">
+                            EXPIRES
+                          </span>
+                          <span className="text-[11px] font-mono font-bold text-slate-200 block text-right">
+                            {cardExpiry || "12/29"}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-[7px] font-bold text-slate-405 uppercase tracking-widest block leading-none mb-1 text-right">
+                            CVV
+                          </span>
+                          <span className="text-[11px] font-mono font-bold text-slate-200 block text-right">
+                            {cardCvv || "•••"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Primary Card Fields */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block">Full Name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Enter founding member name"
+                      value={checkoutName}
+                      onChange={(e) => setCheckoutName(e.target.value)}
+                      className="w-full bg-white border border-slate-250 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-400 font-medium"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block">Email Address (Recipient)</label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="f member@domain.ca"
+                      value={checkoutEmail}
+                      onChange={(e) => setCheckoutEmail(e.target.value)}
+                      className="w-full bg-white border border-slate-250 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-400 font-medium"
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Email Address (Reservation Code Recipient)</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="Enter email address"
-                    value={checkoutEmail}
-                    onChange={(e) => setCheckoutEmail(e.target.value)}
-                    className="w-full bg-white border border-slate-250 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-400"
-                  />
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Vehicle Model Year (For Diagnostic Custom Kit)</label>
+                  <label className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block">Vehicle Manufacturer Model & Year (Custom Kit Identification)</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. 2021 Toyota RAV4 Hybrid"
                     value={vehicleInfo}
                     onChange={(e) => setVehicleInfo(e.target.value)}
-                    className="w-full bg-white border border-slate-250 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-400"
+                    className="w-full bg-white border border-slate-250 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-400 font-medium"
                   />
-                  <div className="flex items-center gap-1.5 text-[10px] text-indigo-600 font-bold mt-1">
-                    <AlertCircle className="w-3.5 h-3.5" />
-                    <span>Free Model-Specific custom tool kit and compatible diagnostic guide matches this vehicle.</span>
+                  <div className="flex items-center gap-1.5 text-[10px] text-indigo-700 font-bold mt-1">
+                    <AlertCircle className="w-3.5 h-3.5 text-indigo-650" />
+                    <span>Free customized model diagnostic guide builds mapped directly to this configuration.</span>
                   </div>
                 </div>
 
-                {/* Stripe dynamic status indicator and checkout panel */}
-                {stripeConfig.configured ? (
-                  <div className="bg-emerald-50/50 border border-emerald-200/65 rounded-xl p-4 mt-2 text-xs">
-                    <div className="flex items-center gap-2 text-emerald-800 font-bold mb-1">
-                      <span className="flex h-2 w-2 relative">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                {/* Simulated Card Entry for Premium Validation checkout */}
+                {stripeConfig.isValidationMode ? (
+                  <div className="bg-slate-50 border border-slate-200 p-4 rounded-2xl space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[9px] font-black text-slate-450 uppercase tracking-widest font-mono">
+                        Automotive Simulation Gateway
                       </span>
-                      <span>Stripe Checkout Integration Active</span>
+                      <span className="text-[9px] text-purple-750 bg-purple-50 border border-purple-200 px-2 py-0.5 rounded-md font-bold tracking-wide">
+                        SECURE SANDBOX ACTIVE
+                      </span>
                     </div>
-                    <p className="text-slate-600 text-[11px] leading-relaxed font-semibold">
-                      Pressing the button below will securely forward you to Stripe's hosted pre-order billing screen. You can complete the 100% refundable <strong>$49 CAD</strong> test transaction.
-                    </p>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="space-y-1">
+                        <label className="text-[8px] font-bold text-slate-450 uppercase tracking-widest block">Simulated Card Number</label>
+                        <input
+                          type="text"
+                          maxLength={19}
+                          placeholder="4242 4242 4242 4242"
+                          value={cardNumber}
+                          onChange={(e) => setCardNumber(e.target.value.replace(/[^0-9 ]/g, ''))}
+                          className="w-full bg-white border border-slate-205 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-none focus:border-indigo-455 font-mono"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-3 gap-2">
+                        <div className="space-y-1 col-span-1">
+                          <label className="text-[8px] font-bold text-slate-450 uppercase tracking-widest block">Expiry Date</label>
+                          <input
+                            type="text"
+                            maxLength={5}
+                            placeholder="MM/YY"
+                            value={cardExpiry}
+                            onChange={(e) => setCardExpiry(e.target.value)}
+                            className="w-full bg-white border border-slate-205 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-none focus:border-indigo-455 font-mono"
+                          />
+                        </div>
+                        <div className="space-y-1 col-span-1">
+                          <label className="text-[8px] font-bold text-slate-450 uppercase tracking-widest block">CVV/CVC</label>
+                          <input
+                            type="text"
+                            maxLength={4}
+                            placeholder="321"
+                            value={cardCvv}
+                            onChange={(e) => setCardCvv(e.target.value.replace(/[^0-9]/g, ''))}
+                            className="w-full bg-white border border-slate-205 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-none focus:border-indigo-455 font-mono"
+                          />
+                        </div>
+                        <div className="space-y-1 col-span-1">
+                          <label className="text-[8px] font-bold text-slate-450 uppercase tracking-widest block">Postal Code</label>
+                          <input
+                            type="text"
+                            placeholder="T2P 2G8"
+                            value={billingPostal}
+                            onChange={(e) => setBillingPostal(e.target.value.toUpperCase())}
+                            className="w-full bg-white border border-slate-205 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-none focus:border-indigo-455 font-mono"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ) : (
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mt-2">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Simulated Pre-order Card Entry</span>
-                      <span className="text-[9px] text-indigo-650 bg-indigo-50 border border-indigo-150 px-1.5 py-0.5 rounded font-mono font-bold tracking-wider">DEMO PREVIEW</span>
+                  // Live Stripe indicator
+                  <div className="bg-emerald-50/50 border border-emerald-250 p-4 rounded-2xl text-xs">
+                    <div className="flex items-center gap-2 text-emerald-800 font-bold mb-1">
+                      <span className="flex h-2 w-2 relative">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-450 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+                      </span>
+                      <span>Stripe Enterprise Checkout Gateway</span>
                     </div>
-                    <p className="text-[10px] text-slate-500 leading-normal mb-2.5 font-medium">
-                      Stripe test keys not detected. App running in mock sandbox. Store <code>STRIPE_SECRET_KEY</code> in secrets to engage real checkout pages.
+                    <p className="text-slate-600 text-[11px] leading-relaxed font-semibold">
+                      Your session is secure. Clicking the reservation submit button redirects to Stripe's payment gateways for credit card verification of your early delivery deposit.
                     </p>
-                    <div className="grid grid-cols-4 gap-2 text-xs font-mono">
-                      <div className="col-span-4 bg-white border border-slate-205 rounded p-2 text-slate-600">
-                        ••••  ••••  ••••  4242
-                      </div>
-                      <div className="col-span-2 bg-white border border-slate-205 rounded p-2 text-slate-450">
-                        12 / 2029
-                      </div>
-                      <div className="col-span-2 bg-white border border-slate-205 rounded p-2 text-slate-450">
-                        321
-                      </div>
-                    </div>
                   </div>
                 )}
 
                 {stripeError && (
-                  <div className="bg-rose-50 border border-rose-150 text-rose-700 p-3 rounded-lg text-[11px] font-bold">
+                  <div className="bg-rose-50 border border-rose-150 text-rose-700 p-3 rounded-xl text-[11px] font-bold">
                     ⚠️ {stripeError}
                   </div>
                 )}
 
+                {/* PDF Requirement C: Validation Commitment Messaging */}
+                {stripeConfig.isValidationMode && (
+                  <div className="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4 text-center">
+                    <span className="text-[9px] text-emerald-700 uppercase font-extrabold tracking-widest block mb-1 font-mono leading-none">
+                      Hormozi Double-Risk Guarantee Activated
+                    </span>
+                    <div className="text-xs font-extrabold text-slate-800">
+                      Today's Validation Commitment: <span className="text-emerald-700 font-black text-sm">$49 CAD (100% Fully Refundable)</span>
+                    </div>
+                    <p className="text-[10px] text-slate-500 mt-2 leading-relaxed font-semibold">
+                      Immediate confirmation code generated upon authorization. Refund requested with a single button click anytime before summer shipping begins.
+                    </p>
+                  </div>
+                )}
+
+                {/* PDF Requirement D: Primary CTA Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3.5 rounded-lg font-black text-xs tracking-wider uppercase transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 shadow-md shadow-indigo-650/15"
+                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3.5 rounded-xl font-black text-xs tracking-wider uppercase transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 shadow-md shadow-indigo-650/15"
                 >
                   {isSubmitting ? (
                     <>
                       <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      {stripeConfig.configured ? "Proceeding to Stripe..." : "Authorizing Booking..."}
+                      <span>Verifying System Handshake...</span>
                     </>
                   ) : (
-                    stripeConfig.configured 
-                      ? "Proceed to Stripe Checkout ($49 CAD)"
-                      : `Reserve My Spot ($${reservationDeposit} CAD)`
+                    stripeConfig.isValidationMode 
+                      ? "CONFIRM SECURE ALLOCATION ($49 CAD simulated)"
+                      : "Proceed to Stripe Checkout ($49 CAD)"
                   )}
                 </button>
 
-                <div className="text-center text-[10px] text-slate-400 font-bold flex items-center justify-center gap-1.5 mt-1.5">
-                  <span>🔒 Fully Refundable Pre-launch Deposit Protection</span>
+                <div className="text-center text-[10px] text-slate-400 font-bold flex items-center justify-center gap-1.5 mt-2">
+                  <span>🔒 SSL Encrypted • Passive Read Compatibility Guaranteed</span>
                 </div>
 
               </form>
             ) : (
+              // Success Feedback
               <div className="p-8 text-center space-y-4">
-                <div className="w-12 h-12 bg-emerald-50 border border-emerald-250 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
-                  <Check className="w-6 h-6 text-emerald-600" />
+                <div className="w-14 h-14 bg-emerald-50 border border-emerald-250 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+                  <Check className="w-7 h-7 text-emerald-600" style={{ strokeWidth: 3 }} />
                 </div>
-                <h4 className="font-sans font-black text-lg text-slate-900">Founding Spot Reserved!</h4>
-                <p className="text-xs text-slate-500 leading-relaxed max-w-xs mx-auto">
-                  Thank you, <span className="text-slate-800 font-bold">{checkoutName}</span>. We successfully credited your <span className="text-indigo-650 font-bold">${reservationDeposit} CAD</span> deposit. Your slot for <span className="text-indigo-650 font-bold">{selectedBundle.name}</span> has been securely locked in our database sequence.
+                <span className="text-[10px] font-black uppercase text-emerald-700 tracking-widest block font-mono">
+                  RESERVATION ALLOCATED SECURELY
+                </span>
+                <h4 className="font-sans font-black text-xl text-slate-950 mt-1">Founding Spot Reserved!</h4>
+                
+                <p className="text-xs text-slate-550 leading-relaxed max-w-sm mx-auto">
+                  Thank you, <span className="text-slate-900 font-bold">{checkoutName}</span>. Your prelaunch spot for <span className="text-indigo-600 font-bold">{selectedBundle.name}</span> has been securely locked in our validation sequencers under the Canadian early-access credit allocation system.
                 </p>
-                <div className="bg-indigo-50 border border-indigo-120 rounded-xl p-3.5 text-[11px] text-indigo-650 font-bold inline-block">
-                  🎯 Next Step: Check compatibility details for and lock down customization of your companion app profile.
+
+                <div className="bg-slate-50 border border-slate-150 rounded-2xl p-4 text-[11px] text-slate-600 font-medium leading-relaxed max-w-sm mx-auto text-left">
+                  <div className="font-extrabold uppercase text-[10px] tracking-wider text-slate-805 mb-1.5 font-mono flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    Reservation Certificate Details:
+                  </div>
+                  • Account Holder: <strong>{checkoutName}</strong><br />
+                  • Notification Recipient: <strong>{checkoutEmail}</strong><br />
+                  • Target Vehicle Hardware Mapping: <strong>{vehicleInfo || "Universal CAN Interface"}</strong><br />
+                  • Early Access Campaign Savings: <strong>Early Founder Stack Code Active</strong>
                 </div>
+
+                <div className="bg-indigo-50 border border-indigo-120 rounded-2xl p-4 text-[11px] text-indigo-700 font-bold max-w-sm mx-auto leading-relaxed">
+                  🎯 Next Step: Download your custom engineering reports and diagnostic guidelines generated by our lab microprocessors for your specific vehicle!
+                </div>
+                
                 <button
                   type="button"
                   onClick={() => setSelectedBundle(null)}
-                  className="w-full py-2.5 bg-slate-900 hover:bg-slate-850 text-white rounded-lg text-xs font-semibold shadow-sm transition-colors mt-4"
+                  className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-black uppercase tracking-widest shadow-md transition-colors mt-4 cursor-pointer"
                 >
                   Return to Dashboard
                 </button>
