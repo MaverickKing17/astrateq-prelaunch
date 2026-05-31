@@ -124,12 +124,44 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
     doc.save('astrateq_configuration_blueprint.pdf');
   };
 
-  const handleSimulateEmail = () => {
+  const handleSimulateEmail = async () => {
+    if (!reportData) return;
     setIsEmailSending(true);
-    setTimeout(() => {
+    try {
+      // Generate standard PDFs and convert to base64 data URIs
+      const diagDoc = generateDiagnosticReportPDF(vehicleYear, vehicleMake, vehicleModel, reportData.diagnosticReport);
+      const blueprintDoc = generateConfigurationBlueprintPDF(vehicleYear, vehicleMake, vehicleModel, reportData.configurationBlueprint);
+      
+      const diagBase64 = diagDoc.output('datauristring');
+      const blueprintBase64 = blueprintDoc.output('datauristring');
+
+      // Dispatch to our server-side Resend API route
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          vehicle: `${vehicleYear} ${vehicleMake} ${vehicleModel}`,
+          pdfDiagnostics: diagBase64,
+          pdfBlueprint: blueprintBase64
+        })
+      });
+
+      const resJson = await response.json();
+      if (response.ok && resJson.success) {
+        setEmailSent(true);
+      } else {
+        console.error("Failed to send email:", resJson.error);
+        alert(`Could not send email: ${resJson.error || "Unknown server error"}`);
+      }
+    } catch (err: any) {
+      console.error("Email dispatch caught exception:", err);
+      alert(`Error dispatching email: ${err.message}`);
+    } finally {
       setIsEmailSending(false);
-      setEmailSent(true);
-    }, 1500);
+    }
   };
 
   const provinces = [

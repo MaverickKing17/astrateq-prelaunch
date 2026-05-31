@@ -232,11 +232,52 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       });
     } catch (err) {
       console.error(err);
-    } finally {
-      setIsSubmitting(false);
-      setCheckoutStep('success');
-      onReserveSuccess(checkoutEmail, selectedBundle.name);
     }
+
+    // Auto-dispatch tailored Canva-style diagnostics and blueprint PDF documents via Resend on checkout success
+    try {
+      let year = "2026";
+      let make = "Vehicle";
+      let model = "Model";
+      const parts = (vehicleInfo || "").trim().split(/\s+/);
+      if (parts.length > 0) {
+        if (/^\d{4}$/.test(parts[0])) {
+          year = parts[0];
+          if (parts.length > 1) make = parts[1];
+          if (parts.length > 2) model = parts.slice(2).join(" ");
+        } else {
+          make = parts[0];
+          if (parts.length > 1) model = parts.slice(1).join(" ");
+        }
+      }
+      const reportData = getFallbackReportData(year, make, model);
+      const diagDoc = generateDiagnosticReportPDF(year, make, model, reportData.diagnosticReport);
+      const blueprintDoc = generateConfigurationBlueprintPDF(year, make, model, reportData.configurationBlueprint);
+      
+      const diagBase64 = diagDoc.output('datauristring');
+      const blueprintBase64 = blueprintDoc.output('datauristring');
+
+      await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: checkoutEmail,
+          name: checkoutName,
+          vehicle: vehicleInfo,
+          bundle: selectedBundle?.name,
+          pdfDiagnostics: diagBase64,
+          pdfBlueprint: blueprintBase64
+        })
+      });
+    } catch (emailErr) {
+      console.error("Automated checkout email delivery failed:", emailErr);
+    }
+
+    setIsSubmitting(false);
+    setCheckoutStep('success');
+    onReserveSuccess(checkoutEmail, selectedBundle.name);
   };
 
   return (
