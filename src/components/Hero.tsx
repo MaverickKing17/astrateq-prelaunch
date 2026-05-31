@@ -126,8 +126,8 @@ export default function Hero({ onScrollToSection }: HeroProps) {
             </h1>
 
             {/* Supporting Copy */}
-            <p className="text-slate-600 font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
-              Local edge-computing. Zero cloud dependencies. Real-time driving diagnostics. Built strictly for Canadian roads to ensure your family's safety with absolute privacy.
+            <p className="text-slate-605 font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
+              Sovereign edge intelligence. Zero cloud tracking. An unbreachable safety shield engineered to process vehicle diagnostics locally in sub-12ms—keeping your family secure and your personal drive strictly private.
             </p>
 
             {/* Conversational CTAs */}
