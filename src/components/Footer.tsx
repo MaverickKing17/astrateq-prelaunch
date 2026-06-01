@@ -346,6 +346,20 @@ export default function Footer({ onScrollToSection }: FooterProps) {
           </div>
         </div>
 
+        {/* Component 3: Footer Transparency Notice */}
+        <div id="footer-transparency-notice" className="mt-10 pt-8 border-t border-slate-800/40 text-center max-w-4xl mx-auto px-4 select-none">
+          <span className="text-[9px] uppercase tracking-[0.15rem] text-rose-500 font-black block mb-2 font-mono">
+            Pre-Launch Validation Transparency Framework
+          </span>
+          <p className="text-neutral-500 font-normal leading-relaxed text-[11px] max-w-3xl mx-auto">
+            <strong>Astrateq Gadgets</strong> is currently operating in an active pre-launch validation phase. By selecting a package and submitting this reservation form, you are securing a priority reservation position for our upcoming product release. No actual financial transaction will occur and your payment method will not be charged. This checkout experience utilizes Stripe's secure test environment to simulate a $49 CAD Founding Member reservation for market validation and demand analysis purposes. Your financial information is not processed for real currency exchange, stored for billing purposes, or shared with third parties. Upon official product launch, priority reservation holders will receive exclusive early-access opportunities and will be invited to complete a production order if they choose to proceed.
+          </p>
+          <div className="text-[10px] text-neutral-600 font-semibold mt-3 flex items-center justify-center gap-1.5 font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+            Active Pre-Launch Compliance Mapped Successfully • Canada Transport Transparency Guidelines Accorded
+          </div>
+        </div>
+
       </div>
 
       {/* Interactive Modal for Legal documents */}

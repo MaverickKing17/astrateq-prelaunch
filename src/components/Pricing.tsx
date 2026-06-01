@@ -498,23 +498,42 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
             {checkoutStep === 'form' ? (
               <form onSubmit={handleCheckoutSubmit} className="p-6 space-y-4 max-h-[85vh] overflow-y-auto text-left">
                 
-                {/* PDF Requirement A: Premium Validation Trust Banner */}
+                {/* Component 4: Validation Mode Awareness Banner */}
                 {stripeConfig.isValidationMode && (
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-950 via-[#180e38] to-indigo-950 p-4 border border-purple-500/30 shadow-[0_4px_25px_rgba(168,85,247,0.2)] text-center">
-                    {/* Atmospheric glow backdrop */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1),transparent)] pointer-events-none" />
-                    
-                    <span className="text-[9px] font-black uppercase tracking-widest text-purple-400 font-mono block mb-1">
-                      INTELLIGENT CALM PROTECTION
-                    </span>
-                    <h5 className="text-sm font-black text-white tracking-tight uppercase leading-tight">
-                      SECURE TEST MODE: NO REAL CHARGES
-                    </h5>
-                    <p className="text-[10px] text-purple-200/95 font-semibold tracking-wide">
-                      SIMULATED PAYMENT FOR VALIDATION
-                    </p>
+                  <div id="validation-mode-banner" className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-950 via-[#120a2e] to-slate-950 p-[1.5px] shadow-[0_0_20px_rgba(168,85,247,0.2)] border border-purple-500/15">
+                    <div className="bg-slate-950/85 backdrop-blur-md p-4 rounded-[15px] text-center relative z-10">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1),transparent)] pointer-events-none" />
+                      <span className="text-[8px] font-black uppercase tracking-[0.2em] text-cyan-400 font-mono block mb-1">
+                        INTELLIGENT CALM SYSTEM LINK
+                      </span>
+                      <h5 className="text-xs sm:text-sm font-black text-white tracking-tight uppercase leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-indigo-100 to-cyan-200">
+                        SECURE TEST MODE: NO REAL CHARGES
+                      </h5>
+                      <p className="text-[10px] text-purple-300 font-extrabold tracking-widest uppercase mt-1">
+                        SIMULATED PAYMENT FOR VALIDATION
+                      </p>
+                    </div>
                   </div>
                 )}
+
+                {/* Component 2: Dedicated Disclosure Component - Pre-Launch Validation Notice */}
+                <div id="prelaunch-validation-notice" className="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2.5 shadow-sm">
+                  <div className="flex items-center gap-2 text-indigo-700 select-none">
+                    <ShieldCheck className="w-4 h-4 text-indigo-600 shrink-0" />
+                    <h5 className="font-sans font-black text-xs uppercase tracking-wider text-slate-950">
+                      Pre-Launch Validation Notice
+                    </h5>
+                  </div>
+                  <p className="text-[11px] text-slate-600 leading-relaxed font-semibold">
+                    <span className="text-slate-900 font-extrabold">Astrateq Gadgets is currently operating in an active pre-launch validation phase.</span>
+                    <br className="mb-1" />
+                    By selecting a package and submitting this reservation form, you are securing a priority reservation position for our upcoming product release. No actual financial transaction will occur and your payment method will not be charged.
+                    <br className="mb-1" />
+                    This checkout experience utilizes Stripe's secure test environment to simulate a $49 CAD Founding Member reservation for market validation and demand analysis purposes. Your financial information is not processed for real currency exchange, stored for billing purposes, or shared with third parties.
+                    <br className="mb-1" />
+                    Upon official product launch, priority reservation holders will receive exclusive early-access opportunities and will be invited to complete a production order if they choose to proceed.
+                  </p>
+                </div>
 
                 <div className="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl flex flex-col">
                   <span className="text-[9px] uppercase font-bold text-slate-450 tracking-wider">
@@ -733,6 +752,25 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                     </p>
                   </div>
                 )}
+
+                {/* Component 1: Astrateq Gadgets Security Promise Panel */}
+                <div id="security-promise-panel" className="relative overflow-hidden rounded-2xl p-[1.5px] bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 shadow-[0_0_15px_rgba(168,85,247,0.25)]">
+                  <div className="bg-slate-950/90 backdrop-blur-md text-white p-4.5 p-4 rounded-[15px] space-y-3 relative z-10">
+                    <div className="flex items-center gap-2 text-indigo-300">
+                      <ShieldCheck className="w-5 h-5 text-indigo-400 drop-shadow-[0_0_6px_rgba(168,85,247,0.5)] shrink-0" />
+                      <h4 className="font-sans font-black text-xs uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-indigo-100 to-cyan-200">
+                        Astrateq Gadgets Security Promise
+                      </h4>
+                    </div>
+                    <div className="text-[11px] text-slate-300 leading-relaxed space-y-2 font-medium">
+                      <p>We utilize Stripe's official secure test environment.</p>
+                      <p>Your payment method may be used to simulate a <span className="text-cyan-400 font-extrabold">$49 CAD</span> Founding Member reservation; however, <span className="text-purple-400 font-extrabold">no charge will be processed</span> during this validation phase.</p>
+                      <p>Your information remains secure and your payment method <span className="text-emerald-400 font-extrabold font-mono">will not be billed</span>.</p>
+                    </div>
+                  </div>
+                  {/* Subtle soft gradient glow */}
+                  <div className="absolute -bottom-10 -right-10 w-24 h-24 bg-cyan-400/20 rounded-full blur-xl pointer-events-none" />
+                </div>
 
                 {/* PDF Requirement D: Primary CTA Button */}
                 <button

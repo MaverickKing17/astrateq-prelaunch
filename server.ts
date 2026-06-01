@@ -283,7 +283,7 @@ app.post("/api/send-email", async (req, res) => {
       attachments.push({
         content: cleanDiagBase64,
         filename: "astrateq_diagnostic_report.pdf",
-        content_type: "application/pdf"
+        contentType: "application/pdf"
       });
     }
     if (pdfBlueprint) {
@@ -291,7 +291,7 @@ app.post("/api/send-email", async (req, res) => {
       attachments.push({
         content: cleanBlueBase64,
         filename: "astrateq_configuration_blueprint.pdf",
-        content_type: "application/pdf"
+        contentType: "application/pdf"
       });
     }
 
