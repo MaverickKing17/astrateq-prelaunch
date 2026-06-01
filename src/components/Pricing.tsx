@@ -385,6 +385,36 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
 
                 {/* Feature list */}
                 <div className="space-y-4 mb-6 flex-1">
+                  {bundle.id === 'family' && (
+                    <div className="p-3.5 bg-indigo-50/40 border border-indigo-100 rounded-xl mb-4 text-left">
+                      <span className="text-[9.5px] font-black uppercase tracking-widest text-indigo-700 block mb-2.5">
+                        📦 WHAT'S INCLUDED:
+                      </span>
+                      <ul className="space-y-2 text-xs text-slate-705 font-bold">
+                        <li className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-emerald-555 shrink-0 mt-0.5" style={{ strokeWidth: 3 }} />
+                          <span>DriveGuard AI Dashcam (Front + Rear)</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-emerald-555 shrink-0 mt-0.5" style={{ strokeWidth: 3 }} />
+                          <span>Astrateq Diagnostic Scanner</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-emerald-555 shrink-0 mt-0.5" style={{ strokeWidth: 3 }} />
+                          <span>Mobile Companion App</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-emerald-555 shrink-0 mt-0.5" style={{ strokeWidth: 3 }} />
+                          <span>Personalized Vehicle Intelligence Preview</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-emerald-555 shrink-0 mt-0.5" style={{ strokeWidth: 3 }} />
+                          <span>Founding Member Access</span>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+
                   <div>
                     <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 block mb-2 font-sans">
                       CORE SPECIFICATIONS:
@@ -789,6 +819,20 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                       : "Proceed to Stripe Checkout ($49 CAD)"
                   )}
                 </button>
+
+                {/* Supporting trust copy beneath CTA */}
+                <div className="p-3.5 bg-indigo-50/35 border border-indigo-100 rounded-2xl text-[10px] sm:text-[10.5px] text-slate-650 leading-relaxed font-semibold text-left space-y-1">
+                  <div className="text-indigo-800 font-sans font-black uppercase text-[8.5px] tracking-widest mb-1.5 flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
+                    Reservation Security Checkpoint
+                  </div>
+                  <ul className="space-y-1 text-slate-605 list-disc list-inside">
+                    <li><strong className="text-slate-800 font-extrabold">No Real Charge</strong>: Checkout runs in secure test mode — no real charges occur.</li>
+                    <li><strong className="text-slate-800 font-extrabold">Validation Experience</strong>: Active pre-launch phase to determine supplier capacity & demand.</li>
+                    <li><strong className="text-slate-800 font-extrabold">Reservation Registered</strong>: Your interest is secured and certified under priority priority lanes.</li>
+                    <li><strong className="text-slate-800 font-extrabold">Secure & Encrypted</strong>: Personal identifiers remain strictly protected under PIPEDA guidelines.</li>
+                  </ul>
+                </div>
 
                 <div className="text-center text-[10px] text-slate-400 font-bold flex items-center justify-center gap-1.5 mt-2">
                   <span>🔒 SSL Encrypted • Passive Read Compatibility Guaranteed</span>

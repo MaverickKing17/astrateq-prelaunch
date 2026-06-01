@@ -12,44 +12,44 @@ export default function FaqAccordion() {
 
   const faqs: FAQ[] = [
     {
-      category: 'Compatibility',
-      q: 'Will Astrateq Gadgets fit into my older vehicle model?',
-      a: 'Astrateq Gadgets works seamlessly with nearly all 2010 or newer vehicles driven in Canada, using standard OBD-II terminal ports. If your car is petrol, hybrid, or pure EV, the diagnostic connector establishes full connection in under 30 seconds.'
+      category: 'Pre-Launch',
+      q: 'What does pre-launch validation mean?',
+      a: 'Astrateq is currently conducting a pre-launch validation and demand feasibility study. This phase enables us to gauge Canadian market interest, compile vehicle configuration portfolios, and lock manufacturing queues prior to final hardware roll-out.'
     },
     {
-      category: 'Installation',
-      q: 'Do I need any specialized tools or mechanic support to set it up?',
-      a: 'Absolutely not. Installation is completely plug-and-play. You simply find your OBD-II port (typically located right beneath the steering wheel dashboard), plug the Astrateq Gadgets unit in, and follow the simple on-screen guidance on your mobile app.'
+      category: 'Shipping',
+      q: 'Is Astrateq Gadgets currently shipping?',
+      a: 'No. We are not shipping hardware immediately. All registrations represent a priority reservation queue position for our upcoming initial production run, securing your priority spot once global assemblies are dispatched.'
+    },
+    {
+      category: 'Billing',
+      q: 'Will my card be charged?',
+      a: 'No. Since we are operating in a validation trial phase, completing a simulation reservation logs your interest in our registry using Stripe’s secure testing parameters. Zero real monetary charges are processed.'
     },
     {
       category: 'Subscriptions',
-      q: 'Is there really no monthly subscription cost planned?',
-      a: 'Yes, that is correct. All core driving safety alerts, device telemetry analysis, offline neural processing, and standard mobile companion updates are included in your one-time physical purchase price. We do not lock core vehicle safety behind paywalls.'
+      q: 'Will there be a monthly subscription?',
+      a: 'No. All core driving safety logic, offline AI diagnostic engines, and companion app dashboards are covered by our permanent ownership model. There are no mandatory monthly subscriptions or paywalled safety alerts.'
     },
     {
-      category: 'Privacy',
-      q: 'Where does my cabin and road visual footage go?',
-      a: 'All processing happens locally on our custom integrated neural edge-computing processor inside the DriveGuard unit. Video streams and cabin snapshots are computed immediately and never uploaded, cached, or distributed to cloud servers. No data leaves your car.'
+      category: 'Data Privacy',
+      q: 'Where is my vehicle data stored?',
+      a: 'All diagnostic signals and visual sensor streams are processed natively on our custom edge AI microprocessor inside the DriveGuard unit. Your tracking logs and clips are stored on the local physical secure-element and are never transmitted to outside cloud servers.'
     },
     {
-      category: 'Updates',
-      q: 'How are the AI neural models updated over time?',
-      a: 'AI model parameters are incrementally refined by our engineering team to better catalog dark snowy lanes, Canadian icy highway patterns, and heavy fog states. These are delivered directly through secure, voluntary firmware syncs inside the companion mobile app.'
+      category: 'Installation',
+      q: 'Can I install the system myself?',
+      a: 'Yes, installation is entirely user-managed and takes under 30 seconds. The hardware transceiver simply plugs directly into the standard OBD-II diagnostic port underneath your steering column, requiring zero tooling or splicing.'
     },
     {
-      category: 'Support',
-      q: 'How do I contact your customer support team?',
-      a: 'Our responsive team operates directly out of Vancouver. You can access chat terminals inside your Astrateq Gadgets companion application, submit questions on our website, or email support@astrateq.com for quick local engineering advice.'
+      category: 'Compatibility',
+      q: 'Which vehicles will be supported?',
+      a: 'Virtually all standard gasoline, diesel, hybrid, and pure electric passenger vehicles manufactured since 2010 are compatible. You can check your specific vehicle shape instantly utilizing our Vehicle Compatibility Preview on this page.'
     },
     {
-      category: 'Mobile Apps',
-      q: 'Does it support multiple family members tracking the same vehicle?',
-      a: 'Yes, the Astrateq Gadgets companion app supports multi-profile setups. You can easily share dashboard metrics, daily safety scores, and diagnostic health logs across your household without extra licensing charges.'
-    },
-    {
-      category: 'Timeline',
-      q: 'When does the Summer 2026 shipping period begin?',
-      a: 'Production validation runs are currently on schedule. First batch shipping for founding members starts inside the third quarter of 2026. Spot allocation is strictly prioritized based on order deposit queues.'
+      category: 'Next Steps',
+      q: 'What happens after I join Early Access?',
+      a: 'After registering your secure simulated reservation, your placement is locked and a priority technical configuration digest is immediately compiled. We will keep you updated via transparent email logs on engineering milestones, production status, and launch timelines.'
     }
   ];
 

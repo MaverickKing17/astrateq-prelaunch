@@ -16,6 +16,7 @@ import Footer from './components/Footer';
 import ExitIntentModal from './components/ExitIntentModal';
 import DigitalOBDScanner from './components/DigitalOBDScanner';
 import ArchitectureInfographic from './components/ArchitectureInfographic';
+import ValidationTransparency from './components/ValidationTransparency';
 import { ShieldAlert, CheckCircle, Gift, ArrowUp } from 'lucide-react';
 
 export default function App() {
@@ -122,6 +123,9 @@ export default function App() {
 
           {/* 4. Trust Signals Bar */}
           <TrustBar />
+
+          {/* 4.5 Pre-launch Validation Transparency */}
+          <ValidationTransparency />
 
           {/* 5. How It Works Section */}
           <HowItWorks />

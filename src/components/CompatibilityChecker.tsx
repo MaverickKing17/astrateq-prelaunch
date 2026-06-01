@@ -163,12 +163,12 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
             Trans-Canada Highway Certified
           </div>
           
-          <h2 className="font-display font-black text-4xl sm:text-5.5xl text-slate-900 tracking-tight mb-4">
-            See if Astrateq Gadgets Works with Your Vehicle
+          <h2 className="font-display font-black text-4xl sm:text-5.5xl text-slate-900 tracking-tight mb-4 animate-fade-in-up">
+            Vehicle Compatibility Preview
           </h2>
           
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-medium">
-            Over <span className="text-rose-600 font-extrabold">98.4% of vehicles</span> driven in Canada (2010 onwards) are fully supported. Find your model configuration in real-time below.
+          <p className="text-slate-605 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-medium">
+            Compatibility results are preliminary during pre-launch and will be verified before production. Over <span className="text-rose-600 font-extrabold">98.4% of vehicles</span> driven in Canada (2010 onwards) are fully supported.
           </p>
         </div>
 
@@ -357,32 +357,32 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                   
                   {/* Results Header block */}
                   {result === 'ev' && (
-                    <div className="bg-emerald-500/10 border-b border-emerald-100/50 px-6 py-5 flex items-center gap-3.5">
-                      <div className="w-11 h-11 bg-emerald-100/80 rounded-full flex items-center justify-center border border-emerald-200 shrink-0 shadow-sm">
+                    <div className="bg-emerald-500/10 border-b border-emerald-100/50 px-6 py-5 flex items-center gap-3.5 text-left">
+                      <div className="w-11 h-11 bg-emerald-100/80 rounded-full flex items-center justify-center border border-emerald-200 shrink-0 shadow-sm animate-pulse">
                         <Check className="w-5.5 h-5.5 text-emerald-600" style={{ strokeWidth: 3 }} />
                       </div>
                       <div className="flex flex-col">
                         <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-emerald-800 bg-emerald-200/50 px-2 py-0.5 rounded-md w-fit">
                           AUDIT SUCCESSFUL • 100% COMPATIBLE
                         </span>
-                        <span className="font-sans font-black text-slate-800 text-sm mt-0.5">
-                          Tesla / EV Power Guard Protection Protocol Active
+                        <span className="font-sans font-bold text-slate-800 text-xs sm:text-sm mt-1 leading-normal max-w-xl">
+                          Good news. Your vehicle appears compatible with the Astrateq platform based on currently available information.
                         </span>
                       </div>
                     </div>
                   )}
 
                   {result === 'standard' && (
-                    <div className="bg-emerald-500/10 border-b border-emerald-100/50 px-6 py-5 flex items-center gap-3.5">
-                      <div className="w-11 h-11 bg-emerald-100/80 rounded-full flex items-center justify-center border border-emerald-200 shrink-0 shadow-sm">
+                    <div className="bg-emerald-500/10 border-b border-emerald-100/50 px-6 py-5 flex items-center gap-3.5 text-left">
+                      <div className="w-11 h-11 bg-emerald-100/80 rounded-full flex items-center justify-center border border-emerald-200 shrink-0 shadow-sm animate-pulse">
                         <Check className="w-5.5 h-5.5 text-emerald-600" style={{ strokeWidth: 3 }} />
                       </div>
                       <div className="flex flex-col">
                         <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-emerald-800 bg-emerald-200/50 px-2 py-0.5 rounded-md w-fit">
                           AUDIT SUCCESSFUL • 100% COMPATIBLE
                         </span>
-                        <span className="font-sans font-black text-slate-800 text-sm mt-0.5">
-                          Standard Passenger Vehicle Direct OBD Sync Certified
+                        <span className="font-sans font-bold text-slate-800 text-xs sm:text-sm mt-1 leading-normal max-w-xl">
+                          Good news. Your vehicle appears compatible with the Astrateq platform based on currently available information.
                         </span>
                       </div>
                     </div>
@@ -479,7 +479,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                       onClick={() => onScrollToSection('pricing')}
                       className="w-full text-center py-4 bg-indigo-600 hover:bg-slate-900 hover:shadow-lg hover:shadow-indigo-500/10 text-white font-black transition-all duration-300 rounded-xl text-xs uppercase tracking-widest cursor-pointer shadow-md hover:scale-[1.01] active:scale-[0.99]"
                     >
-                      Secure Prelaunch Founding Price →
+                      Join Early Access
                     </button>
 
                   </div>

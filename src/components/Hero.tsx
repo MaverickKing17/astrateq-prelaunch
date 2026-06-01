@@ -119,15 +119,15 @@ export default function Hero({ onScrollToSection }: HeroProps) {
 
             {/* Headline */}
             <h1 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-[1.15] mb-6">
-              Smart OBD vehicle defense,{' '}
+              Privacy-First Vehicle Intelligence{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-500 to-rose-600">
-                built for Canada.
+                Built for Family-Focused Safety.
               </span>
             </h1>
 
             {/* Supporting Copy */}
             <p className="text-slate-605 font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
-              Sovereign edge intelligence. Zero cloud tracking. An unbreachable safety shield engineered to process vehicle diagnostics locally in sub-12ms—keeping your family secure and your personal drive strictly private.
+              Equip your drive with premium front + rear visual awareness and real-time vehicle diagnostics. Engineered with secure local processing for absolute driver privacy, with zero cloud dependency and no subscription required.
             </p>
 
             {/* Conversational CTAs */}
