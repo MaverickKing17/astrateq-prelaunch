@@ -15,12 +15,22 @@ import FinalCta from './components/FinalCta';
 import Footer from './components/Footer';
 import ExitIntentModal from './components/ExitIntentModal';
 import DigitalOBDScanner from './components/DigitalOBDScanner';
+import ArchitectureInfographic from './components/ArchitectureInfographic';
 import { ShieldAlert, CheckCircle, Gift, ArrowUp } from 'lucide-react';
 
 export default function App() {
+  const [currentView, setCurrentView] = useState<'landing' | 'infographic'>('landing');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<'info' | 'success' | 'gift'>('info');
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Sync URL view parameter with component state
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('view') === 'infographic') {
+      setCurrentView('infographic');
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,64 +101,74 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-sans relative select-none">
+    <div className={`min-h-screen flex flex-col font-sans relative select-none ${currentView === 'infographic' ? 'bg-[#030303] text-stone-200' : 'bg-[#F8FAFC] text-slate-900'}`}>
       
       {/* 1. Announcement Bar */}
-      <AnnouncementBar />
+      {currentView === 'landing' && <AnnouncementBar />}
 
       {/* 2. Sticky Navigation Bar */}
-      <Navbar onScrollToSection={handleScrollToSection} />
-
-      {/* 3. Hero Section (Full Viewport) */}
-      <Hero onScrollToSection={handleScrollToSection} />
-
-      {/* 4. Trust Signals Bar */}
-      <TrustBar />
-
-      {/* 5. How It Works Section */}
-      <HowItWorks />
-
-      {/* 6. Local Intelligence Technical Deep-Dive */}
-      <LocalIntelligence />
-
-      {/* 7. Interactive Compatibility Checker */}
-      <CompatibilityChecker 
-        onCheckSuccess={handleCompatibilitySuccess} 
+      <Navbar 
         onScrollToSection={handleScrollToSection} 
+        currentView={currentView}
+        onViewChange={setCurrentView}
       />
 
-      {/* 7.5 Interactive Digital OBD-II Diagnostic Scanner */}
-      <DigitalOBDScanner />
+      {currentView === 'infographic' ? (
+        <ArchitectureInfographic onBack={() => { setCurrentView('landing'); }} />
+      ) : (
+        <>
+          {/* 3. Hero Section (Full Viewport) */}
+          <Hero onScrollToSection={handleScrollToSection} />
 
-      {/* 8. Bundles & Pricing Section */}
-      <Pricing onReserveSuccess={handleReserveSuccess} />
+          {/* 4. Trust Signals Bar */}
+          <TrustBar />
 
-      {/* 9. What’s Included Detailed Breakdown */}
-      <WhatIsIncluded />
+          {/* 5. How It Works Section */}
+          <HowItWorks />
 
-      {/* 10. Email Waitlist Capture Section */}
-      <WaitlistSection onSuccess={handleWaitlistSuccess} />
+          {/* 6. Local Intelligence Technical Deep-Dive */}
+          <LocalIntelligence />
 
-      {/* 11. Risk Reversal & Trust Commitments Section */}
-      <RiskReversal />
+          {/* 7. Interactive Compatibility Checker */}
+          <CompatibilityChecker 
+            onCheckSuccess={handleCompatibilitySuccess} 
+            onScrollToSection={handleScrollToSection} 
+          />
 
-      {/* 12. FAQ Accordion Section */}
-      <FaqAccordion />
+          {/* 7.5 Interactive Digital OBD-II Diagnostic Scanner */}
+          <DigitalOBDScanner />
 
-      {/* 13. Final CTA Action block */}
-      <FinalCta onScrollToSection={handleScrollToSection} />
+          {/* 8. Bundles & Pricing Section */}
+          <Pricing onReserveSuccess={handleReserveSuccess} />
 
-      {/* 14. Detailed Premium Footer */}
-      <Footer onScrollToSection={handleScrollToSection} />
+          {/* 9. What’s Included Detailed Breakdown */}
+          <WhatIsIncluded />
 
-      {/* 15. Premium Exit-Intent Coupon Modal */}
-      <ExitIntentModal 
-        onScrollToSection={handleScrollToSection} 
-        onLockDiscount={handleLockDiscount} 
-      />
+          {/* 10. Email Waitlist Capture Section */}
+          <WaitlistSection onSuccess={handleWaitlistSuccess} />
+
+          {/* 11. Risk Reversal & Trust Commitments Section */}
+          <RiskReversal />
+
+          {/* 12. FAQ Accordion Section */}
+          <FaqAccordion />
+
+          {/* 13. Final CTA Action block */}
+          <FinalCta onScrollToSection={handleScrollToSection} />
+
+          {/* 14. Detailed Premium Footer */}
+          <Footer onScrollToSection={handleScrollToSection} />
+
+          {/* 15. Premium Exit-Intent Coupon Modal */}
+          <ExitIntentModal 
+            onScrollToSection={handleScrollToSection} 
+            onLockDiscount={handleLockDiscount} 
+          />
+        </>
+      )}
 
       {/* Colorful Floating Back-to-Top Button */}
-      {showScrollTop && (
+      {showScrollTop && currentView === 'landing' && (
         <button
           onClick={scrollToTop}
           className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 bg-gradient-to-tr from-rose-500 via-indigo-600 to-violet-500 hover:from-rose-600 hover:to-violet-600 text-white p-3.5 rounded-full shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-110 active:scale-95 border border-white/25 transition-all duration-300 animate-scale-up group cursor-pointer"

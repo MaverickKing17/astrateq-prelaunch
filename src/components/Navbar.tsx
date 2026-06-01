@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles, LayoutGrid } from 'lucide-react';
 
 interface NavbarProps {
   onScrollToSection: (sectionId: string) => void;
+  currentView: 'landing' | 'infographic';
+  onViewChange: (view: 'landing' | 'infographic') => void;
 }
 
-export default function Navbar({ onScrollToSection }: NavbarProps) {
+export default function Navbar({ onScrollToSection, currentView, onViewChange }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -41,7 +43,13 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
           {/* Left: Brand Logo & Wordmark */}
           <div 
             className="flex items-center gap-3 cursor-pointer group"
-            onClick={() => handleLinkClick('hero')}
+            onClick={() => {
+              if (currentView === 'infographic') {
+                onViewChange('landing');
+              } else {
+                handleLinkClick('hero');
+              }
+            }}
           >
             <div className="relative flex-shrink-0">
               <img 
@@ -102,6 +110,13 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
               className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               Support
+            </button>
+            <button
+              onClick={() => onViewChange(currentView === 'landing' ? 'infographic' : 'landing')}
+              className="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 hover:text-indigo-800 rounded-xl text-[11px] font-black tracking-wider uppercase transition-colors flex items-center gap-1.5 border border-indigo-150 cursor-pointer shadow-sm ml-2"
+            >
+              <Sparkles className="w-3.5 h-3.5 animate-pulse text-indigo-600" />
+              <span>{currentView === 'infographic' ? 'Home' : 'Architecture'}</span>
             </button>
           </nav>
 
@@ -173,6 +188,16 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
               className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
             >
               Support FAQs
+            </button>
+            <button
+              onClick={() => {
+                onViewChange(currentView === 'landing' ? 'infographic' : 'landing');
+                setMobileMenuOpen(false);
+              }}
+              className="block w-full text-left py-3.5 px-3 rounded-xl text-indigo-750 hover:bg-indigo-50 font-black text-sm flex items-center gap-2 border border-indigo-100 bg-indigo-50/50"
+            >
+              <Sparkles className="w-4 h-4 text-indigo-600 animate-pulse" />
+              <span>{currentView === 'infographic' ? 'Back to Landing' : 'Interactive Infographic'}</span>
             </button>
             <div className="pt-4 border-t border-slate-100 flex flex-col gap-2">
               <button
