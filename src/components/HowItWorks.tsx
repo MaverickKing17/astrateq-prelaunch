@@ -44,7 +44,7 @@ export default function HowItWorks() {
           </div>
           
           <h2 className="font-display font-black text-3.5xl sm:text-5xl text-slate-900 tracking-tight mb-4 leading-tight">
-            How Astrateq Gadgets Protects You in 4 Steps
+            Uncompromising Vehicle Intelligence & Security, Activated in 4 Simple Steps
           </h2>
           
           <p className="text-slate-600 text-xs sm:text-base leading-relaxed max-w-xl mx-auto font-medium">
