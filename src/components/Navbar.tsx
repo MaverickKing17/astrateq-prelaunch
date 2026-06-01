@@ -42,7 +42,7 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
           
           {/* Left: Brand Logo & Wordmark */}
           <div 
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group flex-shrink-0"
             onClick={() => {
               if (currentView === 'infographic') {
                 onViewChange('landing');
@@ -74,7 +74,7 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
           </div>
 
           {/* Center: Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-4 lg:gap-8 xl:gap-10">
+          <nav className="hidden lg:flex items-center gap-4 lg:gap-8 xl:gap-10">
             <button
               onClick={() => handleLinkClick('pricing')}
               className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
@@ -122,7 +122,7 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
 
           {/* Right: Premium CTA */}
           <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
-            <div className="hidden md:flex flex-col items-center justify-center">
+            <div className="hidden lg:flex flex-col items-center justify-center">
               <button
                 onClick={() => handleLinkClick('pricing')}
                 className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 hover:shadow-indigo-600/25 active:scale-95 rounded-xl text-xs lg:text-sm font-extrabold text-white shadow-lg shadow-indigo-600/15 transition-all duration-300 cursor-pointer text-center tracking-wide whitespace-nowrap"
@@ -135,7 +135,7 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
             </div>
 
             {/* Hamburger button for mobile */}
-            <div className="flex md:hidden">
+            <div className="flex lg:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="text-slate-900 hover:text-indigo-600 p-2 focus:outline-none transition-colors border border-slate-200 rounded-lg bg-slate-50 hover:bg-white"
@@ -151,7 +151,7 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-slate-200 animate-fade-in text-slate-800 shadow-xl relative z-50">
+        <div className="lg:hidden bg-white border-b border-slate-200 animate-fade-in text-slate-800 shadow-xl relative z-50">
           <div className="px-4 pt-4 pb-8 space-y-4">
             <button
               onClick={() => handleLinkClick('pricing')}
