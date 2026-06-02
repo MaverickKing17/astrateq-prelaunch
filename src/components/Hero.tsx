@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, ShieldCheck, Database, Award, WifiOff, Zap, Bluetooth, Activity, RefreshCw, CheckCircle2, Cpu } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Database, Award, WifiOff, Zap, Bluetooth, Activity, RefreshCw, CheckCircle2, Cpu, Car } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
 import activeScanningImg from '../assets/images/active_scanning_1779906877154.png';
@@ -131,44 +131,47 @@ export default function Hero({ onScrollToSection }: HeroProps) {
             </p>
 
             {/* Conversational CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto">
               <button
                 onClick={() => onScrollToSection('pricing')}
-                className="px-8 py-4 bg-indigo-600 text-white hover:bg-indigo-700 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2 cursor-pointer"
+                className="px-8 py-4 bg-indigo-600 text-white hover:bg-indigo-700 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2 cursor-pointer border border-indigo-500/30"
               >
                 Reserve Your Spot
                 <ArrowRight size={16} />
               </button>
               <button
                 onClick={() => onScrollToSection('compatibility')}
-                className="px-8 py-4 bg-white hover:bg-slate-50 text-slate-800 rounded-xl font-semibold text-sm tracking-wide border border-slate-200 shadow-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                className="px-8 py-4 bg-white hover:bg-slate-50/80 text-slate-900 rounded-xl font-bold text-sm tracking-wide border border-slate-200/80 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.06),0_10px_20px_-8px_rgba(0,0,0,0.04)] hover:border-slate-350 hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer group"
               >
-                Check Vehicle Compatibility
+                <Car size={16} className="text-slate-500 group-hover:text-indigo-600 transition-colors" />
+                <span>Check Vehicle Compatibility</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
               </button>
             </div>
 
-            {/* Live Synchronized Countdown Block */}
-            <div className="relative border border-indigo-100 bg-gradient-to-br from-indigo-50/40 via-white to-white rounded-2xl p-6 max-w-md shadow-md shadow-indigo-100/10 self-start w-full overflow-hidden transition-all duration-300 hover:shadow-lg">
-              {/* Corner badge ribbon */}
-              <div className="absolute top-0 right-0 bg-red-600 text-white text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-bl-lg shadow-sm font-mono animate-pulse">
+            {/* Live Synchronized Countdown Block (Tesla/Rivian Matte-Obsidian Style) */}
+            <div className="relative bg-gradient-to-b from-[#0B0F19] via-[#080B13] to-[#04060A] border border-slate-800 rounded-2xl p-6 max-w-md shadow-[0_20px_40px_rgba(0,0,0,0.35)] self-start w-full overflow-hidden transition-all duration-300 hover:shadow-[0_25px_50px_rgba(0,0,0,0.45)] hover:border-slate-750 group">
+              {/* Corner status light/badge */}
+              <div className="absolute top-4 right-4 bg-rose-500/10 text-rose-400 border border-rose-500/25 text-[9px] font-bold uppercase tracking-[0.1em] px-2.5 py-0.5 rounded-full shadow-inner animate-pulse">
                 Rate Locked
               </div>
 
-              <div className="flex items-center gap-2 mb-2.5">
+              <div className="flex items-center gap-2.5 mb-3">
                 <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span className="text-xs uppercase tracking-wider text-indigo-950 font-black flex items-center gap-1.5 font-display">
-                  Special Founding Allocation
+                <span className="text-xs uppercase tracking-[0.15em] text-slate-200 font-extrabold flex items-center gap-1.5 font-sans">
+                  SPECIAL FOUNDING ALLOCATION
                 </span>
               </div>
               
-              <p className="text-xs text-slate-600 mb-4 font-medium leading-relaxed max-w-[90%]">
-                Secure your dual-lens hardware at <span className="text-indigo-600 font-extrabold font-sans">Early-Bird Pricing ($49 fully refundable deposit)</span>. Standard MSRP rates apply after launch.
+              <p className="text-xs text-slate-300 mb-5 leading-relaxed font-semibold max-w-[95%]">
+                Secure your dual-lens hardware at <span className="text-indigo-400 font-extrabold">Early-Bird Pricing ($49 fully refundable deposit)</span>. Standard MSRP rates apply after launch.
               </p>
               
-              <div className="bg-slate-50 border border-slate-100/80 rounded-xl p-4 flex justify-center">
+              <div className="bg-[#030508]/90 border border-slate-850/80 rounded-xl p-4 flex justify-center shadow-inner relative">
+                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.012] to-transparent rounded-xl pointer-events-none" />
                 <CountdownTimer />
               </div>
             </div>

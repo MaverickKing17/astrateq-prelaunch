@@ -75,43 +75,48 @@ export default function CountdownTimer({ className = '', size = 'md' }: Countdow
   }
 
   return (
-    <div className={`flex items-center gap-2 sm:gap-2.5 ${className}`}>
+    <div className={`flex items-center gap-1.5 sm:gap-2 ${className}`}>
       {/* Days */}
       <div className="flex flex-col items-center">
-        <div className="bg-slate-950 border-2 border-slate-800 rounded-xl px-2.5 py-1.5 text-center min-w-[54px] sm:min-w-[62px] shadow-lg shadow-indigo-950/15">
-          <span className="font-mono font-black text-lg sm:text-2xl text-white tracking-tight">{formatNum(timeLeft.days)}</span>
+        <div className="bg-[#0B0F19] border border-slate-800/70 rounded-xl px-3 py-2 text-center min-w-[54px] sm:min-w-[64px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_12px_rgba(0,0,0,0.3)] relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
+          <span className="font-mono font-bold text-xl sm:text-2xl text-slate-50 tracking-tight relative z-10">{formatNum(timeLeft.days)}</span>
         </div>
-        <span className="text-[9px] uppercase tracking-widest text-slate-500 font-extrabold mt-1.5">Days</span>
+        <span className="text-[8px] uppercase tracking-[0.15em] text-slate-400 font-bold mt-1.5">DAYS</span>
       </div>
 
-      <span className="font-display font-black text-slate-800 text-lg sm:text-xl pb-5">:</span>
+      <span className="font-mono font-bold text-slate-500 text-lg sm:text-xl pb-4 animate-pulse shrink-0">:</span>
 
       {/* Hours */}
       <div className="flex flex-col items-center">
-        <div className="bg-slate-950 border-2 border-slate-800 rounded-xl px-2.5 py-1.5 text-center min-w-[54px] sm:min-w-[62px] shadow-lg shadow-indigo-950/15">
-          <span className="font-mono font-black text-lg sm:text-2xl text-white tracking-tight">{formatNum(timeLeft.hours)}</span>
+        <div className="bg-[#0B0F19] border border-slate-800/70 rounded-xl px-3 py-2 text-center min-w-[54px] sm:min-w-[64px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_12px_rgba(0,0,0,0.3)] relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
+          <span className="font-mono font-bold text-xl sm:text-2xl text-slate-50 tracking-tight">{formatNum(timeLeft.hours)}</span>
         </div>
-        <span className="text-[9px] uppercase tracking-widest text-slate-500 font-extrabold mt-1.5">Hrs</span>
+        <span className="text-[8px] uppercase tracking-[0.15em] text-slate-400 font-bold mt-1.5">HOURS</span>
       </div>
 
-      <span className="font-display font-black text-slate-800 text-lg sm:text-xl pb-5">:</span>
+      <span className="font-mono font-bold text-slate-500 text-lg sm:text-xl pb-4 animate-pulse shrink-0">:</span>
 
       {/* Minutes */}
       <div className="flex flex-col items-center">
-        <div className="bg-slate-950 border-2 border-slate-800 rounded-xl px-2.5 py-1.5 text-center min-w-[54px] sm:min-w-[62px] shadow-lg shadow-indigo-950/15">
-          <span className="font-mono font-black text-lg sm:text-2xl text-white tracking-tight">{formatNum(timeLeft.minutes)}</span>
+        <div className="bg-[#0B0F19] border border-slate-800/70 rounded-xl px-3 py-2 text-center min-w-[54px] sm:min-w-[64px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_12px_rgba(0,0,0,0.3)] relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
+          <span className="font-mono font-bold text-xl sm:text-2xl text-slate-50 tracking-tight">{formatNum(timeLeft.minutes)}</span>
         </div>
-        <span className="text-[9px] uppercase tracking-widest text-slate-500 font-extrabold mt-1.5">Min</span>
+        <span className="text-[8px] uppercase tracking-[0.15em] text-slate-400 font-bold mt-1.5">MINS</span>
       </div>
 
-      <span className="font-display font-black text-slate-800 text-lg sm:text-xl pb-5">:</span>
+      <span className="font-mono font-bold text-slate-500 text-lg sm:text-xl pb-4 animate-pulse shrink-0">:</span>
 
       {/* Seconds */}
       <div className="flex flex-col items-center">
-        <div className="bg-slate-950 border-2 border-slate-800/80 rounded-xl px-2.5 py-1.5 text-center min-w-[54px] sm:min-w-[62px] shadow-lg shadow-indigo-950/15 border-indigo-500/40">
-          <span className="font-mono font-black text-lg sm:text-2xl text-cyan-400 tracking-tight animate-pulse">{formatNum(timeLeft.seconds)}</span>
+        <div className="bg-[#0B0F19] border border-indigo-500/20 rounded-xl px-3 py-2 text-center min-w-[54px] sm:min-w-[64px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_12px_rgba(0,0,0,0.3)] relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/[0.04] to-transparent pointer-events-none" />
+          <span className="font-mono font-bold text-xl sm:text-2xl text-indigo-400 tracking-tight relative z-10">{formatNum(timeLeft.seconds)}</span>
+          <div className="absolute bottom-0 inset-x-0 h-[1.5px] bg-indigo-500/30 blur-[0.5px]" />
         </div>
-        <span className="text-[9px] uppercase tracking-widest text-cyan-400 font-extrabold mt-1.5">Sec</span>
+        <span className="text-[8px] uppercase tracking-[0.15em] text-indigo-400 font-bold mt-1.5">SECS</span>
       </div>
     </div>
   );
