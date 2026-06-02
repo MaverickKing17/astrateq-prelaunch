@@ -558,16 +558,25 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
           </div>
 
           {/* Right Column: Premium Canadian Support Simulator Column */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-slate-50 via-white to-slate-50 border border-slate-200 rounded-3xl p-6 flex flex-col justify-between shadow-2xl shadow-slate-200/40 relative overflow-hidden">
+          <div className="lg:col-span-5 relative group/support flex flex-col animate-fade-in-up">
             
-            {/* Top design light strip */}
-            <div className="absolute top-0 inset-x-0 h-1 bg-indigo-600" />
+            {/* Soft dark backlight ambient aura */}
+            <div className="absolute -inset-3.5 rounded-[2.4rem] bg-slate-950/15 blur-3xl opacity-55 group-hover/support:opacity-85 transition-all duration-700 pointer-events-none" />
+
+            {/* Glowing High-Contrast Outer Frame in Deep Slate-Indigo (The Dark Glow Border) */}
+            <div className="absolute -inset-[3px] rounded-[2.15rem] bg-gradient-to-b from-slate-950 via-[#1e293b] to-slate-950 opacity-90 group-hover/support:opacity-100 transition-opacity duration-300 pointer-events-none shadow-[0_15px_45px_rgba(11,15,25,0.4),0_0_30px_rgba(15,23,42,0.22)]" />
+
+            {/* Inner Content Card Container */}
+            <div className="relative bg-gradient-to-br from-white via-slate-50/90 to-white border border-slate-900 rounded-[2rem] p-6 flex-1 flex flex-col justify-between overflow-hidden shadow-sm">
             
-            {/* Corner Leaf badge with clean styling */}
-            <div className="absolute top-4 right-4 bg-rose-50 border border-rose-100/80 text-rose-700 font-mono text-[9px] font-black px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
-              <span>🇨🇦</span>
-              ON/BC Agents
-            </div>
+              {/* Top design light strip */}
+              <div className="absolute top-0 inset-x-0 h-1 bg-indigo-600" />
+              
+              {/* Corner Leaf badge with clean styling */}
+              <div className="absolute top-4 right-4 bg-rose-50 border border-rose-100/80 text-rose-700 font-mono text-[9px] font-black px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
+                <span>🇨🇦</span>
+                ON/BC Agents
+              </div>
 
             <div className="space-y-5">
               <div className="flex items-center gap-3 pb-3.5 border-b border-slate-100">
@@ -672,7 +681,9 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
               Over 45,000 kilometres of cold weather road-testing across Canada.
             </div>
 
-          </div>
+          </div> {/* Closing Inner Content Card Container */}
+
+        </div> {/* Closing lg:col-span-5 wrapper */}
 
         </div>
 

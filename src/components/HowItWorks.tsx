@@ -313,52 +313,74 @@ export default function HowItWorks() {
         </div>
 
         {/* Dynamic Trust-Affirming Pre-Order Decision Assist Banner */}
-        <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl border border-slate-800">
+        <div className="max-w-5xl mx-auto bg-gradient-to-b from-[#0A0E1A] via-[#070912] to-[#030408] rounded-[2rem] p-8 sm:p-10 relative overflow-hidden shadow-[0_30px_80px_-15px_rgba(11,15,25,0.65),0_0_40px_rgba(99,102,241,0.15)] border border-indigo-500/20 hover:border-indigo-500/35 transition-all duration-500 group">
           
-          {/* Subtle design overlays */}
-          <div className="absolute inset-0 bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:24px_24px] opacity-10" />
-          <div className="absolute -right-32 -bottom-32 w-80 h-80 bg-rose-600/10 rounded-full blur-3xl" />
-          <div className="absolute -left-32 -top-32 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl" />
+          {/* Subtle design grid and backlight overlays */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.008)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.008)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-40" />
+          <div className="absolute -right-32 -bottom-32 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute -left-32 -top-32 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent" />
 
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Social Proof Scarcity Ticker is a massive converter */}
+          <div className="mb-8 pb-6 border-b border-slate-800/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <p className="text-[10px] sm:text-xs text-slate-300 font-mono font-bold uppercase tracking-wider">
+                🍁 Active Reservations Secured in Canada: <span className="text-emerald-400 font-black">14,842 Units</span>
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-[10px] font-mono text-indigo-300 font-black uppercase tracking-wider bg-indigo-950/50 border border-indigo-900/40 px-2.5 py-1 rounded">
+                POOL PHASE 1 • 92% RESERVED
+              </span>
+              <span className="text-[10px] font-mono text-rose-300 font-black uppercase tracking-wider bg-rose-950/50 border border-rose-900/40 px-2.5 py-1 rounded animate-pulse">
+                ONLY 158 SPOTS LEFT
+              </span>
+            </div>
+          </div>
+
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             
             {/* Visual reassurance side */}
-            <div className="text-left space-y-2.5 max-w-xl">
-              <div className="inline-flex items-center gap-1.5 bg-indigo-500/10 border border-indigo-400/20 text-indigo-300 font-mono text-[9px] font-black uppercase px-2 py-1 rounded">
+            <div className="text-left space-y-3.5 max-w-xl">
+              <div className="inline-flex items-center gap-1.5 bg-indigo-500/15 border border-indigo-400/25 text-indigo-300 font-mono text-[9px] font-black uppercase px-2.5 py-1 rounded-full shadow-sm tracking-wider">
                 <Sparkles className="w-3 h-3 text-indigo-400 animate-pulse" />
-                FOUNDING CANADIAN MEMBER OFFER
+                LIMITED FOUNDING MEMBER PRE-ORDER ADVANTAGE
               </div>
               
-              <h3 className="font-display font-black text-white text-xl sm:text-2xl leading-tight">
+              <h3 className="font-sans font-black text-white text-xl sm:text-3xl tracking-tight leading-none">
                 Installs in Under 30 Seconds. Winter-Hardened.
               </h3>
               
-              <p className="text-slate-300 text-xs sm:text-xs leading-relaxed font-semibold">
-                Lock in early-bird savings today with your fully-refundable <span className="text-rose-400 font-black">$49 CAD deposit</span>. Enjoy complete 3-year local warranty and priority express shipment.
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-semibold">
+                Secure your Early-Bird priority shipping queue position with a fully-refundable <span className="text-rose-400 font-extrabold border-b border-rose-400/30">$49 deposit</span>. Enjoy our 3-year Canadian hardware protection plan, zero subscription overhead commitments, and express priority integration diagnostics.
               </p>
               
               {/* Check highlights */}
-              <div className="flex flex-wrap gap-x-4 gap-y-1.5 pt-1.5 text-[10px] uppercase font-mono font-bold text-slate-400 tracking-wider">
-                <span className="flex items-center gap-1 text-emerald-400">
-                  ✓ NO MONTHLY FEE EVER
+              <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2 text-[10px] font-mono font-black text-slate-400 tracking-wider">
+                <span className="flex items-center gap-1.5 text-emerald-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  NO MONTHLY CONTRACT OVERHEADS EVER
                 </span>
-                <span className="flex items-center gap-1 text-indigo-300">
-                  🍁 SHIPPED FREE FROM BC
+                <span className="flex items-center gap-1.5 text-indigo-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                  SHIPPED FREE ACROSS CANADA FROM BC
                 </span>
-                <span className="flex items-center gap-1 text-rose-400">
-                  ⚡ 100% REFUNDABLE DEPOSIT
+                <span className="flex items-center gap-1.5 text-rose-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-400 font-mono" />
+                  100% SECURE FULLY-REFUNDABLE OPT-OUT
                 </span>
               </div>
             </div>
 
             {/* Quick Action Decision CTAs Column */}
-            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0 self-center">
+            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3 w-full md:w-auto shrink-0 self-center">
               
               {/* Form Scan scroll button */}
               <button
                 type="button"
                 onClick={() => handleScroll('compatibility')}
-                className="w-full sm:w-auto px-5 py-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2 text-center"
+                className="w-full sm:w-auto px-6 py-3.5 bg-[#0F172A] hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700 text-slate-300 rounded-xl font-black text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2 text-center"
               >
                 Test Your Vehicle Fit
               </button>
@@ -367,7 +389,7 @@ export default function HowItWorks() {
               <button
                 type="button"
                 onClick={() => handleScroll('pricing')}
-                className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-red-650 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 text-center shadow-lg shadow-rose-950/20 active:scale-95"
+                className="w-full sm:w-auto px-7 py-4 bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-650 hover:to-rose-650 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 text-center shadow-[0_15px_30px_rgba(225,29,72,0.25)] hover:shadow-[0_20px_40px_rgba(225,29,72,0.4)] hover:scale-[1.03] active:scale-[0.97]"
               >
                 Pre-order Now ($49 Fully Refundable)
                 <ArrowRight className="w-4 h-4 text-rose-200 animate-pulse" />

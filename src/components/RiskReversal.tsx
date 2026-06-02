@@ -5,22 +5,46 @@ export default function RiskReversal() {
     {
       title: '60-Day Risk-Free Trial Guarantee Goal',
       desc: 'Test Astrateq Gadgets inside your vehicle completely risk-free for 60 days once shipped. If you aren’t 100% satisfied with the safety alerts, return for full deposit restitution.',
-      icon: <Award className="w-5 h-5 text-indigo-600" />,
+      icon: <Award className="w-5 h-5 text-indigo-600 group-hover/cred:text-indigo-550 transition-colors duration-300" />,
+      tag: "100% RISK-FREE",
+      tagStyle: "bg-indigo-50/80 text-indigo-700 border-indigo-100/50",
+      iconBg: "bg-indigo-50/50 border-indigo-100/60",
+      accentLine: "bg-indigo-500",
+      glowColor: "rgba(99,102,241,0.06)",
+      borderColor: "group-hover/cred:border-indigo-500/30"
     },
     {
       title: 'Our Privacy-First Architecture Promise',
       desc: 'No personal tracks, logs, video loops, or travel diagnostics are loaded, cached, or transferred online. Your information is locked strictly inside local sandboxes.',
-      icon: <Lock className="w-5 h-5 text-indigo-600" />,
+      icon: <Lock className="w-5 h-5 text-emerald-600 group-hover/cred:text-emerald-550 transition-colors duration-300" />,
+      tag: "SECURE AIRGAP",
+      tagStyle: "bg-emerald-50/80 text-emerald-700 border-emerald-100/50",
+      iconBg: "bg-emerald-50/50 border-emerald-100/60",
+      accentLine: "bg-emerald-500",
+      glowColor: "rgba(16,185,129,0.06)",
+      borderColor: "group-hover/cred:border-emerald-500/30"
     },
     {
       title: 'Local Support Team Commitment',
       desc: 'Enjoy rapid, non-outsourced support from dedicated hardware engineering desks in Canada. We provide responsive troubleshooting directly relative to your specific vehicle model.',
-      icon: <PhoneCall className="w-5 h-5 text-indigo-600" />,
+      icon: <PhoneCall className="w-5 h-5 text-blue-600 group-hover/cred:text-blue-550 transition-colors duration-300" />,
+      tag: "ON-DEMAND CAD",
+      tagStyle: "bg-blue-50/80 text-blue-700 border-blue-100/50",
+      iconBg: "bg-blue-50/50 border-blue-100/60",
+      accentLine: "bg-blue-500",
+      glowColor: "rgba(59,130,246,0.06)",
+      borderColor: "group-hover/cred:border-blue-500/30"
     },
     {
       title: 'Robust 3-Year Warranty Objective',
       desc: 'Built to exceed standard consumer grading. We guarantee high-impact resistance, extreme temperature endurance, and seamless component operation for years.',
-      icon: <Shield className="w-5 h-5 text-indigo-600" />,
+      icon: <Shield className="w-5 h-5 text-rose-600 group-hover/cred:text-rose-550 transition-colors duration-300" />,
+      tag: "WINTER SHIELD",
+      tagStyle: "bg-rose-50/80 text-rose-700 border-rose-100/50",
+      iconBg: "bg-rose-50/50 border-rose-100/60",
+      accentLine: "bg-rose-500",
+      glowColor: "rgba(244,63,94,0.06)",
+      borderColor: "group-hover/cred:border-rose-500/30"
     },
   ];
 
@@ -50,18 +74,31 @@ export default function RiskReversal() {
               {credentials.map((cred, i) => (
                 <div
                   key={i}
-                  className="flex gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-indigo-400 transition-all duration-300 shadow-sm"
+                  className={`group/cred relative flex gap-4 p-5 rounded-2xl bg-gradient-to-b from-white to-slate-50/40 border border-slate-250/70 transition-all duration-500 h-full cursor-default ${cred.borderColor} shadow-[0_12px_35px_-10px_rgba(11,15,25,0.06),0_0_15px_rgba(99,102,241,0.01)] hover:shadow-[0_28px_60px_-12px_rgba(11,15,25,0.14)] hover:-translate-y-1.5`}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0">
-                    {cred.icon}
+                  {/* Subtle left border line with specific color */}
+                  <div className={`absolute top-0 bottom-0 left-0 w-1 ${cred.accentLine} rounded-l-2xl`} />
+
+                  {/* Absolute positioning badge for status certification */}
+                  <div className="absolute top-4 right-4">
+                    <span className={`text-[8px] font-mono font-black px-2 py-0.5 rounded-[4px] border ${cred.tagStyle} tracking-widest`}>
+                      {cred.tag}
+                    </span>
                   </div>
-                  <div>
-                    <h3 className="font-sans font-bold text-xs sm:text-sm text-slate-800 leading-snug">
-                      {cred.title}
-                    </h3>
-                    <p className="text-[11px] sm:text-xs text-slate-500 leading-normal mt-1 font-medium">
-                      {cred.desc}
-                    </p>
+
+                  {/* Card Content Layout */}
+                  <div className="flex gap-4 w-full pt-1">
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-500 group-hover/cred:scale-110 group-hover/cred:rotate-3 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] ${cred.iconBg} border-slate-100`}>
+                      {cred.icon}
+                    </div>
+                    <div className="pr-16 text-left">
+                      <h3 className="font-sans font-black text-xs sm:text-sm text-slate-900 group-hover/cred:text-slate-950 transition-colors duration-300 leading-snug">
+                        {cred.title}
+                      </h3>
+                      <p className="text-[11px] sm:text-xs text-slate-500 leading-relaxed mt-2 font-medium group-hover/cred:text-slate-600 transition-colors duration-300">
+                        {cred.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
