@@ -356,124 +356,134 @@ export default function DigitalOBDScanner() {
 
         {/* Dynamic Inner Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
-          
           {/* Left panel: Config, symptom selector & scanning mechanism */}
-          <div className="lg:col-span-5 bg-white border border-slate-200/80 rounded-[2rem] p-6 sm:p-7 shadow-[0_30px_70px_-15px_rgba(11,15,25,0.15),0_0_35px_rgba(0,0,0,0.02)] hover:shadow-[0_40px_80px_-12px_rgba(11,15,25,0.22),0_0_40px_rgba(99,102,241,0.06)] relative overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-slate-300 hover:scale-[1.01] group/left">
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-red-500 via-indigo-600 to-emerald-500" />
+          <div className="lg:col-span-5 relative group/left flex flex-col animate-fade-in-up">
             
-            <form onSubmit={handleStartScan} className="space-y-5">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <span className="text-xs font-black text-slate-900 uppercase tracking-widest font-mono flex items-center gap-1.5">
-                  <Settings className="w-4.5 h-4.5 text-indigo-600" />
-                  Remote OBD Connector
-                </span>
-                <span className="text-[9px] bg-indigo-50 border border-indigo-100 text-indigo-600 font-bold uppercase py-0.5 px-2 rounded font-mono">
-                  ASTRATEQ Scan Engine
-                </span>
-              </div>
+            {/* Soft dark backlight ambient aura */}
+            <div className="absolute -inset-3.5 rounded-[2.4rem] bg-slate-950/15 blur-3xl opacity-55 group-hover/left:opacity-85 transition-all duration-700 pointer-events-none" />
 
-              {/* Province dropdown */}
-              <div className="space-y-1 text-left">
-                <label className="text-[10px] sm:text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                  Provincial Region (For Nearest Repair Estimates)
-                </label>
-                <select
-                  value={selectedProvince}
-                  onChange={(e) => setSelectedProvince(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-250 hover:border-slate-350 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 font-bold focus:outline-none focus:border-indigo-500 focus:bg-white transition-all shadow-sm cursor-pointer"
-                >
-                  <option value="BC">British Columbia (Vancouver Area)</option>
-                  <option value="ON">Ontario (Greater Toronto Area)</option>
-                  <option value="AB">Alberta (Calgary / Edmonton Area)</option>
-                  <option value="QC">Québec (Région De Montréal)</option>
-                </select>
-              </div>
+            {/* Glowing High-Contrast Outer Frame in Deep Slate-Indigo (The Dark Glow Border) */}
+            <div className="absolute -inset-[3px] rounded-[2.15rem] bg-gradient-to-b from-slate-950 via-[#1e293b] to-slate-950 opacity-90 group-hover/left:opacity-100 transition-opacity duration-300 pointer-events-none shadow-[0_15px_45px_rgba(11,15,25,0.4),0_0_30px_rgba(15,23,42,0.22)]" />
 
-              {/* Symptom selector */}
-              <div className="space-y-1 text-left">
-                <label className="text-[10px] sm:text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                  Select Warning light / Driving Symptom
-                </label>
-                <div className="space-y-2 max-h-[190px] overflow-y-auto pr-1">
-                  {SYMPTOMS.map((item, idx) => (
-                    <button
-                      key={item.code}
-                      type="button"
-                      onClick={() => {
-                        setSelectedSymptomIdx(idx);
-                        if (scanState === 'complete') {
-                          setScanState('idle');
-                        }
-                      }}
-                      className={`w-full text-left p-3.5 rounded-xl border text-xs leading-normal transition-all flex flex-col justify-between ${
-                        selectedSymptomIdx === idx
-                          ? 'bg-slate-900 text-white border-slate-900 shadow-lg'
-                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between gap-1 w-full font-bold">
-                        <span className="truncate">{item.symptom}</span>
-                        <span className={`px-2 py-0.5 rounded text-[8px] tracking-widest font-black uppercase font-mono border ${
+            {/* Inner Content Card Container */}
+            <div className="relative bg-white border border-slate-905 rounded-[2rem] p-6 sm:p-7 flex-1 flex flex-col justify-between overflow-hidden shadow-sm">
+              <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-red-500 via-indigo-600 to-emerald-500" />
+              
+              <form onSubmit={handleStartScan} className="space-y-5">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <span className="text-xs font-black text-slate-900 uppercase tracking-widest font-mono flex items-center gap-1.5">
+                    <Settings className="w-4.5 h-4.5 text-indigo-600" />
+                    Remote OBD Connector
+                  </span>
+                  <span className="text-[9px] bg-indigo-50 border border-indigo-100 text-indigo-600 font-bold uppercase py-0.5 px-2 rounded font-mono">
+                    ASTRATEQ Scan Engine
+                  </span>
+                </div>
+
+                {/* Province dropdown */}
+                <div className="space-y-1 text-left">
+                  <label className="text-[10px] sm:text-xs font-bold text-slate-700 uppercase tracking-wider block">
+                    Provincial Region (For Nearest Repair Estimates)
+                  </label>
+                  <select
+                    value={selectedProvince}
+                    onChange={(e) => setSelectedProvince(e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-250 hover:border-slate-350 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 font-bold focus:outline-none focus:border-indigo-500 focus:bg-white transition-all shadow-sm cursor-pointer"
+                  >
+                    <option value="BC">British Columbia (Vancouver Area)</option>
+                    <option value="ON">Ontario (Greater Toronto Area)</option>
+                    <option value="AB">Alberta (Calgary / Edmonton Area)</option>
+                    <option value="QC">Québec (Région De Montréal)</option>
+                  </select>
+                </div>
+
+                {/* Symptom selector */}
+                <div className="space-y-1 text-left">
+                  <label className="text-[10px] sm:text-xs font-bold text-slate-700 uppercase tracking-wider block">
+                    Select Warning light / Driving Symptom
+                  </label>
+                  <div className="space-y-2 max-h-[190px] overflow-y-auto pr-1">
+                    {SYMPTOMS.map((item, idx) => (
+                      <button
+                        key={item.code}
+                        type="button"
+                        onClick={() => {
+                          setSelectedSymptomIdx(idx);
+                          if (scanState === 'complete') {
+                            setScanState('idle');
+                          }
+                        }}
+                        className={`w-full text-left p-3.5 rounded-xl border text-xs leading-normal transition-all flex flex-col justify-between ${
                           selectedSymptomIdx === idx
-                            ? 'bg-indigo-600/35 border-indigo-500/30 text-indigo-200'
-                            : 'bg-white border-slate-300 text-slate-500'
-                        }`}>
-                          {item.code}
+                            ? 'bg-slate-900 text-white border-slate-900 shadow-lg'
+                            : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-1 w-full font-bold">
+                          <span className="truncate">{item.symptom}</span>
+                          <span className={`px-2 py-0.5 rounded text-[8px] tracking-widest font-black uppercase font-mono border ${
+                            selectedSymptomIdx === idx
+                              ? 'bg-indigo-600/35 border-indigo-500/30 text-indigo-200'
+                              : 'bg-white border-slate-300 text-slate-500'
+                          }`}>
+                            {item.code}
+                          </span>
+                        </div>
+                        <span className={`text-[9.5px] mt-1 font-medium ${selectedSymptomIdx === idx ? 'text-slate-300' : 'text-slate-500'}`}>
+                          Report: {item.issueName}
                         </span>
-                      </div>
-                      <span className={`text-[9.5px] mt-1 font-medium ${selectedSymptomIdx === idx ? 'text-slate-300' : 'text-slate-500'}`}>
-                        Report: {item.issueName}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action scanner triggers */}
+                {scanState === 'idle' && (
+                  <button
+                    type="submit"
+                    className="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-98 text-white font-extrabold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <RefreshCw className="w-4.5 h-4.5 text-indigo-250 hover:rotate-180 transition-transform duration-500" />
+                    Initiate Wireless OBD Scan
+                  </button>
+                )}
+
+                {scanState === 'scanning' && (
+                  <div className="bg-slate-950 text-white rounded-xl p-4 font-mono text-left space-y-3.5 animate-pulse border border-slate-850">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] text-indigo-400 font-extrabold flex items-center gap-1.5 uppercase">
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                        Active Scanning
                       </span>
-                    </button>
-                  ))}
-                </div>
+                      <span className="text-xs font-black text-slate-400">{scanProgress}%</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+                      <div className="h-full bg-indigo-500 transition-all duration-150" style={{ width: `${scanProgress}%` }} />
+                    </div>
+                    <p className="text-[9.5px] text-slate-300 leading-normal font-mono select-none truncate">
+                      &gt;_ {currentScanStepMsg}
+                    </p>
+                  </div>
+                )}
+
+                {scanState === 'complete' && (
+                  <button
+                    type="button"
+                    onClick={() => setScanState('idle')}
+                    className="w-full py-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-xs uppercase tracking-widest border border-slate-200 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <RefreshCw className="w-4 h-4 text-slate-500" />
+                    Run New Diagnostic Scan
+                  </button>
+                )}
+              </form>
+
+              {/* Direct Multi-State Holographic Console Viewport */}
+              <div className="mt-5">
+                {renderVehicleBlueprintSvg()}
               </div>
-
-              {/* Action scanner triggers */}
-              {scanState === 'idle' && (
-                <button
-                  type="submit"
-                  className="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-98 text-white font-extrabold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <RefreshCw className="w-4.5 h-4.5 text-indigo-250 hover:rotate-180 transition-transform duration-500" />
-                  Initiate Wireless OBD Scan
-                </button>
-              )}
-
-              {scanState === 'scanning' && (
-                <div className="bg-slate-950 text-white rounded-xl p-4 font-mono text-left space-y-3.5 animate-pulse border border-slate-850">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] text-indigo-400 font-extrabold flex items-center gap-1.5 uppercase">
-                      <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                      Active Scanning
-                    </span>
-                    <span className="text-xs font-black text-slate-400">{scanProgress}%</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-slate-900 rounded-full overflow-hidden border border-slate-800">
-                    <div className="h-full bg-indigo-500 transition-all duration-150" style={{ width: `${scanProgress}%` }} />
-                  </div>
-                  <p className="text-[9.5px] text-slate-300 leading-normal font-mono select-none truncate">
-                    &gt;_ {currentScanStepMsg}
-                  </p>
-                </div>
-              )}
-
-              {scanState === 'complete' && (
-                <button
-                  type="button"
-                  onClick={() => setScanState('idle')}
-                  className="w-full py-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-xs uppercase tracking-widest border border-slate-200 transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <RefreshCw className="w-4 h-4 text-slate-500" />
-                  Run New Diagnostic Scan
-                </button>
-              )}
-            </form>
-
-            {/* Direct Multi-State Holographic Console Viewport */}
-            <div className="mt-5">
-              {renderVehicleBlueprintSvg()}
             </div>
+
           </div>
 
           {/* Right panel: Scanned code details, ballpark quotes, mechanics near them */}

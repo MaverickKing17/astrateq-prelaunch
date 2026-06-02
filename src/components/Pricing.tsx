@@ -323,18 +323,32 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
             return (
               <div
                 key={bundle.id}
-                className={`flex flex-col rounded-[2.5rem] p-6 sm:p-8 transition-all duration-500 relative group/card ${
+                className={`flex flex-col relative group/card transition-all duration-500 ${
                   bundle.isFeatured
-                    ? 'bg-white border-[2.5px] border-indigo-600 shadow-[0_30px_70px_-15px_rgba(11,15,25,0.3),0_0_35px_rgba(99,102,241,0.22)] scale-105 z-10 hover:scale-[1.07] hover:shadow-[0_35px_80px_-12px_rgba(11,15,25,0.38),0_0_40px_rgba(99,102,241,0.3)]'
-                    : 'bg-white border border-slate-200/80 shadow-[0_15px_45px_-10px_rgba(11,15,25,0.12),0_0_20px_rgba(0,0,0,0.02)] hover:border-slate-350 hover:shadow-[0_25px_55px_-10px_rgba(11,15,25,0.2),0_0_25px_rgba(0,0,0,0.04)] hover:-translate-y-1.5'
+                    ? 'scale-[1.01] sm:scale-[1.04] z-10 hover:scale-[1.02] sm:hover:scale-[1.05]'
+                    : 'hover:-translate-y-1.5'
                 }`}
               >
-                {/* Most Popular Badge */}
-                {bundle.isFeatured && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white font-sans font-extrabold text-[10px] tracking-widest uppercase px-4 py-1.5 rounded-full shadow-md">
-                    {bundle.badge}
-                  </span>
-                )}
+                {/* Soft dark backlight ambient aura */}
+                <div className="absolute -inset-3.5 rounded-[2.8rem] bg-slate-950/15 blur-3xl opacity-50 group-hover/card:opacity-85 transition-all duration-700 pointer-events-none" />
+
+                {/* Highly structured glowing dual-border frame with absolute styling */}
+                <div className={`absolute -inset-[3px] rounded-[2.65rem] opacity-90 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-b ${
+                  bundle.isFeatured
+                    ? 'from-indigo-600 via-[#1e293b] to-indigo-950'
+                    : 'from-slate-950 via-[#1e293b] to-slate-950'
+                } shadow-[0_15px_45px_rgba(11,15,25,0.42),0_0_30px_rgba(15,23,42,0.25)]`} />
+
+                {/* Inner White Card */}
+                <div
+                  className="flex flex-col h-full rounded-[2.5rem] p-6 sm:p-8 relative bg-white border border-slate-905 overflow-hidden shadow-sm"
+                >
+                  {/* Most Popular Badge */}
+                  {bundle.isFeatured && (
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white font-sans font-extrabold text-[10px] tracking-widest uppercase px-4 py-1.5 rounded-full shadow-md z-20">
+                      {bundle.badge}
+                    </span>
+                  )}
 
                 {/* Package Type and Title */}
                 <div className="mb-5">
@@ -466,6 +480,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                   Stripe SSL Secure • Credit Card Auth Today Only
                 </div>
 
+              </div>
               </div>
             );
           })}
