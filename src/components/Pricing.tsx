@@ -323,10 +323,10 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
             return (
               <div
                 key={bundle.id}
-                className={`flex flex-col rounded-3xl p-6 sm:p-8 transition-all duration-300 relative ${
+                className={`flex flex-col rounded-[2.5rem] p-6 sm:p-8 transition-all duration-500 relative group/card ${
                   bundle.isFeatured
-                    ? 'bg-white border-2 border-indigo-600 shadow-xl shadow-indigo-650/10 scale-105 z-10'
-                    : 'bg-white border border-slate-200 hover:border-indigo-300 shadow-sm hover:shadow-md'
+                    ? 'bg-white border-[2.5px] border-indigo-600 shadow-[0_30px_70px_-15px_rgba(11,15,25,0.3),0_0_35px_rgba(99,102,241,0.22)] scale-105 z-10 hover:scale-[1.07] hover:shadow-[0_35px_80px_-12px_rgba(11,15,25,0.38),0_0_40px_rgba(99,102,241,0.3)]'
+                    : 'bg-white border border-slate-200/80 shadow-[0_15px_45px_-10px_rgba(11,15,25,0.12),0_0_20px_rgba(0,0,0,0.02)] hover:border-slate-350 hover:shadow-[0_25px_55px_-10px_rgba(11,15,25,0.2),0_0_25px_rgba(0,0,0,0.04)] hover:-translate-y-1.5'
                 }`}
               >
                 {/* Most Popular Badge */}

@@ -358,7 +358,7 @@ export default function DigitalOBDScanner() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
           
           {/* Left panel: Config, symptom selector & scanning mechanism */}
-          <div className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-5 sm:p-6 shadow-xl relative overflow-hidden flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-white border border-slate-200/80 rounded-[2rem] p-6 sm:p-7 shadow-[0_30px_70px_-15px_rgba(11,15,25,0.15),0_0_35px_rgba(0,0,0,0.02)] hover:shadow-[0_40px_80px_-12px_rgba(11,15,25,0.22),0_0_40px_rgba(99,102,241,0.06)] relative overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-slate-300 hover:scale-[1.01] group/left">
             <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-red-500 via-indigo-600 to-emerald-500" />
             
             <form onSubmit={handleStartScan} className="space-y-5">
@@ -480,16 +480,39 @@ export default function DigitalOBDScanner() {
           <div className="lg:col-span-7 flex flex-col gap-6">
             
             {scanState !== 'complete' ? (
-              <div className="bg-slate-100 border-2 border-dashed border-slate-300/80 rounded-3xl p-12 text-center h-[560px] flex flex-col items-center justify-center text-slate-700">
-                <div className="w-16 h-16 rounded-full bg-slate-200/50 flex items-center justify-center text-slate-400 mb-4 animate-pulse">
-                  <Search className="w-8 h-8" />
+              <div className="relative bg-gradient-to-b from-[#0B0F19] via-[#080B13] to-[#04060A] border border-slate-800 rounded-[2rem] p-8 sm:p-12 text-center h-[560px] flex flex-col items-center justify-center text-slate-300 shadow-[0_30px_70px_-15px_rgba(11,15,25,0.45),0_0_35px_rgba(0,0,0,0.3)] transition-all duration-500 hover:scale-[1.01] group/right overflow-hidden border-indigo-500/10 hover:border-indigo-500/25">
+                {/* Backlit glow effect behind content */}
+                <div className="absolute inset-0 bg-[#0B0F19] pointer-events-none" />
+                <div className="absolute -inset-[10px] bg-indigo-500/10 blur-[40px] opacity-40 group-hover/right:opacity-75 transition-opacity duration-700 pointer-events-none" />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-700/20 via-indigo-500/30 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none opacity-40" />
+                
+                {/* Visual HUD Corner Accents */}
+                <div className="absolute top-6 left-6 w-4 h-4 border-t border-l border-slate-700/60 pointer-events-none group-hover/right:border-indigo-400/50 transition-colors duration-300" />
+                <div className="absolute top-6 right-6 w-4 h-4 border-t border-r border-slate-700/60 pointer-events-none group-hover/right:border-indigo-400/50 transition-colors duration-300" />
+                <div className="absolute bottom-6 left-6 w-4 h-4 border-b border-l border-slate-700/60 pointer-events-none group-hover/right:border-indigo-400/50 transition-colors duration-300" />
+                <div className="absolute bottom-6 right-6 w-4 h-4 border-b border-r border-slate-700/60 pointer-events-none group-hover/right:border-indigo-400/50 transition-colors duration-300" />
+
+                <div className="relative z-10 flex flex-col items-center justify-center">
+                  <div className="w-20 h-20 rounded-full bg-[#111625] border border-slate-800/80 group-hover/right:border-indigo-500/40 flex items-center justify-center text-slate-400 mb-6 group-hover/right:scale-105 transition-all duration-500 relative shadow-inner">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 to-transparent rounded-full" />
+                    <Search className="w-8 h-8 text-indigo-400 animate-pulse" />
+                    {/* Ring scan effect */}
+                    <div className="absolute inset-0 rounded-full border border-indigo-400/20 animate-ping opacity-35" />
+                  </div>
+                  <h3 className="font-sans font-extrabold text-xl text-slate-100 uppercase tracking-[0.12em] mb-3">
+                    Awaiting Scan Data Input
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-400 max-w-sm leading-relaxed font-medium">
+                    Select your vehicle symptom on the left panel, choose your Canadian province, and click the scan trigger to diagnose issues in real-time.
+                  </p>
+                  
+                  {/* Status Indicator at the bottom of instrument screen */}
+                  <div className="mt-8 flex items-center gap-2 px-4 py-2 rounded-full bg-[#111625]/60 border border-slate-800/60 text-[10px] font-mono text-slate-400 font-bold uppercase tracking-wider">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+                    <span>ASTRATEQ SIMULATOR: READY_TO_POLL</span>
+                  </div>
                 </div>
-                <h3 className="font-display font-black text-xl text-slate-900 uppercase tracking-tight mb-2">
-                  Awaiting Scan Data Input
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-500 max-w-sm leading-relaxed">
-                  Select your vehicle symptom on the left panel, choose your Canadian province, and click the scan trigger to diagnose issues in real-time.
-                </p>
               </div>
             ) : (
               <div className="space-y-6">
