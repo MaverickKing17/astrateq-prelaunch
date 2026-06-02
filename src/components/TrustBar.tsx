@@ -12,13 +12,15 @@ export default function TrustBar() {
       details: 'All diagnostic logs, coordinates, and telemetry are processed locally at the vehicle hardware edge. No external tracking, no cloud footprints.',
       statusColor: 'bg-emerald-400',
       statusText: 'Active Protection',
-      bgGrad: 'from-slate-900/95 to-emerald-950/40 hover:to-emerald-900/50',
-      borderColor: 'border-emerald-500/25 hover:border-emerald-400/60',
+      bgGrad: 'from-[#0B1510] via-[#070D0A] to-[#040605]',
+      borderColor: 'border-emerald-500/30 group-hover:border-emerald-400/80',
       badgeStyle: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
       labelColor: 'text-emerald-400',
-      shadowGlow: 'hover:shadow-[0_0_40px_rgba(16,185,129,0.25)]',
+      shadowGlow: 'shadow-[0_0_20px_rgba(16,185,129,0.06)] group-hover:shadow-[0_0_35px_rgba(16,185,129,0.22)]',
       iconBg: 'bg-emerald-500/10 border-emerald-500/20 group-hover:border-emerald-400/40',
-      tagBg: 'text-emerald-300 bg-emerald-500/10 border-emerald-500/20 group-hover:bg-emerald-500/20'
+      tagBg: 'text-emerald-300 bg-emerald-500/10 border-emerald-500/20 group-hover:bg-emerald-500/20',
+      neonGlow: 'bg-gradient-to-b from-emerald-500/40 via-emerald-500/10 to-transparent',
+      ambientRef: 'bg-emerald-500/10'
     },
     {
       icon: <Database className="w-5 h-5 text-cyan-400" />,
@@ -28,13 +30,15 @@ export default function TrustBar() {
       details: 'Read, diagnose, and reset standard OBD-II trouble codes completely offline. Engineered to perform in remote regions and underground garages.',
       statusColor: 'bg-cyan-400',
       statusText: 'No Signal Needed',
-      bgGrad: 'from-slate-900/95 to-cyan-950/40 hover:to-cyan-900/50',
-      borderColor: 'border-cyan-500/25 hover:border-cyan-400/60',
+      bgGrad: 'from-[#0B1417] via-[#060D0F] to-[#030506]',
+      borderColor: 'border-cyan-500/30 group-hover:border-cyan-400/80',
       badgeStyle: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20',
       labelColor: 'text-cyan-400',
-      shadowGlow: 'hover:shadow-[0_0_40px_rgba(6,182,212,0.25)]',
+      shadowGlow: 'shadow-[0_0_20px_rgba(6,182,212,0.06)] group-hover:shadow-[0_0_35px_rgba(6,182,212,0.22)]',
       iconBg: 'bg-cyan-500/10 border-cyan-500/20 group-hover:border-cyan-400/40',
-      tagBg: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20 group-hover:bg-cyan-500/20'
+      tagBg: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20 group-hover:bg-cyan-500/20',
+      neonGlow: 'bg-gradient-to-b from-cyan-500/40 via-cyan-500/10 to-transparent',
+      ambientRef: 'bg-cyan-500/10'
     },
     {
       icon: <Shield className="w-5 h-5 text-blue-400" />,
@@ -44,13 +48,15 @@ export default function TrustBar() {
       details: 'We firmly reject the software-as-a-service subscription paradigm. Buy physical hardware once, control your vehicle health diagnostics forever.',
       statusColor: 'bg-blue-400',
       statusText: '100% Free Updates',
-      bgGrad: 'from-slate-900/95 to-blue-950/40 hover:to-blue-900/50',
-      borderColor: 'border-blue-500/25 hover:border-blue-400/60',
+      bgGrad: 'from-[#0A111A] via-[#050A10] to-[#030508]',
+      borderColor: 'border-blue-500/30 group-hover:border-blue-400/80',
       badgeStyle: 'bg-blue-500/10 text-blue-300 border-blue-500/20',
       labelColor: 'text-blue-400',
-      shadowGlow: 'hover:shadow-[0_0_40px_rgba(59,130,246,0.25)]',
+      shadowGlow: 'shadow-[0_0_20px_rgba(59,130,246,0.06)] group-hover:shadow-[0_0_35px_rgba(59,130,246,0.22)]',
       iconBg: 'bg-blue-500/10 border-blue-500/20 group-hover:border-blue-400/40',
-      tagBg: 'text-blue-300 bg-blue-500/10 border-blue-500/20 group-hover:bg-blue-500/20'
+      tagBg: 'text-blue-300 bg-blue-500/10 border-blue-500/20 group-hover:bg-blue-500/20',
+      neonGlow: 'bg-gradient-to-b from-blue-500/40 via-blue-500/10 to-transparent',
+      ambientRef: 'bg-blue-500/10'
     },
     {
       icon: <CheckCircle2 className="w-5 h-5 text-indigo-400" />,
@@ -60,13 +66,15 @@ export default function TrustBar() {
       details: 'From brutal winter cold starts to intense summer heat loads. Premium solid-state materials warrant absolute, lasting structural endurance.',
       statusColor: 'bg-indigo-400',
       statusText: 'Canadian Support',
-      bgGrad: 'from-slate-900/95 to-indigo-950/40 hover:to-indigo-900/50',
-      borderColor: 'border-indigo-500/25 hover:border-indigo-400/60',
+      bgGrad: 'from-[#10101C] via-[#080811] to-[#040408]',
+      borderColor: 'border-indigo-500/30 group-hover:border-indigo-400/80',
       badgeStyle: 'bg-indigo-500/10 text-indigo-300 border-indigo-500/20',
       labelColor: 'text-indigo-400',
-      shadowGlow: 'hover:shadow-[0_0_40px_rgba(99,102,241,0.25)]',
+      shadowGlow: 'shadow-[0_0_20px_rgba(99,102,241,0.06)] group-hover:shadow-[0_0_35px_rgba(99,102,241,0.22)]',
       iconBg: 'bg-indigo-500/10 border-indigo-500/20 group-hover:border-indigo-400/40',
-      tagBg: 'text-indigo-300 bg-indigo-500/10 border-indigo-500/20 group-hover:bg-indigo-500/20'
+      tagBg: 'text-indigo-300 bg-indigo-500/10 border-indigo-500/20 group-hover:bg-indigo-500/20',
+      neonGlow: 'bg-gradient-to-b from-indigo-500/40 via-indigo-500/10 to-transparent',
+      ambientRef: 'bg-indigo-500/10'
     },
     {
       icon: <MapPin className="w-5 h-5 text-rose-400" />,
@@ -76,13 +84,15 @@ export default function TrustBar() {
       details: 'Designed, evaluated, and customer-supported locally. We serve high-standard drivers and maintain absolute alignment with national transit laws.',
       statusColor: 'bg-rose-400',
       statusText: 'Local Transit Rules',
-      bgGrad: 'from-slate-900/95 to-rose-950/40 hover:to-rose-900/50',
-      borderColor: 'border-rose-500/25 hover:border-rose-400/60',
+      bgGrad: 'from-[#170E11] via-[#0D0709] to-[#060405]',
+      borderColor: 'border-rose-500/30 group-hover:border-rose-400/80',
       badgeStyle: 'bg-rose-500/10 text-rose-300 border-rose-500/20',
       labelColor: 'text-rose-400',
-      shadowGlow: 'hover:shadow-[0_0_40px_rgba(244,63,94,0.25)]',
+      shadowGlow: 'shadow-[0_0_20px_rgba(244,63,94,0.06)] group-hover:shadow-[0_0_35px_rgba(244,63,94,0.22)]',
       iconBg: 'bg-rose-500/10 border-rose-500/20 group-hover:border-rose-400/40',
-      tagBg: 'text-rose-300 bg-rose-500/10 border-rose-500/20 group-hover:bg-rose-500/20'
+      tagBg: 'text-rose-300 bg-rose-500/10 border-rose-500/20 group-hover:bg-rose-500/20',
+      neonGlow: 'bg-gradient-to-b from-rose-500/40 via-rose-500/10 to-transparent',
+      ambientRef: 'bg-rose-500/10'
     },
   ];
 
@@ -148,42 +158,58 @@ export default function TrustBar() {
               whileHover={{ 
                 y: -6,
               }}
-              className={`group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-gradient-to-b ${item.bgGrad} border ${item.borderColor} transition-all duration-300 ${item.shadowGlow} h-full relative`}
+              className={`group flex flex-col justify-between p-6 sm:p-7 rounded-2xl h-full relative transition-all duration-300 ${item.shadowGlow}`}
             >
-              {/* Card Header Info */}
-              <div>
-                <div className="flex items-center justify-between mb-5">
-                  <div className={`w-10 h-10 rounded-xl ${item.iconBg} flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-inner`}>
-                    {item.icon}
+              {/* Card Background Layers */}
+              {/* Behind-Card Ambient Soft Glow Aura */}
+              <div className={`absolute -inset-2 rounded-[24px] ${item.ambientRef} blur-xl opacity-35 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none`} />
+
+              {/* Glowing Outline Layer */}
+              <div className={`absolute -inset-px rounded-2xl ${item.neonGlow} opacity-50 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
+
+              {/* Card True Backdrop Base */}
+              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${item.bgGrad} border ${item.borderColor} pointer-events-none transition-all duration-300`} />
+
+              {/* Inner High-tech Hardware Bevel Indicator */}
+              <div className="absolute inset-0 bg-transparent rounded-2xl border border-white/[0.02] group-hover:border-white/[0.06] pointer-events-none transition-colors duration-300" />
+
+              {/* Card Content (Relative stacked above) */}
+              <div className="relative z-10 flex flex-col justify-between h-full w-full">
+                {/* Card Header Info */}
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className={`w-10 h-10 rounded-xl ${item.iconBg} flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-inner`}>
+                      {item.icon}
+                    </div>
+                    <span className={`text-[9px] font-black uppercase tracking-widest ${item.badgeStyle} px-2.5 py-1 rounded`}>
+                      {item.badge}
+                    </span>
                   </div>
-                  <span className={`text-[9px] font-black uppercase tracking-widest ${item.badgeStyle} px-2.5 py-1 rounded`}>
-                    {item.badge}
+
+                  <div className="space-y-1">
+                    <h3 className={`text-xs font-black uppercase tracking-wider ${item.labelColor} filter brightness-90`}>
+                      {item.label}
+                    </h3>
+                    <h4 className="text-sm font-extrabold text-white leading-tight mt-1">
+                      {item.desc}
+                    </h4>
+                  </div>
+
+                  <p className="text-xs text-slate-300 mt-4 leading-relaxed font-normal">
+                    {item.details}
+                  </p>
+                </div>
+
+                {/* Status Indicator Bar */}
+                <div className="mt-8 pt-4 border-t border-slate-800/60 flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest font-mono flex items-center gap-1.5 ">
+                    <span className={`w-1.5 h-1.5 rounded-full ${item.statusColor} animate-pulse`} />
+                    {item.statusText}
+                  </span>
+                  <span className={`text-[10px] font-black ${item.tagBg} px-2.5 py-1 rounded transition-colors group-hover:scale-105 duration-300`}>
+                    VERIFIED
                   </span>
                 </div>
-
-                <div className="space-y-1">
-                  <h3 className={`text-xs font-black uppercase tracking-wider ${item.labelColor} filter brightness-90`}>
-                    {item.label}
-                  </h3>
-                  <h4 className="text-sm font-extrabold text-white leading-tight mt-1">
-                    {item.desc}
-                  </h4>
-                </div>
-
-                <p className="text-xs text-slate-100 mt-4 leading-relaxed font-normal">
-                  {item.details}
-                </p>
-              </div>
-
-              {/* Status Indicator Bar */}
-              <div className="mt-8 pt-4 border-t border-slate-800/60 flex items-center justify-between">
-                <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest font-mono flex items-center gap-1.5 ">
-                  <span className={`w-1.5 h-1.5 rounded-full ${item.statusColor} animate-pulse`} />
-                  {item.statusText}
-                </span>
-                <span className={`text-[10px] font-black ${item.tagBg} px-2.5 py-1 rounded transition-colors group-hover:scale-105 duration-300`}>
-                  VERIFIED
-                </span>
               </div>
             </motion.div>
           ))}

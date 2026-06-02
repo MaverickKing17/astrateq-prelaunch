@@ -52,190 +52,264 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        {/* Dynamic, Illustrated Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative items-stretch max-w-6xl mx-auto mb-16">
+        {/* Dynamic, Illustrated Steps Grid with Sleek Timeline Connector */}
+        <div className="relative max-w-6xl mx-auto mb-16">
           
-          {/* Step 1: Connect to OBD-II Port */}
-          <div className="flex flex-col bg-white border border-slate-200 rounded-3xl p-5 text-left relative transition-all duration-300 hover:border-red-500/30 group hover:-translate-y-1 shadow-md hover:shadow-xl hover:shadow-red-500/5 overflow-hidden">
+          {/* Subtle Horizontal progress timeline line connecting the cards (Desktop Only) */}
+          <div className="hidden lg:block absolute left-[12%] right-[12%] top-[100px] h-[2px] bg-gradient-to-r from-indigo-500/10 via-amber-400/10 to-emerald-500/10 pointer-events-none" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative items-stretch">
             
-            {/* Corner Badge Label */}
-            <div className="absolute top-0 right-0 bg-indigo-650 text-white font-mono text-[9px] font-black px-3.5 py-1 rounded-bl-xl shadow-sm uppercase z-20">
-              Phase 01
-            </div>
-
-            {/* Premium Enterprise-grade Image container */}
-            <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
+            {/* Step 1: Connect to OBD-II Port */}
+            <div className="flex flex-col bg-white border border-slate-200/85 rounded-3xl p-6 text-left relative transition-all duration-300 hover:border-indigo-500/30 group hover:-translate-y-2 hover:shadow-[0_24px_48px_rgba(99,102,241,0.08)] overflow-hidden">
               
-              {/* Image element with required referrer policy */}
-              <img
-                src={obdDongleBrightImg}
-                alt="Astrateq Gadgets OBD-II Secure Sync Harness Click Installation"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
-                referrerPolicy="no-referrer"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-
-              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                <span className="text-[8px] text-emerald-400 font-mono uppercase tracking-widest font-black">Standard OBD Slot</span>
+              {/* Massive subtle watermark step number */}
+              <div className="absolute -bottom-6 -right-4 font-mono font-black text-8xl text-slate-50 opacity-40 select-none group-hover:text-indigo-50/70 transition-colors pointer-events-none">
+                01
               </div>
+
+              {/* Corner Badge Label */}
+              <div className="absolute top-0 right-0 bg-[#0B0F19] text-indigo-300 font-mono text-[8px] tracking-[0.15em] font-extrabold px-3.5 py-1.5 rounded-bl-2xl shadow-sm uppercase z-20 border-l border-b border-slate-800/80">
+                PHASE 01
+              </div>
+
+              {/* Premium Enterprise-grade Image container */}
+              <div className="h-40 bg-slate-950 rounded-2xl mb-5 relative overflow-hidden flex items-center justify-center border border-slate-800/50 group-hover:border-slate-700/60 shadow-inner">
+                
+                {/* Image element with required referrer policy */}
+                <img
+                  src={obdDongleBrightImg}
+                  alt="Astrateq Gadgets OBD-II Secure Sync Harness Click Installation"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] opacity-90 group-hover:opacity-100"
+                  referrerPolicy="no-referrer"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+                <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/90 border border-slate-800/80 px-2.5 py-1 rounded-md shadow-md backdrop-blur-sm z-10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+                  <span className="text-[7.5px] text-slate-300 font-mono uppercase tracking-widest font-bold">Standard OBD Slot</span>
+                </div>
+                
+                <div className="absolute top-2.5 left-2.5 bg-slate-950/90 border border-slate-800/80 px-2 py-1 rounded-md shadow-md text-[7.5px] text-slate-200 font-mono font-bold uppercase tracking-widest leading-none z-10">
+                  Safe Passive Link
+                </div>
+              </div>
+
+              {/* Title & Desc Area */}
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-650 shrink-0 shadow-sm group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all duration-300">
+                  <Zap className="w-4 h-4" />
+                </div>
+                <h3 className="font-sans font-extrabold text-sm uppercase tracking-wider text-slate-900 group-hover:text-indigo-600 transition-colors">
+                  Plug-In OBD Power
+                </h3>
+              </div>
+
+              <p className="text-[12px] text-slate-500 leading-relaxed font-semibold mb-5 flex-grow">
+                Fits instantly under your steering column. Delivers safe, constant, supercapacitor-regulated power. Zero wires to splice.
+              </p>
+
+              {/* Specs Checks Sheet */}
+              <div className="mt-auto pt-4 border-t border-slate-100 flex flex-col gap-2 relative z-10">
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold font-mono tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                  <span>HARNESS: ISO-15765 PASSIVE</span>
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold font-mono tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                  <span>STANDBY: &lt;3.5MW SLEEP MODE</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2: Edge AI Core Ready */}
+            <div className="flex flex-col bg-white border border-slate-200/85 rounded-3xl p-6 text-left relative transition-all duration-300 hover:border-indigo-500/30 group hover:-translate-y-2 hover:shadow-[0_24px_48px_rgba(99,102,241,0.08)] overflow-hidden">
               
-              <div className="absolute top-2.5 left-2.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-slate-200 font-mono font-black uppercase tracking-widest leading-none z-10">
-                Safe Passive Link
+              {/* Massive subtle watermark step number */}
+              <div className="absolute -bottom-6 -right-4 font-mono font-black text-8xl text-slate-50 opacity-40 select-none group-hover:text-indigo-50/70 transition-colors pointer-events-none">
+                02
+              </div>
+
+              {/* Corner Badge Label */}
+              <div className="absolute top-0 right-0 bg-[#0B0F19] text-indigo-300 font-mono text-[8px] tracking-[0.15em] font-extrabold px-3.5 py-1.5 rounded-bl-2xl shadow-sm uppercase z-20 border-l border-b border-slate-800/80">
+                PHASE 02
+              </div>
+
+              {/* Premium Enterprise-grade Image container */}
+              <div className="h-40 bg-slate-950 rounded-2xl mb-5 relative overflow-hidden flex items-center justify-center border border-slate-800/50 group-hover:border-slate-700/60 shadow-inner">
+                
+                <img
+                  src={dashcamBrightImg}
+                  alt="Astrateq Gadgets Dual-Lens Smart camera mounted cleanly on windshield"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] opacity-90 group-hover:opacity-100"
+                  referrerPolicy="no-referrer"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+                <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/90 border border-slate-800/80 px-2.5 py-1 rounded-md shadow-md backdrop-blur-sm z-10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  <span className="text-[7.5px] text-slate-300 font-mono uppercase tracking-widest font-bold">Windshield Mounted</span>
+                </div>
+
+                <div className="absolute top-2.5 left-2.5 bg-slate-950/90 border border-slate-800/80 px-2 py-1 rounded-md shadow-md text-[7.5px] text-emerald-400 font-mono font-bold uppercase tracking-widest leading-none z-10">
+                  Calibration Ready
+                </div>
+              </div>
+
+              {/* Title & Desc Area */}
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-9 h-9 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-600 shrink-0 shadow-sm group-hover:bg-cyan-600 group-hover:text-white group-hover:border-cyan-600 transition-all duration-300">
+                  <Cpu className="w-4 h-4" />
+                </div>
+                <h3 className="font-sans font-extrabold text-sm uppercase tracking-wider text-slate-900 group-hover:text-cyan-600 transition-colors">
+                  Edge AI Active
+                </h3>
+              </div>
+
+              <p className="text-[12px] text-slate-500 leading-relaxed font-semibold mb-5 flex-grow">
+                Windshield unit’s built-in neural processor activates. Calibrates road boundaries & focal alignment in seconds. Zero remote latency.
+              </p>
+
+              {/* Specs Checks Sheet */}
+              <div className="mt-auto pt-4 border-t border-slate-100 flex flex-col gap-2 relative z-10">
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold font-mono tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-450" />
+                  <span>NPU: DUAL-CORE IN-SITU NET</span>
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold font-mono tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-450" />
+                  <span>SENSORS: SONY STARVIS™ OPTICS</span>
+                </div>
               </div>
             </div>
 
-            {/* Title & Desc Area */}
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-red-50 border border-red-150 flex items-center justify-center text-red-650 shrink-0">
-                <Zap className="w-4 h-4" />
+            {/* Step 3: Real-Time Driver Shield */}
+            <div className="flex flex-col bg-white border border-slate-200/85 rounded-3xl p-6 text-left relative transition-all duration-300 hover:border-indigo-500/30 group hover:-translate-y-2 hover:shadow-[0_24px_48px_rgba(99,102,241,0.08)] overflow-hidden">
+              
+              {/* Massive subtle watermark step number */}
+              <div className="absolute -bottom-6 -right-4 font-mono font-black text-8xl text-slate-50 opacity-40 select-none group-hover:text-indigo-50/70 transition-colors pointer-events-none">
+                03
               </div>
-              <h3 className="font-sans font-black text-sm uppercase tracking-wide text-slate-900">
-                Plug-In OBD Power
-              </h3>
+
+              {/* Corner Badge Label */}
+              <div className="absolute top-0 right-0 bg-[#0B0F19] text-amber-400 font-mono text-[8px] tracking-[0.15em] font-extrabold px-3.5 py-1.5 rounded-bl-2xl shadow-sm uppercase z-20 border-l border-b border-slate-800/80">
+                PHASE 03
+              </div>
+
+              {/* Premium Enterprise-grade Image container */}
+              <div className="h-40 bg-slate-950 rounded-2xl mb-5 relative overflow-hidden flex items-center justify-center border border-slate-800/50 group-hover:border-slate-700/60 shadow-inner">
+                
+                <img
+                  src={activeScanningImg}
+                  alt="Astrateq Gadgets HUD visual interface tracking lanes and obstacles"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] opacity-90 group-hover:opacity-100"
+                  referrerPolicy="no-referrer"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+                <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/90 border border-slate-800/80 px-2.5 py-1 rounded-md shadow-md backdrop-blur-sm z-10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                  <span className="text-[7.5px] text-slate-300 font-mono uppercase tracking-widest font-bold">Predictive Guides</span>
+                </div>
+
+                <div className="absolute top-2.5 left-2.5 bg-slate-950/90 border border-slate-800/80 px-2 py-1 rounded-md shadow-md text-[7.5px] text-amber-400 font-mono font-bold uppercase tracking-widest leading-none z-10">
+                  Sub-12ms Active Alert
+                </div>
+              </div>
+
+              {/* Title & Desc Area */}
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-650 shrink-0 shadow-sm group-hover:bg-amber-600 group-hover:text-white group-hover:border-amber-600 transition-all duration-300">
+                  <ShieldAlert className="w-4 h-4" />
+                </div>
+                <h3 className="font-sans font-extrabold text-sm uppercase tracking-wider text-slate-900 group-hover:text-amber-600 transition-colors">
+                  Real-Time Tracking
+                </h3>
+              </div>
+
+              <p className="text-[12px] text-slate-500 leading-relaxed font-semibold mb-5 flex-grow">
+                Tracks forward mountain highway hazards, winter black ice slippage, and cabin fatigue instantly. Triggers sub-12ms warning audio alerts.
+              </p>
+
+              {/* Specs Checks Sheet */}
+              <div className="mt-auto pt-4 border-t border-slate-100 flex flex-col gap-2 relative z-10">
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold font-mono tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                  <span>ENGINE: SUB-12MS ADAS SCAN</span>
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold font-mono tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                  <span>GYRO: TRI-AXIAL IMPACT SENSOR</span>
+                </div>
+              </div>
             </div>
 
-            <p className="text-xs text-slate-600 leading-relaxed font-semibold">
-              Fits instantly under your steering wheel column. Delivers safe, constant, supercapacitor-regulated power. Zero wires to splice.
-            </p>
+            {/* Step 4: Family App Connectivity */}
+            <div className="flex flex-col bg-white border border-slate-200/85 rounded-3xl p-6 text-left relative transition-all duration-300 hover:border-indigo-500/30 group hover:-translate-y-2 hover:shadow-[0_24px_48px_rgba(99,102,241,0.08)] overflow-hidden">
+              
+              {/* Massive subtle watermark step number */}
+              <div className="absolute -bottom-6 -right-4 font-mono font-black text-8xl text-slate-50 opacity-40 select-none group-hover:text-indigo-50/70 transition-colors pointer-events-none">
+                04
+              </div>
+
+              {/* Corner Badge Label */}
+              <div className="absolute top-0 right-0 bg-[#0B0F19] text-emerald-400 font-mono text-[8px] tracking-[0.15em] font-extrabold px-3.5 py-1.5 rounded-bl-2xl shadow-sm uppercase z-20 border-l border-b border-slate-800/80">
+                PHASE 04
+              </div>
+
+              {/* Premium Enterprise-grade Image container */}
+              <div className="h-40 bg-slate-950 rounded-2xl mb-5 relative overflow-hidden flex items-center justify-center border border-slate-800/50 group-hover:border-slate-700/60 shadow-inner">
+                
+                <img
+                  src={companionBrightImg}
+                  alt="Smartphone syncing vehicle drive log dashboard data"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] opacity-90 group-hover:opacity-100"
+                  referrerPolicy="no-referrer"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+                <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/90 border border-slate-800/80 px-2.5 py-1 rounded-md shadow-md backdrop-blur-sm z-10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[7.5px] text-slate-300 font-mono uppercase tracking-widest font-bold">iOS/Android Sync</span>
+                </div>
+
+                <div className="absolute top-2.5 left-2.5 bg-slate-950/90 border border-slate-800/80 px-2 py-1 rounded-md shadow-md text-[7.5px] text-emerald-400 font-mono font-bold uppercase tracking-widest leading-none z-10">
+                  Diagnostics Live
+                </div>
+              </div>
+
+              {/* Title & Desc Area */}
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 shadow-sm group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 transition-all duration-300">
+                  <HeartHandshake className="w-4 h-4" />
+                </div>
+                <h3 className="font-sans font-extrabold text-sm uppercase tracking-wider text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Driveguard Companion
+                </h3>
+              </div>
+
+              <p className="text-[12px] text-slate-500 leading-relaxed font-semibold mb-5 flex-grow">
+                Active diagnostics are pushed directly to our native smartphone app. View real-time GPS logs, vehicle health, and alerts.
+              </p>
+
+              {/* Specs Checks Sheet */}
+              <div className="mt-auto pt-4 border-t border-slate-100 flex flex-col gap-2 relative z-10">
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold font-mono tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  <span>SYNC: BLUETOOTH 5.2 LOW ENERGY</span>
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold font-mono tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                  <span>PRIVACY: AES-256 ZERO-CLOUD</span>
+                </div>
+              </div>
+            </div>
+
           </div>
-
-          {/* Step 2: Edge AI Core Ready */}
-          <div className="flex flex-col bg-white border border-slate-200 rounded-3xl p-5 text-left relative transition-all duration-300 hover:border-indigo-500/30 group hover:-translate-y-1 shadow-md hover:shadow-xl hover:shadow-indigo-500/5 overflow-hidden">
-            
-            {/* Corner Badge Label */}
-            <div className="absolute top-0 right-0 bg-indigo-650 text-white font-mono text-[9px] font-black px-3.5 py-1 rounded-bl-xl shadow-sm uppercase z-20">
-              Phase 02
-            </div>
-
-            {/* Premium Enterprise-grade Image container */}
-            <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
-              
-              <img
-                src={dashcamBrightImg}
-                alt="Astrateq Gadgets Dual-Lens Smart camera mounted cleanly on windshield"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
-                referrerPolicy="no-referrer"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-
-              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-505" />
-                <span className="text-[8px] text-indigo-300 font-mono uppercase tracking-widest font-black">Windshield Mounted</span>
-              </div>
-
-              <div className="absolute top-2.5 left-2.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-emerald-400 font-mono font-black uppercase tracking-widest leading-none z-10">
-                Calibration Ready
-              </div>
-            </div>
-
-            {/* Title & Desc Area */}
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-150 flex items-center justify-center text-indigo-650 shrink-0">
-                <Cpu className="w-4 h-4" />
-              </div>
-              <h3 className="font-sans font-black text-sm uppercase tracking-wide text-slate-900">
-                Edge AI Active
-              </h3>
-            </div>
-
-            <p className="text-xs text-slate-600 leading-relaxed font-semibold">
-              Windshield unit’s built-in neural processor activates. Calibrates road boundaries & focal alignment in seconds. Zero remote latency.
-            </p>
-          </div>
-
-          {/* Step 3: Real-Time Driver Shield */}
-          <div className="flex flex-col bg-white border border-slate-200 rounded-3xl p-5 text-left relative transition-all duration-300 hover:border-amber-500/30 group hover:-translate-y-1 shadow-md hover:shadow-xl hover:shadow-amber-500/5 overflow-hidden">
-            
-            {/* Corner Badge Label */}
-            <div className="absolute top-0 right-0 bg-amber-600 text-white font-mono text-[9px] font-black px-3.5 py-1 rounded-bl-xl shadow-sm uppercase z-20">
-              Phase 03
-            </div>
-
-            {/* Premium Enterprise-grade Image container */}
-            <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
-              
-              <img
-                src={activeScanningImg}
-                alt="Astrateq Gadgets HUD visual interface tracking lanes and obstacles"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
-                referrerPolicy="no-referrer"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-
-              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-pulse" />
-                <span className="text-[8px] text-amber-400 font-mono uppercase tracking-widest font-black">Predictive Guides</span>
-              </div>
-
-              <div className="absolute top-2.5 left-2.5 bg-slate-950/85 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-amber-400 font-mono font-black uppercase tracking-widest leading-none z-10">
-                Sub-12ms Active Alert
-              </div>
-            </div>
-
-            {/* Title & Desc Area */}
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-150 flex items-center justify-center text-amber-650 shrink-0">
-                <ShieldAlert className="w-4 h-4" />
-              </div>
-              <h3 className="font-sans font-black text-sm uppercase tracking-wide text-slate-900">
-                Real-Time Tracking
-              </h3>
-            </div>
-
-            <p className="text-xs text-slate-600 leading-relaxed font-semibold">
-              Tracks forward mountain highway hazards, winter black ice slippage, and cabin fatigue instantly. Triggers sub-12ms warning audio alerts.
-            </p>
-          </div>
-
-          {/* Step 4: Family App Connectivity */}
-          <div className="flex flex-col bg-white border border-slate-200 rounded-3xl p-5 text-left relative transition-all duration-300 hover:border-emerald-500/30 group hover:-translate-y-1 shadow-md hover:shadow-xl hover:shadow-emerald-500/5 overflow-hidden">
-            
-            {/* Corner Badge Label */}
-            <div className="absolute top-0 right-0 bg-emerald-600 text-white font-mono text-[9px] font-black px-3.5 py-1 rounded-bl-xl shadow-sm uppercase z-20">
-              Phase 04
-            </div>
-
-            {/* Premium Enterprise-grade Image container */}
-            <div className="h-40 bg-slate-100 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-200">
-              
-              <img
-                src={companionBrightImg}
-                alt="Smartphone syncing vehicle drive log dashboard data"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100"
-                referrerPolicy="no-referrer"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-
-              <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 bg-slate-955 border border-slate-800 px-2 py-0.5 rounded shadow backdrop-blur-sm z-10">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                <span className="text-[8px] text-emerald-400 font-mono uppercase tracking-widest font-black">iOS/Android Sync</span>
-              </div>
-
-              <div className="absolute top-2.5 left-2.5 bg-slate-955 border border-slate-800 px-2 py-0.5 rounded shadow text-[7.5px] text-emerald-400 font-mono font-black uppercase tracking-widest leading-none z-10">
-                Diagnostics Live
-              </div>
-            </div>
-
-            {/* Title & Desc Area */}
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-150 flex items-center justify-center text-emerald-600 shrink-0">
-                <HeartHandshake className="w-4 h-4" />
-              </div>
-              <h3 className="font-sans font-black text-sm uppercase tracking-wide text-slate-900">
-                Driveguard Companion
-              </h3>
-            </div>
-
-            <p className="text-xs text-slate-600 leading-relaxed font-semibold">
-              Active diagnostics are pushed directly to our native smartphone app. View real-time GPS logs, vehicle health, and alerts.
-            </p>
-          </div>
-
         </div>
 
         {/* Dynamic Trust-Affirming Pre-Order Decision Assist Banner */}
