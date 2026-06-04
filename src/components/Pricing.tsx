@@ -861,23 +861,30 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                   <Check className="w-8 h-8 text-emerald-600" style={{ strokeWidth: 3 }} />
                 </div>
                 <span className="text-xs font-black uppercase text-emerald-750 tracking-widest block font-mono">
-                  RESERVATION ALLOCATED SECURELY
+                  🚨 PRESTIGIOUS ALLOCATION GRANTED
                 </span>
                 <h4 className="font-sans font-black text-2xl sm:text-3xl text-slate-950 mt-1">Founding Spot Reserved!</h4>
                 
                 <p className="text-sm text-slate-650 leading-relaxed max-w-sm mx-auto font-medium">
-                  Thank you, <span className="text-slate-950 font-extrabold">{checkoutName}</span>. Your prelaunch spot for <span className="text-indigo-600 font-extrabold">{selectedBundle.name}</span> has been securely locked in our validation sequencers under the Canadian early-access credit allocation system.
+                  Thank you, <span className="text-slate-950 font-extrabold">{checkoutName}</span>. Your early dual-lens hardware package for <span className="text-indigo-600 font-extrabold">{selectedBundle.name}</span> has been securely locked. You are officially part of Canada's early-access pilot program.
                 </p>
 
-                <div className="bg-slate-50 border border-slate-150 rounded-2xl p-5 text-xs sm:text-[13px] text-slate-705 font-medium leading-relaxed max-w-sm mx-auto text-left space-y-1.5 shadow-sm">
-                  <div className="font-extrabold uppercase text-xs tracking-wider text-slate-800 mb-2.5 font-mono flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Reservation Certificate Details:
+                <div className="bg-slate-950 text-slate-100 border border-slate-800 rounded-3xl p-6 text-xs sm:text-[13px] font-medium leading-relaxed max-w-sm mx-auto text-left space-y-3 shadow-2xl relative overflow-hidden">
+                  <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-teal-500 to-indigo-500" />
+                  
+                  <div className="font-extrabold uppercase text-[10px] tracking-widest text-[#94a3b8] font-mono flex items-center gap-1.5 border-b border-slate-805 pb-2 mb-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    FOUNDING DRIVER RESERVATION CERTIFICATE
                   </div>
-                  <div>• Account Holder: <strong className="text-slate-900 font-bold">{checkoutName}</strong></div>
-                  <div>• Notification Recipient: <strong className="text-slate-900 font-bold">{checkoutEmail}</strong></div>
-                  <div>• Target Vehicle Hardware Mapping: <strong className="text-slate-900 font-bold">{vehicleInfo || "Universal CAN Interface"}</strong></div>
-                  <div>• Early Access Campaign Savings: <strong className="text-indigo-650 font-black">Early Founder Stack Code Active</strong></div>
+                  <div>• Account Holder: <strong className="text-white font-bold">{checkoutName}</strong></div>
+                  <div>• Notification Recipient: <strong className="text-white font-bold">{checkoutEmail}</strong></div>
+                  <div>• Target Vehicle Hardware Mapping: <strong className="text-white font-bold">{vehicleInfo || "Universal Driver OBD Protocol Matching"}</strong></div>
+                  
+                  <div className="pt-2 border-t border-slate-805/60 flex flex-col gap-1 mt-1 font-mono text-[11px]">
+                    <div>• RESERVATION NUMBER: <strong className="text-indigo-400 font-black">FN-4912-CA</strong></div>
+                    <div>• ACCESS WAITING QUEUE: <strong className="text-emerald-400 font-black">#4,912 in Canada</strong></div>
+                    <div>• ALLOCATION CLASSIFICATION: <strong className="text-rose-400 font-black">Phase 1 Early Adopter Pool</strong></div>
+                  </div>
                 </div>
 
                 <div className="bg-indigo-50 border border-indigo-120 rounded-2xl p-5 text-xs sm:text-[13px] text-indigo-805 font-black max-w-sm mx-auto leading-relaxed shadow-sm">

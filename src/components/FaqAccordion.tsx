@@ -1,126 +1,110 @@
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
+import { HelpCircle, CheckCircle2, ShieldAlert, Car, Lock, Settings, RefreshCw, Zap } from 'lucide-react';
 
-interface FAQ {
+interface FAQCard {
   q: string;
   a: string;
-  category: string;
+  icon: React.ReactNode;
+  badge: string;
 }
 
 export default function FaqAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const faqs: FAQ[] = [
+  const trustFAQs: FAQCard[] = [
     {
-      category: 'Pre-Launch',
-      q: 'What does pre-launch validation mean?',
-      a: 'Astrateq is currently conducting a pre-launch validation and demand feasibility study. This phase enables us to gauge Canadian market interest, compile vehicle configuration portfolios, and lock manufacturing queues prior to final hardware roll-out.'
+      badge: "VEHICLE FIT",
+      q: "Will it work with my vehicle?",
+      a: "Yes. Astrateq is compatible with over 98.4% of vehicles driven throughout Canada manufactured since 2010. Fits gasoline, diesel, hybrid, and pure electric passenger vehicles universally.",
+      icon: <Car className="w-5 h-5 text-indigo-600" />
     },
     {
-      category: 'Shipping',
-      q: 'Is Astrateq Gadgets currently shipping?',
-      a: 'No. We are not shipping hardware immediately. All registrations represent a priority reservation queue position for our upcoming initial production run, securing your priority spot once global assemblies are dispatched.'
+      badge: "PRICING",
+      q: "Does it require a subscription?",
+      a: "Absolutely not. We firmly reject the software-as-a-service subscription loop. Buy physical hardware once, unlock diagnostic scanning forever with zero monthly contracts or paywalls.",
+      icon: <Lock className="w-5 h-5 text-emerald-600" />
     },
     {
-      category: 'Billing',
-      q: 'Will my card be charged?',
-      a: 'No. Since we are operating in a validation trial phase, completing a simulation reservation logs your interest in our registry using Stripe’s secure testing parameters. Zero real monetary charges are processed.'
+      badge: "INSTALLATION",
+      q: "Is installation difficult?",
+      a: "No, installation is completely user-managed and takes under 30 seconds. The secure transceiver harness clicks directly into the local OBD-II port below your steering column. Zero wire splicing or tools required.",
+      icon: <Settings className="w-5 h-5 text-blue-600" />
     },
     {
-      category: 'Subscriptions',
-      q: 'Will there be a monthly subscription?',
-      a: 'No. All core driving safety logic, offline AI diagnostic engines, and companion app dashboards are covered by our permanent ownership model. There are no mandatory monthly subscriptions or paywalled safety alerts.'
+      badge: "DATA SECURITY",
+      q: "Will my data leave my vehicle?",
+      a: "Never. All diagnostic signals, road telemetry, and cabin windshield video files are processed natives inside the physical hardware edge. Astrateq hosts zero outer database cloud storage streams.",
+      icon: <ShieldAlert className="w-5 h-5 text-rose-600" />
     },
     {
-      category: 'Data Privacy',
-      q: 'Where is my vehicle data stored?',
-      a: 'All diagnostic signals and visual sensor streams are processed natively on our custom edge AI microprocessor inside the DriveGuard unit. Your tracking logs and clips are stored on the local physical secure-element and are never transmitted to outside cloud servers.'
+      badge: "REGULATORY",
+      q: "Does it affect my warranty?",
+      a: "No. Astrateq is a passive diagnostic monitoring device (ICES-003 compliant). It does not write, rewrite commands, or hack your engine ECU. Your vehicle warranty is protected under Canada Consumer Protection.",
+      icon: <CheckCircle2 className="w-5 h-5 text-violet-600" />
     },
     {
-      category: 'Installation',
-      q: 'Can I install the system myself?',
-      a: 'Yes, installation is entirely user-managed and takes under 30 seconds. The hardware transceiver simply plugs directly into the standard OBD-II diagnostic port underneath your steering column, requiring zero tooling or splicing.'
+      badge: "PORTABILITY",
+      q: "Can I move it to another vehicle?",
+      a: "Yes! Simply unplug the transceiver harness from your steering column and move it to any standard compatible passenger vehicle in under 10 seconds. Your sync files remain secured on the card.",
+      icon: <RefreshCw className="w-5 h-5 text-cyan-600" />
     },
     {
-      category: 'Compatibility',
-      q: 'Which vehicles will be supported?',
-      a: 'Virtually all standard gasoline, diesel, hybrid, and pure electric passenger vehicles manufactured since 2010 are compatible. You can check your specific vehicle shape instantly utilizing our Vehicle Compatibility Preview on this page.'
-    },
-    {
-      category: 'Next Steps',
-      q: 'What happens after I join Early Access?',
-      a: 'After registering your secure simulated reservation, your placement is locked and a priority technical configuration digest is immediately compiled. We will keep you updated via transparent email logs on engineering milestones, production status, and launch timelines.'
+      badge: "ARCHITECTURE",
+      q: "How does privacy work?",
+      a: "By coordinating decentralized edge computing. Visual streams and diagnostic frames are analyzed locally in our offline neural processor, and synchronized on-device. No central servers ever hold your coordinates or clips.",
+      icon: <Zap className="w-5 h-5 text-amber-600" />
     }
   ];
 
-  const toggle = (i: number) => {
-    if (openIndex === i) {
-      setOpenIndex(null);
-    } else {
-      setOpenIndex(i);
-    }
-  };
-
   return (
-    <section id="faq" className="py-20 bg-slate-50 border-y border-slate-200 relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center animate-fade-in">
+    <section id="faq" className="py-24 bg-[#FAFBFD] border-y border-slate-200 relative overflow-hidden">
+      {/* Structural background highlights mimicking high-class security terminals */}
+      <div className="absolute top-1/4 right-[5%] w-[45%] h-[45%] bg-indigo-50/40 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section header */}
-        <div className="max-w-xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-[0.15em] text-indigo-650 font-bold block mb-3">
-            Got Questions?
-          </span>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-slate-900 tracking-tight mb-4 text-center">
-            Frequently Asked Questions
+        {/* Section title */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-200/80 px-4 py-2 rounded-full text-indigo-950 text-xs font-black uppercase tracking-widest mb-4 font-mono shadow-xs">
+            <HelpCircle className="w-4 h-4 text-indigo-650 animate-pulse" />
+            Objection Removal & Trust Center
+          </div>
+          
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-950 tracking-tight leading-tight mb-4">
+            Clear Answers for High-Class Drivers
           </h2>
-          <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto font-semibold">
-            Everything you need to know about our automotive safety hardware, shipping schedules, and absolute offline privacy guarantees.
+          
+          <p className="text-slate-650 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+            Everything you need to know about our data sovereign hardware suite. Transparent, concise, and easy to scan.
           </p>
         </div>
 
-        {/* Accordions layout */}
-        <div className="space-y-3 max-w-3xl mx-auto text-left">
-          {faqs.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div
-                key={i}
-                className="bg-white border border-slate-200/80 rounded-2xl overflow-hidden transition-all duration-350 shadow-sm hover:border-indigo-400"
-              >
-                <button
-                  type="button"
-                  onClick={() => toggle(i)}
-                  className="w-full flex items-center justify-between px-6 py-5 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500/25"
-                  aria-expanded={isOpen}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-[9px] uppercase font-bold text-indigo-650 bg-indigo-50 border border-indigo-150 px-2 py-0.5 rounded">
-                      {faq.category}
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-slate-800 tracking-wide leading-snug">
-                      {faq.q}
-                    </span>
+        {/* 2-Column Bento grid representation of trust cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+          {trustFAQs.map((faq, i) => (
+            <div
+              key={i}
+              className="bg-white border-2 border-slate-105 rounded-2.5xl p-6 sm:p-8 hover:border-indigo-400 group transition-all duration-300 shadow-sm hover:shadow-indigo-600/[0.02] flex flex-col justify-between text-left relative overflow-hidden"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <span className="text-[9px] font-mono font-black text-slate-400 tracking-wider hover:text-indigo-600 uppercase">
+                    {faq.badge}
+                  </span>
+                  <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-105 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    {faq.icon}
                   </div>
-                  <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-transform duration-300 shrink-0 ${
-                      isOpen ? 'transform rotate-180 text-indigo-600' : ''
-                    }`}
-                  />
-                </button>
+                </div>
 
-                {/* Animated content sliding */}
-                <div
-                  className={`transition-all duration-300 ease-in-out ${
-                    isOpen ? 'max-h-[220px] pb-5 px-6 border-t border-slate-100 pt-4' : 'max-h-0 overflow-hidden'
-                  }`}
-                >
+                <div className="space-y-1.5">
+                  <h4 className="text-sm sm:text-base font-black text-slate-900 tracking-tight leading-snug group-hover:text-indigo-755 transition-colors">
+                    {faq.q}
+                  </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold">
                     {faq.a}
                   </p>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
       </div>

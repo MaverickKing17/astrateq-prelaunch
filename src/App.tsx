@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import TrustBar from './components/TrustBar';
 import Pricing from './components/Pricing';
 import HowItWorks from './components/HowItWorks';
 import LocalIntelligence from './components/LocalIntelligence';
@@ -17,6 +16,14 @@ import ExitIntentModal from './components/ExitIntentModal';
 import DigitalOBDScanner from './components/DigitalOBDScanner';
 import ArchitectureInfographic from './components/ArchitectureInfographic';
 import ValidationTransparency from './components/ValidationTransparency';
+
+// Custom New Components requested in the conversion framework
+import FoundingDriver from './components/FoundingDriver';
+import EmotionalBenefits from './components/EmotionalBenefits';
+import FounderStory from './components/FounderStory';
+import AppleProductShowcase from './components/AppleProductShowcase';
+import SocialProofReplacement from './components/SocialProofReplacement';
+
 import { ShieldAlert, CheckCircle, Gift, ArrowUp } from 'lucide-react';
 
 export default function App() {
@@ -118,46 +125,58 @@ export default function App() {
         <ArchitectureInfographic onBack={() => { setCurrentView('landing'); }} />
       ) : (
         <>
-          {/* 3. Hero Section (Full Viewport) */}
+          {/* 3. Rebuilt Direct Hero Section (with internal Compatibility Form + 6 Trust Badge Indicators) */}
           <Hero onScrollToSection={handleScrollToSection} />
 
-          {/* 4. Trust Signals Bar */}
-          <TrustBar />
-
-          {/* 4.5 Pre-launch Validation Transparency */}
+          {/* 4. Pre-launch Validation Transparency Directive */}
           <ValidationTransparency />
 
-          {/* 5. How It Works Section */}
+          {/* 5. Apple-Style Product Showcase (page 10) */}
+          <AppleProductShowcase onScrollToSection={handleScrollToSection} />
+
+          {/* 6. Founding Driver Program Section (page 5-6) */}
+          <FoundingDriver onScrollToSection={handleScrollToSection} />
+
+          {/* 7. Why Drivers Are Reserving Early (Emotional Benefits - page 7) */}
+          <EmotionalBenefits onScrollToSection={handleScrollToSection} />
+
+          {/* 8. Hardware Visualization: What Arrives At Your Door (page 6) */}
+          <WhatIsIncluded />
+
+          {/* 9. Credibility Framework (Social Proof Replacement - page 9) */}
+          <SocialProofReplacement />
+
+          {/* 10. How It Works Section */}
           <HowItWorks />
 
-          {/* 6. Local Intelligence Technical Deep-Dive */}
+          {/* 11. Local Intelligence Technical Deep-Dive */}
           <LocalIntelligence />
 
-          {/* 7. Interactive Compatibility Checker */}
+          {/* 12. Bottom Interactive Compatibility Checker for scroll offsets */}
           <CompatibilityChecker 
             onCheckSuccess={handleCompatibilitySuccess} 
             onScrollToSection={handleScrollToSection} 
           />
 
-          {/* 7.5 Interactive Digital OBD-II Diagnostic Scanner */}
+          {/* 12.5 Interactive Digital OBD-II Diagnostic Scanner */}
           <DigitalOBDScanner />
 
-          {/* 8. Bundles & Pricing Section */}
+          {/* 13. High-Glow Pricing Bundles & Reservations Section */}
           <Pricing onReserveSuccess={handleReserveSuccess} />
 
-          {/* 9. What’s Included Detailed Breakdown */}
-          <WhatIsIncluded />
+          {/* 14. Founder Story - Why We Built Astrateq (page 7-8) */}
+          <FounderStory onScrollToSection={handleScrollToSection} />
 
-          {/* 10. Email Waitlist Capture Section */}
+          {/* 15. Email Waitlist Capture Section */}
           <WaitlistSection onSuccess={handleWaitlistSuccess} />
 
-          {/* 11. Risk Reversal & Trust Commitments Section */}
+          {/* 16. Risk Reversal & Trust Commitments Section */}
           <RiskReversal />
 
-          {/* 12. FAQ Accordion Section */}
+          {/* 17. Objection Removal FAQ Cards (page 8) */}
           <FaqAccordion />
 
-          {/* 13. Final CTA Action block */}
+          {/* 18. Final CTA Action block */}
           <FinalCta onScrollToSection={handleScrollToSection} />
 
           {/* 14. Detailed Premium Footer */}
