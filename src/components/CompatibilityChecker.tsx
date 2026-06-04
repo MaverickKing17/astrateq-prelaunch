@@ -172,7 +172,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 max-w-6xl mx-auto items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 max-w-6xl mx-auto items-start">
           
           {/* Left Check Compatibility Form Panel */}
           <div className="lg:col-span-7 bg-white border-2 border-slate-205 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl shadow-indigo-650/5 relative overflow-hidden group hover:border-indigo-400/80 transition-all duration-300">
@@ -558,132 +558,149 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
           </div>
 
           {/* Right Column: Premium Canadian Support Simulator Column */}
-          <div className="lg:col-span-5 relative group/support flex flex-col animate-fade-in-up">
+          <div className="lg:col-span-5 relative group/support flex flex-col animate-fade-in-up self-stretch lg:self-auto">
             
-            {/* Soft dark backlight ambient aura */}
-            <div className="absolute -inset-3.5 rounded-[2.4rem] bg-slate-950/15 blur-3xl opacity-55 group-hover/support:opacity-85 transition-all duration-700 pointer-events-none" />
+            {/* Ambient intense glowing light spotlights behind the support card */}
+            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-rose-500/10 rounded-full blur-[80px] pointer-events-none animate-pulse" />
+            <div className="absolute bottom-1/3 left-1/3 w-[300px] h-[300px] bg-indigo-500/10 rounded-full blur-[90px] pointer-events-none" />
 
-            {/* Glowing High-Contrast Outer Frame in Deep Slate-Indigo (The Dark Glow Border) */}
-            <div className="absolute -inset-[3px] rounded-[2.15rem] bg-gradient-to-b from-slate-950 via-[#1e293b] to-slate-950 opacity-90 group-hover/support:opacity-100 transition-opacity duration-300 pointer-events-none shadow-[0_15px_45px_rgba(11,15,25,0.4),0_0_30px_rgba(15,23,42,0.22)]" />
-
-            {/* Inner Content Card Container */}
-            <div className="relative bg-gradient-to-br from-white via-slate-50/90 to-white border border-slate-900 rounded-[2rem] p-6 flex-1 flex flex-col justify-between overflow-hidden shadow-sm">
-            
-              {/* Top design light strip */}
-              <div className="absolute top-0 inset-x-0 h-1 bg-indigo-600" />
+            {/* Glowing High-Contrast Outer Gradient Sleeve to pop beautifully off white backgrounds */}
+            <div className="p-[2.5px] rounded-[2.2rem] bg-gradient-to-b from-indigo-500 via-purple-500 to-rose-500 shadow-[0_25px_60px_-15px_rgba(99,102,241,0.22)] hover:shadow-[0_35px_70px_-10px_rgba(99,102,241,0.32)] transition-all duration-500 flex-1 flex flex-col group/glow">
               
-              {/* Corner Leaf badge with clean styling */}
-              <div className="absolute top-4 right-4 bg-rose-50 border border-rose-100/80 text-rose-700 font-mono text-[9px] font-black px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
-                <span>🇨🇦</span>
-                ON/BC Agents
-              </div>
-
-            <div className="space-y-5">
-              <div className="flex items-center gap-3 pb-3.5 border-b border-slate-100">
-                <div className="flex -space-x-2.5 overflow-hidden shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-600 to-indigo-500 border-2 border-white flex items-center justify-center font-bold text-xs text-white shadow-md">J</div>
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-500 to-rose-400 border-2 border-white flex items-center justify-center font-bold text-xs text-white shadow-md">S</div>
+              {/* Inner Content Card Container - Dark Immersive Cyber Slate Theme */}
+              <div className="relative bg-slate-900 text-white rounded-[2rem] p-6 lg:p-7 flex-1 flex flex-col justify-between overflow-hidden shadow-inner">
+                
+                {/* Spotlight subtle overlay reflections on hover */}
+                <div className="absolute -inset-px bg-gradient-to-r from-indigo-500/10 via-purple-500/5 to-rose-500/10 opacity-0 group-hover/support:opacity-100 transition-opacity duration-700 pointer-events-none blur-xl" />
+                
+                {/* Corner Leaf badge with stunning neon glow styling */}
+                <div className="absolute top-6 right-6 bg-rose-500/10 border border-rose-500/30 text-rose-300 font-mono text-[9px] font-black px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 backdrop-blur-md select-none">
+                  <span className="scale-110">🍁</span>
+                  ON/BC AGENTS
                 </div>
-                <div className="flex flex-col text-left">
-                  <h3 className="font-sans font-black text-sm text-slate-900 tracking-tight block leading-tight">Canadian Support Hub</h3>
-                  <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider font-mono">
-                      Vancouver Tech Center • Active
-                    </span>
+
+                <div className="space-y-6 relative z-10">
+                  
+                  {/* Title & Agent Profiles Header block */}
+                  <div className="flex items-center gap-3.5 pb-4.5 border-b border-slate-800/80">
+                    <div className="flex -space-x-3 overflow-hidden shrink-0">
+                      <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 border-2 border-slate-900 flex items-center justify-center font-black text-xs text-white shadow-xl">J</div>
+                      <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-rose-500 to-amber-500 border-2 border-slate-900 flex items-center justify-center font-black text-xs text-white shadow-xl">S</div>
+                    </div>
+                    
+                    <div className="flex flex-col text-left">
+                      <h3 className="font-sans font-black text-base text-white tracking-tight block leading-tight">
+                        Canadian Support Hub
+                      </h3>
+                      <div className="flex items-center gap-1.5 mt-1">
+                        <span className="relative flex h-2 w-2 shrink-0">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span className="text-[10px] text-slate-300 font-bold uppercase tracking-wider font-mono">
+                          Vancouver Tech Center • Active
+                        </span>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Elegant introductory glass box pill */}
+                  <div className="bg-slate-950/45 border border-slate-800/80 rounded-2xl p-4 text-left backdrop-blur-sm">
+                    <p className="text-xs text-slate-250 leading-relaxed font-semibold">
+                      Have a customized rig, commercial diesel truck, or specific Canadian winter package question? Shoot a quick live ping directly to our Vancouver hardware engineers:
+                    </p>
+                  </div>
+
+                  {/* Suggestion questions pills structured beautifully */}
+                  <div className="flex flex-col space-y-2.5 py-1">
+                    <span className="text-[9px] font-mono font-black text-indigo-400 uppercase tracking-widest text-left">
+                      SUGGESTED QUICK PINGS
+                    </span>
+                    <div className="flex flex-wrap gap-2 w-full">
+                      {canadianQuestions.map((q, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => triggerPredefinedQuestion(q.action)}
+                          className="text-[10.5px] bg-slate-950/40 hover:bg-indigo-650/15 border border-slate-800 hover:border-indigo-500/55 text-slate-300 hover:text-white font-bold px-3.5 py-2.5 rounded-xl cursor-pointer transition-all duration-200 active:scale-95 text-left flex items-center gap-1.5"
+                          disabled={isAgentTyping}
+                        >
+                          {q.text}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Chat frame styled as an immersive high-tech console window with custom colors */}
+                  <div className="bg-slate-950 border border-slate-850 rounded-2xl p-4.5 h-[210px] overflow-y-auto space-y-4 no-scrollbar shadow-inner relative">
+                    {chatHistory.map((item, i) => (
+                      <div
+                        key={i}
+                        className={`flex flex-col max-w-[85%] ${
+                          item.sender === 'user' ? 'ml-auto text-right items-end' : 'mr-auto text-left items-start'
+                        }`}
+                      >
+                        <span className="text-[8.5px] uppercase font-bold text-slate-500 tracking-wider mb-1">
+                          {item.sender === 'user' ? '⚡ Your Inquiry' : '🍁 James (Vancouver Support)'}
+                        </span>
+                        <div
+                          className={`p-3.5 rounded-2xl text-xs leading-relaxed font-medium transition-all duration-300 ${
+                            item.sender === 'user'
+                              ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-tr-none shadow-md shadow-rose-900/30 border border-rose-450/40 animate-slice-in-right'
+                              : 'bg-slate-900 text-slate-100 rounded-tl-none border border-slate-800 shadow-md animate-slice-in-left'
+                          }`}
+                        >
+                          {item.text}
+                        </div>
+                      </div>
+                    ))}
+                    
+                    {isAgentTyping && (
+                      <div className="text-left max-w-[80%] animate-pulse">
+                        <span className="text-[8.5px] uppercase font-bold text-indigo-400 tracking-wider block mb-1">
+                          🍁 James is typing...
+                        </span>
+                        <div className="bg-slate-900 border border-slate-805 p-3 rounded-2xl rounded-tl-none inline-flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-bounce" style={{ animationDuration: '0.8s' }} />
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-bounce" style={{ animationDelay: '0.15s', animationDuration: '0.8s' }} />
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-bounce" style={{ animationDelay: '0.3s', animationDuration: '0.8s' }} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                 </div>
-              </div>
 
-              <div className="bg-indigo-50/30 border border-indigo-100/20 rounded-2xl p-4.5 text-left">
-                <p className="text-xs text-slate-600 leading-relaxed font-bold">
-                  Have a customized rig, commercial diesel truck, or specific Canadian winter package question? Shoot a quick live ping directly to our Vancouver hardware engineers:
-                </p>
-              </div>
-
-              {/* Dynamic Interactive Suggestion Questions Pills with responsive hover micro-interactions */}
-              <div className="flex flex-col space-y-2 py-1">
-                <span className="text-[9px] font-mono font-black text-slate-400 uppercase tracking-widest text-left">
-                  SUGGESTED QUICK PINGS
-                </span>
-                <div className="flex flex-wrap gap-2 w-full">
-                  {canadianQuestions.map((q, idx) => (
+                {/* Quick message input form aligned perfectly at the custom footer */}
+                <div className="pt-4 mt-5 border-t border-slate-800/50">
+                  <form onSubmit={handleSendMessage} className="flex gap-2.5 relative z-10 w-full">
+                    <input
+                      type="text"
+                      value={chatMessage}
+                      onChange={(e) => setChatMessage(e.target.value)}
+                      placeholder="Ask about your specific vehicle fit..."
+                      className="flex-1 bg-slate-950 border border-slate-800 hover:border-slate-750 focus:border-indigo-500 rounded-xl px-4 py-3.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-inner transition-all duration-200"
+                    />
                     <button
-                      key={idx}
-                      type="button"
-                      onClick={() => triggerPredefinedQuestion(q.action)}
-                      className="text-[10px] bg-white border border-slate-200 hover:border-rose-400 hover:bg-rose-50/40 text-slate-700 font-bold px-3.5 py-2 rounded-full cursor-pointer transition-all shadow-sm active:scale-95 text-left hover:text-rose-700"
-                      disabled={isAgentTyping}
+                      type="submit"
+                      className="bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white text-xs font-black px-5 py-3.5 rounded-xl transition-all duration-300 cursor-pointer shadow-lg shadow-indigo-950/40 hover:shadow-indigo-500/25 flex items-center justify-center gap-1.5 active:scale-95 shrink-0"
                     >
-                      {q.text}
+                      <Send className="w-3.5 h-3.5" />
+                      <span>Ask</span>
                     </button>
-                  ))}
+                  </form>
+                  
+                  {/* Verification assurances badge */}
+                  <div className="text-[10px] text-center text-slate-450 font-bold mt-4.5 flex items-center justify-center gap-1.5">
+                    <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500/80 animate-pulse" />
+                    <span>Over 45,000 kilometres of cold weather road-testing across Canada.</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Chat frame */}
-              <div className="bg-slate-950 border border-slate-900 rounded-2xl p-4.5 h-[190px] overflow-y-auto space-y-3.5 no-scrollbar shadow-inner relative">
-                {chatHistory.map((item, i) => (
-                  <div
-                    key={i}
-                    className={`flex flex-col max-w-[85%] ${
-                      item.sender === 'user' ? 'ml-auto text-right items-end animate-slice-in-right' : 'mr-auto text-left items-start animate-slice-in-left'
-                    }`}
-                  >
-                    <span className="text-[8.5px] uppercase font-bold text-slate-500 tracking-wider mb-1">
-                      {item.sender === 'user' ? 'Your Inquiry' : '🍁 James (Vancouver Support)'}
-                    </span>
-                    <div
-                      className={`p-3 rounded-2xl text-xs leading-relaxed font-medium transition-all ${
-                        item.sender === 'user'
-                          ? 'bg-rose-600 text-white rounded-tr-none shadow-md shadow-rose-650/10'
-                          : 'bg-slate-900 text-slate-100 rounded-tl-none border border-slate-800'
-                      }`}
-                    >
-                      {item.text}
-                    </div>
-                  </div>
-                ))}
-                {isAgentTyping && (
-                  <div className="text-left max-w-[80%] animate-pulse">
-                    <span className="text-[8px] uppercase font-bold text-slate-400 tracking-wider block mb-1">🍁 James is typing...</span>
-                    <div className="bg-slate-900 border border-slate-800 p-2 rounded-xl inline-flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-bounce" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-bounce" style={{ animationDelay: '0.2s' }} />
-                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-bounce" style={{ animationDelay: '0.4s' }} />
-                    </div>
-                  </div>
-                )}
-              </div>
+              </div> {/* Closing Inner Content Card Container */}
+            </div> {/* Closing Glowing Outer Sleeve */}
 
-            </div>
-
-            {/* Quick message input form */}
-            <form onSubmit={handleSendMessage} className="mt-4 flex gap-2">
-              <input
-                type="text"
-                value={chatMessage}
-                onChange={(e) => setChatMessage(e.target.value)}
-                placeholder="Ask about your specific vehicle fit..."
-                className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 placeholder-slate-450 focus:outline-none focus:border-rose-450 focus:ring-4 focus:ring-rose-500/10 shadow-inner transition-all"
-              />
-              <button
-                type="submit"
-                className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-black px-4 py-3 rounded-xl transition-all cursor-pointer shadow-md flex items-center justify-center gap-1.5 active:scale-95 shrink-0"
-              >
-                <Send className="w-3 h-3" />
-                Ask
-              </button>
-            </form>
-
-            <div className="text-[10px] text-center text-slate-400 font-bold mt-4 flex items-center justify-center gap-1.5">
-              <Heart className="w-3 h-3 text-rose-500 fill-rose-500 animate-pulse" />
-              Over 45,000 kilometres of cold weather road-testing across Canada.
-            </div>
-
-          </div> {/* Closing Inner Content Card Container */}
-
-        </div> {/* Closing lg:col-span-5 wrapper */}
+          </div> {/* Closing lg:col-span-5 wrapper */}
 
         </div>
 
