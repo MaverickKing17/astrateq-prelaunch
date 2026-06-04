@@ -57,7 +57,7 @@ export default function EmotionalBenefits({ onScrollToSection }: EmotionalBenefi
           {cards.map((card, i) => (
             <div
               key={i}
-              className="bg-white border-2 border-slate-105 rounded-3xl p-6 sm:p-8 hover:border-indigo-400 group transition-all duration-300 shadow-sm flex flex-col justify-between"
+              className="bg-white border-2 border-indigo-500/30 shadow-[0_0_18px_rgba(99,102,241,0.08)] hover:border-indigo-550 hover:shadow-[0_0_28px_rgba(99,102,241,0.25)] rounded-3xl p-6 sm:p-8 group transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-4 text-left">
                 <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-105 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

@@ -82,7 +82,7 @@ export default function FaqAccordion() {
           {trustFAQs.map((faq, i) => (
             <div
               key={i}
-              className="bg-white border-2 border-slate-105 rounded-2.5xl p-6 sm:p-8 hover:border-indigo-400 group transition-all duration-300 shadow-sm hover:shadow-indigo-600/[0.02] flex flex-col justify-between text-left relative overflow-hidden"
+              className="bg-white border-2 border-indigo-500/30 shadow-[0_0_18px_rgba(99,102,241,0.08)] hover:border-indigo-550 hover:shadow-[0_0_28px_rgba(99,102,241,0.25)] rounded-2.5xl p-6 sm:p-8 group transition-all duration-300 flex flex-col justify-between text-left relative overflow-hidden"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between border-b border-slate-100 pb-3">

@@ -71,11 +71,19 @@ export default function RiskReversal() {
 
             {/* List credentials */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-4">
-              {credentials.map((cred, i) => (
-                <div
-                  key={i}
-                  className={`group/cred relative flex gap-4 p-5 rounded-2xl bg-gradient-to-b from-white to-slate-50/40 border border-slate-250/70 transition-all duration-500 h-full cursor-default ${cred.borderColor} shadow-[0_12px_35px_-10px_rgba(11,15,25,0.06),0_0_15px_rgba(99,102,241,0.01)] hover:shadow-[0_28px_60px_-12px_rgba(11,15,25,0.14)] hover:-translate-y-1.5`}
-                >
+              {credentials.map((cred, i) => {
+                const borderColors = [
+                  'border-indigo-500/30 hover:border-indigo-500 hover:shadow-[0_0_25px_rgba(99,102,241,0.22)]',
+                  'border-emerald-500/30 hover:border-emerald-500 hover:shadow-[0_0_25px_rgba(16,185,129,0.22)]',
+                  'border-blue-500/30 hover:border-blue-500 hover:shadow-[0_0_25px_rgba(59,130,246,0.22)]',
+                  'border-rose-500/30 hover:border-rose-500 hover:shadow-[0_0_25px_rgba(244,63,94,0.22)]'
+                ];
+                
+                return (
+                  <div
+                    key={i}
+                    className={`group/cred relative flex gap-4 p-5 rounded-2xl bg-gradient-to-b from-white to-slate-50/40 border-2 transition-all duration-500 h-full cursor-default shadow-[0_0_18px_rgba(99,102,241,0.06)] hover:-translate-y-1.5 ${borderColors[i]}`}
+                  >
                   {/* Subtle left border line with specific color */}
                   <div className={`absolute top-0 bottom-0 left-0 w-1 ${cred.accentLine} rounded-l-2xl`} />
 
@@ -101,7 +109,8 @@ export default function RiskReversal() {
                     </div>
                   </div>
                 </div>
-              ))}
+              );
+            })}
             </div>
           </div>
 

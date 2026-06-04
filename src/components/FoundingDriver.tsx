@@ -82,7 +82,7 @@ export default function FoundingDriver({ onScrollToSection }: FoundingDriverProp
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-6xl mx-auto">
           
           {/* Left Panel: Real-time Urgency & Status Console */}
-          <div className="lg:col-span-5 bg-gradient-to-b from-[#0F172A] to-[#090D16] border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+          <div className="lg:col-span-5 bg-gradient-to-b from-[#0F172A] to-[#090D16] border-2 border-indigo-500/50 rounded-3xl p-6 sm:p-8 shadow-[0_0_35px_rgba(99,102,241,0.25)] relative overflow-hidden group hover:border-indigo-400 transition-all duration-300">
             {/* Top scanning bar */}
             <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-rose-500 via-indigo-500 to-emerald-500" />
             
@@ -158,7 +158,7 @@ export default function FoundingDriver({ onScrollToSection }: FoundingDriverProp
             {benefits.map((benefit, index) => (
               <div 
                 key={index}
-                className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 hover:border-slate-700 transition-all duration-300 flex gap-4"
+                className="bg-slate-950/80 border-2 border-indigo-500/40 shadow-[0_0_15px_rgba(99,102,241,0.18)] hover:border-indigo-300 hover:shadow-[0_0_25px_rgba(99,102,241,0.35)] rounded-2xl p-5 transition-all duration-300 flex gap-4"
               >
                 <div className="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/25 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5 text-indigo-400" />

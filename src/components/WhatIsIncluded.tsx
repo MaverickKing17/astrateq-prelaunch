@@ -151,7 +151,7 @@ export default function WhatIsIncluded() {
           {arrivedItems.map((item, idx) => (
             <div 
               key={idx}
-              className="bg-slate-50/40 border border-slate-100 rounded-3xl p-6 sm:p-8 hover:border-slate-200 transition-all duration-300 flex flex-col justify-between"
+              className="bg-white border-2 border-indigo-500/30 shadow-[0_0_18px_rgba(99,102,241,0.08)] hover:border-indigo-500 hover:shadow-[0_0_28px_rgba(99,102,241,0.25)] rounded-3xl p-6 sm:p-8 transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-4">
                 <span className="text-[9px] font-mono font-black text-indigo-650 bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded">

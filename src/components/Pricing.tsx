@@ -333,11 +333,11 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                 <div className="absolute -inset-3.5 rounded-[2.8rem] bg-slate-950/15 blur-3xl opacity-50 group-hover/card:opacity-85 transition-all duration-700 pointer-events-none" />
 
                 {/* Highly structured glowing dual-border frame with absolute styling */}
-                <div className={`absolute -inset-[3px] rounded-[2.65rem] opacity-90 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-b ${
+                <div className={`absolute -inset-[3px] rounded-[2.65rem] opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-r ${
                   bundle.isFeatured
-                    ? 'from-indigo-600 via-[#1e293b] to-indigo-950'
-                    : 'from-slate-950 via-[#1e293b] to-slate-950'
-                } shadow-[0_15px_45px_rgba(11,15,25,0.42),0_0_30px_rgba(15,23,42,0.25)]`} />
+                    ? 'from-indigo-500 via-purple-500 to-pink-500 shadow-[0_0_25px_rgba(168,85,247,0.55)]'
+                    : 'from-indigo-400 via-cyan-400 to-teal-400 shadow-[0_0_20px_rgba(6,182,212,0.35)]'
+                }`} />
 
                 {/* Inner White Card */}
                 <div
