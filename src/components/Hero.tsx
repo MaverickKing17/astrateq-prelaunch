@@ -168,14 +168,14 @@ export default function Hero({ onScrollToSection }: HeroProps) {
             </p>
 
             {/* Above-the-fold Compatibility Checker integrated directly (no scrolling required) */}
-            <div className="w-full max-w-xl bg-white border border-slate-205 rounded-2xl p-5 sm:p-6 shadow-[0_20px_45px_rgba(15,23,42,0.1)] relative overflow-hidden mb-6 hover:border-indigo-500/30 transition-all duration-300">
+            <div className="w-full max-w-xl bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-[0_20px_45px_rgba(15,23,42,0.1)] relative overflow-hidden mb-6 hover:border-indigo-500/30 transition-all duration-300">
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-red-500 via-indigo-600 to-red-500" />
               
               {!checkSuccess ? (
                 <form onSubmit={handleCheckCompatibility} className="space-y-4">
                   <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
                     <span className="text-[11px] font-black text-slate-900 uppercase tracking-wider font-mono flex items-center gap-1.5">
-                      <Car className="w-4 h-4 text-indigo-650" />
+                      <Car className="w-4 h-4 text-indigo-600" />
                       Vehicle Compatibility Checker
                     </span>
                     <span className="text-[9px] bg-emerald-50 border border-emerald-150 text-emerald-700 font-bold px-2 py-0.5 rounded font-mono uppercase">
@@ -424,7 +424,7 @@ export default function Hero({ onScrollToSection }: HeroProps) {
                   onClick={() => setActiveTab('obd')}
                   className={`flex-1 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 focus:outline-none ${
                     activeTab === 'obd'
-                      ? 'bg-indigo-650 text-white shadow-md'
+                      ? 'bg-indigo-600 text-white shadow-md border border-indigo-600'
                       : 'text-slate-500 hover:text-slate-800'
                   }`}
                 >
@@ -543,27 +543,27 @@ export default function Hero({ onScrollToSection }: HeroProps) {
                     <div className="flex flex-col gap-2">
                       <div className="bg-slate-50 border border-slate-100 rounded-lg py-1.5 px-3 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <Activity className="w-3.5 h-3.5 text-indigo-650" />
+                          <Activity className="w-3.5 h-3.5 text-indigo-600" />
                           <span className="text-[11px] text-slate-600 font-semibold tracking-wide">Live Engine RPM</span>
                         </div>
                         <span className="font-mono text-xs font-black text-slate-800">
                           {rpm} RPM
                         </span>
                       </div>
-
+                      
                       <div className="bg-slate-50 border border-slate-100 rounded-lg py-1.5 px-3 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <Zap className="w-3.5 h-3.5 text-indigo-650" />
+                          <Zap className="w-3.5 h-3.5 text-indigo-600" />
                           <span className="text-[11px] text-slate-600 font-semibold tracking-wide">Sensor Voltage</span>
                         </div>
-                        <span className="font-mono text-xs font-black text-indigo-605">
+                        <span className="font-mono text-xs font-black text-indigo-600">
                           {voltage} V
                         </span>
                       </div>
-
+                      
                       <div className="bg-slate-50 border border-slate-100 rounded-lg py-1.5 px-3 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <Cpu className="w-3.5 h-3.5 text-emerald-555" />
+                          <Cpu className="w-3.5 h-3.5 text-emerald-600" />
                           <span className="text-[11px] text-slate-600 font-semibold tracking-wide">Active Diagnostic Flags</span>
                         </div>
                         <span className="text-[9px] bg-emerald-50 border border-emerald-200 text-emerald-700 px-2 py-0.5 rounded font-black uppercase">

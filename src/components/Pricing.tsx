@@ -329,6 +329,13 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                     : 'hover:-translate-y-1.5'
                 }`}
               >
+                {/* Most Popular Badge outside overflow-hidden */}
+                {bundle.isFeatured && (
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white font-sans font-extrabold text-[10px] tracking-widest uppercase px-4 py-1.5 rounded-full shadow-md z-30">
+                    {bundle.badge}
+                  </span>
+                )}
+
                 {/* Soft dark backlight ambient aura */}
                 <div className="absolute -inset-3.5 rounded-[2.8rem] bg-slate-950/15 blur-3xl opacity-50 group-hover/card:opacity-85 transition-all duration-700 pointer-events-none" />
 
@@ -343,12 +350,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                 <div
                   className="flex flex-col h-full rounded-[2.5rem] p-6 sm:p-8 relative bg-white border border-slate-905 overflow-hidden shadow-sm"
                 >
-                  {/* Most Popular Badge */}
-                  {bundle.isFeatured && (
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white font-sans font-extrabold text-[10px] tracking-widest uppercase px-4 py-1.5 rounded-full shadow-md z-20">
-                      {bundle.badge}
-                    </span>
-                  )}
+                  {/* (Moved Most Popular Badge to parent) */}
 
                 {/* Package Type and Title */}
                 <div className="mb-5">
