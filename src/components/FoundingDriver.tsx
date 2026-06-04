@@ -137,13 +137,17 @@ export default function FoundingDriver({ onScrollToSection }: FoundingDriverProp
                 </span>
               </div>
 
-              {/* Custom CTA */}
+              {/* High-Impact Interactive CTA Button */}
               <button
                 onClick={() => onScrollToSection('pricing')}
-                className="w-full py-4 bg-indigo-650 hover:bg-indigo-755 text-white font-extrabold text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-indigo-600/10 transition-all flex items-center justify-center gap-2 cursor-pointer border border-transparent hover:scale-[1.01] active:scale-[0.99]"
+                className="w-full py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-650 hover:from-amber-400 hover:via-orange-400 hover:to-rose-550 text-white font-black text-xs sm:text-[13px] uppercase tracking-widest rounded-xl shadow-[0_0_25px_rgba(249,115,22,0.45)] hover:shadow-[0_0_35px_rgba(249,115,22,0.65)] ring-2 ring-amber-400/20 hover:ring-amber-300/50 transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer transform hover:scale-[1.025] active:scale-[0.975] relative overflow-hidden group/btn"
               >
-                Reserve Your Founding Spot ($49)
-                <ArrowRight size={14} />
+                <span className="absolute inset-x-0 bottom-0 h-1/3 bg-white/10 animate-pulse pointer-events-none" />
+                <span className="relative z-10 flex items-center gap-2">
+                  <Flame className="w-4 h-4 text-amber-200 animate-pulse shrink-0" />
+                  RESERVE YOUR FOUNDING SPOT ($49)
+                  <ArrowRight size={15} style={{ strokeWidth: 3 }} className="group-hover/btn:translate-x-1 transition-transform shrink-0" />
+                </span>
               </button>
 
               <p className="text-[10px] text-slate-450 leading-relaxed text-center font-medium">

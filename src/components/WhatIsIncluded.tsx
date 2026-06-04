@@ -11,37 +11,85 @@ export default function WhatIsIncluded() {
       title: "ASTRA-AI Dual-Lens Dash Camera",
       category: "CORE DRIVING SENTINEL",
       desc: "Our high-temperature windshield-mounted housing featuring dual Sony Starvis™ optical lenses, passive night-vision array, and real-time predictive hazard monitoring.",
-      details: "High-temperature composite chassis with custom integrated camera arm."
+      details: "High-temperature composite chassis with custom integrated camera arm.",
+      theme: {
+        border: "border-indigo-100 hover:border-indigo-350",
+        shadow: "shadow-[0_12px_30px_rgba(99,102,241,0.02),0_1px_3px_rgba(0,0,0,0.01)] hover:shadow-[0_22px_45px_rgba(99,102,241,0.12)]",
+        tagBg: "bg-indigo-50/70 text-indigo-750 border-indigo-100/50",
+        accentGradient: "bg-gradient-to-r from-indigo-400 to-purple-500",
+        bgSpotlight: "bg-indigo-500/[0.03]",
+        accentTextColor: "group-hover:text-indigo-600 font-extrabold"
+      }
     },
     {
       title: "OBD-II Special Transceiver Harness",
       category: "DIAGNOSTIC TELEMETRY CAPTURE",
       desc: "An extremely slim, ICES-003 passive OBD sync harness that connects directly below your steering column. Delivers constant, supercapacitor-regulated power.",
-      details: "Pure copper diagnostic wires, heavy electromagnetic shielding."
+      details: "Pure copper diagnostic wires, heavy electromagnetic shielding.",
+      theme: {
+        border: "border-emerald-100 hover:border-emerald-350",
+        shadow: "shadow-[0_12px_30px_rgba(16,185,129,0.02),0_1px_3px_rgba(0,0,0,0.01)] hover:shadow-[0_22px_45px_rgba(16,185,129,0.12)]",
+        tagBg: "bg-emerald-50/70 text-emerald-750 border-emerald-100/50",
+        accentGradient: "bg-gradient-to-r from-emerald-400 to-teal-500",
+        bgSpotlight: "bg-emerald-500/[0.03]",
+        accentTextColor: "group-hover:text-emerald-600 font-extrabold"
+      }
     },
     {
       title: "U3 Extreme Endurance Memory Card",
       category: "DURABLE LOCAL STORAGE",
       desc: "A pre-formatted 128GB high-end solid-state storage unit engineered specifically for continuous local writing cycles under severe vibrations and winter frost.",
-      details: "Industrial Grade, Grade 10 High-Vibe memory cells."
+      details: "Industrial Grade, Grade 10 High-Vibe memory cells.",
+      theme: {
+        border: "border-amber-100 hover:border-amber-300",
+        shadow: "shadow-[0_12px_30px_rgba(245,158,11,0.02),0_1px_3px_rgba(0,0,0,0.01)] hover:shadow-[0_22px_45px_rgba(245,158,11,0.12)]",
+        tagBg: "bg-amber-50/70 text-amber-750 border-amber-100/50",
+        accentGradient: "bg-gradient-to-r from-amber-400 to-yellow-500",
+        bgSpotlight: "bg-amber-500/[0.03]",
+        accentTextColor: "group-hover:text-amber-600 font-extrabold"
+      }
     },
     {
       title: "Matte Black Magnetic Gift Packaging",
       category: "PRESTIGIOUS UNBOXING",
       desc: "Delivered in a striking, thick matte-black gift presentation box with safe high-density foam molds and clean mechanical magnetic closure seals.",
-      details: "100% recyclable structural automotive grade paper stocks."
+      details: "100% recyclable structural automotive grade paper stocks.",
+      theme: {
+        border: "border-rose-100 hover:border-rose-300",
+        shadow: "shadow-[0_12px_30px_rgba(244,63,94,0.02),0_1px_3px_rgba(0,0,0,0.01)] hover:shadow-[0_22px_45px_rgba(244,63,94,0.12)]",
+        tagBg: "bg-rose-50/70 text-rose-750 border-rose-100/50",
+        accentGradient: "bg-gradient-to-r from-rose-400 to-pink-500",
+        bgSpotlight: "bg-rose-500/[0.03]",
+        accentTextColor: "group-hover:text-rose-600 font-extrabold"
+      }
     },
     {
       title: "Companion Mobile App License",
       category: "NATIVE COMPANION CLIENT",
       desc: "Lifetime, zero-fee direct-connection mobile app key. Synchronizes error logs, telemetry files, and road clips securely with 0 cloud streaming dependencies.",
-      details: "iOS & Android offline sync software included forever."
+      details: "iOS & Android offline sync software included forever.",
+      theme: {
+        border: "border-sky-100 hover:border-sky-305",
+        shadow: "shadow-[0_12px_30px_rgba(14,165,233,0.02),0_1px_3px_rgba(0,0,0,0.01)] hover:shadow-[0_22px_45px_rgba(14,165,233,0.12)]",
+        tagBg: "bg-sky-50/70 text-sky-750 border-sky-100/50",
+        accentGradient: "bg-gradient-to-r from-sky-400 to-blue-500",
+        bgSpotlight: "bg-sky-500/[0.03]",
+        accentTextColor: "group-hover:text-sky-600 font-extrabold"
+      }
     },
     {
       title: "Canadian Install Kit & Accessories",
       category: "COMPLETE TOOLSETS INCLUDED",
       desc: "Everything you need for a premium, clean layout: clear adhesive windshield anchors, cable-routing trim tuckers, and standard adhesive cable wraps.",
-      details: "Windshield mount, trim routing leverage lever, installation guide."
+      details: "Windshield mount, trim routing leverage lever, installation guide.",
+      theme: {
+        border: "border-purple-100 hover:border-purple-305",
+        shadow: "shadow-[0_12px_30px_rgba(139,92,246,0.02),0_1px_3px_rgba(0,0,0,0.01)] hover:shadow-[0_22px_45px_rgba(139,92,246,0.12)]",
+        tagBg: "bg-purple-50/70 text-purple-750 border-purple-100/50",
+        accentGradient: "bg-gradient-to-r from-purple-400 to-fuchsia-500",
+        bgSpotlight: "bg-purple-500/[0.03]",
+        accentTextColor: "group-hover:text-purple-600 font-extrabold"
+      }
     }
   ];
 
@@ -151,15 +199,21 @@ export default function WhatIsIncluded() {
           {arrivedItems.map((item, idx) => (
             <div 
               key={idx}
-              className="bg-white border-2 border-indigo-500/30 shadow-[0_0_18px_rgba(99,102,241,0.08)] hover:border-indigo-500 hover:shadow-[0_0_28px_rgba(99,102,241,0.25)] rounded-3xl p-6 sm:p-8 transition-all duration-300 flex flex-col justify-between"
+              className={`bg-white border-2 ${item.theme.border} ${item.theme.shadow} rounded-3xl p-6 sm:p-8 transition-all duration-500 flex flex-col justify-between relative overflow-hidden group`}
             >
-              <div className="space-y-4">
-                <span className="text-[9px] font-mono font-black text-indigo-650 bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded">
+              {/* Dynamic top ribbon */}
+              <div className={`absolute top-0 inset-x-0 h-1.5 ${item.theme.accentGradient} transition-transform duration-500`} />
+              
+              {/* Glow spotlight */}
+              <div className={`absolute -right-20 -top-20 w-40 h-40 rounded-full ${item.theme.bgSpotlight} blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+
+              <div className="space-y-4 relative z-10">
+                <span className={`text-[9px] font-mono font-black px-2.5 py-1 rounded inline-block ${item.theme.tagBg}`}>
                   {item.category}
                 </span>
 
                 <div className="space-y-1.5 pt-1">
-                  <h4 className="text-base font-black text-slate-900 tracking-tight leading-tight">
+                  <h4 className={`text-base font-black text-slate-900 tracking-tight leading-tight ${item.theme.accentTextColor} transition-colors duration-300`}>
                     {item.title}
                   </h4>
                   <p className="text-xs text-slate-600 leading-relaxed font-semibold">
@@ -168,7 +222,7 @@ export default function WhatIsIncluded() {
                 </div>
               </div>
 
-              <div className="border-t border-slate-100 pt-4 mt-6">
+              <div className="border-t border-slate-100 pt-4 mt-6 relative z-10">
                 <span className="text-[9.5px] font-mono text-slate-400 font-bold block uppercase">Hardware Specification</span>
                 <span className="text-[11px] text-slate-700 font-bold block mt-0.5">{item.details}</span>
               </div>
