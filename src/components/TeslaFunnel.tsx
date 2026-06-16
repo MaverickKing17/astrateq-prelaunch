@@ -410,62 +410,117 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
             {/* Right side: Minimal Abstract System Diagram (50/50 Split layout) */}
             <div className="lg:col-span-6 flex justify-center items-center">
               
-              <div className="w-full max-w-[420px] bg-slate-950 text-slate-100 border border-slate-900 rounded-[2rem] p-7 space-y-6 shadow-2xl relative overflow-hidden">
+              <div className="w-full max-w-[440px] bg-slate-950/95 backdrop-blur-xl border border-slate-800 rounded-[2.5rem] p-7.5 space-y-6 shadow-2xl relative overflow-hidden ring-1 ring-white/5">
                 {/* Spotlights */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute top-0 right-0 w-44 h-44 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-44 h-44 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
                 
                 {/* High tech glass header */}
-                <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                  <div className="flex items-center gap-2">
-                    <div className="px-2 py-1 bg-indigo-950 text-indigo-400 font-mono text-[9px] font-black tracking-widest rounded border border-indigo-900">COHORT MAPPING</div>
+                <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping" />
+                    <div className="px-2.5 py-1 bg-indigo-950/60 text-indigo-400 font-mono text-[9px] font-black tracking-widest rounded-md border border-indigo-900/55 uppercase">
+                      COHORT MAPPING
+                    </div>
                   </div>
-                  <span className="text-[9px] font-mono text-slate-400 font-bold uppercase">VERSION 1.1 PROTOTYPE</span>
+                  <span className="text-[9.5px] font-mono text-slate-400 font-black tracking-wider uppercase flex items-center gap-1.5">
+                    <span className="w-1 h-1 rounded-full bg-indigo-500" />
+                    v1.1 Concept Layer
+                  </span>
                 </div>
 
                 {/* Conceptual Schematic boxes */}
                 <div className="space-y-4">
                   
                   {/* Wire 1: Vehicle Diagnostics */}
-                  <div className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 flex items-start gap-3 relative group">
-                    <div className="p-2 bg-indigo-950 text-indigo-400 rounded-lg border border-indigo-900">
-                      <Cpu className="w-4 h-4" />
+                  <div className="bg-gradient-to-r from-slate-900 to-slate-950/80 border border-slate-800/90 rounded-2xl p-4.5 flex items-start gap-4 relative group transition-all duration-300 hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-950/20">
+                    {/* Status Glow Bar (Left Border) */}
+                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-indigo-500 rounded-l-2xl" />
+                    
+                    {/* Icon Container */}
+                    <div className="p-2.5 bg-indigo-950/85 text-indigo-400 rounded-xl border border-indigo-900/60 shrink-0 shadow-sm relative group-hover:scale-105 transition-transform">
+                      <Cpu className="w-4.5 h-4.5" />
+                      <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-emerald-500 border border-slate-950 animate-pulse" />
                     </div>
+
+                    {/* Details */}
                     <div className="flex-1 text-left">
-                      <span className="block text-[11px] max-w-fit font-bold font-mono tracking-wider text-slate-400 uppercase">Input Node</span>
-                      <span className="block text-xs font-black text-white mt-1">Sensing CAN-bus engine signals</span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold font-mono tracking-widest text-indigo-400 uppercase leading-none">Input Node</span>
+                        <span className="text-[8px] font-mono text-emerald-400 bg-emerald-950/40 px-1.5 py-0.2 rounded border border-emerald-900/60 font-semibold uppercase leading-none">CAN Bus • Active</span>
+                      </div>
+                      <h4 className="text-[13.5px] font-bold text-white mt-1 leading-snug">
+                        Sensing CAN-bus engine signals
+                      </h4>
+                      <p className="text-[10.5px] text-slate-400 font-medium leading-relaxed mt-1">
+                        Captures system telemetry and diagnostic frames directly.
+                      </p>
                     </div>
-                    <span className="absolute top-3.5 right-3.5 h-2 w-2 rounded-full bg-emerald-500" />
                   </div>
 
-                  {/* Connecting pipe */}
-                  <div className="h-4 flex items-center justify-start pl-8">
-                    <div className="w-[1.5px] h-full bg-indigo-600/60 dashed" />
+                  {/* Flow badge 1 */}
+                  <div className="flex justify-center -my-2 select-none pointer-events-none relative z-10">
+                    <div className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-[8px] tracking-widest uppercase font-bold text-indigo-400 shadow-sm border-indigo-900/30 flex items-center gap-1.5">
+                      <span>FLOW</span>
+                      <span className="text-indigo-400 font-black animate-bounce">&darr;</span>
+                    </div>
                   </div>
 
                   {/* Wire 2: Internal Edge Processor Shield */}
-                  <div className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 flex items-start gap-3 relative">
-                    <div className="p-2 bg-rose-950 text-rose-400 rounded-lg border border-rose-900">
-                      <Shield className="w-4 h-4" />
+                  <div className="bg-gradient-to-r from-slate-900 to-slate-950/80 border border-slate-800/90 rounded-2xl p-4.5 flex items-start gap-4 relative group transition-all duration-300 hover:border-rose-500/30 hover:shadow-lg hover:shadow-rose-950/20">
+                    {/* Status Glow Bar */}
+                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-rose-500 rounded-l-2xl" />
+
+                    {/* Icon Container */}
+                    <div className="p-2.5 bg-rose-950/85 text-rose-400 rounded-xl border border-rose-900/60 shrink-0 shadow-sm relative group-hover:scale-105 transition-transform">
+                      <Shield className="w-4.5 h-4.5" />
                     </div>
+
+                    {/* Details */}
                     <div className="flex-1 text-left">
-                      <span className="block text-[11px] max-w-fit font-bold font-mono tracking-wider text-slate-400 uppercase">Astrateq Edge Layer</span>
-                      <span className="block text-xs font-black text-white mt-1">Processing locally &bull; Encrypted loop</span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold font-mono tracking-widest text-rose-400 uppercase leading-none">Astrateq Edge Layer</span>
+                        <span className="text-[8px] font-mono text-rose-400 bg-rose-950/40 px-1.5 py-0.2 rounded border border-rose-900/60 font-semibold uppercase leading-none">Encrypted RAM Loop</span>
+                      </div>
+                      <h4 className="text-[13.5px] font-bold text-white mt-1 leading-snug">
+                        Processing locally &bull; Encrypted loop
+                      </h4>
+                      <p className="text-[10.5px] text-slate-400 font-medium leading-relaxed mt-1">
+                        Evaluates fault metrics in volatile memory; zero remote history is saved.
+                      </p>
                     </div>
                   </div>
 
-                  {/* Connecting pipe */}
-                  <div className="h-4 flex items-center justify-start pl-8">
-                    <div className="w-[1.5px] h-full bg-indigo-600/60" />
+                  {/* Flow badge 2 */}
+                  <div className="flex justify-center -my-2 select-none pointer-events-none relative z-10">
+                    <div className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-[8px] tracking-widest uppercase font-bold text-rose-400 shadow-sm border-rose-900/30 flex items-center gap-1.5">
+                      <span>SECURED STREAM</span>
+                      <span className="text-rose-400 font-black animate-bounce">&darr;</span>
+                    </div>
                   </div>
 
                   {/* Wire 3: Driver action screen */}
-                  <div className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 flex items-start gap-3 relative">
-                    <div className="p-2 bg-emerald-950 text-emerald-400 rounded-lg border border-emerald-900">
-                      <CheckCircle className="w-4 h-4" />
+                  <div className="bg-gradient-to-r from-slate-900 to-slate-950/80 border border-slate-800/90 rounded-2xl p-4.5 flex items-start gap-4 relative group transition-all duration-300 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-950/20">
+                    {/* Status Glow Bar */}
+                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-emerald-500 rounded-l-2xl" />
+
+                    {/* Icon Container */}
+                    <div className="p-2.5 bg-emerald-950/85 text-emerald-400 rounded-xl border border-emerald-900/60 shrink-0 shadow-sm relative group-hover:scale-105 transition-transform">
+                      <CheckCircle className="w-4.5 h-4.5" />
                     </div>
+
+                    {/* Details */}
                     <div className="flex-1 text-left">
-                      <span className="block text-[11px] max-w-fit font-bold font-mono tracking-wider text-slate-400 uppercase">Clean Display Out</span>
-                      <span className="block text-xs font-black text-white mt-1">Outputting direct verbal driver guidance</span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold font-mono tracking-widest text-emerald-400 uppercase leading-none">Clean Display Out</span>
+                        <span className="text-[8px] font-mono text-emerald-400 bg-emerald-950/40 px-1.5 py-0.2 rounded border border-emerald-900/60 font-semibold uppercase leading-none">Verbal Guidance</span>
+                      </div>
+                      <h4 className="text-[13.5px] font-bold text-white mt-1 leading-snug">
+                        Outputting direct verbal driver guidance
+                      </h4>
+                      <p className="text-[10.5px] text-slate-400 font-medium leading-relaxed mt-1">
+                        Deciphers engine codes into plain, spoken mechanical recommendations instantly.
+                      </p>
                     </div>
                   </div>
 
@@ -493,76 +548,192 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
               <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight">
                 Core concept modules
               </h2>
-            </div>
-
-            {/* 3 EQUAL HORIZONTAL CARDS (Desktop) / STACKED (Mobile) */}
+              {/* 3 EQUAL HORIZONTAL CARDS (Desktop) / STACKED (Mobile) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
               {/* Card 1 — Fatigue Intelligence */}
               <div 
-                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[290px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
+                className="group flex flex-col justify-between p-7 rounded-[2.5rem] border transition-all duration-500 ease-out min-h-[340px] bg-white text-slate-900 border-slate-200/80 hover:border-indigo-500/50 hover:shadow-[0_24px_50px_rgba(79,70,229,0.08)] hover:-translate-y-2.5 shadow-sm text-left relative overflow-hidden"
               >
-                <div className="space-y-4">
+                {/* Glowing top line with color match */}
+                <div className="absolute top-0 left-0 right-0 h-[4px] bg-indigo-500/20 group-hover:bg-indigo-500 transition-colors duration-300" />
+                
+                {/* Clean ambient radial glow */}
+                <div className="absolute -right-12 -bottom-12 w-32 h-32 rounded-full bg-indigo-500/[0.03] group-hover:bg-indigo-500/[0.06] transition-colors duration-500 blur-2xl pointer-events-none" />
+                
+                <div className="space-y-5 relative z-10">
+                  {/* Badge & Icon Header */}
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700">
+                    <span className="text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-100/50 shadow-xs">
                       Module 01 &bull; Safety
                     </span>
-                    <Activity className="w-5 h-5 text-indigo-600 animate-pulse" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-black tracking-tight text-slate-950">Fatigue Intelligence</h3>
-                    <div className="space-y-2 mt-3.5 text-[12.5px] leading-relaxed text-slate-600">
-                      <p><strong className="text-slate-900">Problem:</strong> Fatigue builds slowly and reduces reflexes before drowsiness is noticeable.</p>
-                      <p><strong className="text-slate-900">Value:</strong> Stability indicators flag micro-steering shifts to guide safe rest stop timings.</p>
-                      <p><strong className="text-slate-900">Privacy:</strong> Analyzed exclusively in volatile RAM; no behavioral files are saved.</p>
+                    <div className="p-2 rounded-xl bg-indigo-50/50 text-indigo-600 group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(99,102,241,0.25)] transition-all duration-300">
+                      <Activity className="w-4 h-4 animate-pulse animate-duration-[2000ms]" />
                     </div>
+                  </div>
+
+                  {/* Title & Content */}
+                  <div>
+                    <h3 className="text-xl font-black tracking-tight text-slate-950 group-hover:text-indigo-950 transition-colors duration-300">
+                      Fatigue Intelligence
+                    </h3>
+                    
+                    {/* High-fidelity itemized parameters */}
+                    <div className="space-y-3 mt-4">
+                      {/* Problem row */}
+                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
+                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Problem</strong>
+                          Fatigue builds slowly and reduces reflexes before drowsiness is noticeable.
+                        </p>
+                      </div>
+
+                      {/* Value row */}
+                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
+                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Value</strong>
+                          Stability indicators flag micro-steering shifts to guide safe rest stop timings.
+                        </p>
+                      </div>
+
+                      {/* Privacy row */}
+                      <div className="p-3 rounded-xl bg-indigo-50/25 border border-indigo-100/30 flex items-start gap-2.5 transition-colors">
+                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-indigo-600" />
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          <strong className="text-indigo-950 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Privacy</strong>
+                          Analyzed exclusively in volatile RAM; no behavioral files are saved.
+                        </p>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
 
               {/* Card 2 — Smart Diagnostics */}
               <div 
-                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[290px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
+                className="group flex flex-col justify-between p-7 rounded-[2.5rem] border transition-all duration-500 ease-out min-h-[340px] bg-white text-slate-900 border-slate-200/80 hover:border-amber-500/50 hover:shadow-[0_24px_50px_rgba(245,158,11,0.08)] hover:-translate-y-2.5 shadow-sm text-left relative overflow-hidden"
               >
-                <div className="space-y-4">
+                {/* Glowing top line with color match */}
+                <div className="absolute top-0 left-0 right-0 h-[4px] bg-amber-500/20 group-hover:bg-amber-500 transition-colors duration-300" />
+                
+                {/* Clean ambient radial glow */}
+                <div className="absolute -right-12 -bottom-12 w-32 h-32 rounded-full bg-amber-500/[0.03] group-hover:bg-amber-500/[0.06] transition-colors duration-500 blur-2xl pointer-events-none" />
+                
+                <div className="space-y-5 relative z-10">
+                  {/* Badge & Icon Header */}
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700">
+                    <span className="text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-xl bg-amber-50 text-amber-700 border border-amber-100/50 shadow-xs">
                       Module 02 &bull; Context
                     </span>
-                    <Cpu className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-black tracking-tight text-slate-950">Smart Diagnostics</h3>
-                    <div className="space-y-2 mt-3.5 text-[12.5px] leading-relaxed text-slate-600">
-                      <p><strong className="text-slate-900">Problem:</strong> Engine warnings trigger panic without specifying issue urgency or drivability.</p>
-                      <p><strong className="text-slate-900">Value:</strong> Translates fault codes instantly into crystal clear mechanic urgency diagnostics.</p>
-                      <p><strong className="text-slate-900">Privacy:</strong> Signals stay inside local chip bus, isolated from remote connected databases.</p>
+                    <div className="p-2 rounded-xl bg-amber-50/50 text-amber-600 group-hover:bg-amber-500 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(245,158,11,0.25)] transition-all duration-300">
+                      <Cpu className="w-4 h-4" />
                     </div>
+                  </div>
+
+                  {/* Title & Content */}
+                  <div>
+                    <h3 className="text-xl font-black tracking-tight text-slate-950 group-hover:text-amber-950 transition-colors duration-300">
+                      Smart Diagnostics
+                    </h3>
+                    
+                    {/* High-fidelity itemized parameters */}
+                    <div className="space-y-3 mt-4">
+                      {/* Problem row */}
+                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
+                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Problem</strong>
+                          Engine warnings trigger panic without specifying issue urgency or drivability.
+                        </p>
+                      </div>
+
+                      {/* Value row */}
+                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
+                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500" />
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Value</strong>
+                          Translates fault codes instantly into crystal clear mechanic urgency diagnostics.
+                        </p>
+                      </div>
+
+                      {/* Privacy row */}
+                      <div className="p-3 rounded-xl bg-amber-50/25 border border-amber-100/30 flex items-start gap-2.5 transition-colors">
+                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-600" />
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          <strong className="text-amber-950 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Privacy</strong>
+                          Signals stay inside local chip bus, isolated from remote connected databases.
+                        </p>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
 
               {/* Card 3 — Privacy-First Processing */}
               <div 
-                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[290px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
+                className="group flex flex-col justify-between p-7 rounded-[2.5rem] border transition-all duration-500 ease-out min-h-[340px] bg-white text-slate-900 border-slate-200/80 hover:border-emerald-500/50 hover:shadow-[0_24px_50px_rgba(16,185,129,0.08)] hover:-translate-y-2.5 shadow-sm text-left relative overflow-hidden"
               >
-                <div className="space-y-4">
+                {/* Glowing top line with color match */}
+                <div className="absolute top-0 left-0 right-0 h-[4px] bg-emerald-500/20 group-hover:bg-emerald-500 transition-colors duration-300" />
+                
+                {/* Clean ambient radial glow */}
+                <div className="absolute -right-12 -bottom-12 w-32 h-32 rounded-full bg-emerald-500/[0.03] group-hover:bg-emerald-500/[0.06] transition-colors duration-500 blur-2xl pointer-events-none" />
+                
+                <div className="space-y-5 relative z-10">
+                  {/* Badge & Icon Header */}
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700">
+                    <span className="text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100/50 shadow-xs">
                       Module 03 &bull; Shield
                     </span>
-                    <EyeOff className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-black tracking-tight text-slate-950">Privacy-First Processing</h3>
-                    <div className="space-y-2 mt-3.5 text-[12.5px] leading-relaxed text-slate-600">
-                      <p><strong className="text-slate-900">Problem:</strong> Infotainment layers routinely capture location, cabin logs, and travel routes.</p>
-                      <p><strong className="text-slate-900">Value:</strong> Shields habits, coordinates, and trip speeds entirely localized to your dashboard.</p>
-                      <p><strong className="text-slate-900">Privacy:</strong> Runs on absolute air-gapped local logic that lacks public networking access.</p>
+                    <div className="p-2 rounded-xl bg-emerald-50/50 text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(16,185,129,0.25)] transition-all duration-300">
+                      <EyeOff className="w-4 h-4" />
                     </div>
+                  </div>
+
+                  {/* Title & Content */}
+                  <div>
+                    <h3 className="text-xl font-black tracking-tight text-slate-950 group-hover:text-emerald-950 transition-colors duration-300">
+                      Privacy-First Processing
+                    </h3>
+                    
+                    {/* High-fidelity itemized parameters */}
+                    <div className="space-y-3 mt-4">
+                      {/* Problem row */}
+                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
+                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Problem</strong>
+                          Infotainment layers routinely capture location, cabin logs, and travel routes.
+                        </p>
+                      </div>
+
+                      {/* Value row */}
+                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
+                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Value</strong>
+                          Shields habits, coordinates, and trip speeds entirely localized to your dashboard.
+                        </p>
+                      </div>
+
+                      {/* Privacy row */}
+                      <div className="p-3 rounded-xl bg-emerald-50/25 border border-emerald-100/30 flex items-start gap-2.5 transition-colors">
+                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          <strong className="text-emerald-950 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Privacy</strong>
+                          Runs on absolute air-gapped local logic that lacks public networking access.
+                        </p>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
+            </div>
 
             </div>
 
@@ -572,61 +743,93 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
 
         {/* 5. TRUST REINFORCEMENT STRIP */}
-        <section id="funnel-trust-strip" className="py-16 md:py-20 border-b border-slate-200/50 flex flex-col justify-center min-h-[40vh] bg-slate-950 text-white rounded-3xl my-10 relative overflow-hidden px-8 sm:px-12">
+        <section id="funnel-trust-strip" className="py-16 md:py-20 border border-slate-800/80 flex flex-col justify-center min-h-[40vh] bg-slate-950 bg-gradient-to-b from-slate-900 to-black text-white rounded-[3rem] my-12 relative overflow-hidden px-8 sm:px-12 shadow-2xl shadow-indigo-950/30">
           
-          <div className="absolute top-0 right-1/4 w-80 h-80 bg-slate-800/10 rounded-full blur-[90px] pointer-events-none" />
+          {/* Futuristic ambient lights */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
+          {/* Tech Grid overlay */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
           
-          <div className="space-y-10 text-center max-w-4xl mx-auto relative z-10">
+          <div className="space-y-12 text-center max-w-5xl mx-auto relative z-10">
             
             {/* Main Statement */}
-            <div className="space-y-3">
-              <span className="text-[10px] uppercase tracking-widest font-mono text-slate-400 font-extrabold">strict reservation framework</span>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-white max-w-3xl mx-auto">
+            <div className="space-y-3.5">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-900/60 text-[9px] uppercase tracking-widest font-mono text-indigo-400 font-black shadow-inner">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping" />
+                strict reservation framework
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400 max-w-3xl mx-auto pb-1">
                 Transparent pre-launch validation
               </h2>
             </div>
 
+            {/* Glowing line divider */}
+            <div className="relative w-full h-[1px] bg-gradient-to-r from-transparent via-slate-800 to-transparent my-4">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,1)]" />
+            </div>
+
             {/* Micro-trust bullets row */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pt-5 border-t border-slate-800/80">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 pt-3">
               
-              <div className="flex flex-col items-center gap-2 text-center">
-                <div className="p-2 bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/25">
-                  <ShieldCheck className="w-5 h-5" />
+              {/* Card 1 */}
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/80 backdrop-blur-md border border-slate-800/70 rounded-2xl p-5 hover:border-indigo-500/35 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-indigo-500/[0.02] hover:-translate-y-1.5 transition-all duration-300 min-h-[195px] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-500/[0.01] group-hover:bg-indigo-500/[0.03] transition-all duration-300 rounded-full blur-lg pointer-events-none" />
+                <div className="flex flex-col items-center gap-3.5">
+                  <div className="p-2.5 bg-indigo-500/15 text-indigo-400 rounded-2xl border border-indigo-500/20 group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(99,102,241,0.25)] transition-all duration-300">
+                    <ShieldCheck className="w-5.5 h-5.5" />
+                  </div>
+                  <div className="space-y-1.5 px-1">
+                    <span className="block text-[13px] font-black text-slate-100 leading-tight">Fully refundable reservation</span>
+                    <span className="block text-[11px] text-slate-400 leading-normal">Get your $40 CAD back instantly at any time</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-xs font-black text-slate-100">Fully refundable reservation</span>
-                  <span className="block text-[11px] text-slate-400 mt-1">Get your $40 CAD back instantly at any time</span>
-                </div>
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500/20 group-hover:bg-indigo-500 transition-colors duration-300 mt-2" />
               </div>
 
-              <div className="flex flex-col items-center gap-2 text-center">
-                <div className="p-2 bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/25">
-                  <CheckCircle className="w-5 h-5" />
+              {/* Card 2 */}
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/80 backdrop-blur-md border border-slate-800/70 rounded-2xl p-5 hover:border-violet-500/35 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-violet-500/[0.02] hover:-translate-y-1.5 transition-all duration-300 min-h-[195px] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-violet-500/[0.01] group-hover:bg-violet-500/[0.03] transition-all duration-300 rounded-full blur-lg pointer-events-none" />
+                <div className="flex flex-col items-center gap-3.5">
+                  <div className="p-2.5 bg-violet-500/15 text-violet-400 rounded-2xl border border-violet-500/20 group-hover:bg-violet-500 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(139,92,246,0.25)] transition-all duration-300">
+                    <CheckCircle className="w-5.5 h-5.5" />
+                  </div>
+                  <div className="space-y-1.5 px-1">
+                    <span className="block text-[13px] font-black text-slate-100 leading-tight">Limited validation cohort</span>
+                    <span className="block text-[11px] text-slate-400 leading-normal">Accepting early validation subscribers only</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-xs font-black text-slate-100">Limited validation cohort</span>
-                  <span className="block text-[11px] text-slate-400 mt-1">Accepting early validation subscribers only</span>
-                </div>
+                <div className="w-1.5 h-1.5 rounded-full bg-violet-500/20 group-hover:bg-violet-500 transition-colors duration-300 mt-2" />
               </div>
 
-              <div className="flex flex-col items-center gap-2 text-center">
-                <div className="p-2 bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/25">
-                  <Activity className="w-5 h-5" />
+              {/* Card 3 */}
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/80 backdrop-blur-md border border-slate-800/70 rounded-2xl p-5 hover:border-rose-500/35 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-rose-500/[0.02] hover:-translate-y-1.5 transition-all duration-300 min-h-[195px] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-rose-500/[0.01] group-hover:bg-rose-500/[0.03] transition-all duration-300 rounded-full blur-lg pointer-events-none" />
+                <div className="flex flex-col items-center gap-3.5">
+                  <div className="p-2.5 bg-rose-500/15 text-rose-400 rounded-2xl border border-rose-500/20 group-hover:bg-rose-500 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(244,63,94,0.25)] transition-all duration-300">
+                    <Activity className="w-5.5 h-5.5" />
+                  </div>
+                  <div className="space-y-1.5 px-1">
+                    <span className="block text-[13px] font-black text-slate-100 leading-tight">Feedback shapes product direction</span>
+                    <span className="block text-[11px] text-slate-400 leading-normal">Help determine physical sensor final design</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-xs font-black text-slate-100">Feedback shapes product direction</span>
-                  <span className="block text-[11px] text-slate-400 mt-1">Help determine physical sensor final design</span>
-                </div>
+                <div className="w-1.5 h-1.5 rounded-full bg-rose-500/20 group-hover:bg-rose-500 transition-colors duration-300 mt-2" />
               </div>
 
-              <div className="flex flex-col items-center gap-2 text-center">
-                <div className="p-2 bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/25">
-                  <EyeOff className="w-5 h-5" />
+              {/* Card 4 */}
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/80 backdrop-blur-md border border-slate-800/70 rounded-2xl p-5 hover:border-emerald-500/35 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-emerald-500/[0.02] hover:-translate-y-1.5 transition-all duration-300 min-h-[195px] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/[0.01] group-hover:bg-emerald-500/[0.03] transition-all duration-300 rounded-full blur-lg pointer-events-none" />
+                <div className="flex flex-col items-center gap-3.5">
+                  <div className="p-2.5 bg-emerald-500/15 text-emerald-400 rounded-2xl border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(16,185,129,0.25)] transition-all duration-300">
+                    <EyeOff className="w-5.5 h-5.5" />
+                  </div>
+                  <div className="space-y-1.5 px-1">
+                    <span className="block text-[13px] font-black text-slate-100 leading-tight">No production commitment required</span>
+                    <span className="block text-[11px] text-slate-400 leading-normal">We optimize concepts first before assembly lines</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-xs font-black text-slate-100">No production commitment required</span>
-                  <span className="block text-[11px] text-slate-400 mt-1">We optimize concepts first before assembly lines</span>
-                </div>
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/20 group-hover:bg-emerald-500 transition-colors duration-300 mt-2" />
               </div>
 
             </div>
