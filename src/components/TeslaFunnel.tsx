@@ -73,7 +73,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                 {/* Primary CTA */}
                 <button
                   onClick={() => {
-                    const el = document.getElementById('funnel-conversion');
+                    const el = document.getElementById('reserve');
                     el?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base rounded-xl cursor-pointer transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 text-center uppercase tracking-wider"
@@ -197,13 +197,13 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                     </svg>
 
                     {/* Laser Overlay Pointer Pin 1: Smart Diagnostics */}
-                    <div className="absolute top-[52%] left-[16%] flex items-center">
+                    <div className="absolute top-[52%] left-[12%] flex items-center">
                       <div className="relative flex h-3 w-3">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-600"></span>
                       </div>
                       <div className="ml-2 bg-slate-900 text-white text-[9px] font-mono tracking-wide font-black px-2 py-1 rounded shadow-sm border border-slate-700 uppercase whitespace-nowrap">
-                        OBD II Diagnostic
+                        AI Diagnostic Scanner
                       </div>
                     </div>
 
@@ -214,7 +214,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
                       </div>
                       <div className="mt-1 bg-slate-900 text-white text-[9px] font-mono tracking-wide font-black px-2 py-1 rounded shadow-sm border border-slate-700 uppercase whitespace-nowrap">
-                        Fatigue Support
+                        Fatigue &amp; Distraction Support
                       </div>
                     </div>
 
@@ -225,7 +225,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 flex items-center justify-center text-[8px] text-white"></span>
                       </div>
                       <div className="ml-2 bg-slate-900 text-white text-[9px] font-mono tracking-wide font-black px-2 py-1 rounded shadow-sm border border-slate-700 uppercase whitespace-nowrap">
-                        Local AI Node
+                        Privacy-First Processing
                       </div>
                     </div>
 
@@ -264,7 +264,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
               </span>
               {/* H2 Title */}
               <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight">
-                Traditional vehicle feedback leaves drivers at risk.
+                Vehicle alerts often leave drivers without enough context.
               </h2>
             </div>
 
@@ -530,30 +530,21 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
               
               {/* Card 1 — Fatigue Intelligence */}
               <div 
-                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[340px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
+                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[290px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
               >
-                <div className="space-y-5">
+                <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700">
-                      Module 01 • Behavior
+                      Module 01 &bull; Safety
                     </span>
                     <Activity className="w-5 h-5 text-indigo-600 animate-pulse" />
                   </div>
                   <div>
                     <h3 className="text-lg font-black tracking-tight text-slate-950">Fatigue Intelligence</h3>
-                    <div className="space-y-3 mt-4 text-[13px] leading-relaxed text-slate-600">
-                      <div>
-                        <span className="block font-bold text-slate-900">What problem does it solve?</span>
-                        <p>Fatigue begins slowly and impairs reflexes before drivers notice physical drowsiness.</p>
-                      </div>
-                      <div>
-                        <span className="block font-bold text-slate-900">Why would a driver care?</span>
-                        <p>Receive proactive steering-stability indicators to prevent accidental lane drift and collision risks.</p>
-                      </div>
-                      <div>
-                        <span className="block font-bold text-slate-900">Why is it privacy-conscious?</span>
-                        <p>Evaluates steering stability entirely inside local RAM. No driver telemetry is saved or transmitted.</p>
-                      </div>
+                    <div className="space-y-2 mt-3.5 text-[12.5px] leading-relaxed text-slate-600">
+                      <p><strong className="text-slate-900">Problem:</strong> Fatigue builds slowly and reduces reflexes before drowsiness is noticeable.</p>
+                      <p><strong className="text-slate-900">Value:</strong> Stability indicators flag micro-steering shifts to guide safe rest stop timings.</p>
+                      <p><strong className="text-slate-900">Privacy:</strong> Analyzed exclusively in volatile RAM; no behavioral files are saved.</p>
                     </div>
                   </div>
                 </div>
@@ -561,30 +552,21 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
               {/* Card 2 — Smart Diagnostics */}
               <div 
-                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[340px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
+                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[290px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
               >
-                <div className="space-y-5">
+                <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700">
-                      Module 02 • Translation
+                      Module 02 &bull; Context
                     </span>
                     <Cpu className="w-5 h-5 text-indigo-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-black tracking-tight text-slate-950">Smart Diagnostics</h3>
-                    <div className="space-y-3 mt-4 text-[13px] leading-relaxed text-slate-600">
-                      <div>
-                        <span className="block font-bold text-slate-900">What problem does it solve?</span>
-                        <p>Cryptic engine dashboard warning lights invoke panic without detailing breakdown urgency.</p>
-                      </div>
-                      <div>
-                        <span className="block font-bold text-slate-900">Why would a driver care?</span>
-                        <p>Instantly understand the defect so you know if it requires an immediate tow or allows driving home.</p>
-                      </div>
-                      <div>
-                        <span className="block font-bold text-slate-900">Why is it privacy-conscious?</span>
-                        <p>Interprets CAN-bus signals locally on-processor, isolated completely from remote diagnostic logs.</p>
-                      </div>
+                    <div className="space-y-2 mt-3.5 text-[12.5px] leading-relaxed text-slate-600">
+                      <p><strong className="text-slate-900">Problem:</strong> Engine warnings trigger panic without specifying issue urgency or drivability.</p>
+                      <p><strong className="text-slate-900">Value:</strong> Translates fault codes instantly into crystal clear mechanic urgency diagnostics.</p>
+                      <p><strong className="text-slate-900">Privacy:</strong> Signals stay inside local chip bus, isolated from remote connected databases.</p>
                     </div>
                   </div>
                 </div>
@@ -592,30 +574,21 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
               {/* Card 3 — Privacy-First Processing */}
               <div 
-                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[340px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
+                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[290px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
               >
-                <div className="space-y-5">
+                <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700">
-                      Module 03 • Security
+                      Module 03 &bull; Shield
                     </span>
                     <EyeOff className="w-5 h-5 text-indigo-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-black tracking-tight text-slate-950">Privacy-First Processing</h3>
-                    <div className="space-y-3 mt-4 text-[13px] leading-relaxed text-slate-600">
-                      <div>
-                        <span className="block font-bold text-slate-900">What problem does it solve?</span>
-                        <p>Modern connected car infotainment loops routinely transmit driver location history to data brokers.</p>
-                      </div>
-                      <div>
-                        <span className="block font-bold text-slate-900">Why would a driver care?</span>
-                        <p>Keeps your daily route files, speeds, and habit logs confidential and out of the hands of third parties.</p>
-                      </div>
-                      <div>
-                        <span className="block font-bold text-slate-900">Why is it privacy-conscious?</span>
-                        <p>Designed with a physically isolated network shield that cannot route database metrics online.</p>
-                      </div>
+                    <div className="space-y-2 mt-3.5 text-[12.5px] leading-relaxed text-slate-600">
+                      <p><strong className="text-slate-900">Problem:</strong> Infotainment layers routinely capture location, cabin logs, and travel routes.</p>
+                      <p><strong className="text-slate-900">Value:</strong> Shields habits, coordinates, and trip speeds entirely localized to your dashboard.</p>
+                      <p><strong className="text-slate-900">Privacy:</strong> Runs on absolute air-gapped local logic that lacks public networking access.</p>
                     </div>
                   </div>
                 </div>
@@ -638,9 +611,9 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
             {/* Main Statement */}
             <div className="space-y-3">
               <span className="text-[10px] uppercase tracking-widest font-mono text-slate-400 font-extrabold">strict reservation framework</span>
-              <p className="text-xl sm:text-2xl font-black tracking-tight leading-tight text-white max-w-3xl mx-auto">
-                "Validating vehicle intelligence concepts under a transparent, risk-free public charter."
-              </p>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-white max-w-3xl mx-auto">
+                Transparent pre-launch validation
+              </h2>
             </div>
 
             {/* Micro-trust bullets row */}
