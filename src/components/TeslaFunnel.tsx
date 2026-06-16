@@ -78,7 +78,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                   }}
                   className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base rounded-xl cursor-pointer transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 text-center uppercase tracking-wider"
                 >
-                  Reserve Early Access
+                  Reserve Early Access — $40 CAD
                 </button>
 
                 {/* Secondary CTA (text only, low visual weight) */}
@@ -127,16 +127,16 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
             <div className="lg:col-span-12 xl:col-span-5 relative w-full flex items-center justify-center group [perspective:1000px]">
               
               {/* Intelligent ambient background aura */}
-              <div className="absolute -inset-10 bg-gradient-to-tr from-indigo-500/15 via-purple-500/10 to-emerald-500/10 rounded-full blur-3xl opacity-80 pointer-events-none transition-all duration-500 group-hover:scale-110" />
+              <div className="absolute -inset-12 bg-gradient-to-tr from-indigo-500/15 via-purple-500/10 to-emerald-500/10 rounded-full blur-3xl opacity-80 pointer-events-none transition-all duration-500 group-hover:scale-110" />
 
               {/* 3D Glassmorphic HUD Panel containing the isometric vehicle projection */}
-              <div className="relative w-full aspect-square max-w-[430px] bg-slate-900 border border-slate-800 rounded-[2.5rem] p-6 flex flex-col justify-between shadow-2xl shadow-indigo-950/10 overflow-hidden transition-all duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateX(6deg)_rotateY(-6deg)] group-hover:shadow-indigo-500/10">
+              <div className="relative w-full aspect-square max-w-[495px] bg-slate-900 border border-slate-800 rounded-[2.5rem] p-7 flex flex-col justify-between shadow-2xl shadow-indigo-950/10 overflow-hidden transition-all duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateX(6deg)_rotateY(-6deg)] group-hover:shadow-indigo-500/10">
                 
                 {/* 3D Grid background to simulate a digital holographic design stage */}
                 <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(#4f46e5_1.2px,transparent_1.2px)] [background-size:16px_16px]" />
                 
                 {/* HUD Header: Realtime Tech Identity & Status */}
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3 z-20 bg-slate-900/60 backdrop-blur-md [transform:translateZ(20px)]">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-3.5 z-20 bg-slate-900/60 backdrop-blur-md [transform:translateZ(20px)]">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                     <span className="text-[10px] font-mono uppercase tracking-widest text-slate-300 font-bold">Local Intel Active</span>
@@ -148,10 +148,10 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
                 {/* Main 3D Stage Layer */}
                 <div className="flex-1 flex flex-col items-center justify-center py-2 relative z-10 [transform:translateZ(40px)]">
-                  <div className="w-full relative h-52 flex items-center justify-center">
+                  <div className="w-full relative h-60 flex items-center justify-center">
                     
                     {/* The Premium 3D Rendered Vehicle */}
-                    <div className="relative w-[95%] h-[162px] rounded-2xl overflow-hidden border border-slate-800 shadow-inner group-hover:border-indigo-500/50 transition-colors duration-500">
+                    <div className="relative w-[98%] h-[188px] rounded-2xl overflow-hidden border border-slate-800 shadow-inner group-hover:border-indigo-500/50 transition-colors duration-500">
                       <img 
                         src="/src/assets/images/vehicle_3d_hud_1781636888483.jpg" 
                         alt="3D Vehicle Diagnostic Intel" 
@@ -176,7 +176,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                     </div>
 
                     {/* HUD Pin 2: Cabin Fatigue Sensory Center */}
-                    <div className="absolute top-[6%] left-[40%] flex flex-col items-center bg-slate-900/95 backdrop-blur-md border border-slate-750 rounded-xl px-2.5 py-1.5 shadow-lg [transform:translateZ(45px)] hover:scale-105 transition-all duration-300 text-white">
+                    <div className="absolute top-[8%] left-[40%] flex flex-col items-center bg-slate-900/95 backdrop-blur-md border border-slate-750 rounded-xl px-2.5 py-1.5 shadow-lg [transform:translateZ(45px)] hover:scale-105 transition-all duration-300 text-white">
                       <div className="relative flex h-3 w-3 mb-1.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
@@ -548,7 +548,9 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
               <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight">
                 Core concept modules
               </h2>
-              {/* 3 EQUAL HORIZONTAL CARDS (Desktop) / STACKED (Mobile) */}
+            </div>
+
+            {/* 3 EQUAL HORIZONTAL CARDS (Desktop) / STACKED (Mobile) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
               {/* Card 1 — Fatigue Intelligence */}
@@ -585,7 +587,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
                         <p className="text-[12px] leading-relaxed text-slate-600">
                           <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Problem</strong>
-                          Fatigue builds slowly and reduces reflexes before drowsiness is noticeable.
+                          Fatigue lowers driver reflexes before drowsiness is noticed.
                         </p>
                       </div>
 
@@ -594,7 +596,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-indigo-500" />
                         <p className="text-[12px] leading-relaxed text-slate-600">
                           <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Value</strong>
-                          Stability indicators flag micro-steering shifts to guide safe rest stop timings.
+                          Stability indicators detect steering lulls to guide safe rest stop timings.
                         </p>
                       </div>
 
@@ -603,7 +605,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-indigo-600" />
                         <p className="text-[12px] leading-relaxed text-slate-600">
                           <strong className="text-indigo-950 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Privacy</strong>
-                          Analyzed exclusively in volatile RAM; no behavioral files are saved.
+                          RAM-only volatile analysis — absolutely no behavioral history stored.
                         </p>
                       </div>
                     </div>
@@ -646,7 +648,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
                         <p className="text-[12px] leading-relaxed text-slate-600">
                           <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Problem</strong>
-                          Engine warnings trigger panic without specifying issue urgency or drivability.
+                          Warning lights spark driver anxiety without clarifying severity or failure risk.
                         </p>
                       </div>
 
@@ -655,7 +657,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500" />
                         <p className="text-[12px] leading-relaxed text-slate-600">
                           <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Value</strong>
-                          Translates fault codes instantly into crystal clear mechanic urgency diagnostics.
+                          Translates crypted OBD fault codes into simple, verbal instructions.
                         </p>
                       </div>
 
@@ -664,7 +666,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-600" />
                         <p className="text-[12px] leading-relaxed text-slate-600">
                           <strong className="text-amber-950 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Privacy</strong>
-                          Signals stay inside local chip bus, isolated from remote connected databases.
+                          Signals remain isolated in the vehicle bus with no remote routing.
                         </p>
                       </div>
                     </div>
@@ -707,7 +709,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
                         <p className="text-[12px] leading-relaxed text-slate-600">
                           <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Problem</strong>
-                          Infotainment layers routinely capture location, cabin logs, and travel routes.
+                          Standard tech layers capture cabin logs, speeds, and trip history.
                         </p>
                       </div>
 
@@ -716,16 +718,16 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                         <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         <p className="text-[12px] leading-relaxed text-slate-600">
                           <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Value</strong>
-                          Shields habits, coordinates, and trip speeds entirely localized to your dashboard.
+                          Secures stats instantly on a local, client-authorized dashboard.
                         </p>
                       </div>
 
                       {/* Privacy row */}
-                      <div className="p-3 rounded-xl bg-emerald-50/25 border border-emerald-100/30 flex items-start gap-2.5 transition-colors">
+                      <div className="p-3 rounded-xl bg-emerald-50/25 border border-indigo-100/30 flex items-start gap-2.5 transition-colors">
                         <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-600" />
                         <p className="text-[12px] leading-relaxed text-slate-600">
                           <strong className="text-emerald-950 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Privacy</strong>
-                          Runs on absolute air-gapped local logic that lacks public networking access.
+                          Runs completely offline without outward network or cloud sync.
                         </p>
                       </div>
                     </div>
@@ -733,8 +735,6 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                   </div>
                 </div>
               </div>
-            </div>
-
             </div>
 
           </div>
@@ -781,7 +781,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                   </div>
                   <div className="space-y-1.5 px-1">
                     <span className="block text-[13px] font-black text-slate-100 leading-tight">Fully refundable reservation</span>
-                    <span className="block text-[11px] text-slate-400 leading-normal">Get your $40 CAD back instantly at any time</span>
+                    <span className="block text-[11px] text-indigo-200/90 leading-normal font-medium">Get your $40 CAD back instantly at any time</span>
                   </div>
                 </div>
                 <div className="w-1.5 h-1.5 rounded-full bg-indigo-500/20 group-hover:bg-indigo-500 transition-colors duration-300 mt-2" />
@@ -796,7 +796,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                   </div>
                   <div className="space-y-1.5 px-1">
                     <span className="block text-[13px] font-black text-slate-100 leading-tight">Limited validation cohort</span>
-                    <span className="block text-[11px] text-slate-400 leading-normal">Accepting early validation subscribers only</span>
+                    <span className="block text-[11px] text-violet-200/90 leading-normal font-medium">Accepting early validation subscribers only</span>
                   </div>
                 </div>
                 <div className="w-1.5 h-1.5 rounded-full bg-violet-500/20 group-hover:bg-violet-500 transition-colors duration-300 mt-2" />
@@ -810,8 +810,8 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                     <Activity className="w-5.5 h-5.5" />
                   </div>
                   <div className="space-y-1.5 px-1">
-                    <span className="block text-[13px] font-black text-slate-100 leading-tight">Feedback shapes product direction</span>
-                    <span className="block text-[11px] text-slate-400 leading-normal">Help determine physical sensor final design</span>
+                    <span className="block text-[13px] font-black text-slate-100 leading-tight">Early validation access</span>
+                    <span className="block text-[11px] text-rose-200/90 leading-normal font-medium">Co-design concepts and hardware direction directly</span>
                   </div>
                 </div>
                 <div className="w-1.5 h-1.5 rounded-full bg-rose-500/20 group-hover:bg-rose-500 transition-colors duration-300 mt-2" />
@@ -825,8 +825,8 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                     <EyeOff className="w-5.5 h-5.5" />
                   </div>
                   <div className="space-y-1.5 px-1">
-                    <span className="block text-[13px] font-black text-slate-100 leading-tight">No production commitment required</span>
-                    <span className="block text-[11px] text-slate-400 leading-normal">We optimize concepts first before assembly lines</span>
+                    <span className="block text-[13px] font-black text-slate-100 leading-tight">No production commitment</span>
+                    <span className="block text-[11px] text-emerald-200/90 leading-normal font-medium">Transparent pre-manufacturing driver assessment</span>
                   </div>
                 </div>
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/20 group-hover:bg-emerald-500 transition-colors duration-300 mt-2" />
@@ -875,7 +875,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                     required
                     value={emailInput}
                     onChange={(e) => setEmailInput(e.target.value)}
-                    placeholder="e.g. driver@vancouver-tech.ca"
+                    placeholder="your@email.com"
                     className="bg-slate-50/80 border border-slate-200 hover:border-slate-350 focus:border-indigo-600 rounded-xl px-4 py-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all font-semibold"
                   />
                 </div>
