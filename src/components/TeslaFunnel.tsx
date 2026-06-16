@@ -3,12 +3,10 @@ import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send,
 
 interface TeslaFunnelProps {
   onReserveSuccess: (email: string, bundle: string) => void;
-  onViewChange: (view: 'landing' | 'infographic') => void;
 }
 
-export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFunnelProps) {
+export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
   const [emailInput, setEmailInput] = useState('');
-  const [showOverview, setShowOverview] = useState(false);
   const [activePainPoint, setActivePainPoint] = useState<number | null>(null);
   const [currentSelectedModule, setCurrentSelectedModule] = useState<number>(0);
   const [conceptSubscribed, setConceptSubscribed] = useState(false);
@@ -17,7 +15,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
   const handleReserveFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!emailInput.trim()) return;
-    onReserveSuccess(emailInput, 'Tesla-Level Validation Pre-Order');
+    onReserveSuccess(emailInput, 'Early-Access Validation Pre-Order');
     setEmailInput('');
   };
 
@@ -35,25 +33,29 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
         return {
           title: 'Privacy Policy & Charter',
           icon: <Shield className="w-6 h-6 text-indigo-600 animate-pulse" />,
-          badge: 'Zero-Telemetry Assurance',
-          date: 'Last Modified: June 2026',
+          badge: 'Zero-Telemetry Assurance & Canadian Sovereignty',
+          date: 'Last Modified: June 16, 2026',
           content: (
-            <div className="space-y-4">
+            <div className="space-y-5 text-slate-700 text-xs leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. Zero-Telemetry Core Promise</h4>
-                <p>At Astrateq Gadgets, we adhere to a fundamental hardware design philosophy: <strong>your drive information belongs to you</strong>. All fatigue telemetry analysis, steering lulls calculations, and diagnostic evaluations are calculated natively directly within the volatility of the physical indicator's internal RAM buffers. Absolutely zero cabin recordings, diagnostic logs, steering frequency data, or trip histories are transmitted out of your vehicle.</p>
+                <p>At Astrateq Gadgets, we adhere to a fundamental hardware design philosophy: <strong>your drive information belongs strictly and exclusively to you</strong>. All fatigue telemetry analysis, steering lulls calculations, and diagnostic evaluations are calculated natively directly within the volatility of the physical indicator's internal RAM buffers. Absolutely zero cabin recordings, diagnostic logs, steering frequency data, or trip histories are transmitted out of your vehicle.</p>
               </div>
               <div>
-                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. No External Network Connectivity</h4>
-                <p>The Astrateq hardware concept features no cellular modem, no outward Wi-Fi handshake routing, and no active internet connection modules. It operates strictly inside a non-routing physical environment, communicating only to the local vehicle CAN Bus to read sensor signals and displaying output states on the premium built-in dials.</p>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Operational Sandboxing &amp; No External Cloud Storage</h4>
+                <p>The Astrateq hardware concept features no cellular modem, no outward Wi-Fi handshake routing, and no active internet connection modules. This ensures absolute protection from remote cyber threats or unwarranted server storage of your positional coordinates. It operates strictly inside a non-routing physical environment, communicating only to the local vehicle CAN Bus to read sensor signals and displaying output states on the premium built-in dials.</p>
               </div>
               <div>
-                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Vancouver Canada Privacy Act (PIPEDA) &amp; GDPR Compliance</h4>
-                <p>For individuals reserving a seat in our early validation cohort, we collect only your primary communication email and country code. These details are stored in an encrypted Canadian server enclave. We never sell, lease, exchange, or share your contact records with third-party marketing entities. Your data is restricted purely to milestone communication dispatches regarding Astrateq conceptual phases.</p>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Canadian Privacy Statutes (PIPEDA) Compliance</h4>
+                <p>For individuals reserving a seat in our early validation cohort, we collect only your primary communication email and country code. These details are stored in an encrypted Canadian server enclave located in British Columbia. We never sell, lease, exchange, or share your contact records with third-party marketing entities or ad networks. Your data is restricted purely to milestone communication dispatches regarding Astrateq conceptual phases.</p>
               </div>
               <div>
-                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Right to Immediate Erasure (Opt-Out)</h4>
-                <p>You hold the permanent right to withdraw from the cohort registry. Simply trigger an email to <strong>vancouver-lab@astrateq-gadgets.ca</strong> or use the unsubscribe links on any dispatch. Upon receipt, your early profile index is scrubbed permanently from all databases within 24 hours.</p>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Local Passcode &amp; Encryption Matrix</h4>
+                <p>Any settings or vehicle presets customized by you are encrypted using local hardware-bound AES-256 protocols. If you opt to link our companion diagnostics application via your smartphone, the handshake will utilize local Bluetooth Low Energy (BLE) secure paring with cryptographically generated roll-over keys. Under no circumstances do we stream your operational indicators to an external centralized server.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">5. Permanent Right to Immediate Erasure (Opt-Out)</h4>
+                <p>You hold the permanent, unconditional right to withdraw from the cohort registry. Simply trigger an email to <strong>vancouver-lab@astrateq-gadgets.ca</strong> or use the unsubscribe links on any dispatch. Upon receipt, your early profile index is scrubbed permanently and non-recoverably from all databases within 24 business hours.</p>
               </div>
             </div>
           )
@@ -62,25 +64,29 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
         return {
           title: 'Cohort Reservation Terms of Service',
           icon: <Scale className="w-6 h-6 text-amber-600 shrink-0" />,
-          badge: 'Validation Participant Agreement',
+          badge: 'Validation Participant Agreement & Non-Binding Accord',
           date: 'Effective: June 16, 2026',
           content: (
-            <div className="space-y-4">
+            <div className="space-y-5 text-slate-700 text-xs leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. Scope of Agreement</h4>
-                <p>This agreement outlines the relationship between Astrateq Gadgets Inc. and yourself ("Validator Participant" or "Cohort Subscriber") concerning the reservation of a concept authorization seat for Astrateq hardware aftermarket indicators.</p>
+                <p>This agreement outlines the relationship between Astrateq Gadgets Inc. and yourself ("Validator Participant" or "Cohort Subscriber") concerning the reservation of a pre-launch validation slot for Astrateq AI-powered automotive technology and indicator displays.</p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Reservation vs. Purchase Contract</h4>
-                <p>By executing the <strong>$40 CAD fully refundable reservation</strong> request, you acknowledge that you are joining an early visual validation program. This deposit does not represent a final retail purchase contract of factory-manufactured goods. Instead, it qualifies you as a primary advisory contact who receives exclusive tooling priority, component updates, and co-design shape feedback opportunities.</p>
+                <p>By executing the <strong>$40 CAD fully refundable reservation</strong> request, you acknowledge that you are participating in a pre-launch market research validation program. This deposit does not represent a final retail purchase contract of factory-built consumer inventory. Instead, it places you on our advisory cohort list to receive exclusive design dispatches, co-design input invitations, and premium delivery order queues upon commercial production clearance.</p>
               </div>
               <div>
-                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Prototyping Nature Disclaimers</h4>
-                <p>Astrateq modules are currently in active internal design optimization, computational modeling, and non-certified validation trials. Final physical form factors, display layouts, component specifications, and price models may undergo significant modifications as we gather driver feedback and coordinate aftermarket tooling pipelines in Vancouver, British Columbia.</p>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Pre-Launch Validation Disclosures</h4>
+                <p>Astrateq AI algorithms, display models, and localized hardware telemetry structures are in active computational optimization and validation testing. Final configurations, pricing variables, technical dimensions, and specific graphic UI elements may shift based on user-preference studies and market research analysis conducted during this pre-launch program in Vancouver, British Columbia.</p>
               </div>
               <div>
-                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Governing Jurisdictional Law</h4>
-                <p>These terms and all early developer interactions are governed by, created in, and construed in complete compliance with the corporate and legal structures of the <strong className="text-slate-900">Province of British Columbia and the federal laws of Canada</strong> applicable therein. Any legal inquiries or claim structures will be processed within the courts of Vancouver, BC.</p>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Independent Non-Affiliation Pact</h4>
+                <p>As a validation participant, you acknowledge that Astrateq Gadgets Inc. is an entirely independent entity. We do not act on behalf of, nor are we licensed by, any original equipment vehicle manufacturers. Our kits are built exclusively as universal physical diagnostic accessories leveraging standardized OBD-II interfaces.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">5. Governing Jurisdictional Law</h4>
+                <p>These terms and all early validation interactions are governed by, created in, and construed in complete compliance with the corporate and legal structures of the <strong>Province of British Columbia and the federal laws of Canada</strong> applicable therein. Any legal inquiries or claim structures will be processed within the courts of Vancouver, BC.</p>
               </div>
             </div>
           )
@@ -89,18 +95,18 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
         return {
           title: 'Unconditional Refund Guarantee Policy',
           icon: <CheckCircle className="w-6 h-6 text-emerald-600 shrink-0 animate-bounce" />,
-          badge: '100% Secure Canada Escrow',
+          badge: '100% Secure Canada Escrow Assurance',
           date: 'Policy Version: 2026/2027 CRO Standard',
           content: (
-            <div className="space-y-4">
+            <div className="space-y-5 text-slate-700 text-xs leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
               <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-100/60 text-emerald-900 text-[12px] leading-relaxed">
-                <p className="font-extrabold">
+                <p className="font-extrabold text-emerald-950">
                   Our Commitment: Your $40 CAD reservation is fully, permanently, and unconditionally refundable. You can request your deposit back instantly at any time, for any reason, with no questions asked and zero penalty.
                 </p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. How to Initiate a Full Refund</h4>
-                <p>To request your refund, write to our concierge office at <strong>vancouver-lab@astrateq-gadgets.ca</strong> or <strong>refunds@astrateq.com</strong>. Provide the email address you used to reserve your cohort position and your validation order number (received via email). No complex forms of identity proofing are required for conceptual refund approvals.</p>
+                <p>To request your refund, write to our concierge office at <strong>vancouver-lab@astrateq-gadgets.ca</strong> or <strong>refunds@astrateq.com</strong>. Provide the email address you used to reserve your cohort position and your validation order number (received via email). No complex forms of identity proofing or tedious surveys are required for prompt approval.</p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Processing Timeframes</h4>
@@ -110,6 +116,10 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Escrow Isolation Guarantee</h4>
                 <p>All collected reservation funds are held in a ring-fenced Canadian bank merchant escrow account in Vancouver, BC. These funds are never utilized for general business operations, advertising budgets, or personal prototyping expenses. They remain securely stored until a commercial standard manufactured release is officially authorized or until you request your return.</p>
               </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Double-Guarantee Provision For Early Members</h4>
+                <p>If you choose to maintain your slot and proceed to test our custom hardware package on delivery, you remain backed by our 30-day "Test on the Highway" trial. You can return the unit within 30 days of arrival for a 100% full merchandise refund, and you are welcome to keep your custom metallic OBD connection tools as our gift to you.</p>
+              </div>
             </div>
           )
         };
@@ -117,26 +127,30 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
         return {
           title: 'DMCA, Trademark & IP Compliance Notice',
           icon: <AlertTriangle className="w-6 h-6 text-rose-600 shrink-0" />,
-          badge: 'Manufacturer Disclosures & IP Integrity',
+          badge: 'Manufacturer Disclosures & IP Integrity Guidelines',
           date: 'Compliance Version: CRO Active 2026',
           content: (
-            <div className="space-y-4">
+            <div className="space-y-5 text-slate-700 text-xs leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
               <div className="p-4 rounded-xl bg-rose-50 border border-rose-100/60 text-rose-900 text-[12px] leading-relaxed">
                 <p className="font-extrabold text-rose-950">
-                  Astrateq Gadgets operates under strict independent fair-use aftermarket interoperability standards. We are not officially affiliated with Tesla, Inc.
+                  Astrateq Gadgets operates under strict independent fair-use aftermarket interoperability standards. We are not officially affiliated with, endorsed by, or authorized by any original design vehicle manufacturer.
                 </p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. Trademark Declarations</h4>
-                <p>All registered trademarks, branding terms, model names (including but not limited to: <em>Tesla, Model S, Model 3, Model X, Model Y, Megapack, Autopilot, and Full Self-Driving</em>) and associated logos shown on this educational design showcase are the absolute and intellectual property of <strong>Tesla, Inc.</strong>, registered in the US, Canada, and other nations.</p>
+                <p>All registered trademarks, branding terms, model names, and associated logos shown on this pre-launch educational design showcase are the absolute and intellectual property of their respective original trademark holders registered in Canada, the US, and other nations.</p>
               </div>
               <div>
-                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Fair-Use & Interoperability Rationale</h4>
-                <p>Our concepts, descriptions, and mock dashboards are created under research and aftermarket diagnostic exceptions (such as the Right to Repair standard). Hardware modules are developed as independent vehicle diagnostics utilities that interface with open, standard OBD-II physical connections. No proprietary software code is extracted, decompiled, or distributed.</p>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Fair-Use &amp; Interoperability Rationale</h4>
+                <p>Our concepts, descriptions, and mock dashboards are created under research and aftermarket diagnostic exceptions (such as the Canadian Right to Repair standard, Bill C-244). Hardware modules are developed as independent vehicle diagnostics utilities that interface with open, standard OBD-II physical connections. No proprietary software code is extracted, decompiled, or distributed.</p>
               </div>
               <div>
-                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Designated DMCA Compliance Officer</h4>
-                <p>We respect intellectual property rights. If you represent Tesla, Inc., a vehicle patent pool, or another IP holder, and believe any graphic asset, text layout, or interactive mockup exceeds fair-use boundaries, please coordinate with our Vancouver DMCA counsel: <strong>legal-ip@astrateq-gadgets.ca</strong>. We respond to and rectify valid concerns within 48 business hours.</p>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Respect for Corporate IP Boundaries</h4>
+                <p>The Astrateq brand strictly prohibits the integration of trademark-infringing graphic decals or visual UI clones into consumer production runs. We do not distribute physical vehicle badges, copy proprietary operating system firmware, or spoof diagnostic system IDs.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Designated DMCA Compliance Officer</h4>
+                <p>We respect intellectual property rights. If you represent an intellectual property holder or vehicle manufacturer and feel any graphic asset, text layout, or interactive mockup exceeds fair-use boundaries, please coordinate with our Vancouver DMCA counsel: <strong>legal-ip@astrateq-gadgets.ca</strong>. We respond to and rectify valid concerns within 48 business hours.</p>
               </div>
             </div>
           )
@@ -145,10 +159,10 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
         return {
           title: 'Cookie & Local Storage Policy',
           icon: <FileText className="w-6 h-6 text-slate-600 shrink-0" />,
-          badge: 'Anti-Tracking Design Standard',
-          date: 'Last Update: June 2026',
+          badge: 'Anti-Tracking Design Standard & Cookie Protection',
+          date: 'Last Update: June 16, 2026',
           content: (
-            <div className="space-y-4">
+            <div className="space-y-5 text-slate-700 text-xs leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. No Third-Party Selling Pixels</h4>
                 <p>We believe tracking scripts decay trust and loading velocities. Astrateq Gadgets does not load third-party ad retargeting pixels (such as Google DoubleClick, Meta Ads Manager, or TikTok logs). You will never find your behavior on this showcase compiled and sold to marketing firms.</p>
@@ -161,6 +175,10 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Strictly Necessary Session Cookies</h4>
                 <p>We only trigger standard, temporary server-side session cookies to authenticate secure reservation connections during checkout validations. These cookies hold zero historical tracking data and are automatically cleared within 15 minutes of ending your browser session.</p>
               </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Cleansing Your Browser Footprint</h4>
+                <p>Because we do not store your interactive settings on our servers, you hold total authority over your configuration footprint. You can instantly restore our default mock interface parameters at any time by wiping your browser’s cache and site data for this domain.</p>
+              </div>
             </div>
           )
         };
@@ -172,7 +190,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
   const activeModalData = getLegalModalContent();
 
   return (
-    <div id="tesla-funnel-root" className="bg-[#FAF9F6] text-slate-900 min-h-screen selection:bg-indigo-100 selection:text-indigo-900 antialiased font-sans transition-all duration-500">
+    <div id="launch-funnel-root" className="bg-[#FAF9F6] text-slate-900 min-h-screen selection:bg-indigo-100 selection:text-indigo-900 antialiased font-sans transition-all duration-500">
       
       {/* 2026/2027 CRO STANDARD BAR */}
       <div className="bg-slate-950 text-white py-2 px-6 text-center text-[11px] font-mono font-bold uppercase tracking-widest border-b border-white/5 flex items-center justify-center gap-2">
@@ -210,7 +228,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                 Astrateq Gadgets is validating privacy-first automotive technology concepts that help drivers understand fatigue risk, vehicle health, and maintenance urgency more clearly.
               </p>
 
-              {/* CTA BLOCK (Strictly ONE primary CTA, and secondary is de-emphasized text style) */}
+              {/* CTA BLOCK (Strictly ONE primary CTA for absolute conversions focus) */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
                 
                 {/* Primary CTA */}
@@ -224,18 +242,6 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                   Reserve Early Access — $40 CAD
                 </button>
 
-                {/* Secondary CTA (text only, low visual weight) */}
-                <button
-                  onClick={() => {
-                    const el = document.getElementById('how-it-works');
-                    el?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-slate-500 hover:text-indigo-600 font-bold text-sm px-4 py-3 flex items-center justify-center gap-1.5 hover:bg-slate-100/50 rounded-xl transition-all"
-                >
-                  <span>View Concept Overview</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
               </div>
 
               {/* Hero microcopy under CTA */}
@@ -243,26 +249,6 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
                 <span>Fully refundable. Early validation access. No production commitment.</span>
               </div>
-
-              {/* Collapsed System Overview Panel */}
-              {showOverview && (
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 space-y-3.5 shadow-md animate-slice-in-left max-w-lg">
-                  <span className="text-[10px] uppercase tracking-widest font-bold text-indigo-600 block">SYSTEM METRICS overview</span>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    Designed as an inline OBD-II micro-processor, the Astrateq DriveGuard localizes machine learning loops to monitor engine patterns and CAN-bus metrics without leaking location or audio footprints.
-                  </p>
-                  <div className="grid grid-cols-2 gap-3 pt-1">
-                    <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
-                      <span className="block text-[10px] font-bold text-slate-400 uppercase">Input Latency</span>
-                      <span className="block text-sm font-black text-slate-800">&lt; 1.2ms</span>
-                    </div>
-                    <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
-                      <span className="block text-[10px] font-bold text-slate-400 uppercase">Cloud Leak Risk</span>
-                      <span className="block text-sm font-black text-emerald-600">0.00%</span>
-                    </div>
-                  </div>
-                </div>
-              )}
 
             </div>
 
@@ -1119,16 +1105,6 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
             </div>
 
-            {/* Side Action: Toggle to other views */}
-            <div className="flex justify-center items-center gap-4 pt-3 text-xs">
-              <button
-                onClick={() => onViewChange('landing')}
-                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-black rounded-lg transition-all cursor-pointer"
-              >
-                ← Back to Interactive Showcase Dashboard
-              </button>
-            </div>
-
           </div>
 
         </section>
@@ -1145,17 +1121,17 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                 Astrateq Gadgets
               </span>
               <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
-                Empowering vehicle owners through elegant hardware concepts. Proudly designed and conceptualized in Vancouver, British Columbia, Canada.
+                An AI-powered automotive technology brand dedicated to elevating vehicle diagnostics and cognitive driving safety indicator displays. Conceptualized in Vancouver, British Columbia, Canada.
               </p>
             </div>
 
             {/* Col 2 */}
             <div className="space-y-3.5 max-w-sm">
               <span className="font-black text-slate-900 block text-xs uppercase tracking-widest">
-                Privacy-First Philosophy
+                Pre-Launch Validation
               </span>
               <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
-                Our designs focus strictly on zero-telemetry validation. All sensor diagnostic evaluations are processed on-device and kept locally.
+                We are currently in an active pre-launch and market research validation phase to calibrate localized neural algorithm thresholds and prioritize initial custom dashboard production.
               </p>
             </div>
 
@@ -1205,33 +1181,41 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
           </div>
 
-          {/* HIGH-VISIBILITY ADVISORY CALLOUT CONTAINER */}
-          <div className="mt-12 p-6 rounded-2xl bg-amber-50/90 border border-amber-200/80 text-slate-800 space-y-2.5 max-w-5xl text-left select-none relative overflow-hidden shadow-xs">
-            {/* Ambient subtle warn glow */}
-            <div className="absolute right-0 bottom-0 w-24 h-24 rounded-full bg-amber-500/[0.02] blur-xl pointer-events-none" />
-            
-            <div className="flex items-center gap-2 text-amber-800">
-              <Info className="w-4 h-4 shrink-0 text-amber-600" />
-              <span className="font-extrabold uppercase tracking-wider text-[10.5px] font-mono">Independent Concept Advisory</span>
+          <div className="mt-8 pt-8 border-t border-slate-200/50 flex flex-col md:flex-row items-center justify-between gap-6 text-slate-600">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-[13px] font-semibold text-slate-900 font-sans">&copy; {new Date().getFullYear()} Astrateq Gadgets Inc. All rights reserved.</span>
             </div>
             
-            <p className="text-[12px] font-bold text-slate-900 leading-normal">
-              Astrateq Gadgets is an independent private research/prototyping developer laboratory. We are not officially affiliated with, authorized, sponsored, or partnered with Tesla, Inc. or any vehicle manufacturer.
-            </p>
-            
-            <p className="text-[11.5px] text-slate-600 leading-relaxed font-medium">
-              All manufactured trade names, trademarks, vehicle brand designations (Model S, Model 3, Model X, Model Y), or company logos referenced inside this interactive page showcase belong exclusively to their legal trademark owners. Our aftermarket hardware conceptual designs communicate with open vehicle OBD-II diagnostic buses purely for independent utility validation, cognitive alert evaluations, and driver optimization experiments.
-            </p>
-          </div>
-
-          <div className="mt-8 pt-8 border-t border-slate-200/50 flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] text-slate-400/90 font-mono">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500/80" />
-              <span>&copy; {new Date().getFullYear()} Astrateq Gadgets Inc. All rights reserved.</span>
+            {/* Highly polished, responsive social platform access group */}
+            <div className="flex items-center gap-3">
+              {/* LinkedIn */}
+              <a href="https://linkedin.com/company/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-100 hover:bg-indigo-600 text-slate-600 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="LinkedIn">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+              {/* Instagram */}
+              <a href="https://instagram.com/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-100 hover:bg-gradient-to-tr hover:from-yellow-500 hover:hover:to-pink-600 hover:via-purple-600 text-slate-600 hover:text-white flex items-center justify-center transition-all duration-250 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="Instagram">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              {/* Twitter / X */}
+              <a href="https://twitter.com/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-950 text-slate-600 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="Twitter">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+              {/* Reddit */}
+              <a href="https://reddit.com/r/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-100 hover:bg-orange-600 text-slate-600 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="Reddit">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42 1.24-1.64-1-3.85-1.64-6.24-1.72l1.42-4.5 3.89.87c.04 1.11.95 2 2.05 2 1.14 0 2.07-.93 2.07-2.07s-.93-2.07-2.07-2.07c-1.03 0-1.88.75-2.03 1.73l-4.22-.95c-.23-.05-.46.08-.53.3l-1.61 5.1c-2.46.04-4.73.68-6.4 1.7l-.02-.02c-.56-.73-1.44-1.19-2.43-1.19-1.65 0-3 1.35-3 3 0 1.12.61 2.1 1.53 2.62-.03.25-.05.51-.05.78 0 4.14 4.7 7.5 10.5 7.5s10.5-3.36 10.5-7.5c0-.26-.02-.52-.05-.77.9-.53 1.5-1.5 1.5-2.61zm-18 1.5c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm11 4.5c-1.84 1.16-4.52 1.37-5 1.37s-3.16-.21-5-1.37c-.15-.1-.2-.3-.1-.45.1-.15.3-.2.45-.1 1.54.91 3.82 1.12 4.65 1.12.82 0 3.1-.2 4.65-1.12.15-.1.35-.05.45.1.1.15.05.35-.1.45zm-.5-2.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                </svg>
+              </a>
             </div>
-            <span className="font-medium text-slate-400 text-center md:text-right">
-              Vancouver Private Laboratory Cohort 01. Certified CRO Standard compliant.
-            </span>
           </div>
 
         </footer>

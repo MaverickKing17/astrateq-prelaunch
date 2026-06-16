@@ -14,7 +14,6 @@ import FinalCta from './components/FinalCta';
 import Footer from './components/Footer';
 import ExitIntentModal from './components/ExitIntentModal';
 import DigitalOBDScanner from './components/DigitalOBDScanner';
-import ArchitectureInfographic from './components/ArchitectureInfographic';
 import ValidationTransparency from './components/ValidationTransparency';
 
 // Custom New Components requested in the conversion framework
@@ -28,18 +27,9 @@ import TeslaFunnel from './components/TeslaFunnel';
 import { ShieldAlert, CheckCircle, Gift, ArrowUp } from 'lucide-react';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'landing' | 'infographic'>('landing');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<'info' | 'success' | 'gift'>('info');
   const [showScrollTop, setShowScrollTop] = useState(false);
-
-  // Sync URL view parameter with component state
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('view') === 'infographic') {
-      setCurrentView('infographic');
-    }
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,26 +100,18 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans relative select-none ${currentView === 'infographic' ? 'bg-[#030303] text-stone-200' : 'bg-[#F8FAFC] text-slate-900'}`}>
+    <div className="min-h-screen flex flex-col font-sans relative select-none bg-[#F8FAFC] text-slate-900">
       
       {/* 1. Announcement Bar */}
-      {currentView === 'landing' && <AnnouncementBar />}
+      <AnnouncementBar />
 
       {/* 2. Sticky Navigation Bar */}
-      <Navbar 
-        onScrollToSection={handleScrollToSection} 
-        currentView={currentView}
-        onViewChange={setCurrentView}
-      />
+      <Navbar onScrollToSection={handleScrollToSection} />
 
-      {currentView === 'infographic' ? (
-        <ArchitectureInfographic onBack={() => { setCurrentView('landing'); }} />
-      ) : (
-        <TeslaFunnel onReserveSuccess={handleReserveSuccess} onViewChange={setCurrentView} />
-      )}
+      <TeslaFunnel onReserveSuccess={handleReserveSuccess} />
 
       {/* Colorful Floating Back-to-Top Button */}
-      {showScrollTop && currentView === 'landing' && (
+      {showScrollTop && (
         <button
           onClick={scrollToTop}
           className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 bg-gradient-to-tr from-rose-500 via-indigo-600 to-violet-500 hover:from-rose-600 hover:to-violet-600 text-white p-3.5 rounded-full shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-110 active:scale-95 border border-white/25 transition-all duration-300 animate-scale-up group cursor-pointer"

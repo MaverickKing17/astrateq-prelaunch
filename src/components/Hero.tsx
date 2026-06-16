@@ -45,7 +45,6 @@ export default function Hero({ onScrollToSection }: HeroProps) {
     Volkswagen: ['Tiguan', 'Jetta', 'Golf', 'ID.4'],
     BMW: ['3 Series', '5 Series', 'X5'],
     'Mercedes-Benz': ['C-Class', 'E-Class', 'GLE'],
-    Tesla: ['Model 3', 'Model Y', 'Model S', 'Model X'],
     GMC: ['Sierra', 'Terrain', 'Yukon'],
     RAM: ['1500', '2500']
   };

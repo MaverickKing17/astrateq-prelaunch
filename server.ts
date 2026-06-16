@@ -204,7 +204,7 @@ app.post("/api/send-email", async (req, res) => {
     const parsedName = name || email.split("@")[0];
     const uppercaseVehicle = (vehicle || "Universal OBD-II Vehicle").toUpperCase();
     
-    // Build an ultra-polished, Canva/Tesla/Apple styled HTML email template
+    // Build an ultra-polished, Canva/Apple styled HTML email template
     const htmlContent = `
       <!DOCTYPE html>
       <html>

@@ -50,7 +50,6 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
     Volkswagen: ['Tiguan', 'Jetta', 'Golf', 'ID.4'],
     BMW: ['3 Series', '5 Series', 'X5'],
     'Mercedes-Benz': ['C-Class', 'E-Class', 'GLE'],
-    Tesla: ['Model 3', 'Model Y', 'Model S', 'Model X'],
     GMC: ['Sierra', 'Terrain', 'Yukon'],
     RAM: ['1500', '2500']
   };
@@ -69,8 +68,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
     setTimeout(() => {
       setIsLoading(false);
       const yearNum = parseInt(selectedYear);
-      const isTesla = selectedMake === 'Tesla';
-      const isEV = isTesla || ['Ioniq 5', 'EV6', 'Leaf', 'ID.4'].includes(selectedModel);
+      const isEV = ['Ioniq 5', 'EV6', 'Leaf', 'ID.4'].includes(selectedModel);
 
       if (yearNum < 2012) {
         setResult('limited');
@@ -99,7 +97,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
       if (question.includes('-35°C')) {
         replyText = 'Absolutely! Astrateq Gadgets is winter-hardened with a premium supercapacitor (no explosive lithium batteries) that safely operates from -35°C up to 85°C. Reliable power whether you’re in Calgary, Yellowknife, or Abitibi! ❄️';
       } else if (question.includes('EVs')) {
-        replyText = 'Absolutely. Teslas and modern EVs (like the Ioniq 5 or EV6) are 100% compatible. Our dual-lens unit extracts zero secondary engine stats so it won’t trigger battery system drain warnings. ⚡';
+        replyText = 'Absolutely. Modern electric vehicles and hybrids (like the Ioniq 5 or EV6) are 100% compatible. Our dual-lens unit extracts zero secondary engine stats so it won’t trigger battery system drain warnings. ⚡';
       } else if (question.includes('shipping')) {
         replyText = 'Standard express shipping across Canada is quick & tracked! Usually 2-3 business days to Toronto/Montreal, 3-4 days to Calgary/Edmonton, and next-day within BC from our Vancouver hub. 📦';
       } else if (question.includes('warranty')) {
@@ -124,7 +122,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
       setIsAgentTyping(false);
       let replyText = 'Thanks for reaching out! Yes, standard OBD-II ports work perfectly with Astrateq Gadgets without any splicing. If it’s built since 2010, you are fully backed.';
       
-      if (userMsg.toLowerCase().includes('hybrid') || userMsg.toLowerCase().includes('ev') || userMsg.toLowerCase().includes('battery') || userMsg.toLowerCase().includes('tesla')) {
+      if (userMsg.toLowerCase().includes('hybrid') || userMsg.toLowerCase().includes('ev') || userMsg.toLowerCase().includes('battery') || userMsg.toLowerCase().includes('electric')) {
         replyText = 'Excellent question! Astrateq Gadgets units are optimized for high-voltage systems. Our Guardian Pro kit taps into EV battery telemetry seamlessly without triggering alerts on your dash.';
       } else if (userMsg.toLowerCase().includes('install') || userMsg.toLowerCase().includes('plug') || userMsg.toLowerCase().includes('how')) {
         replyText = 'Installation is 100% plug-and-play. It simply clicks into the OBD-II port under your steering wheel dashboard. It takes less than 30 seconds!';
@@ -139,7 +137,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
   // Predefined interactive pills for Canadian visitors to click and immediately try
   const canadianQuestions = [
     { text: "❄️ Will it freeze in a -35°C winter?", action: "Will this survive a -35°C Calgary/winter weather environment?" },
-    { text: "⚡ EV/Tesla compatibility?", action: "Is this compatible with EVs (like Tesla, Ioniq 5, EV6)?" },
+    { text: "⚡ EV & Hybrid compatibility?", action: "Is this compatible with electric vehicles or hybrids?" },
     { text: "📦 Shipping times to ON/BC?", action: "How long is standard express shipping to Toronto, Montreal, or Calgary?" },
     { text: "🛠️ Will OBD-II void my warranty?", action: "Does plugging Astrateq Gadgets into the OBD-II port void my warranty?" }
   ];
