@@ -187,7 +187,7 @@ export default function WhatIsIncluded() {
           {/* Right: Premium minimal text descriptions showcasing "What arrives" */}
           <div className="lg:col-span-6 flex flex-col justify-center space-y-6 text-left">
             <h3 className="font-display font-black text-2xl sm:text-3.5xl text-slate-900 tracking-tight leading-tight">
-              An Apple-Style Engineering Package
+              A Premium Engineering Package
             </h3>
             
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-semibold">

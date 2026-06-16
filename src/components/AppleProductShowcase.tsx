@@ -71,7 +71,7 @@ export default function AppleProductShowcase({ onScrollToSection }: AppleProduct
           </p>
         </div>
 
-        {/* Apple-style Interactive Carousel Frame */}
+        {/* Premium Interactive Carousel Frame */}
         <div className="max-w-5xl mx-auto">
           
           {/* Panel Selector Slide Tabs (Top Line Indicators) */}

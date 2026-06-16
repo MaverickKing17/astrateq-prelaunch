@@ -3,7 +3,7 @@ import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send,
 
 interface TeslaFunnelProps {
   onReserveSuccess: (email: string, bundle: string) => void;
-  onViewChange: (view: 'landing' | 'infographic' | 'funnel') => void;
+  onViewChange: (view: 'landing' | 'infographic') => void;
 }
 
 export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFunnelProps) {

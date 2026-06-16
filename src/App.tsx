@@ -28,7 +28,7 @@ import TeslaFunnel from './components/TeslaFunnel';
 import { ShieldAlert, CheckCircle, Gift, ArrowUp } from 'lucide-react';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'landing' | 'infographic' | 'funnel'>('landing');
+  const [currentView, setCurrentView] = useState<'landing' | 'infographic'>('landing');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<'info' | 'success' | 'gift'>('info');
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -124,73 +124,8 @@ export default function App() {
 
       {currentView === 'infographic' ? (
         <ArchitectureInfographic onBack={() => { setCurrentView('landing'); }} />
-      ) : currentView === 'funnel' ? (
-        <TeslaFunnel onReserveSuccess={handleReserveSuccess} onViewChange={setCurrentView} />
       ) : (
-        <>
-          {/* 3. Rebuilt Direct Hero Section (with internal Compatibility Form + 6 Trust Badge Indicators) */}
-          <Hero onScrollToSection={handleScrollToSection} />
-
-          {/* 4. Pre-launch Validation Transparency Directive */}
-          <ValidationTransparency />
-
-          {/* 5. Apple-Style Product Showcase (page 10) */}
-          <AppleProductShowcase onScrollToSection={handleScrollToSection} />
-
-          {/* 6. Founding Driver Program Section (page 5-6) */}
-          <FoundingDriver onScrollToSection={handleScrollToSection} />
-
-          {/* 7. Why Drivers Are Reserving Early (Emotional Benefits - page 7) */}
-          <EmotionalBenefits onScrollToSection={handleScrollToSection} />
-
-          {/* 8. Hardware Visualization: What Arrives At Your Door (page 6) */}
-          <WhatIsIncluded />
-
-          {/* 9. Credibility Framework (Social Proof Replacement - page 9) */}
-          <SocialProofReplacement />
-
-          {/* 10. How It Works Section */}
-          <HowItWorks />
-
-          {/* 11. Local Intelligence Technical Deep-Dive */}
-          <LocalIntelligence />
-
-          {/* 12. Bottom Interactive Compatibility Checker for scroll offsets */}
-          <CompatibilityChecker 
-            onCheckSuccess={handleCompatibilitySuccess} 
-            onScrollToSection={handleScrollToSection} 
-          />
-
-          {/* 12.5 Interactive Digital OBD-II Diagnostic Scanner */}
-          <DigitalOBDScanner />
-
-          {/* 13. High-Glow Pricing Bundles & Reservations Section */}
-          <Pricing onReserveSuccess={handleReserveSuccess} />
-
-          {/* 14. Founder Story - Why We Built Astrateq (page 7-8) */}
-          <FounderStory onScrollToSection={handleScrollToSection} />
-
-          {/* 15. Email Waitlist Capture Section */}
-          <WaitlistSection onSuccess={handleWaitlistSuccess} />
-
-          {/* 16. Risk Reversal & Trust Commitments Section */}
-          <RiskReversal />
-
-          {/* 17. Objection Removal FAQ Cards (page 8) */}
-          <FaqAccordion />
-
-          {/* 18. Final CTA Action block */}
-          <FinalCta onScrollToSection={handleScrollToSection} />
-
-          {/* 14. Detailed Premium Footer */}
-          <Footer onScrollToSection={handleScrollToSection} />
-
-          {/* 15. Premium Exit-Intent Coupon Modal */}
-          <ExitIntentModal 
-            onScrollToSection={handleScrollToSection} 
-            onLockDiscount={handleLockDiscount} 
-          />
-        </>
+        <TeslaFunnel onReserveSuccess={handleReserveSuccess} onViewChange={setCurrentView} />
       )}
 
       {/* Colorful Floating Back-to-Top Button */}
