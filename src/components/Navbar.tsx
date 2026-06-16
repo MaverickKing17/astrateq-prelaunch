@@ -111,26 +111,31 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
             >
               Support
             </button>
-            <button
-              onClick={() => onViewChange(currentView === 'landing' ? 'infographic' : 'landing')}
-              className="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 hover:text-indigo-800 rounded-xl text-[11px] font-black tracking-wider uppercase transition-colors flex items-center gap-1.5 border border-indigo-150 cursor-pointer shadow-sm ml-2"
-            >
-              <Sparkles className="w-3.5 h-3.5 animate-pulse text-indigo-600" />
-              <span>{currentView === 'infographic' ? 'Home' : 'Architecture'}</span>
-            </button>
           </nav>
 
-          {/* Right: Premium CTA */}
-          <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+          {/* Right: Premium CTA & View Controls */}
+          <div className="flex items-center gap-4 sm:gap-5 lg:gap-6 flex-shrink-0">
+            {/* Architecture / View Toggle Button for Desktop */}
+            <div className="hidden lg:block">
+              <button
+                onClick={() => onViewChange(currentView === 'landing' ? 'infographic' : 'landing')}
+                className="px-4.5 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 hover:text-indigo-800 rounded-xl text-xs font-black tracking-wide uppercase transition-all duration-200 flex items-center gap-2 border border-indigo-200 hover:border-indigo-300 cursor-pointer shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <Sparkles className="w-4 h-4 animate-pulse text-indigo-600" />
+                <span>{currentView === 'infographic' ? 'Home' : 'Architecture'}</span>
+              </button>
+            </div>
+
+            {/* Main Purchase Call-To-Action */}
             <div className="hidden lg:flex flex-col items-center justify-center">
               <button
                 onClick={() => handleLinkClick('pricing')}
-                className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 hover:shadow-indigo-600/25 active:scale-95 rounded-xl text-xs lg:text-sm font-extrabold text-white shadow-lg shadow-indigo-600/15 transition-all duration-300 cursor-pointer text-center tracking-wide whitespace-nowrap"
+                className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 hover:shadow-indigo-600/25 active:scale-95 rounded-xl text-xs lg:text-sm font-extrabold text-white shadow-lg shadow-indigo-600/15 transition-all duration-300 cursor-pointer text-center tracking-wide whitespace-nowrap hover:scale-[1.02]"
               >
                 Reserve Space — $49 CAD
               </button>
-              <span className="text-[9px] text-slate-500 font-bold mt-1 tracking-wider uppercase whitespace-nowrap">
-                🛡️ 100% Fully Refundable
+              <span className="text-[9px] text-slate-500 font-bold mt-1 tracking-wider uppercase whitespace-nowrap flex items-center gap-1.5">
+                <span>🛡️</span> 100% Fully Refundable
               </span>
             </div>
 
