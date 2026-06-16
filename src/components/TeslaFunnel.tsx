@@ -123,122 +123,92 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
             </div>
 
-            {/* Right Col: Genuine Automotive Intelligence Panel (No Clutter, Non-Branded SUV) */}
-            <div className="lg:col-span-5 relative w-full flex items-center justify-center">
+            {/* Right Col: Highly Visual 3D Automotive Intelligence Panel (Non-Branded SUV HUD) */}
+            <div className="lg:col-span-12 xl:col-span-5 relative w-full flex items-center justify-center group [perspective:1000px]">
               
-              {/* Delicate glowing light behind */}
-              <div className="absolute -inset-4 bg-indigo-500/5 rounded-full blur-2xl pointer-events-none" />
+              {/* Intelligent ambient background aura */}
+              <div className="absolute -inset-10 bg-gradient-to-tr from-indigo-500/15 via-purple-500/10 to-emerald-500/10 rounded-full blur-3xl opacity-80 pointer-events-none transition-all duration-500 group-hover:scale-110" />
 
-              {/* Visual Container styled with Rivian/Tesla style minimalist elegance */}
-              <div className="relative w-full aspect-square max-w-[420px] bg-white border border-slate-200/80 rounded-[2.5rem] p-6 flex flex-col justify-between shadow-xl shadow-slate-950/5 overflow-hidden">
+              {/* 3D Glassmorphic HUD Panel containing the isometric vehicle projection */}
+              <div className="relative w-full aspect-square max-w-[430px] bg-slate-900 border border-slate-800 rounded-[2.5rem] p-6 flex flex-col justify-between shadow-2xl shadow-indigo-950/10 overflow-hidden transition-all duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateX(6deg)_rotateY(-6deg)] group-hover:shadow-indigo-500/10">
                 
-                {/* Micro-grid background pattern to feel like an engineering drafting board */}
-                <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:16px_16px]" />
+                {/* 3D Grid background to simulate a digital holographic design stage */}
+                <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(#4f46e5_1.2px,transparent_1.2px)] [background-size:16px_16px]" />
                 
-                {/* Header: Identity & Status */}
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3 z-10 bg-white/50 backdrop-blur-sm">
+                {/* HUD Header: Realtime Tech Identity & Status */}
+                <div className="flex items-center justify-between border-b border-slate-800 pb-3 z-20 bg-slate-900/60 backdrop-blur-md [transform:translateZ(20px)]">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold">Local Intel Active</span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-slate-300 font-bold">Local Intel Active</span>
                   </div>
-                  <span className="text-[9px] font-mono text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">
-                    Offline Shielded
+                  <span className="text-[9px] font-mono text-emerald-400 font-bold bg-emerald-950/30 px-2.5 py-1 rounded-md border border-emerald-500/30 shadow-xs">
+                    Air-Gapped Shielded
                   </span>
                 </div>
 
-                {/* SUV Silhouette & Data Layers */}
-                <div className="flex-1 flex flex-col items-center justify-center py-4 relative z-10">
-                  <div className="w-full relative h-48 flex items-center justify-center">
+                {/* Main 3D Stage Layer */}
+                <div className="flex-1 flex flex-col items-center justify-center py-2 relative z-10 [transform:translateZ(40px)]">
+                  <div className="w-full relative h-52 flex items-center justify-center">
                     
-                    {/* SVG Non-Branded Modern SUV Silhouette side profile */}
-                    <svg viewBox="0 0 320 120" className="w-[85%] h-auto text-slate-200" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      {/* Outer road outline */}
-                      <line x1="10" y1="95" x2="310" y2="95" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4 4" />
-                      
-                      {/* Minimalist modern SUV shape */}
-                      <path 
-                        d="M 20,95 
-                           L 35,95 
-                           C 35,80 55,80 55,95 
-                           L 145,95 
-                           C 145,80 165,80 165,95 
-                           L 295,95 
-                           C 295,91 300,85 300,75
-                           C 300,68 290,62 275,62
-                           L 245,62
-                           C 240,62 215,42 195,35
-                           C 185,32 120,32 105,32
-                           C 90,32 75,45 60,52
-                           L 25,65
-                           C 18,68 15,75 15,82
-                           Z" 
-                        stroke="#CBD5E1" 
-                        strokeWidth="1.75" 
-                        fill="#F8FAFC"
+                    {/* The Premium 3D Rendered Vehicle */}
+                    <div className="relative w-[95%] h-[162px] rounded-2xl overflow-hidden border border-slate-800 shadow-inner group-hover:border-indigo-500/50 transition-colors duration-500">
+                      <img 
+                        src="/src/assets/images/vehicle_3d_hud_1781636888483.jpg" 
+                        alt="3D Vehicle Diagnostic Intel" 
+                        className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+                        referrerPolicy="no-referrer"
                       />
-                      
-                      {/* SUV Wheels */}
-                      <circle cx="45" cy="95" r="11" stroke="#94A3B8" strokeWidth="2" fill="#E2E8F0" />
-                      <circle cx="45" cy="95" r="4" fill="#94A3B8" />
-                      <circle cx="155" cy="95" r="11" stroke="#94A3B8" strokeWidth="2" fill="#E2E8F0" />
-                      <circle cx="155" cy="95" r="4" fill="#94A3B8" />
+                      {/* Cool grid overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+                      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:14px_14px] pointer-events-none" />
+                    </div>
 
-                      {/* Cabin Window Highlight */}
-                      <path 
-                        d="M 110,40 
-                           L 180,40 
-                           C 190,45 210,56 220,56 
-                           L 105,56 
-                           Z" 
-                        stroke="#E2E8F0" 
-                        strokeWidth="1.5" 
-                        fill="#F1F5F9" 
-                      />
-                    </svg>
-
-                    {/* Laser Overlay Pointer Pin 1: Smart Diagnostics */}
-                    <div className="absolute top-[52%] left-[12%] flex items-center">
-                      <div className="relative flex h-3 w-3">
+                    {/* HUD Pin 1: Diagnostic Center Node (Slightly overlapping 3D space) */}
+                    <div className="absolute top-[62%] left-[-4%] flex items-center bg-slate-900/95 backdrop-blur-md border border-slate-750 rounded-xl px-2.5 py-1.5 shadow-lg [transform:translateZ(30px)] hover:scale-105 transition-all duration-300 text-white">
+                      <div className="relative flex h-3 w-3 mr-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-600"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
                       </div>
-                      <div className="ml-2 bg-slate-900 text-white text-[9px] font-mono tracking-wide font-black px-2 py-1 rounded shadow-sm border border-slate-700 uppercase whitespace-nowrap">
-                        AI Diagnostic Scanner
+                      <div className="flex flex-col text-left">
+                        <span className="text-[10px] font-black text-slate-100 leading-tight uppercase font-mono tracking-wide">OBD Scanner</span>
+                        <span className="text-[7.5px] font-mono text-slate-400 font-bold uppercase leading-none mt-0.5">Realtime translating</span>
                       </div>
                     </div>
 
-                    {/* Laser Overlay Pointer Pin 2: Fatigue & Distraction */}
-                    <div className="absolute top-[28%] left-[45%] flex flex-col items-center">
-                      <div className="relative flex h-3 w-3">
+                    {/* HUD Pin 2: Cabin Fatigue Sensory Center */}
+                    <div className="absolute top-[6%] left-[40%] flex flex-col items-center bg-slate-900/95 backdrop-blur-md border border-slate-750 rounded-xl px-2.5 py-1.5 shadow-lg [transform:translateZ(45px)] hover:scale-105 transition-all duration-300 text-white">
+                      <div className="relative flex h-3 w-3 mb-1.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
                       </div>
-                      <div className="mt-1 bg-slate-900 text-white text-[9px] font-mono tracking-wide font-black px-2 py-1 rounded shadow-sm border border-slate-700 uppercase whitespace-nowrap">
-                        Fatigue &amp; Distraction Support
+                      <div className="flex flex-col text-center">
+                        <span className="text-[10px] font-black text-slate-100 leading-tight uppercase font-mono tracking-wide">Driver Fatigue Guard</span>
+                        <span className="text-[7.5px] font-mono text-slate-400 font-bold uppercase leading-none mt-0.5">Steering deviation check</span>
                       </div>
                     </div>
 
-                    {/* Laser Overlay Pointer Pin 3: Privacy Shield Center Shield */}
-                    <div className="absolute top-[48%] left-[72%] flex items-center">
-                      <div className="relative flex h-3.5 w-3.5">
+                    {/* HUD Pin 3: Privacy Isolation Node (Lock Center) */}
+                    <div className="absolute top-[58%] right-[-2%] flex items-center bg-slate-900/95 backdrop-blur-md border border-slate-750 rounded-xl px-2.5 py-1.5 shadow-lg [transform:translateZ(35px)] hover:scale-105 transition-all duration-300 text-white">
+                      <div className="relative flex h-3.5 w-3.5 mr-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 flex items-center justify-center text-[8px] text-white"></span>
+                        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
                       </div>
-                      <div className="ml-2 bg-slate-900 text-white text-[9px] font-mono tracking-wide font-black px-2 py-1 rounded shadow-sm border border-slate-700 uppercase whitespace-nowrap">
-                        Privacy-First Processing
+                      <div className="flex flex-col text-left">
+                        <span className="text-[10px] font-black text-slate-100 leading-tight uppercase font-mono tracking-wide">Privacy Layer</span>
+                        <span className="text-[7.5px] font-mono text-slate-400 font-bold uppercase leading-none mt-0.5">Zero outward routing</span>
                       </div>
                     </div>
 
                   </div>
                 </div>
 
-                {/* Foot indicators representing localized diagnostics in real time */}
-                <div className="border-t border-slate-100 pt-3 flex items-center justify-between z-10">
-                  <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">Signal telemetry</span>
-                  <div className="flex gap-1">
+                {/* HUD Footer: Micro indicators representing constant hardware telemetry stream */}
+                <div className="border-t border-slate-800 pt-3 flex items-center justify-between z-20 bg-slate-900/60 backdrop-blur-sm [transform:translateZ(15px)]">
+                  <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-extrabold">Holographic Telemetry</span>
+                  <div className="flex gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" style={{ animationDelay: '0.15s' }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" style={{ animationDelay: '0.3s' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" style={{ animationDelay: '0.2s' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" style={{ animationDelay: '0.4s' }} />
                   </div>
                 </div>
 
