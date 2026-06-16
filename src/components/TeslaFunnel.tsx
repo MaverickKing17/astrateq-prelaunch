@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send, CheckCircle, ArrowRight, CornerDownRight, Zap } from 'lucide-react';
+import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send, CheckCircle, ArrowRight, CornerDownRight, Zap, X, Scale, FileText, Info } from 'lucide-react';
 
 interface TeslaFunnelProps {
   onReserveSuccess: (email: string, bundle: string) => void;
@@ -12,6 +12,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
   const [activePainPoint, setActivePainPoint] = useState<number | null>(null);
   const [currentSelectedModule, setCurrentSelectedModule] = useState<number>(0);
   const [conceptSubscribed, setConceptSubscribed] = useState(false);
+  const [activeLegalModal, setActiveLegalModal] = useState<'privacy' | 'tos' | 'cookie' | 'dmca' | 'refund' | null>(null);
 
   const handleReserveFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +28,148 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
     }
     setConceptSubscribed(true);
   };
+
+  const getLegalModalContent = () => {
+    switch (activeLegalModal) {
+      case 'privacy':
+        return {
+          title: 'Privacy Policy & Charter',
+          icon: <Shield className="w-6 h-6 text-indigo-600 animate-pulse" />,
+          badge: 'Zero-Telemetry Assurance',
+          date: 'Last Modified: June 2026',
+          content: (
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. Zero-Telemetry Core Promise</h4>
+                <p>At Astrateq Gadgets, we adhere to a fundamental hardware design philosophy: <strong>your drive information belongs to you</strong>. All fatigue telemetry analysis, steering lulls calculations, and diagnostic evaluations are calculated natively directly within the volatility of the physical indicator's internal RAM buffers. Absolutely zero cabin recordings, diagnostic logs, steering frequency data, or trip histories are transmitted out of your vehicle.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. No External Network Connectivity</h4>
+                <p>The Astrateq hardware concept features no cellular modem, no outward Wi-Fi handshake routing, and no active internet connection modules. It operates strictly inside a non-routing physical environment, communicating only to the local vehicle CAN Bus to read sensor signals and displaying output states on the premium built-in dials.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Vancouver Canada Privacy Act (PIPEDA) &amp; GDPR Compliance</h4>
+                <p>For individuals reserving a seat in our early validation cohort, we collect only your primary communication email and country code. These details are stored in an encrypted Canadian server enclave. We never sell, lease, exchange, or share your contact records with third-party marketing entities. Your data is restricted purely to milestone communication dispatches regarding Astrateq conceptual phases.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Right to Immediate Erasure (Opt-Out)</h4>
+                <p>You hold the permanent right to withdraw from the cohort registry. Simply trigger an email to <strong>vancouver-lab@astrateq-gadgets.ca</strong> or use the unsubscribe links on any dispatch. Upon receipt, your early profile index is scrubbed permanently from all databases within 24 hours.</p>
+              </div>
+            </div>
+          )
+        };
+      case 'tos':
+        return {
+          title: 'Cohort Reservation Terms of Service',
+          icon: <Scale className="w-6 h-6 text-amber-600 shrink-0" />,
+          badge: 'Validation Participant Agreement',
+          date: 'Effective: June 16, 2026',
+          content: (
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. Scope of Agreement</h4>
+                <p>This agreement outlines the relationship between Astrateq Gadgets Inc. and yourself ("Validator Participant" or "Cohort Subscriber") concerning the reservation of a concept authorization seat for Astrateq hardware aftermarket indicators.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Reservation vs. Purchase Contract</h4>
+                <p>By executing the <strong>$40 CAD fully refundable reservation</strong> request, you acknowledge that you are joining an early visual validation program. This deposit does not represent a final retail purchase contract of factory-manufactured goods. Instead, it qualifies you as a primary advisory contact who receives exclusive tooling priority, component updates, and co-design shape feedback opportunities.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Prototyping Nature Disclaimers</h4>
+                <p>Astrateq modules are currently in active internal design optimization, computational modeling, and non-certified validation trials. Final physical form factors, display layouts, component specifications, and price models may undergo significant modifications as we gather driver feedback and coordinate aftermarket tooling pipelines in Vancouver, British Columbia.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Governing Jurisdictional Law</h4>
+                <p>These terms and all early developer interactions are governed by, created in, and construed in complete compliance with the corporate and legal structures of the <strong className="text-slate-900">Province of British Columbia and the federal laws of Canada</strong> applicable therein. Any legal inquiries or claim structures will be processed within the courts of Vancouver, BC.</p>
+              </div>
+            </div>
+          )
+        };
+      case 'refund':
+        return {
+          title: 'Unconditional Refund Guarantee Policy',
+          icon: <CheckCircle className="w-6 h-6 text-emerald-600 shrink-0 animate-bounce" />,
+          badge: '100% Secure Canada Escrow',
+          date: 'Policy Version: 2026/2027 CRO Standard',
+          content: (
+            <div className="space-y-4">
+              <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-100/60 text-emerald-900 text-[12px] leading-relaxed">
+                <p className="font-extrabold">
+                  Our Commitment: Your $40 CAD reservation is fully, permanently, and unconditionally refundable. You can request your deposit back instantly at any time, for any reason, with no questions asked and zero penalty.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. How to Initiate a Full Refund</h4>
+                <p>To request your refund, write to our concierge office at <strong>vancouver-lab@astrateq-gadgets.ca</strong> or <strong>refunds@astrateq.com</strong>. Provide the email address you used to reserve your cohort position and your validation order number (received via email). No complex forms of identity proofing are required for conceptual refund approvals.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Processing Timeframes</h4>
+                <p>Our lab team dispatches refund instructions to our payment partners (Stripe/Authorize.net/PayFlow) within <strong>24 to 48 business hours</strong> of your submission. Depending on your bank's local processing velocity, funds will return directly to your original payment card within 3 to 7 business days.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Escrow Isolation Guarantee</h4>
+                <p>All collected reservation funds are held in a ring-fenced Canadian bank merchant escrow account in Vancouver, BC. These funds are never utilized for general business operations, advertising budgets, or personal prototyping expenses. They remain securely stored until a commercial standard manufactured release is officially authorized or until you request your return.</p>
+              </div>
+            </div>
+          )
+        };
+      case 'dmca':
+        return {
+          title: 'DMCA, Trademark & IP Compliance Notice',
+          icon: <AlertTriangle className="w-6 h-6 text-rose-600 shrink-0" />,
+          badge: 'Manufacturer Disclosures & IP Integrity',
+          date: 'Compliance Version: CRO Active 2026',
+          content: (
+            <div className="space-y-4">
+              <div className="p-4 rounded-xl bg-rose-50 border border-rose-100/60 text-rose-900 text-[12px] leading-relaxed">
+                <p className="font-extrabold text-rose-950">
+                  Astrateq Gadgets operates under strict independent fair-use aftermarket interoperability standards. We are not officially affiliated with Tesla, Inc.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. Trademark Declarations</h4>
+                <p>All registered trademarks, branding terms, model names (including but not limited to: <em>Tesla, Model S, Model 3, Model X, Model Y, Megapack, Autopilot, and Full Self-Driving</em>) and associated logos shown on this educational design showcase are the absolute and intellectual property of <strong>Tesla, Inc.</strong>, registered in the US, Canada, and other nations.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Fair-Use & Interoperability Rationale</h4>
+                <p>Our concepts, descriptions, and mock dashboards are created under research and aftermarket diagnostic exceptions (such as the Right to Repair standard). Hardware modules are developed as independent vehicle diagnostics utilities that interface with open, standard OBD-II physical connections. No proprietary software code is extracted, decompiled, or distributed.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Designated DMCA Compliance Officer</h4>
+                <p>We respect intellectual property rights. If you represent Tesla, Inc., a vehicle patent pool, or another IP holder, and believe any graphic asset, text layout, or interactive mockup exceeds fair-use boundaries, please coordinate with our Vancouver DMCA counsel: <strong>legal-ip@astrateq-gadgets.ca</strong>. We respond to and rectify valid concerns within 48 business hours.</p>
+              </div>
+            </div>
+          )
+        };
+      case 'cookie':
+        return {
+          title: 'Cookie & Local Storage Policy',
+          icon: <FileText className="w-6 h-6 text-slate-600 shrink-0" />,
+          badge: 'Anti-Tracking Design Standard',
+          date: 'Last Update: June 2026',
+          content: (
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. No Third-Party Selling Pixels</h4>
+                <p>We believe tracking scripts decay trust and loading velocities. Astrateq Gadgets does not load third-party ad retargeting pixels (such as Google DoubleClick, Meta Ads Manager, or TikTok logs). You will never find your behavior on this showcase compiled and sold to marketing firms.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Local Storage Functional Usage</h4>
+                <p>To provide a smooth, high-fidelity experience during your use of our <strong>Interactive Showcase Dashboard</strong>, we utilize HTML5 Local Storage. This technology stores your mock car metrics configurations, visual graph speed selections, dashboard preferences, and form submission states entirely within your own local browser environment.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Strictly Necessary Session Cookies</h4>
+                <p>We only trigger standard, temporary server-side session cookies to authenticate secure reservation connections during checkout validations. These cookies hold zero historical tracking data and are automatically cleared within 15 minutes of ending your browser session.</p>
+              </div>
+            </div>
+          )
+        };
+      default:
+        return null;
+    }
+  };
+
+  const activeModalData = getLegalModalContent();
 
   return (
     <div id="tesla-funnel-root" className="bg-[#FAF9F6] text-slate-900 min-h-screen selection:bg-indigo-100 selection:text-indigo-900 antialiased font-sans transition-all duration-500">
@@ -555,183 +698,243 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
               
               {/* Card 1 — Fatigue Intelligence */}
               <div 
-                className="group flex flex-col justify-between p-7 rounded-[2.5rem] border transition-all duration-500 ease-out min-h-[340px] bg-white text-slate-900 border-slate-200/80 hover:border-indigo-500/50 hover:shadow-[0_24px_50px_rgba(79,70,229,0.08)] hover:-translate-y-2.5 shadow-sm text-left relative overflow-hidden"
+                className="group flex flex-col p-7 rounded-[2.5rem] border transition-all duration-500 ease-out bg-white text-slate-900 border-slate-200/80 hover:border-indigo-500/50 hover:shadow-[0_24px_60px_rgba(79,70,229,0.12)] hover:-translate-y-2.5 shadow-sm text-left relative overflow-hidden"
               >
                 {/* Glowing top line with color match */}
-                <div className="absolute top-0 left-0 right-0 h-[4px] bg-indigo-500/20 group-hover:bg-indigo-500 transition-colors duration-300" />
+                <div className="absolute top-0 left-0 right-0 h-[4px] bg-indigo-500/10 group-hover:bg-indigo-500 transition-colors duration-300" />
                 
                 {/* Clean ambient radial glow */}
                 <div className="absolute -right-12 -bottom-12 w-32 h-32 rounded-full bg-indigo-500/[0.03] group-hover:bg-indigo-500/[0.06] transition-colors duration-500 blur-2xl pointer-events-none" />
                 
-                <div className="space-y-5 relative z-10">
+                <div className="space-y-6 relative z-10 w-full h-full flex flex-col">
                   {/* Badge & Icon Header */}
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-100/50 shadow-xs">
                       Module 01 &bull; Safety
                     </span>
-                    <div className="p-2 rounded-xl bg-indigo-50/50 text-indigo-600 group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(99,102,241,0.25)] transition-all duration-300">
+                    <div className="p-2 rounded-xl bg-indigo-50 text-indigo-650 group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(99,102,241,0.25)] transition-all duration-300">
                       <Activity className="w-4 h-4 animate-pulse animate-duration-[2000ms]" />
                     </div>
                   </div>
 
-                  {/* Title & Content */}
+                  {/* Title */}
                   <div>
                     <h3 className="text-xl font-black tracking-tight text-slate-950 group-hover:text-indigo-950 transition-colors duration-300">
                       Fatigue Intelligence
                     </h3>
+                  </div>
+                  
+                  {/* High-fidelity itemized parameters (Timeline style - No inner box/border clutter) */}
+                  <div className="relative space-y-5 flex-1 select-none">
+                    {/* Vertical Connecting Line */}
+                    <div className="absolute left-[13px] top-3 bottom-3 w-[2px] bg-slate-100 group-hover:bg-indigo-100/60 transition-colors duration-300" />
                     
-                    {/* High-fidelity itemized parameters */}
-                    <div className="space-y-3 mt-4">
-                      {/* Problem row */}
-                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
-                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
-                        <p className="text-[12px] leading-relaxed text-slate-600">
-                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Problem</strong>
+                    {/* Problem Row */}
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-rose-50 border border-rose-100/80 flex items-center justify-center text-rose-500 relative z-10 transition-all duration-300 shadow-xs">
+                        <AlertTriangle className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5 pt-0.5">
+                        <span className="text-[9.5px] font-black uppercase tracking-wider text-rose-500 block">
+                          The Problem
+                        </span>
+                        <p className="text-[12.5px] font-medium leading-relaxed text-slate-600">
                           Fatigue lowers driver reflexes before drowsiness is noticed.
-                        </p>
-                      </div>
-
-                      {/* Value row */}
-                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
-                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                        <p className="text-[12px] leading-relaxed text-slate-600">
-                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Value</strong>
-                          Stability indicators detect steering lulls to guide safe rest stop timings.
-                        </p>
-                      </div>
-
-                      {/* Privacy row */}
-                      <div className="p-3 rounded-xl bg-indigo-50/25 border border-indigo-100/30 flex items-start gap-2.5 transition-colors">
-                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-indigo-600" />
-                        <p className="text-[12px] leading-relaxed text-slate-600">
-                          <strong className="text-indigo-950 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Privacy</strong>
-                          RAM-only volatile analysis — absolutely no behavioral history stored.
                         </p>
                       </div>
                     </div>
 
+                    {/* Value Row */}
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-indigo-50 border border-indigo-100/80 flex items-center justify-center text-indigo-600 relative z-10 transition-all duration-300 shadow-xs">
+                        <Activity className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5 pt-0.5">
+                        <span className="text-[9.5px] font-black uppercase tracking-wider text-indigo-600 block">
+                          Core Concept
+                        </span>
+                        <p className="text-[12.5px] font-medium leading-relaxed text-slate-600">
+                          Stability indicators detect steering lulls to guide safe rest stop timings.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Privacy Row */}
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-50 border border-emerald-100/80 flex items-center justify-center text-emerald-600 relative z-10 transition-all duration-300 shadow-xs">
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5 pt-0.5">
+                        <span className="text-[9.5px] font-black uppercase tracking-wider text-emerald-650 block">
+                          Local Privacy
+                        </span>
+                        <p className="text-[12.5px] font-medium leading-relaxed text-slate-600">
+                          RAM-only volatile analysis — absolutely no behavioral history stored.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Card 2 — Smart Diagnostics */}
               <div 
-                className="group flex flex-col justify-between p-7 rounded-[2.5rem] border transition-all duration-500 ease-out min-h-[340px] bg-white text-slate-900 border-slate-200/80 hover:border-amber-500/50 hover:shadow-[0_24px_50px_rgba(245,158,11,0.08)] hover:-translate-y-2.5 shadow-sm text-left relative overflow-hidden"
+                className="group flex flex-col p-7 rounded-[2.5rem] border transition-all duration-500 ease-out bg-white text-slate-900 border-slate-200/80 hover:border-amber-500/50 hover:shadow-[0_24px_60px_rgba(245,158,11,0.12)] hover:-translate-y-2.5 shadow-sm text-left relative overflow-hidden"
               >
                 {/* Glowing top line with color match */}
-                <div className="absolute top-0 left-0 right-0 h-[4px] bg-amber-500/20 group-hover:bg-amber-500 transition-colors duration-300" />
+                <div className="absolute top-0 left-0 right-0 h-[4px] bg-amber-500/10 group-hover:bg-amber-500 transition-colors duration-300" />
                 
                 {/* Clean ambient radial glow */}
                 <div className="absolute -right-12 -bottom-12 w-32 h-32 rounded-full bg-amber-500/[0.03] group-hover:bg-amber-500/[0.06] transition-colors duration-500 blur-2xl pointer-events-none" />
                 
-                <div className="space-y-5 relative z-10">
+                <div className="space-y-6 relative z-10 w-full h-full flex flex-col">
                   {/* Badge & Icon Header */}
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-xl bg-amber-50 text-amber-700 border border-amber-100/50 shadow-xs">
                       Module 02 &bull; Context
                     </span>
-                    <div className="p-2 rounded-xl bg-amber-50/50 text-amber-600 group-hover:bg-amber-500 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(245,158,11,0.25)] transition-all duration-300">
-                      <Cpu className="w-4 h-4" />
+                    <div className="p-2 rounded-xl bg-amber-50 text-amber-650 group-hover:bg-amber-500 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(245,158,11,0.25)] transition-all duration-300">
+                      <Cpu className="w-4 h-4 animate-pulse animate-duration-[2000ms]" />
                     </div>
                   </div>
 
-                  {/* Title & Content */}
+                  {/* Title */}
                   <div>
                     <h3 className="text-xl font-black tracking-tight text-slate-950 group-hover:text-amber-950 transition-colors duration-300">
                       Smart Diagnostics
                     </h3>
+                  </div>
+                  
+                  {/* High-fidelity itemized parameters (Timeline style - No inner box/border clutter) */}
+                  <div className="relative space-y-5 flex-1 select-none">
+                    {/* Vertical Connecting Line */}
+                    <div className="absolute left-[13px] top-3 bottom-3 w-[2px] bg-slate-100 group-hover:bg-amber-100/60 transition-colors duration-300" />
                     
-                    {/* High-fidelity itemized parameters */}
-                    <div className="space-y-3 mt-4">
-                      {/* Problem row */}
-                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
-                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
-                        <p className="text-[12px] leading-relaxed text-slate-600">
-                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Problem</strong>
+                    {/* Problem Row */}
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-rose-50 border border-rose-100/80 flex items-center justify-center text-rose-500 relative z-10 transition-all duration-300 shadow-xs">
+                        <AlertTriangle className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5 pt-0.5">
+                        <span className="text-[9.5px] font-black uppercase tracking-wider text-rose-500 block">
+                          The Problem
+                        </span>
+                        <p className="text-[12.5px] font-medium leading-relaxed text-slate-600">
                           Warning lights spark driver anxiety without clarifying severity or failure risk.
-                        </p>
-                      </div>
-
-                      {/* Value row */}
-                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
-                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500" />
-                        <p className="text-[12px] leading-relaxed text-slate-600">
-                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Value</strong>
-                          Translates crypted OBD fault codes into simple, verbal instructions.
-                        </p>
-                      </div>
-
-                      {/* Privacy row */}
-                      <div className="p-3 rounded-xl bg-amber-50/25 border border-amber-100/30 flex items-start gap-2.5 transition-colors">
-                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-600" />
-                        <p className="text-[12px] leading-relaxed text-slate-600">
-                          <strong className="text-amber-950 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Privacy</strong>
-                          Signals remain isolated in the vehicle bus with no remote routing.
                         </p>
                       </div>
                     </div>
 
+                    {/* Value Row */}
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-amber-50 border border-amber-100/80 flex items-center justify-center text-amber-600 relative z-10 transition-all duration-300 shadow-xs">
+                        <Cpu className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5 pt-0.5">
+                        <span className="text-[9.5px] font-black uppercase tracking-wider text-amber-600 block">
+                          Core Concept
+                        </span>
+                        <p className="text-[12.5px] font-medium leading-relaxed text-slate-600">
+                          Translates crypted OBD fault codes into simple, verbal instructions.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Privacy Row */}
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-50 border border-emerald-100/80 flex items-center justify-center text-emerald-600 relative z-10 transition-all duration-300 shadow-xs">
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5 pt-0.5">
+                        <span className="text-[9.5px] font-black uppercase tracking-wider text-emerald-650 block">
+                          Local Privacy
+                        </span>
+                        <p className="text-[12.5px] font-medium leading-relaxed text-slate-600">
+                          Signals remain isolated in the vehicle bus with no remote routing.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Card 3 — Privacy-First Processing */}
               <div 
-                className="group flex flex-col justify-between p-7 rounded-[2.5rem] border transition-all duration-500 ease-out min-h-[340px] bg-white text-slate-900 border-slate-200/80 hover:border-emerald-500/50 hover:shadow-[0_24px_50px_rgba(16,185,129,0.08)] hover:-translate-y-2.5 shadow-sm text-left relative overflow-hidden"
+                className="group flex flex-col p-7 rounded-[2.5rem] border transition-all duration-500 ease-out bg-white text-slate-900 border-slate-200/80 hover:border-emerald-500/50 hover:shadow-[0_24_60px_rgba(16,185,129,0.12)] hover:-translate-y-2.5 shadow-sm text-left relative overflow-hidden"
               >
                 {/* Glowing top line with color match */}
-                <div className="absolute top-0 left-0 right-0 h-[4px] bg-emerald-500/20 group-hover:bg-emerald-500 transition-colors duration-300" />
+                <div className="absolute top-0 left-0 right-0 h-[4px] bg-emerald-500/10 group-hover:bg-emerald-500 transition-colors duration-300" />
                 
                 {/* Clean ambient radial glow */}
                 <div className="absolute -right-12 -bottom-12 w-32 h-32 rounded-full bg-emerald-500/[0.03] group-hover:bg-emerald-500/[0.06] transition-colors duration-500 blur-2xl pointer-events-none" />
                 
-                <div className="space-y-5 relative z-10">
+                <div className="space-y-6 relative z-10 w-full h-full flex flex-col">
                   {/* Badge & Icon Header */}
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100/50 shadow-xs">
                       Module 03 &bull; Shield
                     </span>
-                    <div className="p-2 rounded-xl bg-emerald-50/50 text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(16,185,129,0.25)] transition-all duration-300">
-                      <EyeOff className="w-4 h-4" />
+                    <div className="p-2 rounded-xl bg-emerald-50 text-emerald-650 group-hover:bg-emerald-500 group-hover:text-white group-hover:shadow-[0_0_12px_rgba(16,185,129,0.25)] transition-all duration-300">
+                      <EyeOff className="w-4 h-4 animate-pulse animate-duration-[2000ms]" />
                     </div>
                   </div>
 
-                  {/* Title & Content */}
+                  {/* Title */}
                   <div>
                     <h3 className="text-xl font-black tracking-tight text-slate-950 group-hover:text-emerald-950 transition-colors duration-300">
                       Privacy-First Processing
                     </h3>
+                  </div>
+                  
+                  {/* High-fidelity itemized parameters (Timeline style - No inner box/border clutter) */}
+                  <div className="relative space-y-5 flex-1 select-none">
+                    {/* Vertical Connecting Line */}
+                    <div className="absolute left-[13px] top-3 bottom-3 w-[2px] bg-slate-100 group-hover:bg-emerald-100/60 transition-colors duration-300" />
                     
-                    {/* High-fidelity itemized parameters */}
-                    <div className="space-y-3 mt-4">
-                      {/* Problem row */}
-                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
-                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
-                        <p className="text-[12px] leading-relaxed text-slate-600">
-                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Problem</strong>
+                    {/* Problem Row */}
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-rose-50 border border-rose-100/80 flex items-center justify-center text-rose-500 relative z-10 transition-all duration-300 shadow-xs">
+                        <AlertTriangle className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5 pt-0.5">
+                        <span className="text-[9.5px] font-black uppercase tracking-wider text-rose-500 block">
+                          The Problem
+                        </span>
+                        <p className="text-[12.5px] font-medium leading-relaxed text-slate-600">
                           Standard tech layers capture cabin logs, speeds, and trip history.
-                        </p>
-                      </div>
-
-                      {/* Value row */}
-                      <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-100 flex items-start gap-2.5 transition-colors group-hover:bg-white group-hover:border-slate-200/60">
-                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                        <p className="text-[12px] leading-relaxed text-slate-600">
-                          <strong className="text-slate-900 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Value</strong>
-                          Secures stats instantly on a local, client-authorized dashboard.
-                        </p>
-                      </div>
-
-                      {/* Privacy row */}
-                      <div className="p-3 rounded-xl bg-emerald-50/25 border border-indigo-100/30 flex items-start gap-2.5 transition-colors">
-                        <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-600" />
-                        <p className="text-[12px] leading-relaxed text-slate-600">
-                          <strong className="text-emerald-950 font-extrabold uppercase tracking-wide text-[9.5px] block mb-0.5">Privacy</strong>
-                          Runs completely offline without outward network or cloud sync.
                         </p>
                       </div>
                     </div>
 
+                    {/* Value Row */}
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-50 border border-emerald-100/80 flex items-center justify-center text-emerald-650 relative z-10 transition-all duration-300 shadow-xs">
+                        <Shield className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5 pt-0.5">
+                        <span className="text-[9.5px] font-black uppercase tracking-wider text-emerald-600 block">
+                          Core Concept
+                        </span>
+                        <p className="text-[12.5px] font-medium leading-relaxed text-slate-600">
+                          Secures stats instantly on a local, client-authorized dashboard.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Privacy Row */}
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-50 border border-emerald-100/80 flex items-center justify-center text-emerald-600 relative z-10 transition-all duration-300 shadow-xs">
+                        <EyeOff className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5 pt-0.5">
+                        <span className="text-[9.5px] font-black uppercase tracking-wider text-emerald-650 block">
+                          Local Privacy
+                        </span>
+                        <p className="text-[12.5px] font-medium leading-relaxed text-slate-600">
+                          Runs completely offline without outward network or cloud sync.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -932,44 +1135,173 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
 
         {/* 7. FOOTER (MINIMAL TRUST FOOTER - Height: 20–30vh) */}
-        <footer id="funnel-footer" className="py-12 border-t border-slate-200/50 min-h-[20vh] flex flex-col justify-between text-slate-500 text-xs">
+        <footer id="funnel-footer" className="py-16 border-t border-slate-200/60 min-h-[25vh] flex flex-col justify-between text-slate-500 text-xs mt-12 bg-slate-50/40 px-6 sm:px-12 rounded-[2.5rem]">
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start text-left">
             
             {/* Col 1 */}
-            <div className="space-y-2">
-              <span className="font-extrabold text-slate-900 block text-sm">Astrateq Gadgets</span>
-              <p className="text-[11px] text-slate-400 font-medium leading-relaxed">
-                Empowering automobile operators with transparent signals. Proudly registered in Vancouver, British Columbia, Canada.
+            <div className="space-y-3.5 max-w-sm">
+              <span className="font-black text-slate-900 block text-xs uppercase tracking-widest">
+                Astrateq Gadgets
+              </span>
+              <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
+                Empowering vehicle owners through elegant hardware concepts. Proudly designed and conceptualized in Vancouver, British Columbia, Canada.
               </p>
             </div>
 
             {/* Col 2 */}
-            <div className="space-y-2">
-              <span className="font-extrabold text-slate-900 block text-sm">Privacy-First Architecture</span>
-              <p className="text-[11px] text-slate-400 font-medium leading-relaxed">
-                Zero-telemetry hardware validation programs ensuring complete local driver data authority.
+            <div className="space-y-3.5 max-w-sm">
+              <span className="font-black text-slate-900 block text-xs uppercase tracking-widest">
+                Privacy-First Philosophy
+              </span>
+              <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
+                Our designs focus strictly on zero-telemetry validation. All sensor diagnostic evaluations are processed on-device and kept locally.
               </p>
             </div>
 
             {/* Col 3 */}
-            <div className="space-y-2">
-              <span className="font-extrabold text-slate-900 block text-sm">Validations &amp; Legal</span>
-              <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-slate-400 font-bold">
-                <a href="#tesla-funnel-root" className="hover:text-indigo-600 transition-colors">Privacy Charter</a>
-                <a href="#tesla-funnel-root" className="hover:text-indigo-600 transition-colors">Cohort Rules</a>
-                <a href="#tesla-funnel-root" className="hover:text-indigo-600 transition-colors">Contact Support</a>
+            <div className="space-y-3.5">
+              <span className="font-black text-slate-900 block text-xs uppercase tracking-widest">
+                Validations &amp; Legal
+              </span>
+              <div className="flex flex-col gap-2.5 text-[11.5px] text-slate-500">
+                <button 
+                  onClick={() => setActiveLegalModal('privacy')} 
+                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-505" />
+                  Privacy Policy &amp; Charter
+                </button>
+                <button 
+                  onClick={() => setActiveLegalModal('tos')} 
+                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-405" />
+                  Terms of Service (Cohort Agreement)
+                </button>
+                <button 
+                  onClick={() => setActiveLegalModal('refund')} 
+                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-505 shrink-0" />
+                  $40 CAD Refund Guarantee Policy
+                </button>
+                <button 
+                  onClick={() => setActiveLegalModal('dmca')} 
+                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-505 shrink-0" />
+                  DMCA, Trademark &amp; IP Notices
+                </button>
+                <button 
+                  onClick={() => setActiveLegalModal('cookie')} 
+                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" />
+                  Cookie &amp; Local Storage Policy
+                </button>
               </div>
             </div>
 
           </div>
 
-          <div className="mt-8 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-slate-400 font-mono">
-            <span>&copy; {new Date().getFullYear()} Astrateq Gadgets Inc. All rights reserved.</span>
-            <span>Design complies with 2026/2027 CRO Tesla Reservation standards.</span>
+          {/* HIGH-VISIBILITY ADVISORY CALLOUT CONTAINER */}
+          <div className="mt-12 p-6 rounded-2xl bg-amber-50/90 border border-amber-200/80 text-slate-800 space-y-2.5 max-w-5xl text-left select-none relative overflow-hidden shadow-xs">
+            {/* Ambient subtle warn glow */}
+            <div className="absolute right-0 bottom-0 w-24 h-24 rounded-full bg-amber-500/[0.02] blur-xl pointer-events-none" />
+            
+            <div className="flex items-center gap-2 text-amber-800">
+              <Info className="w-4 h-4 shrink-0 text-amber-600" />
+              <span className="font-extrabold uppercase tracking-wider text-[10.5px] font-mono">Independent Concept Advisory</span>
+            </div>
+            
+            <p className="text-[12px] font-bold text-slate-900 leading-normal">
+              Astrateq Gadgets is an independent private research/prototyping developer laboratory. We are not officially affiliated with, authorized, sponsored, or partnered with Tesla, Inc. or any vehicle manufacturer.
+            </p>
+            
+            <p className="text-[11.5px] text-slate-600 leading-relaxed font-medium">
+              All manufactured trade names, trademarks, vehicle brand designations (Model S, Model 3, Model X, Model Y), or company logos referenced inside this interactive page showcase belong exclusively to their legal trademark owners. Our aftermarket hardware conceptual designs communicate with open vehicle OBD-II diagnostic buses purely for independent utility validation, cognitive alert evaluations, and driver optimization experiments.
+            </p>
+          </div>
+
+          <div className="mt-8 pt-8 border-t border-slate-200/50 flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] text-slate-400/90 font-mono">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500/80" />
+              <span>&copy; {new Date().getFullYear()} Astrateq Gadgets Inc. All rights reserved.</span>
+            </div>
+            <span className="font-medium text-slate-400 text-center md:text-right">
+              Vancouver Private Laboratory Cohort 01. Certified CRO Standard compliant.
+            </span>
           </div>
 
         </footer>
+
+        {/* REUSABLE PREMIUM LEGAL INTERACTIVE OVERLAY PORTAL */}
+        {activeModalData && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop layer */}
+            <div 
+              className="absolute inset-0 bg-slate-950/60 backdrop-blur-md transition-opacity duration-300"
+              onClick={() => setActiveLegalModal(null)}
+            />
+            
+            {/* Modal Body */}
+            <div className="bg-white rounded-[2rem] w-full max-w-2xl overflow-hidden shadow-2xl relative z-10 border border-slate-100 flex flex-col max-h-[80vh] justify-between text-left animate-in fade-in zoom-in-95 duration-200">
+              
+              {/* Header block */}
+              <div className="p-6 pb-4 border-b border-slate-100 flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 text-slate-800">
+                    {activeModalData.icon}
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-[9px] font-mono font-black uppercase tracking-widest px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-100/40 shrink-0">
+                        {activeModalData.badge}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-black text-slate-950 tracking-tight leading-tight">
+                      {activeModalData.title}
+                    </h3>
+                    <p className="text-[10px] text-slate-400 font-mono">
+                      {activeModalData.date}
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Close circle */}
+                <button
+                  type="button"
+                  onClick={() => setActiveLegalModal(null)}
+                  className="p-1.5 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-400 hover:text-slate-800 transition-colors border border-slate-100 cursor-pointer outline-none shrink-0"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Scroll Content */}
+              <div className="p-6 md:p-8 overflow-y-auto flex-1 text-slate-600 text-[12.5px] leading-relaxed space-y-5 font-medium select-text max-h-[50vh]">
+                {activeModalData.content}
+              </div>
+
+              {/* Footer row */}
+              <div className="p-5 border-t border-slate-100 bg-slate-50/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs shrink-0">
+                <div className="flex items-center gap-1.5 text-[11px] text-slate-450 font-semibold">
+                  <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0 animate-pulse" />
+                  <span>Secure Astrateq Escrow Active</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveLegalModal(null)}
+                  className="w-full sm:w-auto px-6 py-2.5 bg-slate-900 hover:bg-slate-950 text-white font-extrabold rounded-xl text-center cursor-pointer transition-all duration-200 text-xs shadow-sm"
+                >
+                  Confirm Understanding
+                </button>
+              </div>
+
+            </div>
+          </div>
+        )}
 
       </div>
 
