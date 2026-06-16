@@ -23,11 +23,12 @@ import EmotionalBenefits from './components/EmotionalBenefits';
 import FounderStory from './components/FounderStory';
 import AppleProductShowcase from './components/AppleProductShowcase';
 import SocialProofReplacement from './components/SocialProofReplacement';
+import TeslaFunnel from './components/TeslaFunnel';
 
 import { ShieldAlert, CheckCircle, Gift, ArrowUp } from 'lucide-react';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'landing' | 'infographic'>('landing');
+  const [currentView, setCurrentView] = useState<'landing' | 'infographic' | 'funnel'>('landing');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<'info' | 'success' | 'gift'>('info');
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -123,6 +124,8 @@ export default function App() {
 
       {currentView === 'infographic' ? (
         <ArchitectureInfographic onBack={() => { setCurrentView('landing'); }} />
+      ) : currentView === 'funnel' ? (
+        <TeslaFunnel onReserveSuccess={handleReserveSuccess} onViewChange={setCurrentView} />
       ) : (
         <>
           {/* 3. Rebuilt Direct Hero Section (with internal Compatibility Form + 6 Trust Badge Indicators) */}

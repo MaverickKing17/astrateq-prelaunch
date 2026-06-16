@@ -3,8 +3,8 @@ import { Menu, X, Sparkles, LayoutGrid } from 'lucide-react';
 
 interface NavbarProps {
   onScrollToSection: (sectionId: string) => void;
-  currentView: 'landing' | 'infographic';
-  onViewChange: (view: 'landing' | 'infographic') => void;
+  currentView: 'landing' | 'infographic' | 'funnel';
+  onViewChange: (view: 'landing' | 'infographic' | 'funnel') => void;
 }
 
 export default function Navbar({ onScrollToSection, currentView, onViewChange }: NavbarProps) {
@@ -115,14 +115,38 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
 
           {/* Right: Premium CTA & View Controls */}
           <div className="flex items-center gap-4 sm:gap-5 lg:gap-6 flex-shrink-0">
-            {/* Architecture / View Toggle Button for Desktop */}
-            <div className="hidden lg:block">
+            {/* View Multi-Toggle pill switcher */}
+            <div className="hidden lg:flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
               <button
-                onClick={() => onViewChange(currentView === 'landing' ? 'infographic' : 'landing')}
-                className="px-4.5 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 hover:text-indigo-800 rounded-xl text-xs font-black tracking-wide uppercase transition-all duration-200 flex items-center gap-2 border border-indigo-200 hover:border-indigo-300 cursor-pointer shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                onClick={() => onViewChange('landing')}
+                className={`px-3 py-1.5 rounded-lg text-[10px] font-black tracking-wide uppercase transition-all duration-200 cursor-pointer ${
+                  currentView === 'landing'
+                    ? 'bg-white text-indigo-700 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
               >
-                <Sparkles className="w-4 h-4 animate-pulse text-indigo-600" />
-                <span>{currentView === 'infographic' ? 'Home' : 'Architecture'}</span>
+                Showcase
+              </button>
+              <button
+                onClick={() => onViewChange('funnel')}
+                className={`px-3 py-1.5 rounded-lg text-[10px] font-black tracking-wide uppercase transition-all duration-200 cursor-pointer flex items-center gap-1 ${
+                  currentView === 'funnel'
+                    ? 'bg-indigo-600 text-white shadow-sm'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                <Sparkles className="w-3 h-3 text-current" />
+                <span>Tesla Funnel</span>
+              </button>
+              <button
+                onClick={() => onViewChange('infographic')}
+                className={`px-3 py-1.5 rounded-lg text-[10px] font-black tracking-wide uppercase transition-all duration-200 cursor-pointer ${
+                  currentView === 'infographic'
+                    ? 'bg-slate-950 text-white shadow-sm'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                Structure
               </button>
             </div>
 
@@ -194,16 +218,47 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
             >
               Support FAQs
             </button>
-            <button
-              onClick={() => {
-                onViewChange(currentView === 'landing' ? 'infographic' : 'landing');
-                setMobileMenuOpen(false);
-              }}
-              className="block w-full text-left py-3.5 px-3 rounded-xl text-indigo-750 hover:bg-indigo-50 font-black text-sm flex items-center gap-2 border border-indigo-100 bg-indigo-50/50"
-            >
-              <Sparkles className="w-4 h-4 text-indigo-600 animate-pulse" />
-              <span>{currentView === 'infographic' ? 'Back to Landing' : 'Interactive Infographic'}</span>
-            </button>
+            {/* Mobile Representation Segment Swappers */}
+            <div className="bg-slate-50 p-3 rounded-2xl border border-slate-100 space-y-1.5">
+              <span className="block text-[9px] font-mono tracking-widest font-black text-slate-400 uppercase">APP VIEW LAYOUTS</span>
+              
+              <button
+                onClick={() => {
+                  onViewChange('landing');
+                  setMobileMenuOpen(false);
+                }}
+                className={`block w-full text-left py-2 px-3 rounded-lg text-xs font-bold transition-all ${
+                  currentView === 'landing' ? 'bg-white border border-slate-200 text-indigo-700 shadow-sm' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                }`}
+              >
+                1. Full Interactive Showcase
+              </button>
+
+              <button
+                onClick={() => {
+                  onViewChange('funnel');
+                  setMobileMenuOpen(false);
+                }}
+                className={`block w-full text-left py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-between ${
+                  currentView === 'funnel' ? 'bg-indigo-650 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                }`}
+              >
+                <span>2. Tesla CRO Validation Funnel</span>
+                <span className="bg-rose-500 text-white font-mono text-[8px] font-black px-1.5 py-0.5 rounded uppercase">ACTIVE</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  onViewChange('infographic');
+                  setMobileMenuOpen(false);
+                }}
+                className={`block w-full text-left py-2 px-3 rounded-lg text-xs font-bold transition-all ${
+                  currentView === 'infographic' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                }`}
+              >
+                3. Technical Infographic
+              </button>
+            </div>
             <div className="pt-4 border-t border-slate-100 flex flex-col gap-2">
               <button
                 onClick={() => handleLinkClick('pricing')}
