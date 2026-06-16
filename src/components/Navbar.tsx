@@ -74,13 +74,7 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
           </div>
 
           {/* Center: Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-4 lg:gap-8 xl:gap-10">
-            <button
-              onClick={() => handleLinkClick('pricing')}
-              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
-            >
-              Shop
-            </button>
+          <nav className="hidden lg:flex items-center gap-6 lg:gap-8 xl:gap-10">
             <button
               onClick={() => handleLinkClick('how-it-works')}
               className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
@@ -88,28 +82,16 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
               How It Works
             </button>
             <button
-              onClick={() => handleLinkClick('compatibility')}
+              onClick={() => handleLinkClick('concepts')}
               className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
-              Compatibility
-            </button>
-            <button
-              onClick={() => handleLinkClick('digital-scanner')}
-              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
-            >
-              Diagnostic Scanner
-            </button>
-            <button
-              onClick={() => handleLinkClick('pricing')}
-              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
-            >
-              Bundles
+              Concepts
             </button>
             <button
               onClick={() => handleLinkClick('faq')}
               className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
-              Support
+              FAQ
             </button>
           </nav>
 
@@ -119,9 +101,9 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
             <div className="hidden lg:block">
               <button
                 onClick={() => onViewChange(currentView === 'landing' ? 'infographic' : 'landing')}
-                className="px-4.5 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 hover:text-indigo-800 rounded-xl text-xs font-black tracking-wide uppercase transition-all duration-200 flex items-center gap-2 border border-indigo-200 hover:border-indigo-300 cursor-pointer shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-black tracking-wide uppercase transition-all duration-200 flex items-center gap-2 border border-slate-250 cursor-pointer shadow-sm hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Sparkles className="w-4 h-4 animate-pulse text-indigo-600" />
+                <Sparkles className="w-3.5 h-3.5 animate-pulse text-indigo-600" />
                 <span>{currentView === 'infographic' ? 'Home' : 'Architecture'}</span>
               </button>
             </div>
@@ -132,10 +114,10 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
                 onClick={() => handleLinkClick('pricing')}
                 className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 hover:shadow-indigo-600/25 active:scale-95 rounded-xl text-xs lg:text-sm font-extrabold text-white shadow-lg shadow-indigo-600/15 transition-all duration-300 cursor-pointer text-center tracking-wide whitespace-nowrap hover:scale-[1.02]"
               >
-                Reserve Space — $49 CAD
+                Reserve Early — $40 CAD
               </button>
               <span className="text-[9px] text-slate-500 font-bold mt-1 tracking-wider uppercase whitespace-nowrap flex items-center gap-1.5">
-                <span>🛡️</span> 100% Fully Refundable
+                <span>🛡️</span> Refundable at any time
               </span>
             </div>
 
@@ -159,47 +141,29 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
         <div className="lg:hidden bg-white border-b border-slate-200 animate-fade-in text-slate-800 shadow-xl relative z-50">
           <div className="px-4 pt-4 pb-8 space-y-4">
             <button
-              onClick={() => handleLinkClick('pricing')}
-              className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
-            >
-              Shop Bundles
-            </button>
-            <button
               onClick={() => handleLinkClick('how-it-works')}
               className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
             >
               How It Works
             </button>
             <button
-              onClick={() => handleLinkClick('compatibility')}
+              onClick={() => handleLinkClick('concepts')}
               className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
             >
-              Check Vehicle Compatibility
-            </button>
-            <button
-              onClick={() => handleLinkClick('digital-scanner')}
-              className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
-            >
-              Direct OBD-II Scanner
-            </button>
-            <button
-              onClick={() => handleLinkClick('pricing')}
-              className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
-            >
-              Prelaunch Bundles
+              Concepts
             </button>
             <button
               onClick={() => handleLinkClick('faq')}
               className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
             >
-              Support FAQs
+              FAQ
             </button>
             <button
               onClick={() => {
                 onViewChange(currentView === 'landing' ? 'infographic' : 'landing');
                 setMobileMenuOpen(false);
               }}
-              className="block w-full text-left py-3.5 px-3 rounded-xl text-indigo-750 hover:bg-slate-50 font-black text-sm flex items-center gap-2 border border-slate-200 bg-slate-50/50"
+              className="block w-full text-left py-3 px-3 rounded-xl text-indigo-750 hover:bg-slate-50 font-black text-sm flex items-center gap-2 border border-slate-200 bg-slate-50/50"
             >
               <Sparkles className="w-4 h-4 text-indigo-600 animate-pulse" />
               <span>{currentView === 'infographic' ? 'Back to Landing' : 'Interactive Architecture'}</span>
@@ -209,10 +173,10 @@ export default function Navbar({ onScrollToSection, currentView, onViewChange }:
                 onClick={() => handleLinkClick('pricing')}
                 className="w-full text-center py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-extrabold text-sm shadow-md"
               >
-                Reserve Space — $49 CAD
+                Reserve Space — $40 CAD
               </button>
               <span className="text-center text-[11px] text-slate-500 font-bold block">
-                🛡️ 100% Fully Refundable Deposit
+                🛡️ Fully Refundable Deposit
               </span>
             </div>
           </div>

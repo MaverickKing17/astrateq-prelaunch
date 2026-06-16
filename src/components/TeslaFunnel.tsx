@@ -52,19 +52,19 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
             {/* Left Col (60% Width Layout equivalent: col-span-7) */}
             <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-6">
               
-              <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 text-indigo-800 text-[11px] font-bold tracking-widest px-3.5 py-1.5 rounded-full uppercase w-fit">
-                <Zap className="w-3.5 h-3.5 fill-indigo-200" />
-                <span>Now Open For Public Validation</span>
+              <div className="inline-flex items-center gap-2 bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-bold tracking-widest px-3.5 py-1.5 rounded-full uppercase w-fit font-mono">
+                <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse" />
+                <span>Concept Interest Validation Phase</span>
               </div>
 
-              {/* H1 Primary Hook: 48–56px, bold, tight tracking */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black tracking-tight text-slate-950 leading-[1.08] font-sans">
-                AI-powered vehicle intelligence for safer driving decisions
+              {/* H1 Primary Hook */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black tracking-tight text-slate-950 leading-[1.1] font-sans">
+                AI-powered vehicle intelligence for safer driving decisions.
               </h1>
 
-              {/* Subheadline: 16–18px, 1-2 lines max */}
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-medium max-w-xl">
-                Privacy-first system interpreting vehicle signals into clear, actionable driver insights.
+              {/* Subheadline: Premium, clear pre-launch purpose */}
+              <p className="text-sm sm:text-base md:text-[17px] text-slate-600 leading-relaxed font-medium max-w-xl">
+                Astrateq Gadgets is validating privacy-first automotive technology concepts that help drivers understand fatigue risk, vehicle health, and maintenance urgency more clearly.
               </p>
 
               {/* CTA BLOCK (Strictly ONE primary CTA, and secondary is de-emphasized text style) */}
@@ -83,19 +83,22 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
                 {/* Secondary CTA (text only, low visual weight) */}
                 <button
-                  onClick={() => setShowOverview(!showOverview)}
+                  onClick={() => {
+                    const el = document.getElementById('how-it-works');
+                    el?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="text-slate-500 hover:text-indigo-600 font-bold text-sm px-4 py-3 flex items-center justify-center gap-1.5 hover:bg-slate-100/50 rounded-xl transition-all"
                 >
                   <span>View Concept Overview</span>
-                  <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${showOverview ? 'rotate-90' : ''}`} />
+                  <ArrowRight className="w-4 h-4" />
                 </button>
 
               </div>
 
-              {/* Spacing explanation from CRO rule - above the fold indicator */}
+              {/* Hero microcopy under CTA */}
               <div className="text-[11px] text-slate-400 font-mono font-semibold flex items-center gap-1.5 pt-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Zero obligation. Fully refundable $49 CAD reservation queue.</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+                <span>Fully refundable. Early validation access. No production commitment.</span>
               </div>
 
               {/* Collapsed System Overview Panel */}
@@ -120,66 +123,122 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
             </div>
 
-            {/* Right Col: Abstract Vehicle Intelligence Visual (No Clutter UI) */}
+            {/* Right Col: Genuine Automotive Intelligence Panel (No Clutter, Non-Branded SUV) */}
             <div className="lg:col-span-5 relative w-full flex items-center justify-center">
               
-              {/* Decorative Tech Rings back-overlay */}
-              <div className="absolute -inset-4 bg-indigo-50/40 rounded-full blur-2xl pointer-events-none" />
+              {/* Delicate glowing light behind */}
+              <div className="absolute -inset-4 bg-indigo-500/5 rounded-full blur-2xl pointer-events-none" />
 
-              {/* Visual Container styled with exquisite minimalist elegance */}
-              <div className="relative w-full aspect-square max-w-[420px] bg-white border border-slate-200/70 rounded-[2.5rem] p-8 flex flex-col justify-between shadow-2xl shadow-indigo-950/5 overflow-hidden group">
+              {/* Visual Container styled with Rivian/Tesla style minimalist elegance */}
+              <div className="relative w-full aspect-square max-w-[420px] bg-white border border-slate-200/80 rounded-[2.5rem] p-6 flex flex-col justify-between shadow-xl shadow-slate-950/5 overflow-hidden">
                 
-                {/* Micro-grid overlay pattern */}
+                {/* Micro-grid background pattern to feel like an engineering drafting board */}
                 <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:16px_16px]" />
                 
-                {/* Aesthetic Status Headers */}
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3 z-10">
+                {/* Header: Identity & Status */}
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3 z-10 bg-white/50 backdrop-blur-sm">
                   <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-indigo-600 animate-pulse" />
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold">SYSTEM ACTIVE</span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold">Local Intel Active</span>
                   </div>
-                  <span className="text-[10px] font-mono text-indigo-600 font-bold bg-indigo-50/85 px-2 py-0.5 rounded">LOCAL BLOCKAGE: OFF</span>
+                  <span className="text-[9px] font-mono text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">
+                    Offline Shielded
+                  </span>
                 </div>
 
-                {/* Main Abstract Design - Clean floating vector/nodes */}
-                <div className="flex-1 flex flex-col items-center justify-center py-6 relative z-10">
-                  
-                  {/* Glowing central node */}
-                  <div className="relative w-36 h-36 flex items-center justify-center">
-                    <div className="absolute inset-0 rounded-full border border-indigo-100 animate-spin" style={{ animationDuration: '40s' }} />
-                    <div className="absolute inset-4 rounded-full border border-dashed border-rose-100 animate-spin" style={{ animationDuration: '24s' }} />
+                {/* SUV Silhouette & Data Layers */}
+                <div className="flex-1 flex flex-col items-center justify-center py-4 relative z-10">
+                  <div className="w-full relative h-48 flex items-center justify-center">
                     
-                    {/* Concentric ripple */}
-                    <div className="absolute inset-8 rounded-full bg-indigo-50/50 border border-indigo-200/40 flex items-center justify-center shadow-lg">
-                      <div className="w-16 h-16 rounded-full bg-slate-950 flex items-center justify-center text-white border border-slate-800 shadow-md">
-                        <Cpu className="w-7 h-7 text-indigo-400 animate-pulse" />
+                    {/* SVG Non-Branded Modern SUV Silhouette side profile */}
+                    <svg viewBox="0 0 320 120" className="w-[85%] h-auto text-slate-200" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      {/* Outer road outline */}
+                      <line x1="10" y1="95" x2="310" y2="95" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4 4" />
+                      
+                      {/* Minimalist modern SUV shape */}
+                      <path 
+                        d="M 20,95 
+                           L 35,95 
+                           C 35,80 55,80 55,95 
+                           L 145,95 
+                           C 145,80 165,80 165,95 
+                           L 295,95 
+                           C 295,91 300,85 300,75
+                           C 300,68 290,62 275,62
+                           L 245,62
+                           C 240,62 215,42 195,35
+                           C 185,32 120,32 105,32
+                           C 90,32 75,45 60,52
+                           L 25,65
+                           C 18,68 15,75 15,82
+                           Z" 
+                        stroke="#CBD5E1" 
+                        strokeWidth="1.75" 
+                        fill="#F8FAFC"
+                      />
+                      
+                      {/* SUV Wheels */}
+                      <circle cx="45" cy="95" r="11" stroke="#94A3B8" strokeWidth="2" fill="#E2E8F0" />
+                      <circle cx="45" cy="95" r="4" fill="#94A3B8" />
+                      <circle cx="155" cy="95" r="11" stroke="#94A3B8" strokeWidth="2" fill="#E2E8F0" />
+                      <circle cx="155" cy="95" r="4" fill="#94A3B8" />
+
+                      {/* Cabin Window Highlight */}
+                      <path 
+                        d="M 110,40 
+                           L 180,40 
+                           C 190,45 210,56 220,56 
+                           L 105,56 
+                           Z" 
+                        stroke="#E2E8F0" 
+                        strokeWidth="1.5" 
+                        fill="#F1F5F9" 
+                      />
+                    </svg>
+
+                    {/* Laser Overlay Pointer Pin 1: Smart Diagnostics */}
+                    <div className="absolute top-[52%] left-[16%] flex items-center">
+                      <div className="relative flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-600"></span>
+                      </div>
+                      <div className="ml-2 bg-slate-900 text-white text-[9px] font-mono tracking-wide font-black px-2 py-1 rounded shadow-sm border border-slate-700 uppercase whitespace-nowrap">
+                        OBD II Diagnostic
                       </div>
                     </div>
-                  </div>
 
-                  {/* Dynamic subtle data flow orbits */}
-                  <div className="w-full flex items-center justify-between mt-4 px-4">
-                    <div className="flex items-center gap-1 bg-slate-50 border border-slate-100 rounded-full py-1 px-3">
-                      <Activity className="w-3.5 h-3.5 text-indigo-600" />
-                      <span className="text-[9px] font-mono text-slate-500 font-black">1.8GHz Edge</span>
+                    {/* Laser Overlay Pointer Pin 2: Fatigue & Distraction */}
+                    <div className="absolute top-[28%] left-[45%] flex flex-col items-center">
+                      <div className="relative flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+                      </div>
+                      <div className="mt-1 bg-slate-900 text-white text-[9px] font-mono tracking-wide font-black px-2 py-1 rounded shadow-sm border border-slate-700 uppercase whitespace-nowrap">
+                        Fatigue Support
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1 bg-slate-50 border border-slate-100 rounded-full py-1 px-3">
-                      <EyeOff className="w-3.5 h-3.5 text-rose-500" />
-                      <span className="text-[9px] font-mono text-slate-500 font-black">Zero-Telemetry</span>
-                    </div>
-                  </div>
 
+                    {/* Laser Overlay Pointer Pin 3: Privacy Shield Center Shield */}
+                    <div className="absolute top-[48%] left-[72%] flex items-center">
+                      <div className="relative flex h-3.5 w-3.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 flex items-center justify-center text-[8px] text-white"></span>
+                      </div>
+                      <div className="ml-2 bg-slate-900 text-white text-[9px] font-mono tracking-wide font-black px-2 py-1 rounded shadow-sm border border-slate-700 uppercase whitespace-nowrap">
+                        Local AI Node
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
 
-                {/* Minimalist interactive simulator data trace feedback line */}
-                <div className="border-t border-slate-100 pt-3 z-10 flex flex-col justify-center text-center">
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-medium">REALTIME DIAGNOSTIC BUS</div>
-                  <div className="flex justify-center gap-0.5 mt-1.5 h-1 items-end">
-                    <div className="w-1 h-2.5 bg-slate-200 animate-bounce" style={{ animationDelay: '0.1s' }} />
-                    <div className="w-1 h-3.5 bg-indigo-600 animate-bounce" style={{ animationDelay: '0.2s' }} />
-                    <div className="w-1 h-1.5 bg-slate-300 animate-bounce" style={{ animationDelay: '0.35s' }} />
-                    <div className="w-1 h-4 bg-slate-200 animate-bounce" style={{ animationDelay: '0s' }} />
-                    <div className="w-1 h-2 bg-indigo-600 animate-bounce" style={{ animationDelay: '0.45s' }} />
+                {/* Foot indicators representing localized diagnostics in real time */}
+                <div className="border-t border-slate-100 pt-3 flex items-center justify-between z-10">
+                  <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">Signal telemetry</span>
+                  <div className="flex gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" style={{ animationDelay: '0.15s' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" style={{ animationDelay: '0.3s' }} />
                   </div>
                 </div>
 
@@ -192,47 +251,47 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
         </section>
 
 
-        {/* 2. PROBLEM AWARENESS SECTION (Height: 70–90vh) */}
-        <section id="funnel-problem" className="py-24 border-b border-slate-200/50 flex flex-col justify-center min-h-[70vh]">
+        {/* 2. PROBLEM AWARENESS SECTION */}
+        <section id="funnel-problem" className="py-20 border-b border-slate-200/50 flex flex-col justify-center min-h-[60vh]">
           
           {/* Centered content column (max 700px width constraint) */}
-          <div className="max-w-[700px] mx-auto text-center space-y-12">
+          <div className="max-w-[700px] mx-auto text-center space-y-10">
             
             {/* Header Area */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <span className="text-[11px] font-mono tracking-widest uppercase font-black text-rose-600">
-                ⚠️ Primary Catalyst
+                ⚠️ Driving Vulnerabilities
               </span>
-              {/* H2 Title: 28–36px */}
-              <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-[1.12]">
-                Vehicles generate data — but drivers don’t understand it.
+              {/* H2 Title */}
+              <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight">
+                Traditional vehicle feedback leaves drivers at risk.
               </h2>
             </div>
 
-            {/* 3 PAIN POINT CARDS (Stacked Vertically) */}
+            {/* 3 PAIN POINT CARDS */}
             <div className="space-y-4 text-left">
               
               {/* Card 1 */}
               <div 
                 onClick={() => setActivePainPoint(activePainPoint === 0 ? null : 0)}
-                className={`w-full p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                className={`w-full p-4.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
                   activePainPoint === 0 
                   ? 'bg-rose-50/50 border-rose-200 shadow-md shadow-rose-950/5' 
-                  : 'bg-white border-slate-200/80 hover:border-slate-350 shadow-sm'
+                  : 'bg-white border-slate-200/80 hover:border-slate-300 shadow-sm'
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-2.5 rounded-xl border flex items-center justify-center transition-all ${
+                  <div className={`p-2 rounded-xl border flex items-center justify-center transition-all ${
                     activePainPoint === 0 ? 'bg-rose-100 text-rose-700 border-rose-200' : 'bg-slate-50 text-slate-500 border-slate-100'
                   }`}>
                     <AlertTriangle className="w-5 h-5 shrink-0" />
                   </div>
                   <div>
-                    <h3 className="text-[15px] font-black text-slate-900 tracking-tight">Warning lights don’t explain severity</h3>
-                    <p className={`text-xs text-slate-500 leading-relaxed font-semibold transition-all overflow-hidden duration-350 ${
+                    <h3 className="text-[15px] font-black text-slate-900 tracking-tight">Warning lights do not explain urgency</h3>
+                    <p className={`text-xs text-slate-500 leading-relaxed font-semibold transition-all overflow-hidden duration-300 ${
                       activePainPoint === 0 ? 'max-h-16 mt-2 opacity-100' : 'max-h-0 opacity-0'
                     }`}>
-                      An illuminated check engine icon triggers anxiety but lacks urgency context. Astrateq translates fault codes instantly so you know if safe driving remains viable.
+                      An illuminated check engine icon triggers immediate anxiety but lacks critical safety severity context. Drivers don't know if they can safely continue or must pull over instantly.
                     </p>
                   </div>
                 </div>
@@ -241,24 +300,24 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
               {/* Card 2 */}
               <div 
                 onClick={() => setActivePainPoint(activePainPoint === 1 ? null : 1)}
-                className={`w-full p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                className={`w-full p-4.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
                   activePainPoint === 1 
                   ? 'bg-rose-50/50 border-rose-200 shadow-md shadow-rose-950/5' 
-                  : 'bg-white border-slate-200/80 hover:border-slate-350 shadow-sm'
+                  : 'bg-white border-slate-200/80 hover:border-slate-300 shadow-sm'
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-2.5 rounded-xl border flex items-center justify-center transition-all ${
+                  <div className={`p-2 rounded-xl border flex items-center justify-center transition-all ${
                     activePainPoint === 1 ? 'bg-rose-100 text-rose-700 border-rose-200' : 'bg-slate-50 text-slate-500 border-slate-100'
                   }`}>
-                    <Shield className="w-5 h-5 shrink-0" />
+                    <Activity className="w-5 h-5 shrink-0" />
                   </div>
                   <div>
-                    <h3 className="text-[15px] font-black text-slate-900 tracking-tight">Driver fatigue and distraction go undetected</h3>
-                    <p className={`text-xs text-slate-500 leading-relaxed font-semibold transition-all overflow-hidden duration-350 ${
+                    <h3 className="text-[15px] font-black text-slate-900 tracking-tight">Fatigue and distraction can build before drivers notice</h3>
+                    <p className={`text-xs text-slate-500 leading-relaxed font-semibold transition-all overflow-hidden duration-300 ${
                       activePainPoint === 1 ? 'max-h-16 mt-2 opacity-100' : 'max-h-0 opacity-0'
                     }`}>
-                      Microsleep triggers don't wait for dashboard notices. Tracking passive steering fluctuations and driving frequency lets our AI detect drop-offs early.
+                      Cognitive fatigue and short microsleep lulls occur gradually without clean visual cues, placing the driver and passengers in dangerous blindspots without warning.
                     </p>
                   </div>
                 </div>
@@ -267,24 +326,24 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
               {/* Card 3 */}
               <div 
                 onClick={() => setActivePainPoint(activePainPoint === 2 ? null : 2)}
-                className={`w-full p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                className={`w-full p-4.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
                   activePainPoint === 2 
                   ? 'bg-rose-50/50 border-rose-200 shadow-md shadow-rose-950/5' 
-                  : 'bg-white border-slate-200/80 hover:border-slate-350 shadow-sm'
+                  : 'bg-white border-slate-200/80 hover:border-slate-300 shadow-sm'
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-2.5 rounded-xl border flex items-center justify-center transition-all ${
+                  <div className={`p-2 rounded-xl border flex items-center justify-center transition-all ${
                     activePainPoint === 2 ? 'bg-rose-100 text-rose-700 border-rose-200' : 'bg-slate-50 text-slate-500 border-slate-100'
                   }`}>
                     <Cpu className="w-5 h-5 shrink-0" />
                   </div>
                   <div>
-                    <h3 className="text-[15px] font-black text-slate-900 tracking-tight">Vehicle data is too technical to act on in real time</h3>
-                    <p className={`text-xs text-slate-500 leading-relaxed font-semibold transition-all overflow-hidden duration-350 ${
+                    <h3 className="text-[15px] font-black text-slate-900 tracking-tight">Vehicle data is too technical to act on quickly</h3>
+                    <p className={`text-xs text-slate-500 leading-relaxed font-semibold transition-all overflow-hidden duration-300 ${
                       activePainPoint === 2 ? 'max-h-16 mt-2 opacity-100' : 'max-h-0 opacity-0'
                     }`}>
-                      CAN-bus logs contain thousands of binary data rows. Astrateq processes these signals internally and presents them relative to safety, keeping you free of mental tech overload.
+                      Standard OBD-II logs emit highly cryptic binary data structures that require specialist tooling to parse, making live safety decisions impossible for the everyday motorist.
                     </p>
                   </div>
                 </div>
@@ -293,7 +352,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
             </div>
 
             {/* Direct Emotional Validation intent subtitle */}
-            <span className="text-[11px] font-mono tracking-widest font-black text-slate-400 block pt-2">
+            <span className="text-[10px] font-mono tracking-widest font-black text-slate-400 block pt-1">
               💡 Tap any segment above to reveal diagnostic mechanics
             </span>
 
@@ -302,74 +361,76 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
         </section>
 
 
-        {/* 3. TRUST + CONCEPT VALIDATION SECTION (Height: ~80vh) */}
-        <section id="funnel-trust-validation" className="py-24 border-b border-slate-200/50 flex flex-col justify-center min-h-[80vh]">
+        {/* 3. TRUST + CONCEPT VALIDATION SECTION */}
+        <section id="concepts" className="py-20 border-b border-slate-200/50 flex flex-col justify-center min-h-[60vh]">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            {/* Left side: Text Block (50/50 Split layout) */}
+            {/* Left side: Text Block */}
             <div className="lg:col-span-6 space-y-6 text-left">
               
-              <div className="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-100 text-indigo-700 font-mono text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+              <div className="inline-flex items-center gap-1.5 bg-slate-100 border border-slate-200 text-slate-700 font-mono text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                 <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
-                <span>Rigorous Concept Validation Protocol</span>
+                <span>Concept Validation Protocol</span>
               </div>
 
-              {/* H2 Title: 28–36px */}
-              <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-[1.12]">
-                Pre-launch concept validation
+              {/* H2 Title */}
+              <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight">
+                Pre-launch demand validation
               </h2>
 
-              {/* Body Text Context (Strict Copy from PDF Page 5) */}
+              {/* Body Text Context with explicit validation declaration */}
               <div className="space-y-4 text-slate-600 font-medium text-sm sm:text-base leading-relaxed">
-                <p className="font-extrabold text-slate-900">
-                  Astrateq Gadgets is currently validating whether drivers want a privacy-first intelligence layer inside vehicles.
+                <p className="text-slate-700 font-semibold">
+                  Astrateq Gadgets is currently validating interest before manufacturing decisions are made. This page is designed to measure demand, gather feedback, and identify which vehicle intelligence concepts drivers value most.
                 </p>
-                <div className="p-4 bg-slate-100 rounded-2xl border border-slate-200 flex flex-col gap-1 text-slate-500 text-xs">
-                  <span className="block font-bold">⚠️ COHORT TRANSPARENCY NOTE:</span>
-                  <p>Not a finished product. Not mass-market. Early-stage concept exploration.</p>
+                <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 flex flex-col gap-1.5 text-slate-700 text-xs shadow-sm">
+                  <span className="block font-bold text-amber-900 uppercase tracking-wider text-[10px] font-mono">⚠️ Transparency Declaration</span>
+                  <p className="leading-relaxed font-medium text-amber-800">
+                    This is a pre-manufacturing interest assessment. No physical hardware is manufactured or shipped during this phase. Reservations are used purely to gauge financial viability and interest.
+                  </p>
                 </div>
               </div>
 
               {/* Trust Bullet Points list */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4.5 pt-2">
                 <div className="flex items-start gap-2.5">
-                  <div className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-lg p-1 shrink-0">
-                    <CheckCircle className="w-4 h-4" />
+                  <div className="bg-slate-100 text-slate-700 border border-slate-200 rounded-lg p-1 shrink-0">
+                    <CheckCircle className="w-4 h-4 text-indigo-600" />
                   </div>
                   <div className="flex flex-col">
                     <span className="font-bold text-xs text-slate-900">Privacy-First</span>
-                    <span className="text-[11px] text-slate-500 leading-normal">Zero cloud upload by design</span>
+                    <span className="text-[11px] text-slate-500 leading-normal">Operational entirely offline</span>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-2.5">
-                  <div className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-lg p-1 shrink-0">
-                    <CheckCircle className="w-4 h-4" />
+                  <div className="bg-slate-100 text-slate-700 border border-slate-200 rounded-lg p-1 shrink-0">
+                    <CheckCircle className="w-4 h-4 text-indigo-600" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-bold text-xs text-slate-900">Local AI Processing</span>
-                    <span className="text-[11px] text-slate-500 leading-normal">True Edge chip architecture</span>
+                    <span className="font-bold text-xs text-slate-900">Measure Real Interest</span>
+                    <span className="text-[11px] text-slate-500 leading-normal">Refundable model validation</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2.5">
-                  <div className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-lg p-1 shrink-0">
-                    <CheckCircle className="w-4 h-4" />
+                  <div className="bg-slate-100 text-slate-700 border border-slate-200 rounded-lg p-1 shrink-0">
+                    <CheckCircle className="w-4 h-4 text-indigo-600" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-bold text-xs text-slate-900">Driver-Focused</span>
-                    <span className="text-[11px] text-slate-500 leading-normal">Insights made clear in seconds</span>
+                    <span className="font-bold text-xs text-slate-900">No Risk Reserve</span>
+                    <span className="text-[11px] text-slate-500 leading-normal">Zero financial commitment required</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2.5">
-                  <div className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-lg p-1 shrink-0">
-                    <CheckCircle className="w-4 h-4" />
+                  <div className="bg-slate-100 text-slate-700 border border-slate-200 rounded-lg p-1 shrink-0">
+                    <CheckCircle className="w-4 h-4 text-indigo-600" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-bold text-xs text-slate-900">No Cloud Dependency</span>
-                    <span className="text-[11px] text-slate-500 leading-normal">Operational without constant web sync</span>
+                    <span className="font-bold text-xs text-slate-900">Driver Built</span>
+                    <span className="text-[11px] text-slate-500 leading-normal">Co-design future roadmap</span>
                   </div>
                 </div>
               </div>
@@ -448,133 +509,118 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
 
         </section>
 
-
-        {/* 4. CORE VALUE MODULES (3-CARD SYSTEM - Height: ~90vh) */}
-        <section id="funnel-values" className="py-24 border-b border-slate-200/50 flex flex-col justify-center min-h-[90vh]">
+        {/* 4. CORE VALUE MODULES (3-CARD SYSTEM) */}
+        <section id="funnel-values" className="py-20 border-b border-slate-200/50 flex flex-col justify-center min-h-[60vh]">
           
           <div className="space-y-12">
             
             {/* Header Title block */}
             <div className="text-center space-y-4 max-w-2xl mx-auto">
-              <span className="text-[11px] font-mono tracking-widest uppercase font-black text-indigo-600">
+              <span className="text-[11px] font-mono tracking-widest uppercase font-black text-indigo-600 font-bold">
                 ⚡ Tech Capabilities
               </span>
               {/* H2 Section Title */}
-              <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-[1.12]">
+              <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight">
                 Core concept modules
               </h2>
             </div>
 
             {/* 3 EQUAL HORIZONTAL CARDS (Desktop) / STACKED (Mobile) */}
-            {/* Rule: Card gap: 24px (gap-6), Internal padding: 20-24px (p-6) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
               {/* Card 1 — Fatigue Intelligence */}
               <div 
-                onClick={() => setCurrentSelectedModule(0)}
-                className={`flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[220px] cursor-pointer text-left ${
-                  currentSelectedModule === 0
-                  ? 'bg-slate-950 text-white border-slate-900 shadow-xl scale-[1.02]'
-                  : 'bg-white text-slate-900 border-slate-200/80 hover:border-indigo-400 shadow-sm'
-                }`}
+                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[340px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
               >
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <span className={`text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded ${
-                      currentSelectedModule === 0 ? 'bg-indigo-950 text-indigo-400' : 'bg-indigo-50 text-indigo-700'
-                    }`}>
-                      Card 01 • Behavior
+                    <span className="text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700">
+                      Module 01 • Behavior
                     </span>
-                    <Activity className={`w-5 h-5 ${currentSelectedModule === 0 ? 'text-indigo-400' : 'text-slate-400'}`} />
+                    <Activity className="w-5 h-5 text-indigo-600 animate-pulse" />
                   </div>
                   <div>
-                    <h3 className="text-base font-black tracking-tight">Fatigue Intelligence</h3>
-                    <p className={`text-xs mt-2.5 leading-relaxed font-semibold ${currentSelectedModule === 0 ? 'text-slate-350' : 'text-slate-500'}`}>
-                      Detects early signs of driver fatigue using local behavioral signals.
-                    </p>
+                    <h3 className="text-lg font-black tracking-tight text-slate-950">Fatigue Intelligence</h3>
+                    <div className="space-y-3 mt-4 text-[13px] leading-relaxed text-slate-600">
+                      <div>
+                        <span className="block font-bold text-slate-900">What problem does it solve?</span>
+                        <p>Fatigue begins slowly and impairs reflexes before drivers notice physical drowsiness.</p>
+                      </div>
+                      <div>
+                        <span className="block font-bold text-slate-900">Why would a driver care?</span>
+                        <p>Receive proactive steering-stability indicators to prevent accidental lane drift and collision risks.</p>
+                      </div>
+                      <div>
+                        <span className="block font-bold text-slate-900">Why is it privacy-conscious?</span>
+                        <p>Evaluates steering stability entirely inside local RAM. No driver telemetry is saved or transmitted.</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className={`mt-5 flex items-center gap-1 text-[10px] uppercase tracking-widest font-bold ${
-                  currentSelectedModule === 0 ? 'text-indigo-400' : 'text-slate-400'
-                }`}>
-                  <span>Active Module</span>
-                  <CornerDownRight className="w-3 h-3" />
                 </div>
               </div>
 
               {/* Card 2 — Smart Diagnostics */}
               <div 
-                onClick={() => setCurrentSelectedModule(1)}
-                className={`flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[220px] cursor-pointer text-left ${
-                  currentSelectedModule === 1
-                  ? 'bg-slate-950 text-white border-slate-900 shadow-xl scale-[1.02]'
-                  : 'bg-white text-slate-900 border-slate-200/80 hover:border-indigo-400 shadow-sm'
-                }`}
+                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[340px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
               >
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <span className={`text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded ${
-                      currentSelectedModule === 1 ? 'bg-indigo-950 text-indigo-400' : 'bg-indigo-50 text-indigo-700'
-                    }`}>
-                      Card 02 • Translate
+                    <span className="text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700">
+                      Module 02 • Translation
                     </span>
-                    <Cpu className={`w-5 h-5 ${currentSelectedModule === 1 ? 'text-indigo-400' : 'text-slate-400'}`} />
+                    <Cpu className="w-5 h-5 text-indigo-600" />
                   </div>
                   <div>
-                    <h3 className="text-base font-black tracking-tight">Smart Diagnostics</h3>
-                    <p className={`text-xs mt-2.5 leading-relaxed font-semibold ${currentSelectedModule === 1 ? 'text-slate-350' : 'text-slate-500'}`}>
-                      Translates vehicle system signals into plain-English condition insights.
-                    </p>
+                    <h3 className="text-lg font-black tracking-tight text-slate-950">Smart Diagnostics</h3>
+                    <div className="space-y-3 mt-4 text-[13px] leading-relaxed text-slate-600">
+                      <div>
+                        <span className="block font-bold text-slate-900">What problem does it solve?</span>
+                        <p>Cryptic engine dashboard warning lights invoke panic without detailing breakdown urgency.</p>
+                      </div>
+                      <div>
+                        <span className="block font-bold text-slate-900">Why would a driver care?</span>
+                        <p>Instantly understand the defect so you know if it requires an immediate tow or allows driving home.</p>
+                      </div>
+                      <div>
+                        <span className="block font-bold text-slate-900">Why is it privacy-conscious?</span>
+                        <p>Interprets CAN-bus signals locally on-processor, isolated completely from remote diagnostic logs.</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className={`mt-5 flex items-center gap-1 text-[10px] uppercase tracking-widest font-bold ${
-                  currentSelectedModule === 1 ? 'text-indigo-400' : 'text-slate-400'
-                }`}>
-                  <span>Active Module</span>
-                  <CornerDownRight className="w-3 h-3" />
                 </div>
               </div>
 
               {/* Card 3 — Privacy-First Processing */}
               <div 
-                onClick={() => setCurrentSelectedModule(2)}
-                className={`flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[220px] cursor-pointer text-left ${
-                  currentSelectedModule === 2
-                  ? 'bg-slate-950 text-white border-slate-900 shadow-xl scale-[1.02]'
-                  : 'bg-white text-slate-900 border-slate-200/80 hover:border-indigo-400 shadow-sm'
-                }`}
+                className="flex flex-col justify-between p-6 rounded-3xl border transition-all duration-300 min-h-[340px] bg-white text-slate-900 border-slate-200/85 hover:border-indigo-400 hover:shadow-lg shadow-sm text-left"
               >
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <span className={`text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded ${
-                      currentSelectedModule === 2 ? 'bg-indigo-950 text-indigo-400' : 'bg-indigo-50 text-indigo-700'
-                    }`}>
-                      Card 03 • Secure
+                    <span className="text-[10px] font-mono font-black uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700">
+                      Module 03 • Security
                     </span>
-                    <EyeOff className={`w-5 h-5 ${currentSelectedModule === 2 ? 'text-indigo-400' : 'text-slate-400'}`} />
+                    <EyeOff className="w-5 h-5 text-indigo-600" />
                   </div>
                   <div>
-                    <h3 className="text-base font-black tracking-tight">Privacy-First Processing</h3>
-                    <p className={`text-xs mt-2.5 leading-relaxed font-semibold ${currentSelectedModule === 2 ? 'text-slate-350' : 'text-slate-500'}`}>
-                      All analysis is processed locally where possible to minimize data exposure.
-                    </p>
+                    <h3 className="text-lg font-black tracking-tight text-slate-950">Privacy-First Processing</h3>
+                    <div className="space-y-3 mt-4 text-[13px] leading-relaxed text-slate-600">
+                      <div>
+                        <span className="block font-bold text-slate-900">What problem does it solve?</span>
+                        <p>Modern connected car infotainment loops routinely transmit driver location history to data brokers.</p>
+                      </div>
+                      <div>
+                        <span className="block font-bold text-slate-900">Why would a driver care?</span>
+                        <p>Keeps your daily route files, speeds, and habit logs confidential and out of the hands of third parties.</p>
+                      </div>
+                      <div>
+                        <span className="block font-bold text-slate-900">Why is it privacy-conscious?</span>
+                        <p>Designed with a physically isolated network shield that cannot route database metrics online.</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className={`mt-5 flex items-center gap-1 text-[10px] uppercase tracking-widest font-bold ${
-                  currentSelectedModule === 2 ? 'text-indigo-400' : 'text-slate-400'
-                }`}>
-                  <span>Active Module</span>
-                  <CornerDownRight className="w-3 h-3" />
                 </div>
               </div>
 
-            </div>
-
-            {/* CRO RULE: Only ONE idea per card */}
-            <div className="bg-indigo-50/50 p-4 border border-indigo-100 rounded-2xl flex items-center justify-center gap-2 max-w-lg mx-auto">
-              <span className="text-[11px] font-mono font-bold text-indigo-800">
-                ⚡ CRO CONSTRAINT: Only ONE core idea analyzed per module card to reduce cognitive load.
-              </span>
             </div>
 
           </div>
@@ -582,51 +628,61 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
         </section>
 
 
-        {/* 5. TRUST REINFORCEMENT STRIP (Height: ~40-60vh, compact band) */}
+        {/* 5. TRUST REINFORCEMENT STRIP */}
         <section id="funnel-trust-strip" className="py-16 md:py-20 border-b border-slate-200/50 flex flex-col justify-center min-h-[40vh] bg-slate-950 text-white rounded-3xl my-10 relative overflow-hidden px-8 sm:px-12">
           
-          <div className="absolute top-0 right-1/4 w-80 h-80 bg-rose-500/5 rounded-full blur-[90px] pointer-events-none" />
+          <div className="absolute top-0 right-1/4 w-80 h-80 bg-slate-800/10 rounded-full blur-[90px] pointer-events-none" />
           
           <div className="space-y-10 text-center max-w-4xl mx-auto relative z-10">
             
             {/* Main Statement */}
             <div className="space-y-3">
-              <span className="text-[10px] uppercase tracking-widest font-mono text-rose-500 font-extrabold">strict reservation framework</span>
+              <span className="text-[10px] uppercase tracking-widest font-mono text-slate-400 font-extrabold">strict reservation framework</span>
               <p className="text-xl sm:text-2xl font-black tracking-tight leading-tight text-white max-w-3xl mx-auto">
-                "Early access reservations only — limited validation cohort participation."
+                "Validating vehicle intelligence concepts under a transparent, risk-free public charter."
               </p>
             </div>
 
             {/* Micro-trust bullets row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-5 border-t border-slate-800/80">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pt-5 border-t border-slate-800/80">
               
-              <div className="flex flex-col items-center gap-2.5">
+              <div className="flex flex-col items-center gap-2 text-center">
                 <div className="p-2 bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/25">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
-                <div className="text-center">
+                <div>
                   <span className="block text-xs font-black text-slate-100">Fully refundable reservation</span>
-                  <span className="block text-[11px] text-slate-400 mt-1">Cancel anytime with 1-click CAD refunds</span>
+                  <span className="block text-[11px] text-slate-400 mt-1">Get your $40 CAD back instantly at any time</span>
                 </div>
               </div>
 
-              <div className="flex flex-col items-center gap-2.5">
+              <div className="flex flex-col items-center gap-2 text-center">
+                <div className="p-2 bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/25">
+                  <CheckCircle className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="block text-xs font-black text-slate-100">Limited validation cohort</span>
+                  <span className="block text-[11px] text-slate-400 mt-1">Accepting early validation subscribers only</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center gap-2 text-center">
+                <div className="p-2 bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/25">
+                  <Activity className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="block text-xs font-black text-slate-100">Feedback shapes product direction</span>
+                  <span className="block text-[11px] text-slate-400 mt-1">Help determine physical sensor final design</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center gap-2 text-center">
                 <div className="p-2 bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/25">
                   <EyeOff className="w-5 h-5" />
                 </div>
-                <div className="text-center">
+                <div>
                   <span className="block text-xs font-black text-slate-100">No production commitment required</span>
-                  <span className="block text-[11px] text-slate-400 mt-1">Your reservation shapes early validation phases</span>
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center gap-2.5">
-                <div className="p-2 bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/25">
-                  <Heart className="w-5 h-5 text-rose-450" />
-                </div>
-                <div className="text-center">
-                  <span className="block text-xs font-black text-slate-100">Feedback shaping development</span>
-                  <span className="block text-[11px] text-slate-400 mt-1">Founding cohort holds priority steering rights</span>
+                  <span className="block text-[11px] text-slate-400 mt-1">We optimize concepts first before assembly lines</span>
                 </div>
               </div>
 
@@ -637,23 +693,23 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
         </section>
 
 
-        {/* 6. FINAL CONVERSION SECTION (DECISION ZONE - Height: ~80vh) */}
-        <section id="funnel-conversion" className="py-24 border-b border-slate-200/50 flex flex-col justify-center min-h-[80vh]">
+        {/* 6. FINAL CONVERSION SECTION (DECISION ZONE) */}
+        <section id="reserve" className="py-24 border-b border-slate-200/50 flex flex-col justify-center min-h-[70vh]">
           
           <div className="max-w-2xl mx-auto text-center space-y-10">
             
             {/* Header copy precisely mapped */}
             <div className="space-y-4">
-              <span className="text-[11px] font-mono tracking-widest uppercase font-black text-indigo-600">
+              <span className="text-[11px] font-mono tracking-widest uppercase font-black text-indigo-600 font-bold">
                 🔒 Secure Pre-order Checkout
               </span>
               {/* H2 Title */}
-              <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-[1.12]">
+              <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight">
                 Join the early validation cohort
               </h2>
               {/* Subtext */}
               <p className="text-base sm:text-lg text-slate-600 leading-normal font-semibold">
-                Help shape the future of privacy-first vehicle intelligence.
+                Help shape a privacy-first vehicle intelligence system before production decisions are finalized.
               </p>
             </div>
 
@@ -683,7 +739,7 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                   type="submit"
                   className="w-full py-4.5 bg-indigo-600 hover:bg-slate-900 text-white font-extrabold text-base rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer text-center uppercase tracking-wider"
                 >
-                  Reserve Early Access &mdash; $49 CAD
+                  Reserve Early Access &mdash; $40 CAD
                 </button>
 
               </form>
@@ -699,8 +755,9 @@ export default function TeslaFunnel({ onReserveSuccess, onViewChange }: TeslaFun
                 </button>
                 
                 {/* Final microcopy */}
-                <span className="text-rose-600 font-bold tracking-tight uppercase flex items-center gap-1">
-                  <span>⏱️</span> Limited early access availability
+                <span className="text-slate-500 font-medium tracking-tight flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                  Limited early access availability. Fully refundable reservation.
                 </span>
               </div>
 
