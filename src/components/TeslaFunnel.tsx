@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send, CheckCircle, ArrowRight, CornerDownRight, Zap, X, Scale, FileText, Info } from 'lucide-react';
 
 import DigitalOBDScanner from './DigitalOBDScanner';
@@ -16,6 +17,63 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
   const [activeLegalModal, setActiveLegalModal] = useState<'privacy' | 'tos' | 'cookie' | 'dmca' | 'refund' | null>(null);
   const [selectedPackage, setSelectedPackage] = useState<'solo' | 'family' | 'guardian'>('family');
   const [validationError, setValidationError] = useState<string | null>(null);
+
+  const [isDesktop, setIsDesktop] = useState(false);
+  const parallaxContainerRef = useRef<HTMLDivElement>(null);
+  const soloRef = useRef<HTMLDivElement>(null);
+  const familyRef = useRef<HTMLDivElement>(null);
+  const guardianRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    setIsDesktop(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) {
+      if (soloRef.current) soloRef.current.style.transform = '';
+      if (familyRef.current) familyRef.current.style.transform = '';
+      if (guardianRef.current) guardianRef.current.style.transform = '';
+      return;
+    }
+
+    const handleScroll = () => {
+      const container = parallaxContainerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      if (rect.bottom < 0 || rect.top > viewportHeight) return;
+
+      const scrollRange = viewportHeight + rect.height;
+      const progress = (viewportHeight - rect.top) / scrollRange;
+      const clampedProgress = Math.min(Math.max(progress, 0), 1);
+      const offset = clampedProgress - 0.5;
+
+      const soloY = offset * -25;
+      const familyY = offset * -45;
+      const guardianY = offset * -15;
+
+      if (soloRef.current) {
+        soloRef.current.style.transform = `translateY(${soloY}px)`;
+      }
+      if (familyRef.current) {
+        familyRef.current.style.transform = `translateY(${familyY}px)`;
+      }
+      if (guardianRef.current) {
+        guardianRef.current.style.transform = `translateY(${guardianY}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isDesktop]);
 
   const handleScrollToSection = (sectionId: string) => {
     let targetId = sectionId;
@@ -946,14 +1004,19 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
           {/* Tech Grid overlay */}
           <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
           
-          <div className="space-y-12 text-center max-w-5xl mx-auto relative z-10">
+          <div className="space-y-12 text-center max-w-5xl mx-auto relative z-10 animate-fade-in">
             
             {/* Main Statement */}
-            <div className="space-y-3.5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-900/60 text-[9px] uppercase tracking-widest font-mono text-indigo-400 font-black shadow-inner">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping" />
-                strict reservation framework
-              </span>
+            <div className="space-y-4">
+              <div className="inline-flex justify-center">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-[11px] sm:text-[12px] uppercase tracking-widest font-mono text-indigo-300 font-extrabold shadow-lg shadow-indigo-500/10 backdrop-blur-md select-none">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                  </span>
+                  strict reservation framework
+                </span>
+              </div>
               <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400 max-w-3xl mx-auto pb-1">
                 Transparent pre-launch validation
               </h2>
@@ -968,68 +1031,67 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 pt-3">
               
               {/* Card 1 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/80 backdrop-blur-md border border-slate-800/70 rounded-2xl p-5 hover:border-indigo-500/35 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-indigo-500/[0.02] hover:-translate-y-1.5 transition-all duration-300 min-h-[195px] relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-500/[0.01] group-hover:bg-indigo-500/[0.03] transition-all duration-300 rounded-full blur-lg pointer-events-none" />
-                <div className="flex flex-col items-center gap-3.5">
-                  <div className="p-2.5 bg-indigo-500/15 text-indigo-400 rounded-2xl border border-indigo-500/20 group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(99,102,241,0.25)] transition-all duration-300">
-                    <ShieldCheck className="w-5.5 h-5.5" />
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/90 backdrop-blur-md border border-slate-750/80 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/95 hover:shadow-2xl hover:shadow-indigo-500/[0.08] hover:-translate-y-1.5 transition-all duration-300 min-h-[210px] relative overflow-hidden shadow-lg shadow-black/40">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/[0.02] group-hover:bg-indigo-500/[0.05] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
+                <div className="flex flex-col items-center gap-4 w-full">
+                  <div className="p-3 bg-indigo-500/10 text-indigo-300 rounded-xl border border-indigo-500/25 group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] transition-all duration-350">
+                    <ShieldCheck className="w-6 h-6" />
                   </div>
-                  <div className="space-y-1.5 px-1">
-                    <span className="block text-[13px] font-black text-slate-100 leading-tight">Fully refundable reservation</span>
-                    <span className="block text-[11px] text-indigo-200/90 leading-normal font-medium">Get your $40 CAD back instantly at any time</span>
+                  <div className="space-y-2 px-1">
+                    <span className="block text-[14px] font-black text-slate-100 leading-tight tracking-tight">Fully refundable reservation</span>
+                    <span className="block text-[11.5px] text-indigo-200/80 leading-relaxed font-semibold">Get your $40 CAD back instantly at any time</span>
                   </div>
                 </div>
-                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500/20 group-hover:bg-indigo-500 transition-colors duration-300 mt-2" />
+                <div className="w-2 h-2 rounded-full bg-indigo-500/30 group-hover:bg-indigo-500 group-hover:shadow-[0_0_8px_rgba(99,102,241,0.8)] transition-all duration-350 mt-4" />
               </div>
 
               {/* Card 2 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/80 backdrop-blur-md border border-slate-800/70 rounded-2xl p-5 hover:border-violet-500/35 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-violet-500/[0.02] hover:-translate-y-1.5 transition-all duration-300 min-h-[195px] relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-violet-500/[0.01] group-hover:bg-violet-500/[0.03] transition-all duration-300 rounded-full blur-lg pointer-events-none" />
-                <div className="flex flex-col items-center gap-3.5">
-                  <div className="p-2.5 bg-violet-500/15 text-violet-400 rounded-2xl border border-violet-500/20 group-hover:bg-violet-500 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(139,92,246,0.25)] transition-all duration-300">
-                    <CheckCircle className="w-5.5 h-5.5" />
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/90 backdrop-blur-md border border-slate-750/80 rounded-2xl p-6 hover:border-violet-500/50 hover:bg-slate-900/95 hover:shadow-2xl hover:shadow-violet-500/[0.08] hover:-translate-y-1.5 transition-all duration-300 min-h-[210px] relative overflow-hidden shadow-lg shadow-black/40">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-violet-500/[0.02] group-hover:bg-violet-500/[0.05] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
+                <div className="flex flex-col items-center gap-4 w-full">
+                  <div className="p-3 bg-violet-500/10 text-violet-300 rounded-xl border border-violet-500/25 group-hover:bg-violet-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all duration-350">
+                    <CheckCircle className="w-6 h-6" />
                   </div>
-                  <div className="space-y-1.5 px-1">
-                    <span className="block text-[13px] font-black text-slate-100 leading-tight">Limited validation cohort</span>
-                    <span className="block text-[11px] text-violet-200/90 leading-normal font-medium">Accepting early validation subscribers only</span>
+                  <div className="space-y-2 px-1">
+                    <span className="block text-[14px] font-black text-slate-100 leading-tight tracking-tight">Limited validation cohort</span>
+                    <span className="block text-[11.5px] text-violet-200/80 leading-relaxed font-semibold">Accepting early validation subscribers only</span>
                   </div>
                 </div>
-                <div className="w-1.5 h-1.5 rounded-full bg-violet-500/20 group-hover:bg-violet-500 transition-colors duration-300 mt-2" />
+                <div className="w-2 h-2 rounded-full bg-violet-500/30 group-hover:bg-violet-500 group-hover:shadow-[0_0_8px_rgba(139,92,246,0.8)] transition-all duration-350 mt-4" />
               </div>
 
               {/* Card 3 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/80 backdrop-blur-md border border-slate-800/70 rounded-2xl p-5 hover:border-rose-500/35 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-rose-500/[0.02] hover:-translate-y-1.5 transition-all duration-300 min-h-[195px] relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-rose-500/[0.01] group-hover:bg-rose-500/[0.03] transition-all duration-300 rounded-full blur-lg pointer-events-none" />
-                <div className="flex flex-col items-center gap-3.5">
-                  <div className="p-2.5 bg-rose-500/15 text-rose-400 rounded-2xl border border-rose-500/20 group-hover:bg-rose-500 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(244,63,94,0.25)] transition-all duration-300">
-                    <Activity className="w-5.5 h-5.5" />
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/90 backdrop-blur-md border border-slate-750/80 rounded-2xl p-6 hover:border-rose-500/50 hover:bg-slate-900/95 hover:shadow-2xl hover:shadow-rose-500/[0.08] hover:-translate-y-1.5 transition-all duration-300 min-h-[210px] relative overflow-hidden shadow-lg shadow-black/40">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/[0.02] group-hover:bg-rose-500/[0.05] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
+                <div className="flex flex-col items-center gap-4 w-full">
+                  <div className="p-3 bg-rose-500/10 text-rose-300 rounded-xl border border-rose-500/25 group-hover:bg-rose-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(244,63,94,0.4)] transition-all duration-350">
+                    <Activity className="w-6 h-6" />
                   </div>
-                  <div className="space-y-1.5 px-1">
-                    <span className="block text-[13px] font-black text-slate-100 leading-tight">Early validation access</span>
-                    <span className="block text-[11px] text-rose-200/90 leading-normal font-medium">Co-design concepts and hardware direction directly</span>
+                  <div className="space-y-2 px-1">
+                    <span className="block text-[14px] font-black text-slate-100 leading-tight tracking-tight">Early validation access</span>
+                    <span className="block text-[11.5px] text-rose-200/80 leading-relaxed font-semibold">Co-design concepts and hardware direction directly</span>
                   </div>
                 </div>
-                <div className="w-1.5 h-1.5 rounded-full bg-rose-500/20 group-hover:bg-rose-500 transition-colors duration-300 mt-2" />
+                <div className="w-2 h-2 rounded-full bg-rose-500/30 group-hover:bg-rose-500 group-hover:shadow-[0_0_8px_rgba(244,63,94,0.8)] transition-all duration-350 mt-4" />
               </div>
 
               {/* Card 4 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/80 backdrop-blur-md border border-slate-800/70 rounded-2xl p-5 hover:border-emerald-500/35 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-emerald-500/[0.02] hover:-translate-y-1.5 transition-all duration-300 min-h-[195px] relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/[0.01] group-hover:bg-emerald-500/[0.03] transition-all duration-300 rounded-full blur-lg pointer-events-none" />
-                <div className="flex flex-col items-center gap-3.5">
-                  <div className="p-2.5 bg-emerald-500/15 text-emerald-400 rounded-2xl border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(16,185,129,0.25)] transition-all duration-300">
-                    <EyeOff className="w-5.5 h-5.5" />
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/90 backdrop-blur-md border border-slate-750/80 rounded-2xl p-6 hover:border-emerald-500/50 hover:bg-slate-900/95 hover:shadow-2xl hover:shadow-emerald-500/[0.08] hover:-translate-y-1.5 transition-all duration-300 min-h-[210px] relative overflow-hidden shadow-lg shadow-black/40">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/[0.02] group-hover:bg-emerald-500/[0.05] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
+                <div className="flex flex-col items-center gap-4 w-full">
+                  <div className="p-3 bg-emerald-500/10 text-emerald-300 rounded-xl border border-emerald-500/25 group-hover:bg-emerald-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all duration-350">
+                    <EyeOff className="w-6 h-6" />
                   </div>
-                  <div className="space-y-1.5 px-1">
-                    <span className="block text-[13px] font-black text-slate-100 leading-tight">No production commitment</span>
-                    <span className="block text-[11px] text-emerald-200/90 leading-normal font-medium">Transparent pre-manufacturing driver assessment</span>
+                  <div className="space-y-2 px-1">
+                    <span className="block text-[14px] font-black text-slate-100 leading-tight tracking-tight">No production commitment</span>
+                    <span className="block text-[11.5px] text-emerald-200/80 leading-relaxed font-semibold">Transparent pre-manufacturing driver assessment</span>
                   </div>
                 </div>
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/20 group-hover:bg-emerald-500 transition-colors duration-300 mt-2" />
+                <div className="w-2 h-2 rounded-full bg-emerald-500/30 group-hover:bg-emerald-500 group-hover:shadow-[0_0_8px_rgba(16,185,129,0.8)] transition-all duration-350 mt-4" />
+              </div>
               </div>
 
             </div>
-
-          </div>
 
         </section>
 
@@ -1063,20 +1125,20 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
             </div>
 
             {/* 1. THREE PREMIUM INTERACTIVE ARCHITECTURAL TIERS */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch pt-4 max-w-6xl mx-auto">
+            <div ref={parallaxContainerRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch pt-4 max-w-6xl mx-auto">
               
               {/* TIER 1: SOLO */}
-              <div className="relative flex flex-col min-h-full">
+              <div ref={soloRef} className="relative flex flex-col min-h-full transition-transform duration-100 ease-out">
                 {/* Backlight Glow Aura */}
                 {selectedPackage === 'solo' && (
                   <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500 rounded-[2.3rem] blur-2xl opacity-100 animate-pulse pointer-events-none z-0" style={{ animationDuration: '3.5s' }} />
                 )}
                 <div 
                   onClick={() => { setSelectedPackage('solo'); setValidationError(null); }}
-                  className={`group cursor-pointer rounded-[2.2rem] border-2 text-left transition-all duration-300 relative flex flex-col justify-between overflow-hidden bg-white flex-1 z-10 ${
+                  className={`group cursor-pointer rounded-[2.2rem] border-2 text-left relative flex flex-col justify-between overflow-hidden bg-white flex-1 z-10 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.015] active:scale-[0.985] ${
                     selectedPackage === 'solo' 
-                      ? 'border-indigo-500 shadow-[0_0_40px_rgba(99,102,241,0.45)] ring-4 ring-indigo-500/15 -translate-y-2' 
-                      : 'border-slate-200/80 hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-500/[0.05] hover:-translate-y-1'
+                      ? 'border-indigo-500 shadow-[0_0_40px_rgba(99,102,241,0.45)] ring-4 ring-indigo-500/15' 
+                      : 'border-slate-200/80 hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-500/[0.05]'
                   }`}
                 >
                   {/* Header Image */}
@@ -1159,17 +1221,17 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
 
               {/* TIER 2: FAMILY (FEATURED) */}
-              <div className="relative flex flex-col min-h-full">
+              <div ref={familyRef} className="relative flex flex-col min-h-full transition-transform duration-100 ease-out">
                 {/* Backlight Glow Aura */}
                 {selectedPackage === 'family' && (
                   <div className="absolute -inset-1.5 bg-gradient-to-r from-pink-500 via-rose-500 via-violet-650 to-indigo-600 rounded-[2.3rem] blur-2xl opacity-100 animate-pulse pointer-events-none z-0" style={{ animationDuration: '3s' }} />
                 )}
                 <div 
                   onClick={() => { setSelectedPackage('family'); setValidationError(null); }}
-                  className={`group cursor-pointer rounded-[2.2rem] border-2 text-left transition-all duration-300 relative flex flex-col justify-between overflow-hidden bg-white flex-1 z-10 ${
+                  className={`group cursor-pointer rounded-[2.2rem] border-2 text-left relative flex flex-col justify-between overflow-hidden bg-white flex-1 z-10 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.015] active:scale-[0.985] ${
                     selectedPackage === 'family' 
-                      ? 'border-indigo-500 shadow-[0_0_45px_rgba(244,63,94,0.4)] ring-4 ring-indigo-500/15 -translate-y-2 scale-[1.015]' 
-                      : 'border-indigo-205 hover:border-indigo-400 hover:shadow-2xl hover:shadow-indigo-500/[0.05] hover:-translate-y-1'
+                      ? 'border-indigo-500 shadow-[0_0_45px_rgba(244,63,94,0.4)] ring-4 ring-indigo-500/15' 
+                      : 'border-indigo-205 hover:border-indigo-400 hover:shadow-2xl hover:shadow-indigo-500/[0.05]'
                   }`}
                 >
                   {/* Glow Ring Effect */}
@@ -1268,17 +1330,17 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
 
               {/* TIER 3: GUARDIAN */}
-              <div className="relative flex flex-col min-h-full">
+              <div ref={guardianRef} className="relative flex flex-col min-h-full transition-transform duration-100 ease-out">
                 {/* Backlight Glow Aura */}
                 {selectedPackage === 'guardian' && (
                   <div className="absolute -inset-1.5 bg-gradient-to-r from-violet-650 via-indigo-650 to-cyan-500 rounded-[2.3rem] blur-2xl opacity-100 animate-pulse pointer-events-none z-0" style={{ animationDuration: '3.5s' }} />
                 )}
                 <div 
                   onClick={() => { setSelectedPackage('guardian'); setValidationError(null); }}
-                  className={`group cursor-pointer rounded-[2.2rem] border-2 text-left transition-all duration-300 relative flex flex-col justify-between overflow-hidden bg-white flex-1 z-10 ${
+                  className={`group cursor-pointer rounded-[2.2rem] border-2 text-left relative flex flex-col justify-between overflow-hidden bg-white flex-1 z-10 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.015] active:scale-[0.985] ${
                     selectedPackage === 'guardian' 
-                      ? 'border-indigo-500 shadow-[0_0_40px_rgba(139,92,246,0.45)] ring-4 ring-indigo-500/15 -translate-y-2' 
-                      : 'border-slate-200/80 hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-500/[0.05] hover:-translate-y-1'
+                      ? 'border-indigo-500 shadow-[0_0_40px_rgba(139,92,246,0.45)] ring-4 ring-indigo-500/15' 
+                      : 'border-slate-200/80 hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-500/[0.05]'
                   }`}
                 >
                   {/* Header Image */}
