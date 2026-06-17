@@ -996,15 +996,15 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
 
 
         {/* 5. TRUST REINFORCEMENT STRIP */}
-        <section id="funnel-trust-strip" className="py-16 md:py-20 border border-slate-800/80 flex flex-col justify-center min-h-[40vh] bg-slate-950 bg-gradient-to-b from-slate-900 to-black text-white rounded-[3rem] my-12 relative overflow-hidden px-8 sm:px-12 shadow-2xl shadow-indigo-950/30">
+        <section id="funnel-trust-strip" className="py-20 md:py-24 border border-slate-800/80 flex flex-col justify-center min-h-[42vh] bg-slate-950 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white rounded-[3.5rem] my-12 relative overflow-hidden px-8 sm:px-12 shadow-2xl shadow-indigo-950/30">
           
           {/* Futuristic ambient lights */}
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[130px] pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[130px] pointer-events-none animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
           {/* Tech Grid overlay */}
-          <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+          <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none" />
           
-          <div className="space-y-12 text-center max-w-5xl mx-auto relative z-10 animate-fade-in">
+          <div className="space-y-12 text-center max-w-6xl mx-auto relative z-10 animate-fade-in">
             
             {/* Main Statement */}
             <div className="space-y-4">
@@ -1017,81 +1017,129 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                   strict reservation framework
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400 max-w-3xl mx-auto pb-1">
+              <h2 className="text-3xl sm:text-4.5xl font-black tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-350 max-w-3xl mx-auto pb-1">
                 Transparent pre-launch validation
               </h2>
+              <p className="text-slate-400 max-w-xl mx-auto text-sm sm:text-base font-medium leading-relaxed">
+                Unlock early access to direct cockpit co-design and parameter validation with absolute security guarantees.
+              </p>
             </div>
 
             {/* Glowing line divider */}
-            <div className="relative w-full h-[1px] bg-gradient-to-r from-transparent via-slate-800 to-transparent my-4">
+            <div className="relative w-full max-w-3xl mx-auto h-[1px] bg-gradient-to-r from-transparent via-slate-800 to-transparent my-4">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,1)]" />
             </div>
 
             {/* Micro-trust bullets row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 pt-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-3">
               
               {/* Card 1 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/90 backdrop-blur-md border border-slate-750/80 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/95 hover:shadow-2xl hover:shadow-indigo-500/[0.08] hover:-translate-y-1.5 transition-all duration-300 min-h-[210px] relative overflow-hidden shadow-lg shadow-black/40">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/[0.02] group-hover:bg-indigo-500/[0.05] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
-                <div className="flex flex-col items-center gap-4 w-full">
-                  <div className="p-3 bg-indigo-500/10 text-indigo-300 rounded-xl border border-indigo-500/25 group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] transition-all duration-350">
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-6.5 hover:border-blue-500/50 hover:bg-slate-900/80 hover:shadow-2xl hover:shadow-blue-500/[0.08] hover:-translate-y-2 transition-all duration-300 min-h-[220px] relative overflow-hidden shadow-lg shadow-black/45">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/[0.01] group-hover:bg-blue-500/[0.04] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
+                
+                <div className="absolute top-3 right-4 pointer-events-none">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-blue-400 bg-blue-400/10 border border-blue-400/20 px-2 py-0.5 rounded-md">
+                    100% SECURED
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center gap-4 w-full mt-3">
+                  <div className="p-3 bg-blue-500/10 text-blue-400 rounded-xl border border-blue-500/20 group-hover:bg-blue-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300">
                     <ShieldCheck className="w-6 h-6" />
                   </div>
                   <div className="space-y-2 px-1">
-                    <span className="block text-[14px] font-black text-slate-100 leading-tight tracking-tight">Fully refundable reservation</span>
-                    <span className="block text-[11.5px] text-indigo-200/80 leading-relaxed font-semibold">Get your $40 CAD back instantly at any time</span>
+                    <span className="block text-[14px] sm:text-[14.5px] font-black text-slate-100 leading-tight tracking-tight">Fully refundable reservation</span>
+                    <span className="block text-[11.5px] text-slate-400 leading-relaxed font-semibold group-hover:text-slate-300 transition-colors">Get your $40 CAD back instantly at any time</span>
                   </div>
                 </div>
-                <div className="w-2 h-2 rounded-full bg-indigo-500/30 group-hover:bg-indigo-500 group-hover:shadow-[0_0_8px_rgba(99,102,241,0.8)] transition-all duration-350 mt-4" />
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500/30 group-hover:bg-blue-500 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300 mt-4" />
               </div>
 
               {/* Card 2 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/90 backdrop-blur-md border border-slate-750/80 rounded-2xl p-6 hover:border-violet-500/50 hover:bg-slate-900/95 hover:shadow-2xl hover:shadow-violet-500/[0.08] hover:-translate-y-1.5 transition-all duration-300 min-h-[210px] relative overflow-hidden shadow-lg shadow-black/40">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-violet-500/[0.02] group-hover:bg-violet-500/[0.05] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
-                <div className="flex flex-col items-center gap-4 w-full">
-                  <div className="p-3 bg-violet-500/10 text-violet-300 rounded-xl border border-violet-500/25 group-hover:bg-violet-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all duration-350">
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-6.5 hover:border-violet-500/50 hover:bg-slate-900/80 hover:shadow-2xl hover:shadow-violet-500/[0.08] hover:-translate-y-2 transition-all duration-300 min-h-[220px] relative overflow-hidden shadow-lg shadow-black/45">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-violet-500/[0.01] group-hover:bg-violet-500/[0.04] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
+                
+                <div className="absolute top-3 right-4 pointer-events-none flex items-center gap-1 bg-violet-500/15 border border-violet-500/25 px-2 py-0.5 rounded-md">
+                  <span className="w-1 h-1 rounded-full bg-violet-400 animate-pulse inline-block" />
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-violet-400">
+                    COHORT #1 ACTIVE
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center gap-4 w-full mt-3">
+                  <div className="p-3 bg-violet-500/10 text-violet-300 rounded-xl border border-violet-500/20 group-hover:bg-violet-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all duration-300">
                     <CheckCircle className="w-6 h-6" />
                   </div>
                   <div className="space-y-2 px-1">
-                    <span className="block text-[14px] font-black text-slate-100 leading-tight tracking-tight">Limited validation cohort</span>
-                    <span className="block text-[11.5px] text-violet-200/80 leading-relaxed font-semibold">Accepting early validation subscribers only</span>
+                    <span className="block text-[14px] sm:text-[14.5px] font-black text-slate-100 leading-tight tracking-tight">Limited validation cohort</span>
+                    <span className="block text-[11.5px] text-slate-400 leading-relaxed font-semibold group-hover:text-slate-300 transition-colors">Accepting early validation subscribers only</span>
                   </div>
                 </div>
-                <div className="w-2 h-2 rounded-full bg-violet-500/30 group-hover:bg-violet-500 group-hover:shadow-[0_0_8px_rgba(139,92,246,0.8)] transition-all duration-350 mt-4" />
+                <div className="w-1.5 h-1.5 rounded-full bg-violet-500/30 group-hover:bg-violet-500 group-hover:shadow-[0_0_8px_rgba(139,92,246,0.8)] transition-all duration-300 mt-4" />
               </div>
 
               {/* Card 3 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/90 backdrop-blur-md border border-slate-750/80 rounded-2xl p-6 hover:border-rose-500/50 hover:bg-slate-900/95 hover:shadow-2xl hover:shadow-rose-500/[0.08] hover:-translate-y-1.5 transition-all duration-300 min-h-[210px] relative overflow-hidden shadow-lg shadow-black/40">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/[0.02] group-hover:bg-rose-500/[0.05] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
-                <div className="flex flex-col items-center gap-4 w-full">
-                  <div className="p-3 bg-rose-500/10 text-rose-300 rounded-xl border border-rose-500/25 group-hover:bg-rose-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(244,63,94,0.4)] transition-all duration-350">
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-6.5 hover:border-rose-500/50 hover:bg-slate-900/80 hover:shadow-2xl hover:shadow-rose-500/[0.08] hover:-translate-y-2 transition-all duration-300 min-h-[220px] relative overflow-hidden shadow-lg shadow-black/45">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/[0.01] group-hover:bg-rose-500/[0.04] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
+                
+                <div className="absolute top-3 right-4 pointer-events-none">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-rose-400 bg-rose-400/10 border border-rose-400/20 px-2 py-0.5 rounded-md">
+                    CO-DESIGN
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center gap-4 w-full mt-3">
+                  <div className="p-3 bg-rose-500/10 text-rose-300 rounded-xl border border-rose-500/20 group-hover:bg-rose-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(244,63,94,0.4)] transition-all duration-300">
                     <Activity className="w-6 h-6" />
                   </div>
                   <div className="space-y-2 px-1">
-                    <span className="block text-[14px] font-black text-slate-100 leading-tight tracking-tight">Early validation access</span>
-                    <span className="block text-[11.5px] text-rose-200/80 leading-relaxed font-semibold">Co-design concepts and hardware direction directly</span>
+                    <span className="block text-[14px] sm:text-[14.5px] font-black text-slate-100 leading-tight tracking-tight">Early validation access</span>
+                    <span className="block text-[11.5px] text-slate-400 leading-relaxed font-semibold group-hover:text-slate-300 transition-colors">Co-design concepts and hardware direction directly</span>
                   </div>
                 </div>
-                <div className="w-2 h-2 rounded-full bg-rose-500/30 group-hover:bg-rose-500 group-hover:shadow-[0_0_8px_rgba(244,63,94,0.8)] transition-all duration-350 mt-4" />
+                <div className="w-1.5 h-1.5 rounded-full bg-rose-500/30 group-hover:bg-rose-500 group-hover:shadow-[0_0_8px_rgba(244,63,94,0.8)] transition-all duration-300 mt-4" />
               </div>
 
               {/* Card 4 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/90 backdrop-blur-md border border-slate-750/80 rounded-2xl p-6 hover:border-emerald-500/50 hover:bg-slate-900/95 hover:shadow-2xl hover:shadow-emerald-500/[0.08] hover:-translate-y-1.5 transition-all duration-300 min-h-[210px] relative overflow-hidden shadow-lg shadow-black/40">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/[0.02] group-hover:bg-emerald-500/[0.05] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
-                <div className="flex flex-col items-center gap-4 w-full">
-                  <div className="p-3 bg-emerald-500/10 text-emerald-300 rounded-xl border border-emerald-500/25 group-hover:bg-emerald-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all duration-350">
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-6.5 hover:border-emerald-500/50 hover:bg-slate-900/80 hover:shadow-2xl hover:shadow-emerald-500/[0.08] hover:-translate-y-2 transition-all duration-300 min-h-[220px] relative overflow-hidden shadow-lg shadow-black/45">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/[0.01] group-hover:bg-emerald-500/[0.04] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
+                
+                <div className="absolute top-3 right-4 pointer-events-none">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2 py-0.5 rounded-md">
+                    ZERO OBLIGATION
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center gap-4 w-full mt-3">
+                  <div className="p-3 bg-emerald-500/10 text-emerald-300 rounded-xl border border-emerald-500/25 group-hover:bg-emerald-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all duration-300">
                     <EyeOff className="w-6 h-6" />
                   </div>
                   <div className="space-y-2 px-1">
-                    <span className="block text-[14px] font-black text-slate-100 leading-tight tracking-tight">No production commitment</span>
-                    <span className="block text-[11.5px] text-emerald-200/80 leading-relaxed font-semibold">Transparent pre-manufacturing driver assessment</span>
+                    <span className="block text-[14px] sm:text-[14.5px] font-black text-slate-100 leading-tight tracking-tight">No production commitment</span>
+                    <span className="block text-[11.5px] text-emerald-200/80 leading-relaxed font-semibold group-hover:text-slate-300 transition-colors">Transparent pre-manufacturing driver assessment</span>
                   </div>
                 </div>
-                <div className="w-2 h-2 rounded-full bg-emerald-500/30 group-hover:bg-emerald-500 group-hover:shadow-[0_0_8px_rgba(16,185,129,0.8)] transition-all duration-350 mt-4" />
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/30 group-hover:bg-emerald-500 group-hover:shadow-[0_0_8px_rgba(16,185,129,0.8)] transition-all duration-300 mt-4" />
               </div>
               </div>
 
+            {/* High-conversion trust reassurance footer */}
+            <div className="pt-8 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-xs text-slate-450 font-mono border-t border-slate-900/60 mt-6">
+              <span className="flex items-center gap-2 text-slate-400">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse shrink-0" />
+                Funds secure in Stripe-compliant partner trust accounts
+              </span>
+              <span className="hidden md:inline text-slate-800">•</span>
+              <span className="flex items-center gap-1.5 text-slate-400">
+                🔒 256-Bit SSL Secured Encryption Protocols
+              </span>
+              <span className="hidden md:inline text-slate-800">•</span>
+              <span className="flex items-center gap-1 text-indigo-400 font-bold">
+                Direct 1-click refund action enabled inside control panel
+              </span>
             </div>
+
+          </div>
 
         </section>
 
