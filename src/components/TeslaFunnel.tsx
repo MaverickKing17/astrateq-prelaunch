@@ -1069,7 +1069,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                 {/* Header Image */}
                 <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
                   <img 
-                    src="/src/assets/images/driveguard_solo_bright_1781714478809.jpg" 
+                    src="/src/assets/images/driveguard_solo_modern_1781714862550.jpg" 
                     alt="DriveGuard Solo Hardware"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
@@ -1164,7 +1164,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                 {/* Header Image */}
                 <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-indigo-100">
                   <img 
-                    src="/src/assets/images/driveguard_family_bright_1781714491693.jpg" 
+                    src="/src/assets/images/driveguard_family_modern_1781714875124.jpg" 
                     alt="DriveGuard Family Hardware Bundle"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
@@ -1259,7 +1259,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                 {/* Header Image */}
                 <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
                   <img 
-                    src="/src/assets/images/guardian_pro_bright_1781714500649.jpg" 
+                    src="/src/assets/images/guardian_pro_modern_1781714886921.jpg" 
                     alt="Guardian Pro System Suite"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
