@@ -3,9 +3,11 @@ import { Menu, X, Sparkles, LayoutGrid } from 'lucide-react';
 
 interface NavbarProps {
   onScrollToSection: (sectionId: string) => void;
+  currentPage?: 'home' | 'about';
+  onNavigate?: (page: 'home' | 'about') => void;
 }
 
-export default function Navbar({ onScrollToSection }: NavbarProps) {
+export default function Navbar({ onScrollToSection, currentPage = 'home', onNavigate }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -23,7 +25,18 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
   }, []);
 
   const handleLinkClick = (id: string) => {
+    if (onNavigate && id !== 'about') {
+      onNavigate('home');
+    }
     onScrollToSection(id);
+    setMobileMenuOpen(false);
+  };
+
+  const handleAboutClick = () => {
+    if (onNavigate) {
+      onNavigate('about');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     setMobileMenuOpen(false);
   };
 
@@ -42,6 +55,7 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
           <div 
             className="flex items-center gap-3 cursor-pointer group flex-shrink-0"
             onClick={() => {
+              if (onNavigate) onNavigate('home');
               handleLinkClick('hero');
             }}
           >
@@ -68,16 +82,16 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
           </div>
 
           {/* Center: Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 lg:gap-8 xl:gap-10">
+          <nav className="hidden lg:flex items-center gap-5 lg:gap-7 xl:gap-9">
             <button
               onClick={() => handleLinkClick('how-it-works')}
-              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+              className="text-slate-600 hover:text-indigo-600 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               How It Works
             </button>
             <button
               onClick={() => handleLinkClick('concepts')}
-              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+              className="text-slate-600 hover:text-indigo-600 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               Concepts
             </button>
@@ -89,9 +103,19 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
             </button>
             <button
               onClick={() => handleLinkClick('faq')}
-              className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
+              className="text-slate-600 hover:text-indigo-600 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
               FAQ
+            </button>
+            <button
+              onClick={handleAboutClick}
+              className={`text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full ${
+                currentPage === 'about'
+                  ? 'text-indigo-650 font-extrabold after:w-full'
+                  : 'text-slate-600 hover:text-indigo-600'
+              }`}
+            >
+              About Us
             </button>
           </nav>
 
@@ -153,6 +177,16 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
               className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
             >
               FAQ
+            </button>
+            <button
+              onClick={handleAboutClick}
+              className={`block w-full text-left py-3 px-2 rounded-lg font-bold text-sm transition-colors ${
+                currentPage === 'about'
+                  ? 'text-indigo-600 bg-slate-50'
+                  : 'text-slate-700 hover:text-indigo-600 hover:bg-slate-50'
+              }`}
+            >
+              About Us
             </button>
 
             <div className="pt-4 border-t border-slate-100 flex flex-col gap-2">

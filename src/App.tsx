@@ -23,10 +23,12 @@ import FounderStory from './components/FounderStory';
 import AppleProductShowcase from './components/AppleProductShowcase';
 import SocialProofReplacement from './components/SocialProofReplacement';
 import TeslaFunnel from './components/TeslaFunnel';
+import AboutUs from './components/AboutUs';
 
 import { ShieldAlert, CheckCircle, Gift, ArrowUp } from 'lucide-react';
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'about'>('home');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<'info' | 'success' | 'gift'>('info');
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -77,9 +79,19 @@ export default function App() {
   };
 
   const handleScrollToSection = (sectionId: string) => {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (currentPage !== 'home') {
+      setCurrentPage('home');
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -106,9 +118,13 @@ export default function App() {
       <AnnouncementBar />
 
       {/* 2. Sticky Navigation Bar */}
-      <Navbar onScrollToSection={handleScrollToSection} />
+      <Navbar onScrollToSection={handleScrollToSection} currentPage={currentPage} onNavigate={setCurrentPage} />
 
-      <TeslaFunnel onReserveSuccess={handleReserveSuccess} />
+      {currentPage === 'home' ? (
+        <TeslaFunnel onReserveSuccess={handleReserveSuccess} onNavigate={setCurrentPage} />
+      ) : (
+        <AboutUs onBackToHome={() => setCurrentPage('home')} onScrollToSection={handleScrollToSection} />
+      )}
 
       {/* Colorful Floating Back-to-Top Button */}
       {showScrollTop && (

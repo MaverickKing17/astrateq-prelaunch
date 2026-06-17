@@ -7,9 +7,10 @@ import CompatibilityChecker from './CompatibilityChecker';
 
 interface TeslaFunnelProps {
   onReserveSuccess: (email: string, bundle: string) => void;
+  onNavigate?: (page: 'home' | 'about') => void;
 }
 
-export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
+export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunnelProps) {
   const [emailInput, setEmailInput] = useState('');
   const [activePainPoint, setActivePainPoint] = useState<number | null>(null);
   const [currentSelectedModule, setCurrentSelectedModule] = useState<number>(0);
@@ -17,6 +18,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
   const [activeLegalModal, setActiveLegalModal] = useState<'privacy' | 'tos' | 'cookie' | 'dmca' | 'refund' | null>(null);
   const [selectedPackage, setSelectedPackage] = useState<'solo' | 'family' | 'guardian'>('family');
   const [validationError, setValidationError] = useState<string | null>(null);
+  const [activeHudNode, setActiveHudNode] = useState<'obd' | 'fatigue' | 'privacy'>('obd');
 
   const [isDesktop, setIsDesktop] = useState(false);
   const parallaxContainerRef = useRef<HTMLDivElement>(null);
@@ -338,7 +340,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               <div className="absolute -inset-12 bg-gradient-to-tr from-indigo-500/15 via-purple-500/10 to-emerald-500/10 rounded-full blur-3xl opacity-80 pointer-events-none transition-all duration-500 group-hover:scale-110" />
 
               {/* 3D Glassmorphic HUD Panel containing the isometric vehicle projection */}
-              <div className="relative w-full aspect-square max-w-[495px] bg-slate-900 border border-slate-800 rounded-[2.5rem] p-7 flex flex-col justify-between shadow-2xl shadow-indigo-950/10 overflow-hidden transition-all duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateX(6deg)_rotateY(-6deg)] group-hover:shadow-indigo-500/10">
+              <div className="relative w-full aspect-auto min-h-[495px] bg-slate-900 border-2 border-indigo-500/25 rounded-[2.5rem] p-6 flex flex-col justify-between shadow-2xl shadow-indigo-950/20 overflow-hidden transition-all duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateX(4deg)_rotateY(-4deg)] group-hover:border-indigo-500/50 group-hover:shadow-indigo-500/10">
                 
                 {/* 3D Grid background to simulate a digital holographic design stage */}
                 <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(#4f46e5_1.2px,transparent_1.2px)] [background-size:16px_16px]" />
@@ -355,11 +357,11 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                 </div>
 
                 {/* Main 3D Stage Layer */}
-                <div className="flex-1 flex flex-col items-center justify-center py-2 relative z-10 [transform:translateZ(40px)]">
-                  <div className="w-full relative h-60 flex items-center justify-center">
+                <div className="flex-1 flex flex-col items-center justify-center py-4 relative z-10 [transform:translateZ(40px)]">
+                  <div className="w-full relative h-[190px] flex items-center justify-center">
                     
                     {/* The Premium 3D Rendered Vehicle */}
-                    <div className="relative w-[98%] h-[188px] rounded-2xl overflow-hidden border border-slate-800 shadow-inner group-hover:border-indigo-500/50 transition-colors duration-500">
+                    <div className="relative w-[98%] h-[178px] rounded-2xl overflow-hidden border border-slate-800 shadow-inner group-hover:border-indigo-500/50 transition-colors duration-500">
                       <img 
                         src="/src/assets/images/vehicle_3d_hud_1781636888483.jpg" 
                         alt="3D Vehicle Diagnostic Intel" 
@@ -372,46 +374,154 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                     </div>
 
                     {/* HUD Pin 1: Diagnostic Center Node (Slightly overlapping 3D space) */}
-                    <div className="absolute top-[62%] left-[-4%] flex items-center bg-slate-900/95 backdrop-blur-md border border-slate-750 rounded-xl px-2.5 py-1.5 shadow-lg [transform:translateZ(30px)] hover:scale-105 transition-all duration-300 text-white">
+                    <button 
+                      onClick={() => setActiveHudNode('obd')}
+                      className={`absolute top-[58%] left-[-2%] flex items-center bg-slate-950/95 backdrop-blur-sm border rounded-xl px-2.5 py-1.5 shadow-xl [transform:translateZ(45px)] hover:scale-105 hover:bg-indigo-950/95 transition-all duration-300 text-white cursor-pointer ${
+                        activeHudNode === 'obd' 
+                          ? 'border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.5)] scale-105' 
+                          : 'border-slate-800 hover:border-indigo-500/55'
+                      }`}
+                    >
                       <div className="relative flex h-3 w-3 mr-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                        <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75 ${activeHudNode === 'obd' ? 'inline' : 'hidden md:inline'}`}></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
                       </div>
                       <div className="flex flex-col text-left">
-                        <span className="text-[10px] font-black text-slate-100 leading-tight uppercase font-mono tracking-wide">OBD Scanner</span>
+                        <span className={`text-[9.5px] font-black uppercase font-mono tracking-wide ${activeHudNode === 'obd' ? 'text-indigo-400 font-extrabold' : 'text-slate-100'}`}>OBD Scanner</span>
                         <span className="text-[7.5px] font-mono text-slate-400 font-bold uppercase leading-none mt-0.5">Realtime translating</span>
                       </div>
-                    </div>
+                    </button>
 
                     {/* HUD Pin 2: Cabin Fatigue Sensory Center */}
-                    <div className="absolute top-[8%] left-[40%] flex flex-col items-center bg-slate-900/95 backdrop-blur-md border border-slate-750 rounded-xl px-2.5 py-1.5 shadow-lg [transform:translateZ(45px)] hover:scale-105 transition-all duration-300 text-white">
-                      <div className="relative flex h-3 w-3 mb-1.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <button 
+                      onClick={() => setActiveHudNode('fatigue')}
+                      className={`absolute top-[4%] left-[32%] flex flex-col items-center bg-slate-950/95 backdrop-blur-sm border rounded-xl px-2.5 py-1.5 shadow-xl [transform:translateZ(55px)] hover:scale-105 hover:bg-amber-950/95 transition-all duration-300 text-white cursor-pointer ${
+                        activeHudNode === 'fatigue' 
+                          ? 'border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.5)] scale-105' 
+                          : 'border-slate-800 hover:border-amber-500/55'
+                      }`}
+                    >
+                      <div className="relative flex h-3 w-3 mb-1">
+                        <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 ${activeHudNode === 'fatigue' ? 'inline' : 'hidden md:inline'}`}></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
                       </div>
                       <div className="flex flex-col text-center">
-                        <span className="text-[10px] font-black text-slate-100 leading-tight uppercase font-mono tracking-wide">Driver Fatigue Guard</span>
-                        <span className="text-[7.5px] font-mono text-slate-400 font-bold uppercase leading-none mt-0.5">Steering deviation check</span>
+                        <span className={`text-[9.5px] font-black uppercase font-mono tracking-wide ${activeHudNode === 'fatigue' ? 'text-amber-450 font-extrabold' : 'text-slate-100'}`}>Driver Fatigue Guard</span>
+                        <span className="text-[7.5px] font-mono text-slate-400 font-bold uppercase leading-none mt-0.5">Steering monitoring</span>
                       </div>
-                    </div>
+                    </button>
 
                     {/* HUD Pin 3: Privacy Isolation Node (Lock Center) */}
-                    <div className="absolute top-[58%] right-[-2%] flex items-center bg-slate-900/95 backdrop-blur-md border border-slate-750 rounded-xl px-2.5 py-1.5 shadow-lg [transform:translateZ(35px)] hover:scale-105 transition-all duration-300 text-white">
+                    <button 
+                      onClick={() => setActiveHudNode('privacy')}
+                      className={`absolute top-[56%] right-[-2%] flex items-center bg-slate-950/95 backdrop-blur-sm border rounded-xl px-2.5 py-1.5 shadow-xl [transform:translateZ(45px)] hover:scale-105 hover:bg-emerald-950/95 transition-all duration-300 text-white cursor-pointer ${
+                        activeHudNode === 'privacy' 
+                          ? 'border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)] scale-105' 
+                          : 'border-slate-800 hover:border-emerald-500/55'
+                      }`}
+                    >
                       <div className="relative flex h-3.5 w-3.5 mr-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 ${activeHudNode === 'privacy' ? 'inline' : 'hidden md:inline'}`}></span>
                         <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
                       </div>
                       <div className="flex flex-col text-left">
-                        <span className="text-[10px] font-black text-slate-100 leading-tight uppercase font-mono tracking-wide">Privacy Layer</span>
+                        <span className={`text-[9.5px] font-black uppercase font-mono tracking-wide ${activeHudNode === 'privacy' ? 'text-emerald-450 font-extrabold' : 'text-slate-100'}`}>Privacy Layer</span>
                         <span className="text-[7.5px] font-mono text-slate-400 font-bold uppercase leading-none mt-0.5">Zero outward routing</span>
                       </div>
-                    </div>
+                    </button>
 
                   </div>
                 </div>
 
+                {/* Interactive Diagnostic Feed Terminal */}
+                <div className="bg-slate-950/95 border border-slate-800/80 rounded-[1.2rem] p-3.5 font-mono text-[11px] relative overflow-hidden transition-all duration-300 mt-2 text-left shadow-inner">
+                  <div className="flex justify-between items-center border-b border-indigo-950/30 pb-2 mb-2">
+                    <span className="text-[9px] uppercase font-bold tracking-widest text-indigo-400">⚡ Interactive Realtime Feed</span>
+                    <div className="flex gap-1">
+                      <button 
+                        onClick={() => setActiveHudNode('obd')}
+                        className={`px-2 py-0.5 rounded text-[8.5px] font-extrabold ${activeHudNode === 'obd' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'text-slate-500 hover:text-slate-300'}`}
+                      >
+                        OBD
+                      </button>
+                      <button 
+                        onClick={() => setActiveHudNode('fatigue')}
+                        className={`px-2 py-0.5 rounded text-[8.5px] font-extrabold ${activeHudNode === 'fatigue' ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30' : 'text-slate-500 hover:text-slate-300'}`}
+                      >
+                        CABIN
+                      </button>
+                      <button 
+                        onClick={() => setActiveHudNode('privacy')}
+                        className={`px-2 py-0.5 rounded text-[8.5px] font-extrabold ${activeHudNode === 'privacy' ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' : 'text-slate-500 hover:text-slate-300'}`}
+                      >
+                        SHIELD
+                      </button>
+                    </div>
+                  </div>
+
+                  {activeHudNode === 'obd' && (
+                    <div className="space-y-1 text-slate-300 leading-normal">
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">PROTOCOL:</span>
+                        <span className="text-indigo-400">Standard ISO-15765 CAN-Bus</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">OBD QUERY:</span>
+                        <span>Sovereign passive read loop</span>
+                      </div>
+                      <div className="flex justify-between text-[11px]">
+                        <span className="text-slate-500">STATE:</span>
+                        <span className="text-emerald-400 font-bold">100% compliant / 0 fault codes</span>
+                      </div>
+                      <p className="text-[9.5px] text-slate-450 leading-relaxed pt-1.5 border-t border-slate-900 mt-1">
+                        Translates proprietary signals instantly into natural language alerts without overwriting or interfering with vehicle ECUs.
+                      </p>
+                    </div>
+                  )}
+
+                  {activeHudNode === 'fatigue' && (
+                    <div className="space-y-1 text-slate-300 leading-normal">
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">ENGINE:</span>
+                        <span className="text-amber-450 font-bold">Gaze Attention & Steering Tracker</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">COMPUTE:</span>
+                        <span>100% Local cabin microprocessors</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">SPEED:</span>
+                        <span className="text-indigo-400">12ms frame processing velocity</span>
+                      </div>
+                      <p className="text-[9.5px] text-slate-450 leading-relaxed pt-1.5 border-t border-slate-900 mt-1">
+                        Detects gaze deviation patterns and lateral micro-steering drifts completely offline at the edge. No interior video of your face is saved.
+                      </p>
+                    </div>
+                  )}
+
+                  {activeHudNode === 'privacy' && (
+                    <div className="space-y-1 text-slate-300 leading-normal">
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">OUTWARD REG:</span>
+                        <span className="text-emerald-400 font-bold">BLOCKED [Sovereign State]</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">CRYPT KEY:</span>
+                        <span>Hardware-bonded AES-256</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">PHYS BYPASS:</span>
+                        <span className="text-indigo-400 font-semibold uppercase">Physical air-gap lines active</span>
+                      </div>
+                      <p className="text-[9.5px] text-slate-450 leading-relaxed pt-1.5 border-t border-slate-900 mt-1">
+                        Includes a physical telemetry separator ensuring your driving routes, acceleration metrics, and diagnostic logs never leave your vehicle.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
                 {/* HUD Footer: Micro indicators representing constant hardware telemetry stream */}
-                <div className="border-t border-slate-800 pt-3 flex items-center justify-between z-20 bg-slate-900/60 backdrop-blur-sm [transform:translateZ(15px)]">
+                <div className="border-t border-slate-800/80 pt-3 flex items-center justify-between z-20 bg-slate-900/60 backdrop-blur-sm [transform:translateZ(15px)] mt-2">
                   <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-extrabold">Holographic Telemetry</span>
                   <div className="flex gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
@@ -1157,18 +1267,18 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-14 relative z-10">
             
             {/* Header copy precisely mapped */}
-            <div className="space-y-4.5 max-w-2xl mx-auto">
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono tracking-widest uppercase font-black text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-150 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping inline-block shrink-0" />
-                🔒 Secure Pre-order Checkout • Fully Refundable
+            <div className="space-y-5 max-w-3xl mx-auto text-center">
+              <span className="inline-flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase font-black text-indigo-700 bg-indigo-50/80 px-4 py-2 rounded-full border border-indigo-100 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse inline-block shrink-0" />
+                🛡️ 100% SECURE PRE-ORDER • CANCEL & REFUND INSTANTLY ANYTIME
               </span>
-              {/* H2 Title */}
-              <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight pt-1">
-                Join the early validation cohort
+              {/* Dynamic Marketing Hook Title */}
+              <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-[1.1] text-slate-950">
+                Forge your sovereign shield. <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-500">Secure early hardware priority.</span>
               </h2>
-              {/* Subtext */}
-              <p className="text-sm sm:text-base text-slate-600 leading-normal font-semibold">
-                Select your luxury smart suite package configurations and help lock in early hardware priority before Canadian production decisions are finalized.
+              {/* High-Converting Subtext */}
+              <p className="text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+                Configure your passive offline intelligence suite below to secure your slots. Help guide final production decisions and lock in pilot-run savings before Canadian regional manufacturing allocations close.
               </p>
             </div>
 
@@ -1585,69 +1695,124 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
 
 
         {/* 7. FOOTER (MINIMAL TRUST FOOTER - Height: 20–30vh) */}
-        <footer id="funnel-footer" className="py-16 border-t border-slate-200/60 min-h-[25vh] flex flex-col justify-between text-slate-500 text-xs mt-12 bg-slate-50/40 px-6 sm:px-12 rounded-[2.5rem]">
+        <footer id="funnel-footer" className="py-16 border-t border-slate-205 min-h-[30vh] flex flex-col justify-between text-slate-500 text-xs mt-16 bg-slate-50/70 px-6 sm:px-12 rounded-[2.5rem] relative overflow-hidden">
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start text-left relative z-10">
             
             {/* Col 1 */}
-            <div className="space-y-3.5 max-w-sm">
-              <span className="font-black text-slate-900 block text-xs uppercase tracking-widest">
-                Astrateq Gadgets
+            <div className="space-y-4 max-w-sm">
+              <span className="font-black text-slate-950 block text-xs uppercase tracking-widest flex items-center gap-2">
+                🍁 Astrateq Gadgets
               </span>
               <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
-                An AI-powered automotive technology brand dedicated to elevating vehicle diagnostics and cognitive driving safety indicator displays. Conceptualized in Toronto, Ontario, Canada.
+                An pioneering automotive technology brand dedicated to elevating vehicle diagnostics and cognitive driving safety indicator displays. Conceptualized in Toronto, Ontario, Canada.
               </p>
+              <div className="pt-2 text-[11px] space-y-1.5 text-slate-450 border-t border-slate-200/40">
+                <span className="block font-bold text-slate-700">Concierge Desk:</span>
+                <a href="mailto:concierge@astrateqgadgets.ca" className="text-indigo-600 hover:underline font-extrabold block">concierge@astrateqgadgets.ca</a>
+              </div>
             </div>
 
             {/* Col 2 */}
-            <div className="space-y-3.5 max-w-sm">
-              <span className="font-black text-slate-900 block text-xs uppercase tracking-widest">
+            <div className="space-y-4 max-w-sm">
+              <span className="font-black text-slate-950 block text-xs uppercase tracking-widest">
                 Pre-Launch Validation
               </span>
-              <p className="text-[11.5px] text-slate-500 font-semibold leading-relaxed">
-                We are currently in a testing phase to fine-tune our smart safety sensors and alert sensitivities (such as calibrating how quickly we identify driver fatigue or lane drifts). This helps eliminate frustrating false alarms, while customizing our physical indicator displays based on early driver feedback.
+              <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
+                We are in a public tuning phase to calibrate safety sensors and alert thresholds (such as driver fatigue limits or micro-steering drift velocities). Early cohort deposits are held safely in escrow and are instantly refundable in one-click.
               </p>
+              <div className="flex gap-2 flex-wrap pt-1.5 opacity-80">
+                <span className="bg-white border border-slate-200/60 px-2 py-1 rounded text-[9px] font-bold text-slate-600">🛡️ SECURE COHORT</span>
+                <span className="bg-emerald-50/60 border border-emerald-100 px-2 py-1 rounded text-[9px] font-bold text-emerald-700">✓ INSTANT REFUNDS</span>
+              </div>
             </div>
 
-            {/* Col 3 */}
-            <div className="space-y-3.5">
-              <span className="font-black text-slate-900 block text-xs uppercase tracking-widest">
+            {/* Col 3: Explore Navigation */}
+            <div className="space-y-4">
+              <span className="font-black text-slate-950 block text-xs uppercase tracking-widest">
+                Explore Platform
+              </span>
+              <div className="flex flex-col gap-2.5 text-[11.5px]">
+                <button 
+                  onClick={() => {
+                    const el = document.getElementById('how-it-works');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-slate-600 hover:text-indigo-600 transition-colors font-bold text-left outline-none cursor-pointer"
+                >
+                  How DriveGuard Works
+                </button>
+                <button 
+                  onClick={() => {
+                    const el = document.getElementById('concepts');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-slate-600 hover:text-indigo-600 transition-colors font-bold text-left outline-none cursor-pointer"
+                >
+                  Software &amp; HUD Concepts
+                </button>
+                <button 
+                  onClick={() => {
+                    const el = document.getElementById('compatibility');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-slate-600 hover:text-indigo-600 transition-colors font-bold text-left outline-none cursor-pointer"
+                >
+                  Try Compatibility Tool
+                </button>
+                <button 
+                  onClick={() => {
+                    if (onNavigate) {
+                      onNavigate('about');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-indigo-600 hover:text-indigo-700 transition-colors font-extrabold text-left outline-none cursor-pointer flex items-center gap-1.5"
+                >
+                  <span>🚀</span> Learn Our Story (About Us)
+                </button>
+              </div>
+            </div>
+
+            {/* Col 4 */}
+            <div className="space-y-4">
+              <span className="font-black text-slate-950 block text-xs uppercase tracking-widest">
                 Validations &amp; Legal
               </span>
               <div className="flex flex-col gap-2.5 text-[11.5px] text-slate-500">
                 <button 
                   onClick={() => setActiveLegalModal('privacy')} 
-                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-505" />
+                  <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0" />
                   Privacy Policy &amp; Charter
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('tos')} 
-                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-405" />
+                  <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
                   Terms of Service (Cohort Agreement)
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('refund')} 
-                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-505 shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
                   $40 CAD Refund Guarantee Policy
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('dmca')} 
-                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-rose-505 shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
                   DMCA, Trademark &amp; IP Notices
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('cookie')} 
-                  className="hover:text-indigo-650 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-slate-400 shrink-0" />
                   Cookie &amp; Local Storage Policy
                 </button>
               </div>
