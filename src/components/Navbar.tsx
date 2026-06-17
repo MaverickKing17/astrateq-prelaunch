@@ -82,6 +82,12 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
               Concepts
             </button>
             <button
+              onClick={() => handleLinkClick('compatibility')}
+              className="text-indigo-600 hover:text-indigo-700 text-xs lg:text-sm font-extrabold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full flex items-center gap-1"
+            >
+              <span>🛠️</span> Try Diagnostics &amp; Compatibility
+            </button>
+            <button
               onClick={() => handleLinkClick('faq')}
               className="text-slate-600 hover:text-indigo-650 text-xs lg:text-sm font-bold tracking-wide transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
@@ -135,6 +141,12 @@ export default function Navbar({ onScrollToSection }: NavbarProps) {
               className="block w-full text-left py-3 px-2 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
             >
               Concepts
+            </button>
+            <button
+              onClick={() => handleLinkClick('compatibility')}
+              className="block w-full text-left py-3 px-2 rounded-lg text-indigo-700 hover:bg-slate-50 font-extrabold text-sm transition-colors"
+            >
+              🛠️ Try Diagnostics &amp; Compatibility
             </button>
             <button
               onClick={() => handleLinkClick('faq')}

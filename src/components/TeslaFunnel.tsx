@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send, CheckCircle, ArrowRight, CornerDownRight, Zap, X, Scale, FileText, Info } from 'lucide-react';
 
+import DigitalOBDScanner from './DigitalOBDScanner';
+import CompatibilityChecker from './CompatibilityChecker';
+
 interface TeslaFunnelProps {
   onReserveSuccess: (email: string, bundle: string) => void;
 }
@@ -13,6 +16,13 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
   const [activeLegalModal, setActiveLegalModal] = useState<'privacy' | 'tos' | 'cookie' | 'dmca' | 'refund' | null>(null);
   const [selectedPackage, setSelectedPackage] = useState<'solo' | 'family' | 'guardian'>('family');
   const [validationError, setValidationError] = useState<string | null>(null);
+
+  const handleScrollToSection = (sectionId: string) => {
+    let targetId = sectionId;
+    if (sectionId === 'pricing') targetId = 'reserve';
+    const el = document.getElementById(targetId);
+    el?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const handleReserveFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -547,121 +557,91 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
 
             </div>
 
-            {/* Right side: Minimal Abstract System Diagram (50/50 Split layout) */}
+            {/* Right side: Interactive Pre-launch Campaign Metrics & Founding Perks Card */}
             <div className="lg:col-span-6 flex justify-center items-center">
               
-              <div className="w-full max-w-[440px] bg-slate-950/95 backdrop-blur-xl border border-slate-800 rounded-[2.5rem] p-7.5 space-y-6 shadow-2xl relative overflow-hidden ring-1 ring-white/5">
+              <div className="w-full max-w-[440px] bg-slate-950/95 backdrop-blur-xl border border-slate-800 rounded-[2.5rem] p-7.5 space-y-6 shadow-2xl relative overflow-hidden ring-1 ring-white/5 text-left">
                 {/* Spotlights */}
-                <div className="absolute top-0 right-0 w-44 h-44 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-44 h-44 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-44 h-44 bg-rose-500/10 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-44 h-44 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
                 
-                {/* High tech glass header */}
+                {/* Dynamic glass header */}
                 <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping" />
-                    <div className="px-2.5 py-1 bg-indigo-950/60 text-indigo-400 font-mono text-[9px] font-black tracking-widest rounded-md border border-indigo-900/55 uppercase">
-                      COHORT MAPPING
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" />
+                    <div className="px-2.5 py-1 bg-rose-950/60 text-rose-400 font-mono text-[9px] font-black tracking-widest rounded-md border border-rose-900/55 uppercase">
+                      LIVE DEMAND METRICS
                     </div>
                   </div>
-                  <span className="text-[9.5px] font-mono text-slate-400 font-black tracking-wider uppercase flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-indigo-500" />
-                    v1.1 Concept Layer
+                  <span className="text-[9.5px] font-mono text-emerald-400 font-black tracking-wider uppercase flex items-center gap-1.5">
+                    <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
+                    84.2% LOCKED IN
                   </span>
                 </div>
 
-                {/* Conceptual Schematic boxes */}
+                {/* Progress bar info & Founding Metrics */}
                 <div className="space-y-4">
                   
-                  {/* Wire 1: Vehicle Diagnostics */}
-                  <div className="bg-gradient-to-r from-slate-900 to-slate-950/80 border border-slate-800/90 rounded-2xl p-4.5 flex items-start gap-4 relative group transition-all duration-300 hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-950/20">
-                    {/* Status Glow Bar (Left Border) */}
-                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-indigo-500 rounded-l-2xl" />
+                  {/* Reservation Count Stats */}
+                  <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 flex items-center justify-between gap-4">
+                    <div className="space-y-1">
+                      <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block font-bold">FOUNDING PILOT COHORT</span>
+                      <p className="text-xl font-black text-white tracking-tight">842 / 1,000 Reserved</p>
+                      <p className="text-[11px] text-slate-400 font-medium">Slots reserved across Canada in last 30 days</p>
+                    </div>
+                    {/* Visual Radial Glow meter */}
+                    <div className="relative w-14 h-14 shrink-0 flex items-center justify-center rounded-full bg-slate-950 border-2 border-indigo-500/40 shadow-inner">
+                      <span className="text-xs font-mono font-black text-indigo-300">84%</span>
+                      <div className="absolute inset-0 rounded-full border-2 border-t-rose-500 border-r-rose-500 border-b-transparent border-l-transparent animate-spin" style={{ animationDuration: '4s' }} />
+                    </div>
+                  </div>
+
+                  {/* Benefit Items */}
+                  <div className="space-y-3.5">
                     
-                    {/* Icon Container */}
-                    <div className="p-2.5 bg-indigo-950/85 text-indigo-400 rounded-xl border border-indigo-900/60 shrink-0 shadow-sm relative group-hover:scale-105 transition-transform">
-                      <Cpu className="w-4.5 h-4.5" />
-                      <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-emerald-500 border border-slate-950 animate-pulse" />
-                    </div>
+                    <span className="text-[9.5px] font-mono font-black text-indigo-400 uppercase tracking-widest block pt-1">
+                      EXCLUSIVE BATCH 1 FOUNDER BENEFITS:
+                    </span>
 
-                    {/* Details */}
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold font-mono tracking-widest text-indigo-400 uppercase leading-none">Input Node</span>
-                        <span className="text-[8px] font-mono text-emerald-400 bg-emerald-950/40 px-1.5 py-0.2 rounded border border-emerald-900/60 font-semibold uppercase leading-none">CAN Bus • Active</span>
+                    {/* Benefit 1 */}
+                    <div className="bg-slate-900/50 border border-slate-800/60 rounded-xl p-3.5 flex items-start gap-3">
+                      <div className="p-1.5 bg-indigo-950/80 text-indigo-400 rounded-lg shrink-0">
+                        <Zap className="w-4 h-4" />
                       </div>
-                      <h4 className="text-[13.5px] font-bold text-white mt-1 leading-snug">
-                        Sensing CAN-bus engine signals
-                      </h4>
-                      <p className="text-[10.5px] text-slate-400 font-medium leading-relaxed mt-1">
-                        Captures system telemetry and diagnostic frames directly.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Flow badge 1 */}
-                  <div className="flex justify-center -my-2 select-none pointer-events-none relative z-10">
-                    <div className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-[8px] tracking-widest uppercase font-bold text-indigo-400 shadow-sm border-indigo-900/30 flex items-center gap-1.5">
-                      <span>FLOW</span>
-                      <span className="text-indigo-400 font-black animate-bounce">&darr;</span>
-                    </div>
-                  </div>
-
-                  {/* Wire 2: Internal Edge Processor Shield */}
-                  <div className="bg-gradient-to-r from-slate-900 to-slate-950/80 border border-slate-800/90 rounded-2xl p-4.5 flex items-start gap-4 relative group transition-all duration-300 hover:border-rose-500/30 hover:shadow-lg hover:shadow-rose-950/20">
-                    {/* Status Glow Bar */}
-                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-rose-500 rounded-l-2xl" />
-
-                    {/* Icon Container */}
-                    <div className="p-2.5 bg-rose-950/85 text-rose-400 rounded-xl border border-rose-900/60 shrink-0 shadow-sm relative group-hover:scale-105 transition-transform">
-                      <Shield className="w-4.5 h-4.5" />
-                    </div>
-
-                    {/* Details */}
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold font-mono tracking-widest text-rose-400 uppercase leading-none">Astrateq Edge Layer</span>
-                        <span className="text-[8px] font-mono text-rose-400 bg-rose-950/40 px-1.5 py-0.2 rounded border border-rose-900/60 font-semibold uppercase leading-none">Encrypted RAM Loop</span>
+                      <div className="space-y-0.5">
+                        <span className="text-xs font-black text-white block">🎁 100% Waived Companion Subscription</span>
+                        <span className="text-[10.5px] text-slate-400 font-medium block leading-relaxed">
+                          Lifetime companion account access. Waives the standard $12 CAD/month active cloud logs subscription completely.
+                        </span>
                       </div>
-                      <h4 className="text-[13.5px] font-bold text-white mt-1 leading-snug">
-                        Processing locally &bull; Encrypted loop
-                      </h4>
-                      <p className="text-[10.5px] text-slate-400 font-medium leading-relaxed mt-1">
-                        Evaluates fault metrics in volatile memory; zero remote history is saved.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Flow badge 2 */}
-                  <div className="flex justify-center -my-2 select-none pointer-events-none relative z-10">
-                    <div className="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-[8px] tracking-widest uppercase font-bold text-rose-400 shadow-sm border-rose-900/30 flex items-center gap-1.5">
-                      <span>SECURED STREAM</span>
-                      <span className="text-rose-400 font-black animate-bounce">&darr;</span>
-                    </div>
-                  </div>
-
-                  {/* Wire 3: Driver action screen */}
-                  <div className="bg-gradient-to-r from-slate-900 to-slate-950/80 border border-slate-800/90 rounded-2xl p-4.5 flex items-start gap-4 relative group transition-all duration-300 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-950/20">
-                    {/* Status Glow Bar */}
-                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-emerald-500 rounded-l-2xl" />
-
-                    {/* Icon Container */}
-                    <div className="p-2.5 bg-emerald-950/85 text-emerald-400 rounded-xl border border-emerald-900/60 shrink-0 shadow-sm relative group-hover:scale-105 transition-transform">
-                      <CheckCircle className="w-4.5 h-4.5" />
                     </div>
 
-                    {/* Details */}
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold font-mono tracking-widest text-emerald-400 uppercase leading-none">Clean Display Out</span>
-                        <span className="text-[8px] font-mono text-emerald-400 bg-emerald-950/40 px-1.5 py-0.2 rounded border border-emerald-900/60 font-semibold uppercase leading-none">Verbal Guidance</span>
+                    {/* Benefit 2 */}
+                    <div className="bg-slate-900/50 border border-slate-800/60 rounded-xl p-3.5 flex items-start gap-3">
+                      <div className="p-1.5 bg-rose-950/80 text-rose-400 rounded-lg shrink-0">
+                        <ShieldCheck className="w-4 h-4" />
                       </div>
-                      <h4 className="text-[13.5px] font-bold text-white mt-1 leading-snug">
-                        Outputting direct verbal driver guidance
-                      </h4>
-                      <p className="text-[10.5px] text-slate-400 font-medium leading-relaxed mt-1">
-                        Deciphers engine codes into plain, spoken mechanical recommendations instantly.
-                      </p>
+                      <div className="space-y-0.5">
+                        <span className="text-xs font-black text-white block">🛡️ Free 3-Year Extended Canadian Warranty</span>
+                        <span className="text-[10.5px] text-slate-400 font-medium block leading-relaxed">
+                          Covers extreme temperature operations (+85°C down to harsh -35°C Canadian winters). Ultimate durability warranty.
+                        </span>
+                      </div>
                     </div>
+
+                    {/* Benefit 3 */}
+                    <div className="bg-slate-900/50 border border-slate-800/60 rounded-xl p-3.5 flex items-start gap-3">
+                      <div className="p-1.5 bg-emerald-950/80 text-emerald-400 rounded-lg shrink-0">
+                        <CheckCircle className="w-4 h-4" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <span className="text-xs font-black text-white block">👥 VIP Co-Design & Firmware Beta Access</span>
+                        <span className="text-[10.5px] text-slate-400 font-medium block leading-relaxed">
+                          Join our core feedback group. Directly shape the Astrateq software features roadmap and firmware rollout updates.
+                        </span>
+                      </div>
+                    </div>
+
                   </div>
 
                 </div>
@@ -673,6 +653,21 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
           </div>
 
         </section>
+
+        {/* INTERACTIVE OBD2 DIAGNOSTICS & VEHICLE COMPATIBILITY SECTIONS */}
+        <div id="diagnostics-suite" className="space-y-4">
+          <DigitalOBDScanner />
+          <CompatibilityChecker 
+            onCheckSuccess={(vehicle) => {
+              if (typeof window !== 'undefined') {
+                console.log(`Verified compatibility for ${vehicle}`);
+              }
+            }} 
+            onScrollToSection={(sectionId) => {
+              handleScrollToSection(sectionId);
+            }}
+          />
+        </div>
 
         {/* 4. CORE VALUE MODULES (3-CARD SYSTEM) */}
         <section id="funnel-values" className="py-20 border-b border-slate-200/50 flex flex-col justify-center min-h-[60vh]">
@@ -1242,6 +1237,18 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                     placeholder="your@email.com"
                     className="bg-slate-50/85 border border-slate-200 hover:border-slate-350 focus:border-indigo-600 rounded-xl px-4 py-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all font-semibold"
                   />
+                </div>
+
+                {/* Simulated Purchase & Market Validation Campaign Disclaimer */}
+                <div className="p-4 bg-amber-50/80 border border-amber-200 text-amber-900 rounded-xl text-[11px] leading-relaxed text-left space-y-1.5 shadow-sm">
+                  <div className="flex items-center gap-1.5 font-bold text-amber-955 font-mono text-[9px] uppercase tracking-wider">
+                    <Info className="w-3.5 h-3.5 text-amber-700 shrink-0 font-bold" />
+                    <span>⚠️ PRE-LAUNCH SIMULATED PURCHASE PROTOCOL</span>
+                  </div>
+                  <p className="font-semibold text-slate-750">
+                    Astrateq Gadgets is in a public concept validation and demand-testing phase. 
+                    Your credit card is <strong>not</strong> being charged today. This reservation, secured via email, maps your position in our Canadian pilot cohort and locks in early-access pricing with no final financial liability. Thank you for validating interest with us!
+                  </p>
                 </div>
 
                 {validationError && (
