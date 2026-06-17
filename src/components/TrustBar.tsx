@@ -80,7 +80,7 @@ export default function TrustBar() {
       icon: <MapPin className="w-5 h-5 text-rose-400" />,
       badge: "Canadian Edge",
       label: 'Proudly Canadian Company',
-      desc: 'Based out of beautiful Vancouver, BC.',
+      desc: 'Based out of beautiful Toronto, ON.',
       details: 'Designed, evaluated, and customer-supported locally. We serve high-standard drivers and maintain absolute alignment with national transit laws.',
       statusColor: 'bg-rose-400',
       statusText: 'Local Transit Rules',

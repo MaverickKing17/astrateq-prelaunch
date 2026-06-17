@@ -92,9 +92,10 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       name: 'DriveGuard Solo',
       type: 'Essential Protection',
       image: driveguardSoloImg,
-      msrp: 329,
-      shipPrice: 269,
-      savings: 60,
+      msrp: 299,
+      shipPrice: 250,
+      savings: 49,
+      deposit: 49,
       badge: 'Starter Tier',
       cta: 'Reserve for $49 CAD',
       warranty: '2-Year Warranty',
@@ -115,11 +116,12 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       name: 'Family Safety Bundle',
       type: 'Complete Family Tier',
       image: familyBundleImg,
-      msrp: 778,
-      shipPrice: 599,
-      savings: 179,
+      msrp: 599,
+      shipPrice: 500,
+      savings: 99,
+      deposit: 99,
       badge: 'Best Value • Most Popular',
-      cta: 'Secure Family Spot for $49',
+      cta: 'Secure Family Spot for $99',
       warranty: '3-Year Warranty',
       isFeatured: true,
       features: [
@@ -141,11 +143,12 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       name: 'Guardian Pro Bundle',
       type: 'Ultimate Fleet Protection',
       image: guardianProImg,
-      msrp: 1157,
-      shipPrice: 899,
-      savings: 258,
+      msrp: 899,
+      shipPrice: 750,
+      savings: 149,
+      deposit: 149,
       badge: 'Elite Collection',
-      cta: 'Reserve Pro Spot for $49',
+      cta: 'Reserve Pro Spot for $149',
       warranty: '3-Year Warranty + Concierge',
       features: [
         'All 3 Signature Astrateq Devices',
@@ -293,7 +296,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
             Unlock High-Volume Pre-Order Access
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed font-bold max-w-[90%] sm:max-w-xl mx-auto">
-            We removed all the friction. Reserve your Founding Spot today for a <span className="text-indigo-600">fully refundable $49 CAD</span>. Keep your discount locked, get all premium prelaunch bonuses free, and pay the balance only when we ship in Summer 2026.
+            We removed all the friction. Secure your Founding Spot today with a <span className="text-indigo-600">fully refundable pre-launch deposit</span>. Your deposit amount acts as your <span className="text-emerald-600">guaranteed discount amount</span>—meaning you pay only the remaining balance at launch and get all premium pre-launch bonuses free!
           </p>
 
           {/* Connected Pricing Timer */}
@@ -385,7 +388,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                   <div className="flex items-baseline gap-1">
                     <span className="text-xl font-bold text-indigo-600 align-top">$</span>
                     <span className="text-4xl font-display font-black text-indigo-600 tracking-tight leading-none">
-                      {reservationDeposit}
+                      {bundle.deposit}
                     </span>
                     <span className="text-xs font-bold text-indigo-500 uppercase tracking-widest ml-1">
                       CAD
@@ -576,7 +579,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                     <br className="mb-1" />
                     By selecting a package and submitting this reservation form, you are securing a priority reservation position for our upcoming product release. No actual financial transaction will occur and your payment method will not be charged.
                     <br className="mb-1" />
-                    This checkout experience utilizes Stripe's secure test environment to simulate a $49 CAD Founding Member reservation for market validation and demand analysis purposes. Your financial information is not processed for real currency exchange, stored for billing purposes, or shared with third parties.
+                    This checkout experience utilizes Stripe's secure test environment to simulate a ${selectedBundle?.deposit || 49} CAD Founding Member reservation for market validation and demand analysis purposes. Your financial information is not processed for real currency exchange, stored for billing purposes, or shared with third parties.
                     <br className="mb-1" />
                     Upon official product launch, priority reservation holders will receive exclusive early-access opportunities and will be invited to complete a production order if they choose to proceed.
                   </p>
@@ -591,7 +594,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                       {selectedBundle.name} Spot Reservation
                     </span>
                     <span className="text-xs text-indigo-650 font-extrabold font-mono bg-indigo-50 border border-indigo-120 px-2 py-0.5 rounded-md">
-                      $49 CAD today
+                      ${selectedBundle.deposit} CAD today
                     </span>
                   </div>
                   <span className="text-[10px] text-slate-500 mt-2 font-medium leading-relaxed">
@@ -792,7 +795,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                       Hormozi Double-Risk Guarantee Activated
                     </span>
                     <div className="text-xs font-extrabold text-slate-800">
-                      Today's Validation Commitment: <span className="text-emerald-700 font-black text-sm">$49 CAD (100% Fully Refundable)</span>
+                      Today's Validation Commitment: <span className="text-emerald-700 font-black text-sm">${selectedBundle.deposit} CAD (100% Fully Refundable)</span>
                     </div>
                     <p className="text-[10px] text-slate-500 mt-2 leading-relaxed font-semibold">
                       Immediate confirmation code generated upon authorization. Refund requested with a single button click anytime before summer shipping begins.
@@ -811,7 +814,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                     </div>
                     <div className="text-[11px] text-slate-300 leading-relaxed space-y-2 font-medium">
                       <p>We utilize Stripe's official secure test environment.</p>
-                      <p>Your payment method may be used to simulate a <span className="text-cyan-400 font-extrabold">$49 CAD</span> Founding Member reservation; however, <span className="text-purple-400 font-extrabold">no charge will be processed</span> during this validation phase.</p>
+                      <p>Your payment method may be used to simulate a <span className="text-cyan-400 font-extrabold">${selectedBundle.deposit} CAD</span> Founding Member reservation; however, <span className="text-purple-400 font-extrabold">no charge will be processed</span> during this validation phase.</p>
                       <p>Your information remains secure and your payment method <span className="text-emerald-400 font-extrabold font-mono">will not be billed</span>.</p>
                     </div>
                   </div>
@@ -832,8 +835,8 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                     </>
                   ) : (
                     stripeConfig.isValidationMode 
-                      ? "CONFIRM SECURE ALLOCATION ($49 CAD simulated)"
-                      : "Proceed to Stripe Checkout ($49 CAD)"
+                      ? `CONFIRM SECURE ALLOCATION ($${selectedBundle.deposit} CAD simulated)`
+                      : `Proceed to Stripe Checkout ($${selectedBundle.deposit} CAD)`
                   )}
                 </button>
 

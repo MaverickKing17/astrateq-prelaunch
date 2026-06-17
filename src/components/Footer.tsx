@@ -106,8 +106,8 @@ export default function Footer({ onScrollToSection }: FooterProps) {
       title: 'Terms of Prelaunch Reservation',
       icon: <FileText className="w-5 h-5 text-blue-400" />,
       text: [
-        'Queue Reservation Deposit: Participants make a fully-refundable $49 CAD reservation authorization today to lock in high pre-order volume discounts and ensure early shipment allocation in Summer 2026.',
-        'Cancellation & Immediate Refund: You retain the absolute right to cancel your reservation queue sequence at any point before your specific physical hardware unit enters our Vancouver packaging conveyor line. Refund transactions are instantly debited back to your funding card via Stripe SSL secure processes.',
+        'Queue Reservation Deposit: Participants make a fully-refundable prelaunch reservation deposit ($49 to $149 CAD, depending on selected tier) today to lock in high pre-order volume discounts and ensure early shipment allocation in Summer 2026.',
+        'Cancellation & Immediate Refund: You retain the absolute right to cancel your reservation queue sequence at any point before your specific physical hardware unit enters our Toronto packaging conveyor line. Refund transactions are instantly debited back to your funding card via Stripe SSL secure processes.',
         'The Hormozi Double-Risk Guarantee: Following delivery, you receive an unconditional 30-day trial period on Canadian roadways. If Astrateq Gadgets does not meet your safety standards, you can return the device for a 100% refund of the purchase price and keep the deluxe client tool installation kit ($40-$120 value) completely free.'
       ]
     },
@@ -342,7 +342,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
           <div className="flex items-center gap-2 text-[10px] text-slate-100 font-medium bg-slate-900/65 border border-slate-800 py-1.5 px-3.5 rounded-full shadow-inner">
             <span>Designed for Canadian Road Security with</span>
             <Heart className="w-3 h-3 text-red-500 fill-red-500" />
-            <span>in beautiful British Columbia</span>
+            <span>in beautiful Toronto</span>
           </div>
         </div>
 

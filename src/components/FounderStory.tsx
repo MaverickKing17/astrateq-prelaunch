@@ -30,7 +30,7 @@ export default function FounderStory({ onScrollToSection }: FounderStoryProps) {
             </h2>
             
             <p className="text-slate-550 text-xs sm:text-sm font-semibold leading-relaxed">
-              Based in Vancouver, British Columbia, we are a group of Canadian engineers, designers, and consumer privacy advocates committed to physical data sovereignty.
+              Based in Toronto, Ontario, we are a group of Canadian engineers, designers, and consumer privacy advocates committed to physical data sovereignty.
             </p>
 
             <div className="pt-4 border-t border-slate-200/80 space-y-3">
@@ -63,7 +63,7 @@ export default function FounderStory({ onScrollToSection }: FounderStoryProps) {
                   <span className="text-[9.5px] text-slate-400 font-medium font-mono">Co-Founder, Firmware Design</span>
                 </div>
               </div>
-              <span className="text-xs font-serif italic text-slate-400 select-none">Vancouver, BC</span>
+              <span className="text-xs font-serif italic text-slate-400 select-none">Toronto, ON</span>
             </div>
           </div>
 

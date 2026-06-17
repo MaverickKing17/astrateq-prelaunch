@@ -11,20 +11,31 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
   const [currentSelectedModule, setCurrentSelectedModule] = useState<number>(0);
   const [conceptSubscribed, setConceptSubscribed] = useState(false);
   const [activeLegalModal, setActiveLegalModal] = useState<'privacy' | 'tos' | 'cookie' | 'dmca' | 'refund' | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<'solo' | 'family' | 'guardian'>('family');
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const handleReserveFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!emailInput.trim()) return;
-    onReserveSuccess(emailInput, 'Early-Access Validation Pre-Order');
+    
+    const packageName = selectedPackage === 'solo' 
+      ? 'DriveGuard Solo Package' 
+      : selectedPackage === 'family' 
+        ? 'Family Safety Bundle' 
+        : 'Guardian Pro Premium Bundle';
+
+    onReserveSuccess(emailInput, packageName);
     setEmailInput('');
+    setValidationError(null);
   };
 
   const handleGetUpdatesOnly = () => {
     if (!emailInput.trim()) {
-      alert('Please enter your email first in the conversion form below!');
+      setValidationError('Please type your email first to receive updates.');
       return;
     }
     setConceptSubscribed(true);
+    setValidationError(null);
   };
 
   const getLegalModalContent = () => {
@@ -47,7 +58,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Canadian Privacy Statutes (PIPEDA) Compliance</h4>
-                <p>For individuals reserving a seat in our early validation cohort, we collect only your primary communication email and country code. These details are stored in an encrypted Canadian server enclave located in British Columbia. We never sell, lease, exchange, or share your contact records with third-party marketing entities or ad networks. Your data is restricted purely to milestone communication dispatches regarding Astrateq conceptual phases.</p>
+                <p>For individuals reserving a seat in our early validation cohort, we collect only your primary communication email and country code. These details are stored in an encrypted Canadian server enclave located in Ontario. We never sell, lease, exchange, or share your contact records with third-party marketing entities or ad networks. Your data is restricted purely to milestone communication dispatches regarding Astrateq conceptual phases.</p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Local Passcode &amp; Encryption Matrix</h4>
@@ -55,7 +66,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">5. Permanent Right to Immediate Erasure (Opt-Out)</h4>
-                <p>You hold the permanent, unconditional right to withdraw from the cohort registry. Simply trigger an email to <strong>vancouver-lab@astrateq-gadgets.ca</strong> or use the unsubscribe links on any dispatch. Upon receipt, your early profile index is scrubbed permanently and non-recoverably from all databases within 24 business hours.</p>
+                <p>You hold the permanent, unconditional right to withdraw from the cohort registry. Simply trigger an email to <strong>toronto-lab@astrateq-gadgets.ca</strong> or use the unsubscribe links on any dispatch. Upon receipt, your early profile index is scrubbed permanently and non-recoverably from all databases within 24 business hours.</p>
               </div>
             </div>
           )
@@ -74,11 +85,11 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Reservation vs. Purchase Contract</h4>
-                <p>By executing the <strong>$40 CAD fully refundable reservation</strong> request, you acknowledge that you are participating in a pre-launch market research validation program. This deposit does not represent a final retail purchase contract of factory-built consumer inventory. Instead, it places you on our advisory cohort list to receive exclusive design dispatches, co-design input invitations, and premium delivery order queues upon commercial production clearance.</p>
+                <p>By executing the <strong>fully refundable reservation</strong> request, you acknowledge that you are participating in a pre-launch market research validation program. This deposit does not represent a final retail purchase contract of factory-built consumer inventory. Instead, it places you on our advisory cohort list to receive exclusive design dispatches, co-design input invitations, and premium delivery order queues upon commercial production clearance.</p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Pre-Launch Validation Disclosures</h4>
-                <p>Astrateq AI algorithms, display models, and localized hardware telemetry structures are in active computational optimization and validation testing. Final configurations, pricing variables, technical dimensions, and specific graphic UI elements may shift based on user-preference studies and market research analysis conducted during this pre-launch program in Vancouver, British Columbia.</p>
+                <p>Astrateq AI algorithms, display models, and localized hardware telemetry structures are in active computational optimization and validation testing. Final configurations, pricing variables, technical dimensions, and specific graphic UI elements may shift based on user-preference studies and market research analysis conducted during this pre-launch program in Toronto, Ontario.</p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Independent Non-Affiliation Pact</h4>
@@ -86,7 +97,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">5. Governing Jurisdictional Law</h4>
-                <p>These terms and all early validation interactions are governed by, created in, and construed in complete compliance with the corporate and legal structures of the <strong>Province of British Columbia and the federal laws of Canada</strong> applicable therein. Any legal inquiries or claim structures will be processed within the courts of Vancouver, BC.</p>
+                <p>These terms and all early validation interactions are governed by, created in, and construed in complete compliance with the corporate and legal structures of the <strong>Province of Ontario and the federal laws of Canada</strong> applicable therein. Any legal inquiries or claim structures will be processed within the courts of Toronto, ON.</p>
               </div>
             </div>
           )
@@ -101,12 +112,12 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
             <div className="space-y-5 text-slate-700 text-xs leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
               <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-100/60 text-emerald-900 text-[12px] leading-relaxed">
                 <p className="font-extrabold text-emerald-950">
-                  Our Commitment: Your $40 CAD reservation is fully, permanently, and unconditionally refundable. You can request your deposit back instantly at any time, for any reason, with no questions asked and zero penalty.
+                  Our Commitment: Your pre-launch reservation deposit is fully, permanently, and unconditionally refundable. You can request your deposit back instantly at any time, for any reason, with no questions asked and zero penalty.
                 </p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">1. How to Initiate a Full Refund</h4>
-                <p>To request your refund, write to our concierge office at <strong>vancouver-lab@astrateq-gadgets.ca</strong> or <strong>refunds@astrateq.com</strong>. Provide the email address you used to reserve your cohort position and your validation order number (received via email). No complex forms of identity proofing or tedious surveys are required for prompt approval.</p>
+                <p>To request your refund, write to our concierge office at <strong>toronto-lab@astrateq-gadgets.ca</strong> or <strong>refunds@astrateq.com</strong>. Provide the email address you used to reserve your cohort position and your validation order number (received via email). No complex forms of identity proofing or tedious surveys are required for prompt approval.</p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">2. Processing Timeframes</h4>
@@ -114,7 +125,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">3. Escrow Isolation Guarantee</h4>
-                <p>All collected reservation funds are held in a ring-fenced Canadian bank merchant escrow account in Vancouver, BC. These funds are never utilized for general business operations, advertising budgets, or personal prototyping expenses. They remain securely stored until a commercial standard manufactured release is officially authorized or until you request your return.</p>
+                <p>All collected reservation funds are held in a ring-fenced Canadian bank merchant escrow account in Toronto, ON. These funds are never utilized for general business operations, advertising budgets, or personal prototyping expenses. They remain securely stored until a commercial standard manufactured release is officially authorized or until you request your return.</p>
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Double-Guarantee Provision For Early Members</h4>
@@ -150,7 +161,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
               <div>
                 <h4 className="text-xs font-black text-slate-950 uppercase tracking-wider mb-1.5 font-mono">4. Designated DMCA Compliance Officer</h4>
-                <p>We respect intellectual property rights. If you represent an intellectual property holder or vehicle manufacturer and feel any graphic asset, text layout, or interactive mockup exceeds fair-use boundaries, please coordinate with our Vancouver DMCA counsel: <strong>legal-ip@astrateq-gadgets.ca</strong>. We respond to and rectify valid concerns within 48 business hours.</p>
+                <p>We respect intellectual property rights. If you represent an intellectual property holder or vehicle manufacturer and feel any graphic asset, text layout, or interactive mockup exceeds fair-use boundaries, please coordinate with our Toronto DMCA counsel: <strong>legal-ip@astrateq-gadgets.ca</strong>. We respond to and rectify valid concerns within 48 business hours.</p>
               </div>
             </div>
           )
@@ -1049,32 +1060,203 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
             </div>
 
             {/* Structured Conversion Capture Box */}
-            <div className="bg-white border-2 border-slate-200 rounded-[2rem] p-6 sm:p-10 shadow-2xl shadow-indigo-950/5 relative overflow-hidden text-left">
+            <div className="bg-white border-2 border-slate-200 rounded-[2.5rem] p-6 sm:p-10 shadow-2xl shadow-indigo-950/5 relative overflow-hidden text-left">
               
               <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-indigo-500 via-rose-500 to-indigo-600" />
 
+              {/* 1. INTERACTIVE PACKAGE TIERS */}
+              <div className="mb-8 space-y-4">
+                <span className="text-[10px] font-mono uppercase tracking-wider font-extrabold text-indigo-600 block">
+                  Step 1: Select Your Pre-Launch Package
+                </span>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* SOLO */}
+                  <div 
+                    onClick={() => { setSelectedPackage('solo'); setValidationError(null); }}
+                    className={`cursor-pointer rounded-[1.75rem] p-6 border-2 transition-all duration-300 relative flex flex-col justify-between ${
+                      selectedPackage === 'solo' 
+                        ? 'border-indigo-600 bg-gradient-to-b from-indigo-50/15 via-white to-white shadow-[0_0_22px_rgba(99,102,241,0.38)] ring-4 ring-indigo-500/15 -translate-y-1 scale-[1.025]' 
+                        : 'border-slate-200 hover:border-slate-400 hover:shadow-[0_0_15px_rgba(99,102,241,0.12)] bg-white hover:bg-slate-50/10 hover:-translate-y-0.5'
+                    }`}
+                  >
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-[9.5px] font-mono uppercase font-extrabold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-md tracking-wider">
+                          Starter
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-slate-950 text-[15px] flex items-center gap-1.5 leading-snug">
+                        <Shield className="w-4 h-4 text-slate-600 shrink-0" />
+                        DriveGuard Solo
+                      </h3>
+                      <p className="text-[11.5px] text-slate-500 leading-relaxed font-semibold">Ideal for commuter vehicles or single drivers.</p>
+                    </div>
+                    <div className={`mt-5 pt-3.5 border-t flex items-baseline justify-between transition-colors ${
+                      selectedPackage === 'solo' ? 'border-indigo-100' : 'border-slate-100'
+                    }`}>
+                      <span className={`text-[11px] font-mono transition-colors ${
+                        selectedPackage === 'solo' ? 'text-indigo-600 font-bold' : 'text-slate-400 font-semibold'
+                      }`}>
+                        Shipped Balance
+                      </span>
+                      <span className="font-black text-slate-950 text-sm tracking-tight">$250 <span className="text-[9.5px] text-slate-400 font-bold font-sans">CAD</span></span>
+                    </div>
+                    {/* Selected Indicator Badge */}
+                    <div className={`absolute top-4 right-4 w-[18px] h-[18px] rounded-full border flex items-center justify-center transition-all ${
+                      selectedPackage === 'solo' ? 'border-indigo-600 bg-indigo-600 shadow-sm' : 'border-slate-300 bg-white'
+                    }`}>
+                      {selectedPackage === 'solo' && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-scale-up" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* FAMILY (FEATURED) */}
+                  <div 
+                    onClick={() => { setSelectedPackage('family'); setValidationError(null); }}
+                    className={`cursor-pointer rounded-[1.75rem] p-6 border-2 transition-all duration-300 relative flex flex-col justify-between ${
+                      selectedPackage === 'family' 
+                        ? 'border-indigo-600 bg-gradient-to-b from-indigo-50/20 via-white to-white shadow-[0_0_26px_rgba(99,102,241,0.42)] ring-4 ring-indigo-500/20 -translate-y-1.5 scale-[1.03]' 
+                        : 'border-slate-200 hover:border-slate-400 hover:shadow-[0_0_15px_rgba(99,102,241,0.12)] bg-white hover:bg-slate-50/10 hover:-translate-y-0.5'
+                    }`}
+                  >
+                    {/* Featured label */}
+                    <div className="absolute -top-3.5 left-5 bg-gradient-to-r from-indigo-600 via-indigo-500 to-indigo-600 text-white text-[9px] font-black uppercase tracking-widest px-3.5 py-1 rounded-full shadow-md shadow-indigo-950/20 border border-indigo-500/35">
+                      Best Value • Most Popular
+                    </div>
+
+                    <div className="space-y-3 mt-2">
+                      <h3 className="font-bold text-slate-950 text-[15px] flex items-center gap-2 leading-snug">
+                        <ShieldCheck className="w-5 h-5 text-indigo-600 shrink-0" />
+                        Family Safety Hubs
+                      </h3>
+                      <p className="text-[11.5px] text-slate-500 leading-relaxed font-semibold">2x dual units for young or senior drivers sync.</p>
+                    </div>
+                    <div className={`mt-5 pt-3.5 border-t flex items-baseline justify-between transition-colors ${
+                      selectedPackage === 'family' ? 'border-indigo-200/40' : 'border-slate-100'
+                    }`}>
+                      <span className={`text-[11px] font-mono transition-colors ${
+                        selectedPackage === 'family' ? 'text-indigo-600 font-bold' : 'text-slate-400 font-semibold'
+                      }`}>
+                        Shipped Balance
+                      </span>
+                      <span className="font-black text-slate-950 text-sm tracking-tight">$500 <span className="text-[9.5px] text-slate-400 font-bold font-sans">CAD</span></span>
+                    </div>
+                    {/* Selected Indicator Badge */}
+                    <div className={`absolute top-4 right-4 w-[18px] h-[18px] rounded-full border flex items-center justify-center transition-all ${
+                      selectedPackage === 'family' ? 'border-indigo-600 bg-indigo-600 shadow-sm' : 'border-slate-300 bg-white'
+                    }`}>
+                      {selectedPackage === 'family' && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-scale-up" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* GUARDIAN */}
+                  <div 
+                    onClick={() => { setSelectedPackage('guardian'); setValidationError(null); }}
+                    className={`cursor-pointer rounded-[1.75rem] p-6 border-2 transition-all duration-300 relative flex flex-col justify-between ${
+                      selectedPackage === 'guardian' 
+                        ? 'border-indigo-600 bg-gradient-to-b from-indigo-50/15 via-white to-white shadow-[0_0_22px_rgba(99,102,241,0.38)] ring-4 ring-indigo-500/15 -translate-y-1 scale-[1.025]' 
+                        : 'border-slate-200 hover:border-slate-400 hover:shadow-[0_0_15px_rgba(99,102,241,0.12)] bg-white hover:bg-slate-50/10 hover:-translate-y-0.5'
+                    }`}
+                  >
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-[9.5px] font-mono uppercase font-extrabold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-md tracking-wider border border-slate-200/55">
+                          Elite Tier
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-slate-950 text-[15px] flex items-center gap-1.5 leading-snug">
+                        <Cpu className="w-4 h-4 text-slate-600 shrink-0" />
+                        Guardian Pro Bundle
+                      </h3>
+                      <p className="text-[11.5px] text-slate-500 leading-relaxed font-semibold">3x Premium modules, lifetime sync &amp; Concierge help.</p>
+                    </div>
+                    <div className={`mt-5 pt-3.5 border-t flex items-baseline justify-between transition-colors ${
+                      selectedPackage === 'guardian' ? 'border-indigo-100' : 'border-slate-100'
+                    }`}>
+                      <span className={`text-[11px] font-mono transition-colors ${
+                        selectedPackage === 'guardian' ? 'text-indigo-600 font-bold' : 'text-slate-400 font-semibold'
+                      }`}>
+                        Shipped Balance
+                      </span>
+                      <span className="font-black text-slate-950 text-sm tracking-tight">$750 <span className="text-[9.5px] text-slate-400 font-bold font-sans">CAD</span></span>
+                    </div>
+                    {/* Selected Indicator Badge */}
+                    <div className={`absolute top-4 right-4 w-[18px] h-[18px] rounded-full border flex items-center justify-center transition-all ${
+                      selectedPackage === 'guardian' ? 'border-indigo-600 bg-indigo-600 shadow-sm' : 'border-slate-300 bg-white'
+                    }`}>
+                      {selectedPackage === 'guardian' && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-scale-up" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* DYNAMIC PRICE DETAILS CARD */}
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-semibold shadow-inner shadow-slate-100">
+                  <div>
+                    <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block mb-0.5">Reservation Today</span>
+                    <span className="text-slate-950 font-black text-[13px]">
+                      {selectedPackage === 'solo' ? '$49.00' : selectedPackage === 'family' ? '$99.00' : '$149.00'} CAD
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono text-slate-400 uppercase tracking-wider block mb-0.5">Est. MSRP Regular</span>
+                    <span className="text-slate-400 line-through font-semibold text-[13px]">
+                      {selectedPackage === 'solo' ? '$299.00' : selectedPackage === 'family' ? '$599.00' : '$899.00'} CAD
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono text-indigo-500 uppercase tracking-wider block mb-0.5">Post-Launch Balance</span>
+                    <span className="text-indigo-600 font-extrabold text-[13px]">
+                      {selectedPackage === 'solo' ? '$250.00' : selectedPackage === 'family' ? '$500.00' : '$750.00'} CAD
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono text-emerald-600 uppercase tracking-wider block mb-0.5">Secured Prelaunch Savings</span>
+                    <span className="text-emerald-600 font-black text-[13px]">
+                      Save {selectedPackage === 'solo' ? '$49.00' : selectedPackage === 'family' ? '$99.00' : '$149.00'} CAD
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2. EMAIL SIGN UP PORTION */}
               <form onSubmit={handleReserveFormSubmit} className="space-y-5">
                 
                 <div className="flex flex-col space-y-1.5">
-                  <label className="text-[10px] font-mono uppercase tracking-wider font-extrabold text-slate-400">
-                    Your Contact Email Address
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label className="text-[10px] font-mono uppercase tracking-wider font-extrabold text-slate-400">
+                      Step 2: Enter Contact Email Address
+                    </label>
+                    <span className="text-[10px] text-emerald-600 font-bold font-mono">100% Fully Refundable Deposit</span>
+                  </div>
                   <input
                     type="email"
                     required
                     value={emailInput}
-                    onChange={(e) => setEmailInput(e.target.value)}
+                    onChange={(e) => { setEmailInput(e.target.value); setValidationError(null); }}
                     placeholder="your@email.com"
-                    className="bg-slate-50/80 border border-slate-200 hover:border-slate-350 focus:border-indigo-600 rounded-xl px-4 py-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all font-semibold"
+                    className="bg-slate-50/85 border border-slate-200 hover:border-slate-350 focus:border-indigo-600 rounded-xl px-4 py-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all font-semibold"
                   />
                 </div>
+
+                {validationError && (
+                  <div className="p-3.5 bg-rose-50 border border-rose-100 text-rose-800 text-xs font-bold rounded-xl flex items-center gap-2">
+                    <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0" />
+                    <span>{validationError}</span>
+                  </div>
+                )}
 
                 {/* Primary CTA (Big Solid Button) */}
                 <button
                   type="submit"
                   className="w-full py-4.5 bg-indigo-600 hover:bg-slate-900 text-white font-extrabold text-base rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer text-center uppercase tracking-wider"
                 >
-                  Reserve Early Access &mdash; $40 CAD
+                  Reserve {selectedPackage === 'solo' ? 'DriveGuard Solo' : selectedPackage === 'family' ? 'Family Safety Bundle' : 'Guardian Pro Bundle'} &mdash; ${selectedPackage === 'solo' ? '49' : selectedPackage === 'family' ? '99' : '149'} CAD
                 </button>
 
               </form>
@@ -1084,22 +1266,22 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                 <button 
                   type="button"
                   onClick={handleGetUpdatesOnly}
-                  className="text-slate-400 hover:text-indigo-600 font-bold transition-all text-xs underline cursor-pointer"
+                  className="text-slate-400 hover:text-indigo-600 font-bold transition-all text-xs underline cursor-pointer font-mono"
                 >
                   Get Updates Only
                 </button>
                 
                 {/* Final microcopy */}
                 <span className="text-slate-500 font-medium tracking-tight flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-                  Limited early access availability. Fully refundable reservation.
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  Limited cohort spots left in Toronto. Escrow protection guaranteed.
                 </span>
               </div>
 
               {conceptSubscribed && (
-                <div className="mt-4 p-3 bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs font-bold rounded-xl flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-indigo-600 shrink-0" />
-                  <span>Email logged! We will ping you only with core milestone progress reports.</span>
+                <div className="mt-4 p-3.5 bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs font-semibold rounded-xl flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Email saved! We will ping you strictly with core milestone progress reports.</span>
                 </div>
               )}
 
@@ -1121,7 +1303,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                 Astrateq Gadgets
               </span>
               <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
-                An AI-powered automotive technology brand dedicated to elevating vehicle diagnostics and cognitive driving safety indicator displays. Conceptualized in Vancouver, British Columbia, Canada.
+                An AI-powered automotive technology brand dedicated to elevating vehicle diagnostics and cognitive driving safety indicator displays. Conceptualized in Toronto, Ontario, Canada.
               </p>
             </div>
 
@@ -1130,8 +1312,8 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               <span className="font-black text-slate-900 block text-xs uppercase tracking-widest">
                 Pre-Launch Validation
               </span>
-              <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
-                We are currently in an active pre-launch and market research validation phase to calibrate localized neural algorithm thresholds and prioritize initial custom dashboard production.
+              <p className="text-[11.5px] text-slate-500 font-semibold leading-relaxed">
+                We are currently in a testing phase to fine-tune our smart safety sensors and alert sensitivities (such as calibrating how quickly we identify driver fatigue or lane drifts). This helps eliminate frustrating false alarms, while customizing our physical indicator displays based on early driver feedback.
               </p>
             </div>
 

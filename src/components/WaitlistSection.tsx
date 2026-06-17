@@ -165,7 +165,6 @@ export default function WaitlistSection({ onSuccess }: WaitlistSectionProps) {
   };
 
   const provinces = [
-    { code: 'BC', name: 'British Columbia' },
     { code: 'ON', name: 'Ontario' },
     { code: 'AB', name: 'Alberta' },
     { code: 'QC', name: 'Quebec' },

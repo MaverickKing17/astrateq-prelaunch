@@ -96,11 +96,6 @@ interface ProvincialMechanic {
 }
 
 const MECHANICS_BY_PROVINCE: Record<string, ProvincialMechanic[]> = {
-  BC: [
-    { name: 'Vancouver Elite Auto Diagnostics', rating: 4.9, reviews: 342, distance: '1.2 km away', address: '2840 Clark Dr, Vancouver, BC', phone: '(604) 555-0182', specialty: 'Computer Remaps & Sensor Refurbishment' },
-    { name: 'Marpole Auto Integrity Centre', rating: 4.8, reviews: 189, distance: '3.4 km away', address: '8620 Hudson St, Vancouver, BC', phone: '(604) 555-0925', specialty: 'ECU Coding & Active Harness Safety Diagnostics' },
-    { name: 'Lotus West Motorsport Specialists', rating: 4.7, reviews: 215, distance: '5.1 km away', address: '1288 Boundary Rd, Burnaby, BC', phone: '(604) 555-0210', specialty: 'OBD Verification & Hybrid Motor Systems' }
-  ],
   ON: [
     { name: 'Toronto Metro Tech Mechanics', rating: 4.9, reviews: 512, distance: '1.5 km away', address: '480 Dupont St, Toronto, ON', phone: '(416) 555-9830', specialty: 'CAN-Bus Telemetry & Airbag Component Reconnects' },
     { name: 'Bayview Precision Overhaul', rating: 4.8, reviews: 228, distance: '2.8 km away', address: '1640 Bayview Ave, East York, ON', phone: '(416) 555-1422', specialty: 'Brake ABS Hub Recovers & Wheel Sensors' },
@@ -123,7 +118,7 @@ const MECHANICS_BY_PROVINCE: Record<string, ProvincialMechanic[]> = {
 };
 
 export default function DigitalOBDScanner() {
-  const [selectedProvince, setSelectedProvince] = useState<string>('BC');
+  const [selectedProvince, setSelectedProvince] = useState<string>('ON');
   const [selectedSymptomIdx, setSelectedSymptomIdx] = useState<number>(0);
   const [scanState, setScanState] = useState<'idle' | 'scanning' | 'complete'>('idle');
   const [scanProgress, setScanProgress] = useState(0);
@@ -390,7 +385,6 @@ export default function DigitalOBDScanner() {
                     onChange={(e) => setSelectedProvince(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-250 hover:border-slate-350 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 font-bold focus:outline-none focus:border-indigo-500 focus:bg-white transition-all shadow-sm cursor-pointer"
                   >
-                    <option value="BC">British Columbia (Vancouver Area)</option>
                     <option value="ON">Ontario (Greater Toronto Area)</option>
                     <option value="AB">Alberta (Calgary / Edmonton Area)</option>
                     <option value="QC">Québec (Région De Montréal)</option>

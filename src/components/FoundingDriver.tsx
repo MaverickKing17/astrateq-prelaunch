@@ -41,11 +41,11 @@ export default function FoundingDriver({ onScrollToSection }: FoundingDriverProp
     },
     {
       title: "Direct Feedback Access",
-      desc: "Join our private Telegram/Slack channels directly with our core engineering team in Vancouver."
+      desc: "Join our private Telegram/Slack channels directly with our core engineering team in Toronto."
     },
     {
       title: "Priority Shipping",
-      desc: "Tracked Express shipping across all Canadian provinces is fully covered. Shipped priority from our BC hub."
+      desc: "Tracked Express shipping across all Canadian provinces is fully covered. Shipped priority from our Ontario hub."
     },
     {
       title: "Early Feature Access",

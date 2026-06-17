@@ -32,7 +32,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
   // Chat Simulator states
   const [chatMessage, setChatMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Array<{ sender: 'user' | 'agent'; text: string }>>([
-    { sender: 'agent', text: 'Bonjour! Hi! I’m James from our Vancouver support team. Any questions about fitting our Astrateq Gadgets DriveGuard units into your vehicle?' }
+    { sender: 'agent', text: 'Bonjour! Hi! I’m James from our Toronto support team. Any questions about fitting our Astrateq Gadgets DriveGuard units into your vehicle?' }
   ]);
   const [isAgentTyping, setIsAgentTyping] = useState(false);
 
@@ -99,7 +99,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
       } else if (question.includes('EVs')) {
         replyText = 'Absolutely. Modern electric vehicles and hybrids (like the Ioniq 5 or EV6) are 100% compatible. Our dual-lens unit extracts zero secondary engine stats so it won’t trigger battery system drain warnings. ⚡';
       } else if (question.includes('shipping')) {
-        replyText = 'Standard express shipping across Canada is quick & tracked! Usually 2-3 business days to Toronto/Montreal, 3-4 days to Calgary/Edmonton, and next-day within BC from our Vancouver hub. 📦';
+        replyText = 'Standard express shipping across Canada is quick & tracked! Usually 2-3 business days to Montreal/Ottawa, next-day within Ontario from our Toronto hub, and 3-4 days to Western/Eastern provinces. 📦';
       } else if (question.includes('warranty')) {
         replyText = 'No, it will not void your warranty! Astrateq Gadgets is a strictly passive OBD-II monitoring device (ices-003 compliant). It does not write commands/hack your vehicle ECU, which is fully compliant with Canada Consumer Protection. 🛠️';
       }
@@ -549,7 +549,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                 ❄️ Supercapacitors Built For -35°C
               </span>
               <span className="flex items-center gap-1.5 text-indigo-750">
-                🍁 100% British Columbia Owned
+                🍁 100% Toronto Owned
               </span>
             </div>
 
@@ -596,7 +596,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
                         <span className="text-[10px] text-slate-300 font-bold uppercase tracking-wider font-mono">
-                          Vancouver Tech Center • Active
+                          Toronto Tech Center • Active
                         </span>
                       </div>
                     </div>
@@ -605,7 +605,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                   {/* Elegant introductory glass box pill */}
                   <div className="bg-slate-950/45 border border-slate-800/80 rounded-2xl p-4 text-left backdrop-blur-sm">
                     <p className="text-xs text-slate-250 leading-relaxed font-semibold">
-                      Have a customized rig, commercial diesel truck, or specific Canadian winter package question? Shoot a quick live ping directly to our Vancouver hardware engineers:
+                      Have a customized rig, commercial diesel truck, or specific Canadian winter package question? Shoot a quick live ping directly to our Toronto hardware engineers:
                     </p>
                   </div>
 
@@ -639,7 +639,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                         }`}
                       >
                         <span className="text-[8.5px] uppercase font-bold text-slate-500 tracking-wider mb-1">
-                          {item.sender === 'user' ? '⚡ Your Inquiry' : '🍁 James (Vancouver Support)'}
+                          {item.sender === 'user' ? '⚡ Your Inquiry' : '🍁 James (Toronto Support)'}
                         </span>
                         <div
                           className={`p-3.5 rounded-2xl text-xs leading-relaxed font-medium transition-all duration-300 ${
