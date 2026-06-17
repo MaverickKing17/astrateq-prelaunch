@@ -222,7 +222,7 @@ export default function AboutUs({ onBackToHome, onScrollToSection }: AboutUsProp
       <div className="border-t border-slate-200/70 pt-10 pb-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-slate-500 text-xs font-semibold">
         <div className="flex items-center gap-2">
           <Mail className="w-4 h-4 text-slate-400" />
-          <span>Need technical inquiries? Reach out to <strong className="text-indigo-600 font-bold">concierge@astrateqgadgets.ca</strong></span>
+          <span>Need technical inquiries? Priority cohort support is provided directly to early pre-order holders in their secure package.</span>
         </div>
         <div>
           <span>Conceptualized in Toronto, Ontario, Canada 🍁</span>

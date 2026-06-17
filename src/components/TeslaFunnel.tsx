@@ -1695,41 +1695,41 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
 
 
         {/* 7. FOOTER (MINIMAL TRUST FOOTER - Height: 20–30vh) */}
-        <footer id="funnel-footer" className="py-16 border-t border-slate-205 min-h-[30vh] flex flex-col justify-between text-slate-500 text-xs mt-16 bg-slate-50/70 px-6 sm:px-12 rounded-[2.5rem] relative overflow-hidden">
+        <footer id="funnel-footer" className="py-16 border-t border-slate-800 min-h-[30vh] flex flex-col justify-between text-slate-300 text-xs mt-16 bg-slate-900 px-6 sm:px-12 rounded-[2.5rem] relative overflow-hidden">
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start text-left relative z-10">
             
             {/* Col 1 */}
             <div className="space-y-4 max-w-sm">
-              <span className="font-black text-slate-950 block text-xs uppercase tracking-widest flex items-center gap-2">
+              <span className="font-black text-slate-100 block text-xs uppercase tracking-widest flex items-center gap-2">
                 🍁 Astrateq Gadgets
               </span>
-              <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
+              <p className="text-[11.5px] text-slate-300 font-medium leading-relaxed">
                 An pioneering automotive technology brand dedicated to elevating vehicle diagnostics and cognitive driving safety indicator displays. Conceptualized in Toronto, Ontario, Canada.
               </p>
-              <div className="pt-2 text-[11px] space-y-1.5 text-slate-450 border-t border-slate-200/40">
-                <span className="block font-bold text-slate-700">Concierge Desk:</span>
-                <a href="mailto:concierge@astrateqgadgets.ca" className="text-indigo-600 hover:underline font-extrabold block">concierge@astrateqgadgets.ca</a>
+              <div className="pt-2.5 text-[11px] space-y-1 text-slate-400 border-t border-slate-800">
+                <span className="block font-bold text-slate-200">Pre-Order Inquiries:</span>
+                <span className="block text-slate-400 leading-relaxed font-semibold">Priority cohort support channels are provided directly inside early secure validation packages.</span>
               </div>
             </div>
 
             {/* Col 2 */}
             <div className="space-y-4 max-w-sm">
-              <span className="font-black text-slate-950 block text-xs uppercase tracking-widest">
+              <span className="font-black text-slate-100 block text-xs uppercase tracking-widest">
                 Pre-Launch Validation
               </span>
-              <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">
+              <p className="text-[11.5px] text-slate-300 font-medium leading-relaxed">
                 We are in a public tuning phase to calibrate safety sensors and alert thresholds (such as driver fatigue limits or micro-steering drift velocities). Early cohort deposits are held safely in escrow and are instantly refundable in one-click.
               </p>
-              <div className="flex gap-2 flex-wrap pt-1.5 opacity-80">
-                <span className="bg-white border border-slate-200/60 px-2 py-1 rounded text-[9px] font-bold text-slate-600">🛡️ SECURE COHORT</span>
-                <span className="bg-emerald-50/60 border border-emerald-100 px-2 py-1 rounded text-[9px] font-bold text-emerald-700">✓ INSTANT REFUNDS</span>
+              <div className="flex gap-2 flex-wrap pt-1.5">
+                <span className="bg-slate-800 border border-slate-705 px-2.5 py-1 rounded-lg text-[9.5px] font-bold text-slate-300">🛡️ SECURE COHORT</span>
+                <span className="bg-emerald-950/40 border border-emerald-800/40 px-2.5 py-1 rounded-lg text-[9.5px] font-bold text-emerald-300">✓ INSTANT REFUNDS</span>
               </div>
             </div>
 
             {/* Col 3: Explore Navigation */}
             <div className="space-y-4">
-              <span className="font-black text-slate-950 block text-xs uppercase tracking-widest">
+              <span className="font-black text-slate-100 block text-xs uppercase tracking-widest">
                 Explore Platform
               </span>
               <div className="flex flex-col gap-2.5 text-[11.5px]">
@@ -1738,7 +1738,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     const el = document.getElementById('how-it-works');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="text-slate-600 hover:text-indigo-600 transition-colors font-bold text-left outline-none cursor-pointer"
+                  className="text-slate-300 hover:text-indigo-400 transition-colors font-bold text-left outline-none cursor-pointer"
                 >
                   How DriveGuard Works
                 </button>
@@ -1747,7 +1747,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     const el = document.getElementById('concepts');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="text-slate-600 hover:text-indigo-600 transition-colors font-bold text-left outline-none cursor-pointer"
+                  className="text-slate-300 hover:text-indigo-400 transition-colors font-bold text-left outline-none cursor-pointer"
                 >
                   Software &amp; HUD Concepts
                 </button>
@@ -1756,7 +1756,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     const el = document.getElementById('compatibility');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="text-slate-600 hover:text-indigo-600 transition-colors font-bold text-left outline-none cursor-pointer"
+                  className="text-slate-300 hover:text-indigo-400 transition-colors font-bold text-left outline-none cursor-pointer"
                 >
                   Try Compatibility Tool
                 </button>
@@ -1767,7 +1767,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                   }}
-                  className="text-indigo-600 hover:text-indigo-700 transition-colors font-extrabold text-left outline-none cursor-pointer flex items-center gap-1.5"
+                  className="text-indigo-400 hover:text-indigo-300 transition-colors font-extrabold text-left outline-none cursor-pointer flex items-center gap-1.5"
                 >
                   <span>🚀</span> Learn Our Story (About Us)
                 </button>
@@ -1776,41 +1776,41 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
 
             {/* Col 4 */}
             <div className="space-y-4">
-              <span className="font-black text-slate-950 block text-xs uppercase tracking-widest">
+              <span className="font-black text-slate-100 block text-xs uppercase tracking-widest">
                 Validations &amp; Legal
               </span>
-              <div className="flex flex-col gap-2.5 text-[11.5px] text-slate-500">
+              <div className="flex flex-col gap-2.5 text-[11.5px] text-slate-300">
                 <button 
                   onClick={() => setActiveLegalModal('privacy')} 
-                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-400 text-slate-300 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-400"
                 >
                   <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0" />
                   Privacy Policy &amp; Charter
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('tos')} 
-                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-400 text-slate-300 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-400"
                 >
                   <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
                   Terms of Service (Cohort Agreement)
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('refund')} 
-                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-400 text-slate-300 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-400"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
                   $40 CAD Refund Guarantee Policy
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('dmca')} 
-                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-400 text-slate-300 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-400"
                 >
                   <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
                   DMCA, Trademark &amp; IP Notices
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('cookie')} 
-                  className="hover:text-indigo-600 text-slate-600 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-600"
+                  className="hover:text-indigo-400 text-slate-300 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-400"
                 >
                   <span className="w-2 h-2 rounded-full bg-slate-400 shrink-0" />
                   Cookie &amp; Local Storage Policy
@@ -1820,22 +1820,22 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
 
           </div>
 
-          <div className="mt-8 pt-8 border-t border-slate-200/50 flex flex-col md:flex-row items-center justify-between gap-6 text-slate-600">
+          <div className="mt-8 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-slate-400">
             <div className="flex items-center gap-2.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-[13px] font-semibold text-slate-900 font-sans">&copy; {new Date().getFullYear()} Astrateq Gadgets Inc. All rights reserved.</span>
+              <span className="text-[13px] font-semibold text-slate-200 font-sans">&copy; {new Date().getFullYear()} Astrateq Gadgets Inc. All rights reserved.</span>
             </div>
             
             {/* Highly polished, responsive social platform access group */}
             <div className="flex items-center gap-3">
               {/* LinkedIn */}
-              <a href="https://linkedin.com/company/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-100 hover:bg-indigo-600 text-slate-600 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="LinkedIn">
+              <a href="https://linkedin.com/company/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="LinkedIn">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                 </svg>
               </a>
               {/* Instagram */}
-              <a href="https://instagram.com/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-100 hover:bg-gradient-to-tr hover:from-yellow-500 hover:hover:to-pink-600 hover:via-purple-600 text-slate-600 hover:text-white flex items-center justify-center transition-all duration-250 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="Instagram">
+              <a href="https://instagram.com/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-800 hover:bg-gradient-to-tr hover:from-yellow-500 hover:hover:to-pink-600 hover:via-purple-600 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-250 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="Instagram">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -1843,13 +1843,13 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 </svg>
               </a>
               {/* Twitter / X */}
-              <a href="https://twitter.com/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-950 text-slate-600 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="Twitter">
+              <a href="https://twitter.com/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-950 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="Twitter">
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
               </a>
               {/* Reddit */}
-              <a href="https://reddit.com/r/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-100 hover:bg-orange-600 text-slate-600 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="Reddit">
+              <a href="https://reddit.com/r/astrateq-gadgets" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-slate-800 hover:bg-orange-600 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5" aria-label="Reddit">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42 1.24-1.64-1-3.85-1.64-6.24-1.72l1.42-4.5 3.89.87c.04 1.11.95 2 2.05 2 1.14 0 2.07-.93 2.07-2.07s-.93-2.07-2.07-2.07c-1.03 0-1.88.75-2.03 1.73l-4.22-.95c-.23-.05-.46.08-.53.3l-1.61 5.1c-2.46.04-4.73.68-6.4 1.7l-.02-.02c-.56-.73-1.44-1.19-2.43-1.19-1.65 0-3 1.35-3 3 0 1.12.61 2.1 1.53 2.62-.03.25-.05.51-.05.78 0 4.14 4.7 7.5 10.5 7.5s10.5-3.36 10.5-7.5c0-.26-.02-.52-.05-.77.9-.53 1.5-1.5 1.5-2.61zm-18 1.5c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm11 4.5c-1.84 1.16-4.52 1.37-5 1.37s-3.16-.21-5-1.37c-.15-.1-.2-.3-.1-.45.1-.15.3-.2.45-.1 1.54.91 3.82 1.12 4.65 1.12.82 0 3.1-.2 4.65-1.12.15-.1.35-.05.45.1.1.15.05.35-.1.45zm-.5-2.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
                 </svg>
