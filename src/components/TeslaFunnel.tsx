@@ -360,17 +360,29 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 <div className="flex-1 flex flex-col items-center justify-center py-4 relative z-10 [transform:translateZ(40px)]">
                   <div className="w-full relative h-[190px] flex items-center justify-center">
                     
+                    {/* Glowing holographic back-spotlight for rich contrast */}
+                    <div className="absolute -inset-x-2 -inset-y-3 bg-gradient-to-r from-indigo-500/35 via-cyan-400/40 to-purple-500/30 rounded-[2.2rem] blur-2xl opacity-100 pointer-events-none" />
+                    
+                    {/* Holographic grid bracket overlay frame behind the vehicle to give depth */}
+                    <div className="absolute inset-x-2 inset-y-0.5 border border-cyan-400/30 rounded-2xl pointer-events-none z-0" />
+
                     {/* The Premium 3D Rendered Vehicle */}
-                    <div className="relative w-[98%] h-[178px] rounded-2xl overflow-hidden border border-slate-800 shadow-inner group-hover:border-indigo-500/50 transition-colors duration-500">
+                    <div className="relative w-[98%] h-[178px] rounded-2xl overflow-hidden border-2 border-indigo-400/60 shadow-[0_0_30px_rgba(99,102,241,0.35)] group-hover:border-cyan-400/70 transition-all duration-500 z-10 bg-slate-950/80">
                       <img 
                         src="/src/assets/images/vehicle_3d_hud_1781636888483.jpg" 
                         alt="3D Vehicle Diagnostic Intel" 
-                        className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+                        className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-out brightness-115 contrast-[1.08] saturate-110"
                         referrerPolicy="no-referrer"
                       />
                       {/* Cool grid overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
-                      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:14px_14px] pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60" />
+                      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:14px_14px] pointer-events-none" />
+                      
+                      {/* Decorative corner crosshair brackets for HUD aesthetic without clutter */}
+                      <span className="absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-cyan-400 opacity-85" />
+                      <span className="absolute top-2 right-2 w-2.5 h-2.5 border-t border-r border-cyan-400 opacity-85" />
+                      <span className="absolute bottom-2 left-2 w-2.5 h-2.5 border-b border-l border-cyan-400 opacity-85" />
+                      <span className="absolute bottom-2 right-2 w-2.5 h-2.5 border-b border-r border-cyan-400 opacity-85" />
                     </div>
 
                     {/* HUD Pin 1: Diagnostic Center Node (Slightly overlapping 3D space) */}
