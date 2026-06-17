@@ -1035,13 +1035,21 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
 
 
         {/* 6. FINAL CONVERSION SECTION (DECISION ZONE) */}
-        <section id="reserve" className="py-24 border-b border-slate-200/50 flex flex-col justify-center min-h-[70vh]">
+        <section id="reserve" className="py-28 md:py-32 border-b border-slate-200/60 flex flex-col justify-center min-h-[90vh] relative overflow-hidden bg-slate-50/75">
           
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
+          {/* Majestic light-theme technical pattern overlay */}
+          <div className="absolute inset-0 opacity-[0.35] bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+          
+          {/* Ambient light/glow sources to illuminate the design grid and make cards pop */}
+          <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-gradient-to-tr from-indigo-300/20 to-cyan-200/10 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
+          <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-gradient-to-br from-violet-200/20 to-purple-300/10 rounded-full blur-[130px] pointer-events-none animate-pulse" style={{ animationDuration: '10s', animationDelay: '1.5s' }} />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-14 relative z-10">
             
             {/* Header copy precisely mapped */}
-            <div className="space-y-4 max-w-2xl mx-auto">
-              <span className="text-[11px] font-mono tracking-widest uppercase font-black text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-full border border-indigo-150">
+            <div className="space-y-4.5 max-w-2xl mx-auto">
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono tracking-widest uppercase font-black text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-150 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping inline-block shrink-0" />
                 🔒 Secure Pre-order Checkout • Fully Refundable
               </span>
               {/* H2 Title */}
@@ -1055,290 +1063,312 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
             </div>
 
             {/* 1. THREE PREMIUM INTERACTIVE ARCHITECTURAL TIERS */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch pt-2 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch pt-4 max-w-6xl mx-auto">
               
               {/* TIER 1: SOLO */}
-              <div 
-                onClick={() => { setSelectedPackage('solo'); setValidationError(null); }}
-                className={`group cursor-pointer rounded-[2rem] border-2 text-left transition-all duration-300 relative flex flex-col justify-between overflow-hidden bg-white ${
-                  selectedPackage === 'solo' 
-                    ? 'border-indigo-600 shadow-[0_20px_40px_rgba(99,102,241,0.18)] ring-4 ring-indigo-500/10 -translate-y-1.5' 
-                    : 'border-slate-200 hover:border-slate-350 hover:shadow-xl hover:-translate-y-0.5'
-                }`}
-              >
-                {/* Header Image */}
-                <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
-                  <img 
-                    src="/src/assets/images/driveguard_solo_modern_1781714862550.jpg" 
-                    alt="DriveGuard Solo Hardware"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
-                  />
-                  {/* Subtle Elegant Glassmorphic Overlay for Text Contrast */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent pt-8 pb-3 px-4 flex items-end justify-between">
-                    <div>
-                      <span className="text-[9.5px] font-mono text-slate-200 uppercase tracking-wider font-bold block leading-none">RESERVATION DEPOSIT</span>
-                      <span className="text-2xl font-black text-white tracking-tight leading-none mt-1 block">$49<span className="text-xs font-bold text-slate-200 ml-0.5">CAD</span></span>
+              <div className="relative flex flex-col min-h-full">
+                {/* Backlight Glow Aura */}
+                {selectedPackage === 'solo' && (
+                  <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500 rounded-[2.3rem] blur-2xl opacity-100 animate-pulse pointer-events-none z-0" style={{ animationDuration: '3.5s' }} />
+                )}
+                <div 
+                  onClick={() => { setSelectedPackage('solo'); setValidationError(null); }}
+                  className={`group cursor-pointer rounded-[2.2rem] border-2 text-left transition-all duration-300 relative flex flex-col justify-between overflow-hidden bg-white flex-1 z-10 ${
+                    selectedPackage === 'solo' 
+                      ? 'border-indigo-500 shadow-[0_0_40px_rgba(99,102,241,0.45)] ring-4 ring-indigo-500/15 -translate-y-2' 
+                      : 'border-slate-200/80 hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-500/[0.05] hover:-translate-y-1'
+                  }`}
+                >
+                  {/* Header Image */}
+                  <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
+                    <img 
+                      src="/src/assets/images/driveguard_solo_modern_1781714862550.jpg" 
+                      alt="DriveGuard Solo Hardware"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
+                    />
+                    {/* Subtle Elegant Glassmorphic Overlay for Text Contrast */}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent pt-8 pb-3 px-4 flex items-end justify-between">
+                      <div>
+                        <span className="text-[9.5px] font-mono text-slate-200 uppercase tracking-wider font-bold block leading-none">RESERVATION DEPOSIT</span>
+                        <span className="text-2xl font-black text-white tracking-tight leading-none mt-1 block">$49<span className="text-xs font-bold text-slate-200 ml-0.5">CAD</span></span>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/75 px-2 py-0.5 rounded border border-emerald-500/30">SAVE $49 CAD</span>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/75 px-2 py-0.5 rounded border border-emerald-500/30">SAVE $49 CAD</span>
-                    </div>
-                  </div>
-                  {/* Floating Badge */}
-                  <div className="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-sm text-slate-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-slate-700/60 shadow-lg">
-                    ENTRY PILOT EDITION
-                  </div>
-                </div>
-
-                {/* Card Info Content */}
-                <div className="p-6.5 flex-1 flex flex-col justify-between space-y-6">
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono uppercase tracking-widest font-extrabold text-slate-500">Starter Configuration</span>
-                      <span className="text-[10px] text-slate-400 font-mono font-bold">1 Unit Setup</span>
-                    </div>
-                    <h3 className="text-[17px] font-black text-slate-950 tracking-tight leading-snug flex items-center gap-1.5">
-                      <Shield className="w-5 h-5 text-indigo-650 shrink-0" />
-                      DriveGuard Solo™
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                      Designed for single commuter vehicles. Equips your car with robust voice diagnostics and discrete crash-recording capabilities.
-                    </p>
-                  </div>
-
-                  {/* High Quality Specification Checklist */}
-                  <div className="border-t border-slate-100 pt-5 space-y-2.5">
-                    <span className="text-[9.5px] font-mono font-black text-indigo-600 uppercase tracking-widest block mb-1">HARDWARE SPECS & PERKS:</span>
-                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
-                      <span>Single Premium 4K Starvis HDR Camera</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
-                      <span>Passive OBD-II CAN-Bus diagnostics scanner</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
-                      <span>On-Device 64GB Encrypted Secure Enclave</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
-                      <span>Extreme Canadian Environment Armored Chassis</span>
+                    {/* Floating Badge */}
+                    <div className="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-sm text-slate-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-slate-700/60 shadow-lg">
+                      ENTRY PILOT EDITION
                     </div>
                   </div>
 
-                  {/* Selector Anchor */}
-                  <div className="border-t border-slate-100 pt-5 flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">POST-LAUNCH BALANCE</span>
-                      <span className="text-slate-950 font-extrabold text-sm">$250 CAD <span className="text-[10px] text-slate-400 line-through ml-1.5 font-normal">$299 Regular</span></span>
+                  {/* Card Info Content */}
+                  <div className="p-6.5 flex-1 flex flex-col justify-between space-y-6">
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-widest font-extrabold text-slate-500">Starter Configuration</span>
+                        <span className="text-[10px] text-slate-400 font-mono font-bold">1 Unit Setup</span>
+                      </div>
+                      <h3 className="text-[17px] font-black text-slate-950 tracking-tight leading-snug flex items-center gap-1.5">
+                        <Shield className="w-5 h-5 text-indigo-650 shrink-0" />
+                        DriveGuard Solo™
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                        Designed for single commuter vehicles. Equips your car with robust voice diagnostics and discrete crash-recording capabilities.
+                      </p>
                     </div>
-                    <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center transition-all ${
-                      selectedPackage === 'solo' ? 'border-indigo-600 bg-indigo-600' : 'border-slate-350'
-                    }`}>
-                      {selectedPackage === 'solo' && <div className="w-2 h-2 rounded-full bg-white" />}
-                    </div>
-                  </div>
 
+                    {/* High Quality Specification Checklist */}
+                    <div className="border-t border-slate-100 pt-5 space-y-2.5">
+                      <span className="text-[9.5px] font-mono font-black text-indigo-600 uppercase tracking-widest block mb-1">HARDWARE SPECS & PERKS:</span>
+                      <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                        <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
+                        <span>Single Premium 4K Starvis HDR Camera</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                        <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
+                        <span>Passive OBD-II CAN-Bus diagnostics scanner</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                        <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
+                        <span>On-Device 64GB Encrypted Secure Enclave</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                        <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
+                        <span>Extreme Canadian Environment Armored Chassis</span>
+                      </div>
+                    </div>
+
+                    {/* Selector Anchor */}
+                    <div className="border-t border-slate-100 pt-5 flex items-center justify-between">
+                      <div>
+                        <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">POST-LAUNCH BALANCE</span>
+                        <span className="text-slate-950 font-extrabold text-sm">$250 CAD <span className="text-[10px] text-slate-400 line-through ml-1.5 font-normal">$299 Regular</span></span>
+                      </div>
+                      <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center transition-all ${
+                        selectedPackage === 'solo' ? 'border-indigo-600 bg-indigo-600' : 'border-slate-350'
+                      }`}>
+                        {selectedPackage === 'solo' && <div className="w-2 h-2 rounded-full bg-white" />}
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
 
               {/* TIER 2: FAMILY (FEATURED) */}
-              <div 
-                onClick={() => { setSelectedPackage('family'); setValidationError(null); }}
-                className={`group cursor-pointer rounded-[2rem] border-2 text-left transition-all duration-300 relative flex flex-col justify-between overflow-hidden bg-white ${
-                  selectedPackage === 'family' 
-                    ? 'border-indigo-600 shadow-[0_25px_50px_rgba(99,102,241,0.22)] ring-4 ring-indigo-500/15 -translate-y-1.5 scale-[1.015]' 
-                    : 'border-indigo-200 hover:border-indigo-400 hover:shadow-xl hover:-translate-y-0.5'
-                }`}
-              >
-                {/* Glow Ring Effect */}
-                <div className="absolute inset-0 border border-indigo-500/30 rounded-[2rem] pointer-events-none z-10" />
-                
-                {/* Featured Ribbon Badge */}
-                <div className="absolute top-0 right-0 z-20 bg-gradient-to-l from-indigo-600 via-rose-500 to-indigo-600 text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-bl-xl shadow-md border-b border-l border-white/5">
-                  ⭐ RECOMMENDED TIERS & BEST VALUE
-                </div>
-
-                {/* Header Image */}
-                <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-indigo-100">
-                  <img 
-                    src="/src/assets/images/driveguard_family_modern_1781714875124.jpg" 
-                    alt="DriveGuard Family Hardware Bundle"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
-                  />
-                  {/* Subtle Elegant Glassmorphic Overlay for Text Contrast */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent pt-8 pb-3 px-4 flex items-end justify-between">
-                    <div>
-                      <span className="text-[9.5px] font-mono text-slate-200 uppercase tracking-wider font-bold block leading-none">RESERVATION DEPOSIT</span>
-                      <span className="text-2xl font-black text-white tracking-tight leading-none mt-1 block">$99<span className="text-xs font-bold text-slate-200 ml-0.5">CAD</span></span>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/75 px-2 py-0.5 rounded border border-emerald-500/30">SAVE $99 CAD</span>
-                    </div>
-                  </div>
-                  {/* Floating Badge */}
-                  <div className="absolute top-4 left-4 bg-indigo-900/90 backdrop-blur-sm text-indigo-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-indigo-700/60 shadow-lg">
-                    CO-PILOT MULTI-VEHICLE DUO
-                  </div>
-                </div>
-
-                {/* Card Info Content */}
-                <div className="p-6.5 flex-1 flex flex-col justify-between space-y-6">
+              <div className="relative flex flex-col min-h-full">
+                {/* Backlight Glow Aura */}
+                {selectedPackage === 'family' && (
+                  <div className="absolute -inset-1.5 bg-gradient-to-r from-pink-500 via-rose-500 via-violet-650 to-indigo-600 rounded-[2.3rem] blur-2xl opacity-100 animate-pulse pointer-events-none z-0" style={{ animationDuration: '3s' }} />
+                )}
+                <div 
+                  onClick={() => { setSelectedPackage('family'); setValidationError(null); }}
+                  className={`group cursor-pointer rounded-[2.2rem] border-2 text-left transition-all duration-300 relative flex flex-col justify-between overflow-hidden bg-white flex-1 z-10 ${
+                    selectedPackage === 'family' 
+                      ? 'border-indigo-500 shadow-[0_0_45px_rgba(244,63,94,0.4)] ring-4 ring-indigo-500/15 -translate-y-2 scale-[1.015]' 
+                      : 'border-indigo-205 hover:border-indigo-400 hover:shadow-2xl hover:shadow-indigo-500/[0.05] hover:-translate-y-1'
+                  }`}
+                >
+                  {/* Glow Ring Effect */}
+                  <div className="absolute inset-0 border border-indigo-500/20 rounded-[2.2rem] pointer-events-none z-10" />
                   
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono uppercase tracking-widest font-extrabold text-indigo-600">Dual Safety Ecosystem</span>
-                      <span className="text-[10px] text-indigo-600 font-mono font-bold">2 Unit Sync</span>
-                    </div>
-                    <h3 className="text-[17px] font-black text-slate-950 tracking-tight leading-snug flex items-center gap-1.5">
-                      <ShieldCheck className="w-5.5 h-5.5 text-indigo-605 shrink-0" />
-                      Family Safety Hubs™
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                      Slightly optimized for teenage, senior, or dual drivers in Canada. Keeps multiple vehicles synced inside a single unified dashboard.
-                    </p>
+                  {/* Featured Ribbon Badge */}
+                  <div className="absolute top-0 right-0 z-20 bg-gradient-to-l from-indigo-600 via-rose-500 to-indigo-600 text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-bl-[1.25rem] shadow-md border-b border-l border-white/5">
+                    ⭐ RECOMMENDED TIERS & BEST VALUE
                   </div>
 
-                  {/* Specs & Honey Effect Callouts */}
-                  <div className="border-t border-indigo-100 pt-5 space-y-2.5 bg-indigo-50/20 -mx-6.5 px-6.5 py-4 pb-1">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[9.5px] font-mono font-black text-rose-500 uppercase tracking-widest block leading-none">🔥 EXCLUSIVE LIFETIME PERK:</span>
-                      <span className="text-[8px] bg-red-100 text-red-650 px-1.5 rounded font-mono font-black tracking-wider leading-none uppercase py-0.5 font-bold">VALUED AT $400+</span>
+                  {/* Header Image */}
+                  <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-indigo-100">
+                    <img 
+                      src="/src/assets/images/driveguard_family_modern_1781714875124.jpg" 
+                      alt="DriveGuard Family Hardware Bundle"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
+                    />
+                    {/* Subtle Elegant Glassmorphic Overlay for Text Contrast */}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent pt-8 pb-3 px-4 flex items-end justify-between">
+                      <div>
+                        <span className="text-[9.5px] font-mono text-slate-200 uppercase tracking-wider font-bold block leading-none">RESERVATION DEPOSIT</span>
+                        <span className="text-2xl font-black text-white tracking-tight leading-none mt-1 block">$99<span className="text-xs font-bold text-slate-200 ml-0.5">CAD</span></span>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/75 px-2 py-0.5 rounded border border-emerald-500/30">SAVE $99 CAD</span>
+                      </div>
                     </div>
-                    <p className="text-[11px] font-black text-slate-905 leading-snug">
-                      🎁 Standard $12 CAD/month companion cloud logs subscription is completely WAIVED FOR LIFE.
-                    </p>
+                    {/* Floating Badge */}
+                    <div className="absolute top-4 left-4 bg-indigo-900/90 backdrop-blur-sm text-indigo-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-indigo-700/60 shadow-lg">
+                      CO-PILOT MULTI-VEHICLE DUO
+                    </div>
+                  </div>
+
+                  {/* Card Info Content */}
+                  <div className="p-6.5 flex-1 flex flex-col justify-between space-y-6">
                     
-                    <span className="text-[9.5px] font-mono font-black text-indigo-600 uppercase tracking-widest block pt-2">HARDWARE SPECS INCLUDED:</span>
-                    <div className="flex items-start gap-2 text-xs text-slate-800 font-bold">
-                      <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>2x Dual 4K Front/Rear Camera Systems</span>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-widest font-extrabold text-indigo-600">Dual Safety Ecosystem</span>
+                        <span className="text-[10px] text-indigo-600 font-mono font-bold">2 Unit Sync</span>
+                      </div>
+                      <h3 className="text-[17px] font-black text-slate-950 tracking-tight leading-snug flex items-center gap-1.5">
+                        <ShieldCheck className="w-5.5 h-5.5 text-indigo-605 shrink-0" />
+                        Family Safety Hubs™
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                        Slightly optimized for teenage, senior, or dual drivers in Canada. Keeps multiple vehicles synced inside a single unified dashboard.
+                      </p>
                     </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-800 font-bold">
-                      <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>2x CAN-Bus OBD-II Interface Modules</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-800 font-bold">
-                      <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Automated parent/teen driver companion app syncer</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-800 font-bold">
-                      <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Bonus complimentary 3-Year Extended Warranty</span>
-                    </div>
-                  </div>
 
-                  {/* Selector Anchor */}
-                  <div className="border-t border-slate-100 pt-5 flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] font-mono text-indigo-650 uppercase tracking-wider block">POST-LAUNCH BALANCE</span>
-                      <span className="text-indigo-600 font-black text-sm">$500 CAD <span className="text-[10px] text-slate-400 line-through ml-1.5 font-normal">$599 Regular</span></span>
+                    {/* Specs & Honey Effect Callouts */}
+                    <div className="border-t border-indigo-505 pt-5 space-y-2.5 bg-indigo-50/20 -mx-6.5 px-6.5 py-4 pb-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[9.5px] font-mono font-black text-rose-500 uppercase tracking-widest block leading-none">🔥 EXCLUSIVE LIFETIME PERK:</span>
+                        <span className="text-[8px] bg-red-100 text-red-650 px-1.5 rounded font-mono font-black tracking-wider leading-none uppercase py-0.5 font-bold">VALUED AT $400+</span>
+                      </div>
+                      <p className="text-[11px] font-black text-slate-905 leading-snug">
+                        🎁 Standard $12 CAD/month companion cloud logs subscription is completely WAIVED FOR LIFE.
+                      </p>
+                      
+                      <span className="text-[9.5px] font-mono font-black text-indigo-600 uppercase tracking-widest block pt-2">HARDWARE SPECS INCLUDED:</span>
+                      <div className="flex items-start gap-2 text-xs text-slate-800 font-bold">
+                        <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <span>2x Dual 4K Front/Rear Camera Systems</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-slate-800 font-bold">
+                        <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <span>2x CAN-Bus OBD-II Interface Modules</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-slate-800 font-bold">
+                        <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <span>Automated parent/teen driver companion app syncer</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-slate-800 font-bold">
+                        <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <span>Bonus complimentary 3-Year Extended Warranty</span>
+                      </div>
                     </div>
-                    <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center transition-all ${
-                      selectedPackage === 'family' ? 'border-indigo-600 bg-indigo-600' : 'border-slate-350'
-                    }`}>
-                      {selectedPackage === 'family' && <div className="w-2 h-2 rounded-full bg-white" />}
-                    </div>
-                  </div>
 
+                    {/* Selector Anchor */}
+                    <div className="border-t border-slate-100 pt-5 flex items-center justify-between">
+                      <div>
+                        <span className="text-[10px] font-mono text-indigo-650 uppercase tracking-wider block">POST-LAUNCH BALANCE</span>
+                        <span className="text-indigo-600 font-black text-sm">$500 CAD <span className="text-[10px] text-slate-400 line-through ml-1.5 font-normal">$599 Regular</span></span>
+                      </div>
+                      <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center transition-all ${
+                        selectedPackage === 'family' ? 'border-indigo-600 bg-indigo-600' : 'border-slate-350'
+                      }`}>
+                        {selectedPackage === 'family' && <div className="w-2 h-2 rounded-full bg-white" />}
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
 
               {/* TIER 3: GUARDIAN */}
-              <div 
-                onClick={() => { setSelectedPackage('guardian'); setValidationError(null); }}
-                className={`group cursor-pointer rounded-[2rem] border-2 text-left transition-all duration-300 relative flex flex-col justify-between overflow-hidden bg-white ${
-                  selectedPackage === 'guardian' 
-                    ? 'border-indigo-600 shadow-[0_20px_40px_rgba(99,102,241,0.18)] ring-4 ring-indigo-500/10 -translate-y-1.5' 
-                    : 'border-slate-200 hover:border-slate-350 hover:shadow-xl hover:-translate-y-0.5'
-                }`}
-              >
-                {/* Header Image */}
-                <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
-                  <img 
-                    src="/src/assets/images/guardian_pro_modern_1781714886921.jpg" 
-                    alt="Guardian Pro System Suite"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
-                  />
-                  {/* Subtle Elegant Glassmorphic Overlay for Text Contrast */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent pt-8 pb-3 px-4 flex items-end justify-between">
-                    <div>
-                      <span className="text-[9.5px] font-mono text-slate-200 uppercase tracking-wider font-bold block leading-none">RESERVATION DEPOSIT</span>
-                      <span className="text-2xl font-black text-white tracking-tight leading-none mt-1 block">$149<span className="text-xs font-bold text-slate-200 ml-0.5">CAD</span></span>
+              <div className="relative flex flex-col min-h-full">
+                {/* Backlight Glow Aura */}
+                {selectedPackage === 'guardian' && (
+                  <div className="absolute -inset-1.5 bg-gradient-to-r from-violet-650 via-indigo-650 to-cyan-500 rounded-[2.3rem] blur-2xl opacity-100 animate-pulse pointer-events-none z-0" style={{ animationDuration: '3.5s' }} />
+                )}
+                <div 
+                  onClick={() => { setSelectedPackage('guardian'); setValidationError(null); }}
+                  className={`group cursor-pointer rounded-[2.2rem] border-2 text-left transition-all duration-300 relative flex flex-col justify-between overflow-hidden bg-white flex-1 z-10 ${
+                    selectedPackage === 'guardian' 
+                      ? 'border-indigo-500 shadow-[0_0_40px_rgba(139,92,246,0.45)] ring-4 ring-indigo-500/15 -translate-y-2' 
+                      : 'border-slate-200/80 hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-500/[0.05] hover:-translate-y-1'
+                  }`}
+                >
+                  {/* Header Image */}
+                  <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
+                    <img 
+                      src="/src/assets/images/guardian_pro_modern_1781714886921.jpg" 
+                      alt="Guardian Pro System Suite"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
+                    />
+                    {/* Subtle Elegant Glassmorphic Overlay for Text Contrast */}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent pt-8 pb-3 px-4 flex items-end justify-between">
+                      <div>
+                        <span className="text-[9.5px] font-mono text-slate-200 uppercase tracking-wider font-bold block leading-none">RESERVATION DEPOSIT</span>
+                        <span className="text-2xl font-black text-white tracking-tight leading-none mt-1 block">$149<span className="text-xs font-bold text-slate-200 ml-0.5">CAD</span></span>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/75 px-2 py-0.5 rounded border border-emerald-500/30">SAVE $149 CAD</span>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/75 px-2 py-0.5 rounded border border-emerald-500/30">SAVE $149 CAD</span>
-                    </div>
-                  </div>
-                  {/* Floating Badge */}
-                  <div className="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-sm text-slate-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-slate-700/60 shadow-lg">
-                    ELITE FLEET COMMANDER
-                  </div>
-                </div>
-
-                {/* Card Info Content */}
-                <div className="p-6.5 flex-1 flex flex-col justify-between space-y-6">
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono uppercase tracking-widest font-extrabold text-slate-500">Elite Flagship Tier</span>
-                      <span className="text-[10px] text-slate-400 font-mono font-bold">3 Unit Ecosystem</span>
-                    </div>
-                    <h3 className="text-[17px] font-black text-slate-950 tracking-tight leading-snug flex items-center gap-1.5">
-                      <Cpu className="w-5 h-5 text-indigo-650 shrink-0" />
-                      Guardian Pro Bundle™
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                      Our ultimate multi-car and professional package. Configured with priority concierge support and early access testing blocks.
-                    </p>
-                  </div>
-
-                  {/* High Quality Specification Checklist */}
-                  <div className="border-t border-slate-100 pt-5 space-y-2.5">
-                    <span className="text-[9.5px] font-mono font-black text-indigo-600 uppercase tracking-widest block mb-1">HARDWARE SPECS & PERKS:</span>
-                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
-                      <span>3x Flagship 4K HDR Multi-angle Camera Units</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
-                      <span>3x High-frequency OBD-II diagnostic active nodes</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
-                      <span>Dedicated concierge installation tech setup assistance</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
-                      <span>Direct VIP shaping access back to Astrateq engineering team</span>
+                    {/* Floating Badge */}
+                    <div className="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-sm text-slate-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-slate-700/60 shadow-lg">
+                      ELITE FLEET COMMANDER
                     </div>
                   </div>
 
-                  {/* Selector Anchor */}
-                  <div className="border-t border-slate-100 pt-5 flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">POST-LAUNCH BALANCE</span>
-                      <span className="text-slate-950 font-extrabold text-sm">$750 CAD <span className="text-[10px] text-slate-400 line-through ml-1.5 font-normal">$899 Regular</span></span>
+                  {/* Card Info Content */}
+                  <div className="p-6.5 flex-1 flex flex-col justify-between space-y-6">
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-widest font-extrabold text-slate-500">Elite Flagship Tier</span>
+                        <span className="text-[10px] text-slate-400 font-mono font-bold">3 Unit Ecosystem</span>
+                      </div>
+                      <h3 className="text-[17px] font-black text-slate-950 tracking-tight leading-snug flex items-center gap-1.5">
+                        <Cpu className="w-5 h-5 text-indigo-650 shrink-0" />
+                        Guardian Pro Bundle™
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                        Our ultimate multi-car and professional package. Configured with priority concierge support and early access testing blocks.
+                      </p>
                     </div>
-                    <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center transition-all ${
-                      selectedPackage === 'guardian' ? 'border-indigo-600 bg-indigo-600' : 'border-slate-350'
-                    }`}>
-                      {selectedPackage === 'guardian' && <div className="w-2 h-2 rounded-full bg-white" />}
-                    </div>
-                  </div>
 
+                    {/* High Quality Specification Checklist */}
+                    <div className="border-t border-slate-100 pt-5 space-y-2.5">
+                      <span className="text-[9.5px] font-mono font-black text-indigo-600 uppercase tracking-widest block mb-1">HARDWARE SPECS & PERKS:</span>
+                      <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                        <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
+                        <span>3x Flagship 4K HDR Multi-angle Camera Units</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                        <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
+                        <span>3x High-frequency OBD-II diagnostic active nodes</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                        <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
+                        <span>Dedicated concierge installation tech setup assistance</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                        <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
+                        <span>Direct VIP shaping access back to Astrateq engineering team</span>
+                      </div>
+                    </div>
+
+                    {/* Selector Anchor */}
+                    <div className="border-t border-slate-100 pt-5 flex items-center justify-between">
+                      <div>
+                        <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">POST-LAUNCH BALANCE</span>
+                        <span className="text-slate-950 font-extrabold text-sm">$750 CAD <span className="text-[10px] text-slate-400 line-through ml-1.5 font-normal">$899 Regular</span></span>
+                      </div>
+                      <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center transition-all ${
+                        selectedPackage === 'guardian' ? 'border-indigo-600 bg-indigo-600' : 'border-slate-350'
+                      }`}>
+                        {selectedPackage === 'guardian' && <div className="w-2 h-2 rounded-full bg-white" />}
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
 
             </div>
 
             {/* DYNAMIC SECURE SUMMARY PANEL & INPUT PORTAL */}
-            <div className="max-w-xl mx-auto bg-white border-2 border-slate-200 rounded-[2.5rem] p-6 sm:p-10 shadow-2xl shadow-indigo-950/5 relative overflow-hidden text-left mt-8">
-              <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-indigo-500 via-rose-500 to-indigo-600" />
+            <div className="relative max-w-xl mx-auto mt-12 z-10">
+              {/* Soft Ambient Core Portal Backlight */}
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 via-rose-400 to-indigo-600 rounded-[2.7rem] blur-xl opacity-35 pointer-events-none z-0 animate-pulse" />
+              
+              <div className="bg-white border-2 border-slate-200/90 rounded-[2.5rem] p-6 sm:p-10 shadow-[0_25px_60px_-15px_rgba(99,102,241,0.12)] relative overflow-hidden text-left z-10">
+                <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-indigo-500 via-rose-500 to-indigo-600" />
               
               <div className="space-y-6">
                 
@@ -1437,6 +1467,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
 
               </div>
             </div>
+          </div>
 
           </div>
 
