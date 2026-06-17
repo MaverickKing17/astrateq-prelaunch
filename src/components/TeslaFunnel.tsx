@@ -996,7 +996,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
 
 
         {/* 5. TRUST REINFORCEMENT STRIP */}
-        <section id="funnel-trust-strip" className="py-20 md:py-24 border border-slate-800/80 flex flex-col justify-center min-h-[42vh] bg-slate-950 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white rounded-[3.5rem] my-12 relative overflow-hidden px-8 sm:px-12 shadow-2xl shadow-indigo-950/30">
+        <section id="funnel-trust-strip" className="py-20 md:py-24 border-2 border-slate-700/50 flex flex-col justify-center min-h-[42vh] bg-slate-900 bg-gradient-to-b from-slate-900 via-slate-800/95 to-slate-900 text-white rounded-[3.5rem] my-12 relative overflow-hidden px-8 sm:px-12 shadow-2xl shadow-slate-950/50">
           
           {/* Futuristic ambient lights */}
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[130px] pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
@@ -1017,10 +1017,10 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                   strict reservation framework
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4.5xl font-black tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-350 max-w-3xl mx-auto pb-1">
+              <h2 className="text-3xl sm:text-4.5xl font-black tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300 max-w-3xl mx-auto pb-1">
                 Transparent pre-launch validation
               </h2>
-              <p className="text-slate-400 max-w-xl mx-auto text-sm sm:text-base font-medium leading-relaxed">
+              <p className="text-slate-300 max-w-xl mx-auto text-sm sm:text-base font-medium leading-relaxed">
                 Unlock early access to direct cockpit co-design and parameter validation with absolute security guarantees.
               </p>
             </div>
@@ -1034,7 +1034,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
               
               {/* Card 1 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900 border-2 border-blue-500/30 rounded-2xl p-6.5 hover:border-blue-400 hover:bg-slate-850 hover:shadow-2xl hover:shadow-blue-500/[0.12] hover:-translate-y-2 transition-all duration-300 min-h-[230px] relative overflow-hidden shadow-2xl shadow-black">
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-950/75 backdrop-blur-md border-2 border-blue-500/40 rounded-2xl p-6.5 hover:border-blue-400 hover:bg-slate-950/90 hover:shadow-2xl hover:shadow-blue-500/[0.15] hover:-translate-y-2 transition-all duration-300 min-h-[230px] relative overflow-hidden shadow-2xl shadow-black">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/[0.04] group-hover:bg-blue-500/[0.08] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
                 
                 <div className="absolute top-3 right-4 pointer-events-none">
@@ -1056,7 +1056,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
 
               {/* Card 2 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900 border-2 border-violet-500/30 rounded-2xl p-6.5 hover:border-violet-400 hover:bg-slate-850 hover:shadow-2xl hover:shadow-violet-500/[0.12] hover:-translate-y-2 transition-all duration-300 min-h-[230px] relative overflow-hidden shadow-2xl shadow-black">
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-950/75 backdrop-blur-md border-2 border-violet-500/40 rounded-2xl p-6.5 hover:border-violet-400 hover:bg-slate-950/90 hover:shadow-2xl hover:shadow-violet-500/[0.15] hover:-translate-y-2 transition-all duration-300 min-h-[230px] relative overflow-hidden shadow-2xl shadow-black">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-violet-500/[0.04] group-hover:bg-violet-500/[0.08] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
                 
                 <div className="absolute top-3 right-4 pointer-events-none flex items-center gap-1.5 bg-violet-500/20 border border-violet-500/40 px-2.5 py-0.5 rounded-md">
@@ -1079,7 +1079,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
 
               {/* Card 3 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900 border-2 border-rose-500/30 rounded-2xl p-6.5 hover:border-rose-400 hover:bg-slate-850 hover:shadow-2xl hover:shadow-rose-500/[0.12] hover:-translate-y-2 transition-all duration-300 min-h-[230px] relative overflow-hidden shadow-2xl shadow-black">
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-950/75 backdrop-blur-md border-2 border-rose-500/40 rounded-2xl p-6.5 hover:border-rose-400 hover:bg-slate-950/90 hover:shadow-2xl hover:shadow-rose-500/[0.15] hover:-translate-y-2 transition-all duration-300 min-h-[230px] relative overflow-hidden shadow-2xl shadow-black">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/[0.04] group-hover:bg-rose-500/[0.08] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
                 
                 <div className="absolute top-3 right-4 pointer-events-none">
@@ -1101,7 +1101,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
               </div>
 
               {/* Card 4 */}
-              <div className="group flex flex-col items-center justify-between text-center bg-slate-900 border-2 border-emerald-500/30 rounded-2xl p-6.5 hover:border-emerald-400 hover:bg-slate-850 hover:shadow-2xl hover:shadow-emerald-500/[0.12] hover:-translate-y-2 transition-all duration-300 min-h-[230px] relative overflow-hidden shadow-2xl shadow-black">
+              <div className="group flex flex-col items-center justify-between text-center bg-slate-950/75 backdrop-blur-md border-2 border-emerald-500/40 rounded-2xl p-6.5 hover:border-emerald-400 hover:bg-slate-950/90 hover:shadow-2xl hover:shadow-emerald-500/[0.15] hover:-translate-y-2 transition-all duration-300 min-h-[230px] relative overflow-hidden shadow-2xl shadow-black">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/[0.04] group-hover:bg-emerald-500/[0.08] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
                 
                 <div className="absolute top-3 right-4 pointer-events-none">
@@ -1124,7 +1124,7 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
             </div>
 
             {/* High-conversion trust reassurance footer */}
-            <div className="pt-8 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-xs text-slate-450 font-mono border-t border-slate-900/60 mt-6">
+            <div className="pt-8 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-xs text-slate-450 font-mono border-t border-slate-700/40 mt-6">
               <span className="flex items-center gap-2 text-slate-400">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse shrink-0" />
                 Funds secure in Stripe-compliant partner trust accounts
