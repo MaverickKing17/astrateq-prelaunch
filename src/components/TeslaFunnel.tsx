@@ -1067,28 +1067,26 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                 }`}
               >
                 {/* Header Image */}
-                <div className="relative h-48 overflow-hidden bg-slate-950">
+                <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
                   <img 
-                    src="/src/assets/images/driveguard_solo_1781713861682.jpg" 
+                    src="/src/assets/images/driveguard_solo_bright_1781714478809.jpg" 
                     alt="DriveGuard Solo Hardware"
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
                   />
-                  {/* Subtle Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                  {/* Floating Badge */}
-                  <div className="absolute top-4 left-4 bg-slate-900/95 text-slate-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-slate-700/60 shadow-lg">
-                    ENTRY PILOT EDITION
-                  </div>
-                  {/* Price Banner Overlay */}
-                  <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
+                  {/* Subtle Elegant Glassmorphic Overlay for Text Contrast */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent pt-8 pb-3 px-4 flex items-end justify-between">
                     <div>
-                      <span className="text-[9.5px] font-mono text-slate-350 uppercase tracking-wider font-semibold block leading-none">RESERVATION DEPOSIT</span>
+                      <span className="text-[9.5px] font-mono text-slate-200 uppercase tracking-wider font-bold block leading-none">RESERVATION DEPOSIT</span>
                       <span className="text-2xl font-black text-white tracking-tight leading-none mt-1 block">$49<span className="text-xs font-bold text-slate-200 ml-0.5">CAD</span></span>
                     </div>
                     <div className="text-right">
-                      <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-900/40">SAVE $49 CAD</span>
+                      <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/75 px-2 py-0.5 rounded border border-emerald-500/30">SAVE $49 CAD</span>
                     </div>
+                  </div>
+                  {/* Floating Badge */}
+                  <div className="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-sm text-slate-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-slate-700/60 shadow-lg">
+                    ENTRY PILOT EDITION
                   </div>
                 </div>
 
@@ -1164,28 +1162,26 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                 </div>
 
                 {/* Header Image */}
-                <div className="relative h-48 overflow-hidden bg-slate-950">
+                <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-indigo-100">
                   <img 
-                    src="/src/assets/images/driveguard_family_1781713872785.jpg" 
+                    src="/src/assets/images/driveguard_family_bright_1781714491693.jpg" 
                     alt="DriveGuard Family Hardware Bundle"
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
                   />
-                  {/* Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                  {/* Floating Badge */}
-                  <div className="absolute top-4 left-4 bg-indigo-900/95 text-indigo-300 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-indigo-700/60 shadow-lg">
-                    CO-PILOT MULTI-VEHICLE DUO
-                  </div>
-                  {/* Price Banner Overlay */}
-                  <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
+                  {/* Subtle Elegant Glassmorphic Overlay for Text Contrast */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent pt-8 pb-3 px-4 flex items-end justify-between">
                     <div>
-                      <span className="text-[9.5px] font-mono text-slate-300 uppercase tracking-wider font-semibold block leading-none">RESERVATION DEPOSIT</span>
+                      <span className="text-[9.5px] font-mono text-slate-200 uppercase tracking-wider font-bold block leading-none">RESERVATION DEPOSIT</span>
                       <span className="text-2xl font-black text-white tracking-tight leading-none mt-1 block">$99<span className="text-xs font-bold text-slate-200 ml-0.5">CAD</span></span>
                     </div>
                     <div className="text-right">
-                      <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-900/40">SAVE $99 CAD</span>
+                      <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/75 px-2 py-0.5 rounded border border-emerald-500/30">SAVE $99 CAD</span>
                     </div>
+                  </div>
+                  {/* Floating Badge */}
+                  <div className="absolute top-4 left-4 bg-indigo-900/90 backdrop-blur-sm text-indigo-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-indigo-700/60 shadow-lg">
+                    CO-PILOT MULTI-VEHICLE DUO
                   </div>
                 </div>
 
@@ -1261,28 +1257,26 @@ export default function TeslaFunnel({ onReserveSuccess }: TeslaFunnelProps) {
                 }`}
               >
                 {/* Header Image */}
-                <div className="relative h-48 overflow-hidden bg-slate-950">
+                <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
                   <img 
-                    src="/src/assets/images/guardian_pro_1781713885818.jpg" 
+                    src="/src/assets/images/guardian_pro_bright_1781714500649.jpg" 
                     alt="Guardian Pro System Suite"
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
                   />
-                  {/* Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                  {/* Floating Badge */}
-                  <div className="absolute top-4 left-4 bg-slate-900/95 text-slate-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-slate-700/60 shadow-lg">
-                    ELITE FLEET COMMANDER
-                  </div>
-                  {/* Price Banner Overlay */}
-                  <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
+                  {/* Subtle Elegant Glassmorphic Overlay for Text Contrast */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent pt-8 pb-3 px-4 flex items-end justify-between">
                     <div>
-                      <span className="text-[9.5px] font-mono text-slate-350 uppercase tracking-wider font-semibold block leading-none">RESERVATION DEPOSIT</span>
+                      <span className="text-[9.5px] font-mono text-slate-200 uppercase tracking-wider font-bold block leading-none">RESERVATION DEPOSIT</span>
                       <span className="text-2xl font-black text-white tracking-tight leading-none mt-1 block">$149<span className="text-xs font-bold text-slate-200 ml-0.5">CAD</span></span>
                     </div>
                     <div className="text-right">
-                      <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-900/40">SAVE $149 CAD</span>
+                      <span className="text-[8.5px] font-mono text-emerald-400 font-black uppercase tracking-widest block bg-emerald-950/75 px-2 py-0.5 rounded border border-emerald-500/30">SAVE $149 CAD</span>
                     </div>
+                  </div>
+                  {/* Floating Badge */}
+                  <div className="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-sm text-slate-200 text-[8.5px] font-mono font-black uppercase tracking-widest px-2.5 py-1 rounded-md border border-slate-700/60 shadow-lg">
+                    ELITE FLEET COMMANDER
                   </div>
                 </div>
 
