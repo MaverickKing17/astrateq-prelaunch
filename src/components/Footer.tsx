@@ -242,7 +242,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             <ul className="space-y-2.5 text-xs text-slate-100 font-medium">
               <li>
                 <button onClick={() => setActiveLegalTab('privacy')} className="hover:text-white cursor-pointer transition-colors block text-left focus:outline-none">
-                  Privacy Shield Directive
+                  Privacy &amp; Security Overview
                 </button>
               </li>
               <li>

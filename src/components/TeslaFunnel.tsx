@@ -118,7 +118,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
     switch (activeLegalModal) {
       case 'privacy':
         return {
-          title: 'Privacy Policy & Charter',
+          title: 'Privacy & Security Overview',
           icon: <Shield className="w-6 h-6 text-indigo-600 animate-pulse" />,
           badge: 'Zero-Telemetry Assurance & Canadian Sovereignty',
           date: 'Last Modified: June 16, 2026',
@@ -323,18 +323,23 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
             <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-6">
               
               <div className="inline-flex items-center gap-2 bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-bold tracking-widest px-3.5 py-1.5 rounded-full uppercase w-fit font-mono">
-                <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse" />
-                <span>Concept Interest Validation Phase</span>
+                <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping inline-block" />
+                <span>Limited Canadian early access — allocation closing soon.</span>
               </div>
 
               {/* H1 Primary Hook */}
               <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black tracking-tight text-slate-950 leading-[1.1] font-sans">
-                Privacy-first driving intelligence for founding drivers.
+                Join the Founding Driver Cohort
               </h1>
 
               {/* Subheadline: Premium, clear pre-launch purpose */}
-              <p className="text-sm sm:text-base md:text-[17px] text-slate-600 leading-relaxed font-medium max-w-xl">
-                Securing custom on-device vehicle awareness designed to keep you in control of your data with no monthly subscriptions.
+              <p className="text-lg sm:text-xl font-bold text-slate-900 leading-snug font-sans">
+                Privacy-first vehicle intelligence for safer driving decisions.
+              </p>
+
+              {/* Clarity line under Hero list */}
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
+                A pre-launch vehicle intelligence system designed to improve driving awareness using privacy-first on-device processing.
               </p>
 
               {/* CTA BLOCK (Strictly ONE primary CTA for absolute conversions focus) */}
@@ -346,9 +351,9 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     const el = document.getElementById('reserve');
                     el?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-8 py-4 bg-indigo-650 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base rounded-xl cursor-pointer transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 text-center uppercase tracking-wider"
+                  className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base rounded-xl cursor-pointer transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 text-center uppercase tracking-wider"
                 >
-                  Secure Founding Driver Cohort Access
+                  Join Founding Cohort Now
                 </button>
 
               </div>
@@ -356,7 +361,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
               {/* Hero microcopy under CTA */}
               <div className="text-[11px] text-slate-500 font-sans font-bold flex items-center gap-1.5 pt-2 select-none">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Limited Canadian founding cohort. Early access allocation closes soon.</span>
+                <span>Early access allocated in limited Canadian founding cohorts.</span>
               </div>
 
             </div>
@@ -1707,7 +1712,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     type="submit"
                     className="w-full py-4.5 bg-gradient-to-r from-indigo-650 to-indigo-700 hover:from-slate-900 hover:to-slate-900 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer text-center uppercase tracking-wider"
                   >
-                    Secure Founding Driver Cohort Access
+                    Join Founding Cohort Now
                   </button>
 
                 </form>
@@ -1836,7 +1841,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   className="hover:text-indigo-400 text-slate-300 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-400"
                 >
                   <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0" />
-                  Privacy Policy &amp; Charter
+                  Privacy &amp; Security Overview
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('tos')} 

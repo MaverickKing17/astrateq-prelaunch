@@ -97,7 +97,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       savings: 49,
       deposit: 49,
       badge: 'Starter Tier',
-      cta: 'Secure Founding Driver Cohort Access',
+      cta: 'Join Founding Cohort Now',
       warranty: '2-Year Warranty',
       features: [
         'Astrateq AI-DriveGuard Unit',
@@ -121,7 +121,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       savings: 99,
       deposit: 99,
       badge: 'Best Value • Most Popular',
-      cta: 'Secure Founding Driver Cohort Access',
+      cta: 'Join Founding Cohort Now',
       warranty: '3-Year Warranty',
       isFeatured: true,
       features: [
@@ -148,7 +148,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       savings: 149,
       deposit: 149,
       badge: 'Elite Collection',
-      cta: 'Secure Founding Driver Cohort Access',
+      cta: 'Join Founding Cohort Now',
       warranty: '3-Year Warranty + Concierge',
       features: [
         'All 3 Signature Astrateq Devices',
@@ -834,7 +834,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                       <span>Verifying System Handshake...</span>
                     </>
                   ) : (
-                    "Secure Founding Driver Cohort Access"
+                    "Join Founding Cohort Now"
                   )}
                 </button>
 

@@ -206,7 +206,7 @@ export default function AboutUs({ onBackToHome, onScrollToSection }: AboutUsProp
               onClick={() => onScrollToSection('pricing')}
               className="px-6 py-3 bg-indigo-650 hover:bg-indigo-700 text-white rounded-xl font-extrabold text-sm transition-all duration-300 cursor-pointer"
             >
-              Secure Founding Driver Cohort Access
+              Join Founding Cohort Now
             </button>
             <button
               onClick={onBackToHome}

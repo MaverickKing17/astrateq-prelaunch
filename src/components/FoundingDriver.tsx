@@ -145,7 +145,7 @@ export default function FoundingDriver({ onScrollToSection }: FoundingDriverProp
                 <span className="absolute inset-x-0 bottom-0 h-1/3 bg-white/10 animate-pulse pointer-events-none" />
                 <span className="relative z-10 flex items-center gap-2">
                   <Flame className="w-4 h-4 text-amber-200 animate-pulse shrink-0" />
-                  Secure Founding Driver Cohort Access
+                  Join Founding Cohort Now
                   <ArrowRight size={15} style={{ strokeWidth: 3 }} className="group-hover/btn:translate-x-1 transition-transform shrink-0" />
                 </span>
               </button>

@@ -128,7 +128,7 @@ export default function AppleProductShowcase({ onScrollToSection }: AppleProduct
                       onClick={() => onScrollToSection('pricing')}
                       className="px-6 py-3.5 bg-white text-slate-950 hover:bg-slate-100 font-extrabold text-xs uppercase tracking-widest rounded-xl transition-all shadow-md flex items-center gap-2 cursor-pointer"
                     >
-                      Secure Founding Driver Cohort Access
+                      Join Founding Cohort Now
                       <ArrowRight size={13} />
                     </button>
                     <button

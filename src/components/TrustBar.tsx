@@ -135,12 +135,9 @@ export default function TrustBar() {
               Quality Assurance Benchmarks
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl text-white font-extrabold tracking-tight leading-tight">
-            Designed for drivers who demand absolute <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400">privacy and physical control.</span>
+          <h2 className="text-2xl sm:text-3xl text-white font-extrabold tracking-tight leading-tight">
+            Privacy-first vehicle intelligence designed so your driving data stays under your control.
           </h2>
-          <p className="text-sm text-slate-300 mt-4 leading-relaxed font-medium">
-            Astrateq is built on physical sovereignty, offline edge computation, and industrial durability. Read how we are setting a premium new standard for Canadian automotive technology.
-          </p>
         </div>
 
         {/* Elegant Bento-style Responsive Grid */}
