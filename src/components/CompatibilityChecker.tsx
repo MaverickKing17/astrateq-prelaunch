@@ -484,7 +484,7 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
                         </span>
                         <span className="font-sans font-black text-white text-xl sm:text-2xl">
                           {result === 'ev' && 'Guardian Pro Bundle'}
-                          {result === 'standard' && 'Family Safety Bundle'}
+                          {result === 'standard' && 'Family Safety Hub™'}
                           {result === 'limited' && 'DriveGuard Dual-Pack'}
                         </span>
                         <span className="text-xs text-slate-350 leading-relaxed max-w-[210px] sm:max-w-xs font-bold">

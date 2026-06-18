@@ -199,14 +199,14 @@ export default function AboutUs({ onBackToHome, onScrollToSection }: AboutUsProp
         <div className="max-w-2xl mx-auto space-y-6 relative z-10">
           <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">Our Pre-Launch Guarantee Policy</h2>
           <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
-            Your $40 CAD deposit reserves your hardware slot and early pilot pricing. It is held securely and is <strong>fully refundable at any time, instantly, in one single click</strong>. We do not use your reservation deposits to fund engineering; they serve strictly to guarantee real vehicle demand.
+            Your refundable deposit (starting at $49 CAD) reserves your hardware slot and early pilot pricing. It is held securely and is <strong>fully refundable at any time, instantly, in one single click</strong>. We do not use your reservation deposits to fund engineering; they serve strictly to guarantee real vehicle demand.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <button
               onClick={() => onScrollToSection('pricing')}
-              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-extrabold text-sm transition-all duration-300"
+              className="px-6 py-3 bg-indigo-605 hover:bg-indigo-705 text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl font-extrabold text-sm transition-all duration-300 cursor-pointer"
             >
-              Reserve Early Spot — $40 CAD
+              Reserve Early Access — $49 CAD (Refundable Deposit)
             </button>
             <button
               onClick={onBackToHome}

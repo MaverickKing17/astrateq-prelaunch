@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send, CheckCircle, ArrowRight, CornerDownRight, Zap, X, Scale, FileText, Info } from 'lucide-react';
+import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send, CheckCircle, ArrowRight, CornerDownRight, Zap, X, Scale, FileText, Info, Gift } from 'lucide-react';
 
 import DigitalOBDScanner from './DigitalOBDScanner';
 import CompatibilityChecker from './CompatibilityChecker';
@@ -95,10 +95,10 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
     if (!emailInput.trim()) return;
     
     const packageName = selectedPackage === 'solo' 
-      ? 'DriveGuard Solo Package' 
+      ? 'DriveGuard Solo™' 
       : selectedPackage === 'family' 
-        ? 'Family Safety Bundle' 
-        : 'Guardian Pro Premium Bundle';
+        ? 'Family Safety Hub™' 
+        : 'Guardian Pro Bundle™';
 
     onReserveSuccess(emailInput, packageName);
     setEmailInput('');
@@ -326,7 +326,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   }}
                   className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base rounded-xl cursor-pointer transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 text-center uppercase tracking-wider"
                 >
-                  Reserve Early Access — $40 CAD
+                  Reserve Early Access — $49 CAD (Refundable Deposit)
                 </button>
 
               </div>
@@ -334,7 +334,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
               {/* Hero microcopy under CTA */}
               <div className="text-[11px] text-slate-400 font-mono font-semibold flex items-center gap-1.5 pt-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                <span>Fully refundable. Early validation access. No production commitment.</span>
+                <span>Fully refundable. Lifetime subscription waiver included with reservation. No production commitment.</span>
               </div>
 
             </div>
@@ -795,9 +795,9 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                         <Zap className="w-4 h-4" />
                       </div>
                       <div className="space-y-0.5">
-                        <span className="text-xs font-black text-white block">🎁 100% Waived Companion Subscription</span>
+                        <span className="text-xs font-black text-white block">🎁 Lifetime Subscription Waiver Included</span>
                         <span className="text-[11px] text-white font-medium block leading-relaxed mt-0.5">
-                          Lifetime companion account access. Waives the standard $12 CAD/month active cloud logs subscription completely.
+                          Lifetime subscription waiver included with reservation (waiving the standard $12 CAD/month active cloud logs subscription completely).
                         </span>
                       </div>
                     </div>
@@ -1177,7 +1177,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   </div>
                   <div className="space-y-2 px-1">
                     <span className="block text-[15px] sm:text-[15.5px] font-black text-white leading-tight tracking-tight">Fully refundable reservation</span>
-                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Get your $40 CAD back instantly at any time</span>
+                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Get your full deposit back instantly at any time</span>
                   </div>
                 </div>
                 <div className="w-2 h-2 rounded-full bg-blue-500/50 group-hover:bg-blue-400 group-hover:shadow-[0_0_10px_rgba(59,130,246,1)] transition-all duration-300 mt-4" />
@@ -1377,6 +1377,10 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                         <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
                         <span>Extreme Canadian Environment Armored Chassis</span>
                       </div>
+                      <div className="flex items-start gap-2 text-xs text-indigo-600 font-bold bg-indigo-50/50 p-2.5 rounded-xl border border-indigo-100/60 mt-1">
+                        <Gift className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5 animate-pulse" />
+                        <span>Lifetime subscription waiver included with reservation (waives standard $12 CAD/month fee)</span>
+                      </div>
                     </div>
 
                     {/* Selector Anchor */}
@@ -1451,8 +1455,8 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                         <span className="text-[10px] text-indigo-600 font-mono font-bold">2 Unit Sync</span>
                       </div>
                       <h3 className="text-[17px] font-black text-slate-950 tracking-tight leading-snug flex items-center gap-1.5">
-                        <ShieldCheck className="w-5.5 h-5.5 text-indigo-605 shrink-0" />
-                        Family Safety Hubs™
+                        <ShieldCheck className="w-5.5 h-5.5 text-indigo-655 shrink-0" />
+                        Family Safety Hub™
                       </h3>
                       <p className="text-xs text-slate-500 font-medium leading-relaxed">
                         Slightly optimized for teenage, senior, or dual drivers in Canada. Keeps multiple vehicles synced inside a single unified dashboard.
@@ -1466,7 +1470,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                         <span className="text-[8px] bg-red-100 text-red-650 px-1.5 rounded font-mono font-black tracking-wider leading-none uppercase py-0.5 font-bold">VALUED AT $400+</span>
                       </div>
                       <p className="text-[11px] font-black text-slate-905 leading-snug">
-                        🎁 Standard $12 CAD/month companion cloud logs subscription is completely WAIVED FOR LIFE.
+                        🎁 Lifetime subscription waiver included with reservation (waiving standard $12 CAD/month companion cloud active logs subscription completely).
                       </p>
                       
                       <span className="text-[9.5px] font-mono font-black text-indigo-600 uppercase tracking-widest block pt-2">HARDWARE SPECS INCLUDED:</span>
@@ -1579,6 +1583,10 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                         <CheckCircle className="w-4 h-4 text-indigo-650 shrink-0 mt-0.5" />
                         <span>Direct VIP shaping access back to Astrateq engineering team</span>
                       </div>
+                      <div className="flex items-start gap-2 text-xs text-indigo-600 font-bold bg-indigo-50/50 p-2.5 rounded-xl border border-indigo-100/60 mt-1">
+                        <Gift className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5 animate-pulse" />
+                        <span>Lifetime subscription waiver included with reservation (waives standard $12 CAD/month fee)</span>
+                      </div>
                     </div>
 
                     {/* Selector Anchor */}
@@ -1614,14 +1622,17 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 <div className="bg-slate-50 border border-slate-200/50 rounded-2xl p-4.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div className="space-y-1">
                     <span className="text-[9px] font-mono text-slate-400 block font-bold tracking-widest">ACTIVE CONFIGURATION:</span>
-                    <h4 className="text-sm font-black text-slate-950 tracking-tight uppercase">
+                    <h4 className="text-xs sm:text-sm font-black text-slate-950 tracking-tight uppercase">
                       {selectedPackage === 'solo' 
-                        ? 'DriveGuard Solo™ Configuration' 
+                        ? 'DriveGuard Solo™' 
                         : selectedPackage === 'family' 
-                          ? 'Family Safety Hubs™ (WAIVED SUBSCRIPTION PERK)' 
-                          : 'Guardian Pro Bundle™ (ELITE FLEET COHORT)'
+                          ? 'Family Safety Hub™' 
+                          : 'Guardian Pro Bundle™'
                       }
                     </h4>
+                    <span className="text-[11px] font-bold text-indigo-600 flex items-center gap-1">
+                      <span>🎁</span> Lifetime subscription waiver included with reservation
+                    </span>
                   </div>
                   <div className="text-left sm:text-right shrink-0">
                     <span className="text-[9px] font-mono text-indigo-500 block font-bold tracking-widest">REFUNDABLE DEPOSIT:</span>
@@ -1672,9 +1683,14 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   {/* Primary CTA (Big Solid Button) */}
                   <button
                     type="submit"
-                    className="w-full py-4.5 bg-indigo-600 hover:bg-slate-900 text-white font-extrabold text-base rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer text-center uppercase tracking-wider"
+                    className="w-full py-4.5 bg-indigo-600 hover:bg-slate-900 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer text-center uppercase tracking-wider"
                   >
-                    Reserve {selectedPackage === 'solo' ? 'DriveGuard Solo' : selectedPackage === 'family' ? 'Family Safety Bundle' : 'Guardian Pro Bundle'} &mdash; ${selectedPackage === 'solo' ? '49' : selectedPackage === 'family' ? '99' : '149'} CAD
+                    {selectedPackage === 'solo' 
+                      ? 'Reserve DriveGuard Solo™ — $49 CAD (Refundable Deposit)' 
+                      : selectedPackage === 'family' 
+                        ? 'Reserve Family Safety Hub™ — $99 CAD (Refundable Deposit)' 
+                        : 'Reserve Guardian Pro Bundle™ — $149 CAD (Refundable Deposit)'
+                    }
                   </button>
 
                 </form>
@@ -1817,7 +1833,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   className="hover:text-indigo-400 text-slate-300 transition-colors font-bold flex items-center gap-2 text-left outline-none cursor-pointer focus:text-indigo-400"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                  $40 CAD Refund Guarantee Policy
+                  100% Refund Guarantee Policy
                 </button>
                 <button 
                   onClick={() => setActiveLegalModal('dmca')} 

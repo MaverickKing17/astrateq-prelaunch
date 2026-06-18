@@ -128,7 +128,7 @@ export default function Navbar({ onScrollToSection, currentPage = 'home', onNavi
                 onClick={() => handleLinkClick('pricing')}
                 className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 hover:shadow-indigo-600/25 active:scale-95 rounded-xl text-xs lg:text-sm font-extrabold text-white shadow-lg shadow-indigo-600/15 transition-all duration-300 cursor-pointer text-center tracking-wide whitespace-nowrap hover:scale-[1.02]"
               >
-                Reserve Early — $40 CAD
+                Reserve Early — $49 CAD
               </button>
               <span className="text-[9px] text-slate-500 font-bold mt-1 tracking-wider uppercase whitespace-nowrap flex items-center gap-1.5">
                 <span>🛡️</span> Refundable at any time
@@ -194,7 +194,7 @@ export default function Navbar({ onScrollToSection, currentPage = 'home', onNavi
                 onClick={() => handleLinkClick('pricing')}
                 className="w-full text-center py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-extrabold text-sm shadow-md"
               >
-                Reserve Space — $40 CAD
+                Reserve Space — $49 CAD
               </button>
               <span className="text-center text-[11px] text-slate-500 font-bold block">
                 🛡️ Fully Refundable Deposit

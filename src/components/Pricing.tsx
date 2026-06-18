@@ -113,7 +113,7 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
     },
     {
       id: 'family',
-      name: 'Family Safety Bundle',
+      name: 'Family Safety Hub™',
       type: 'Complete Family Tier',
       image: familyBundleImg,
       msrp: 599,
