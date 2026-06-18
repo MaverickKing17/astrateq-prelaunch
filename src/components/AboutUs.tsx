@@ -204,9 +204,9 @@ export default function AboutUs({ onBackToHome, onScrollToSection }: AboutUsProp
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <button
               onClick={() => onScrollToSection('pricing')}
-              className="px-6 py-3 bg-indigo-605 hover:bg-indigo-705 text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl font-extrabold text-sm transition-all duration-300 cursor-pointer"
+              className="px-6 py-3 bg-indigo-650 hover:bg-indigo-700 text-white rounded-xl font-extrabold text-sm transition-all duration-300 cursor-pointer"
             >
-              Reserve Early Access — $49 CAD (Refundable Deposit)
+              Secure Founding Driver Cohort Access
             </button>
             <button
               onClick={onBackToHome}

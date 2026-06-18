@@ -88,7 +88,7 @@ export default function Navbar({ onScrollToSection, currentPage = 'home', onNavi
               onClick={() => handleLinkClick('how-it-works')}
               className="text-slate-600 hover:text-indigo-600 text-xs lg:text-[13px] font-bold tracking-tight transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full"
             >
-              How It Works
+              See How It Works
             </button>
             <button
               onClick={() => handleLinkClick('concepts')}
@@ -101,7 +101,7 @@ export default function Navbar({ onScrollToSection, currentPage = 'home', onNavi
               className="text-indigo-600 hover:text-indigo-700 text-xs lg:text-[13px] font-extrabold tracking-tight transition-all hover:-translate-y-0.5 cursor-pointer relative py-1 whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-600 after:transition-all hover:after:w-full flex items-center gap-1.5 group"
             >
               <Wrench className="w-3.5 h-3.5 text-indigo-500 transition-transform group-hover:rotate-12" />
-              <span>Interactive Diagnostics</span>
+              <span>Verify Eligibility (30 sec)</span>
             </button>
             <button
               onClick={() => handleLinkClick('faq')}
@@ -130,7 +130,7 @@ export default function Navbar({ onScrollToSection, currentPage = 'home', onNavi
                 onClick={() => handleLinkClick('pricing')}
                 className="px-5 py-2.5 bg-gradient-to-r from-indigo-600 via-indigo-650 to-violet-600 hover:from-indigo-700 hover:to-violet-700 active:scale-98 rounded-xl text-xs lg:text-[13px] font-extrabold text-white shadow-md shadow-indigo-600/10 hover:shadow-lg hover:shadow-indigo-600/20 transition-all duration-300 cursor-pointer text-center tracking-wide whitespace-nowrap hover:scale-[1.02]"
               >
-                Reserve Space — $49 CAD
+                Secure Founding Driver Cohort Access
               </button>
               <span className="text-[9px] text-slate-500 font-bold mt-1 tracking-wide uppercase whitespace-nowrap flex items-center justify-center gap-1">
                 <ShieldCheck className="w-3 h-3 text-emerald-500 shrink-0" />
@@ -161,7 +161,7 @@ export default function Navbar({ onScrollToSection, currentPage = 'home', onNavi
               onClick={() => handleLinkClick('how-it-works')}
               className="block w-full text-left py-2.5 px-3 rounded-lg text-slate-700 hover:text-indigo-600 hover:bg-slate-50 font-bold text-sm transition-colors"
             >
-              How It Works
+              See How It Works
             </button>
             <button
               onClick={() => handleLinkClick('concepts')}
@@ -174,7 +174,7 @@ export default function Navbar({ onScrollToSection, currentPage = 'home', onNavi
               className="w-full text-left py-2.5 px-3 rounded-lg text-indigo-700 hover:bg-indigo-50/50 font-extrabold text-sm transition-colors flex items-center gap-2"
             >
               <Wrench className="w-4 h-4 text-indigo-600" />
-              <span>Interactive Diagnostics</span>
+              <span>Verify Eligibility (30 sec)</span>
             </button>
             <button
               onClick={() => handleLinkClick('faq')}
@@ -198,7 +198,7 @@ export default function Navbar({ onScrollToSection, currentPage = 'home', onNavi
                 onClick={() => handleLinkClick('pricing')}
                 className="w-full text-center py-3 bg-gradient-to-r from-indigo-600 to-violet-650 text-white rounded-xl font-extrabold text-sm shadow-md active:scale-98 transition-all"
               >
-                Reserve Space — $49 CAD
+                Secure Founding Driver Cohort Access
               </button>
               <span className="text-center text-[10px] text-slate-500 font-bold flex items-center justify-center gap-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500 inline shrink-0" />

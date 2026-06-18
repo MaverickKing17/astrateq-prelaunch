@@ -329,12 +329,12 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
 
               {/* H1 Primary Hook */}
               <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black tracking-tight text-slate-950 leading-[1.1] font-sans">
-                AI-powered vehicle intelligence for safer driving decisions.
+                Privacy-first driving intelligence for founding drivers.
               </h1>
 
               {/* Subheadline: Premium, clear pre-launch purpose */}
               <p className="text-sm sm:text-base md:text-[17px] text-slate-600 leading-relaxed font-medium max-w-xl">
-                Astrateq Gadgets is validating privacy-first automotive technology concepts that help drivers understand fatigue risk, vehicle health, and maintenance urgency more clearly.
+                Securing custom on-device vehicle awareness designed to keep you in control of your data with no monthly subscriptions.
               </p>
 
               {/* CTA BLOCK (Strictly ONE primary CTA for absolute conversions focus) */}
@@ -346,17 +346,17 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     const el = document.getElementById('reserve');
                     el?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base rounded-xl cursor-pointer transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 text-center uppercase tracking-wider"
+                  className="px-8 py-4 bg-indigo-650 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base rounded-xl cursor-pointer transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 text-center uppercase tracking-wider"
                 >
-                  Reserve Early Access — $49 CAD (Refundable Deposit)
+                  Secure Founding Driver Cohort Access
                 </button>
 
               </div>
 
               {/* Hero microcopy under CTA */}
-              <div className="text-[11px] text-slate-400 font-mono font-semibold flex items-center gap-1.5 pt-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                <span>Fully refundable. Lifetime subscription waiver included with reservation. No production commitment.</span>
+              <div className="text-[11px] text-slate-500 font-sans font-bold flex items-center gap-1.5 pt-2 select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Limited Canadian founding cohort. Early access allocation closes soon.</span>
               </div>
 
             </div>
@@ -1705,14 +1705,9 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   {/* Primary CTA (Big Solid Button) */}
                   <button
                     type="submit"
-                    className="w-full py-4.5 bg-indigo-600 hover:bg-slate-900 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer text-center uppercase tracking-wider"
+                    className="w-full py-4.5 bg-gradient-to-r from-indigo-650 to-indigo-700 hover:from-slate-900 hover:to-slate-900 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer text-center uppercase tracking-wider"
                   >
-                    {selectedPackage === 'solo' 
-                      ? 'Reserve DriveGuard Solo™ — $49 CAD (Refundable Deposit)' 
-                      : selectedPackage === 'family' 
-                        ? 'Reserve Family Safety Hub™ — $99 CAD (Refundable Deposit)' 
-                        : 'Reserve Guardian Pro Bundle™ — $149 CAD (Refundable Deposit)'
-                    }
+                    Secure Founding Driver Cohort Access
                   </button>
 
                 </form>
@@ -1724,13 +1719,13 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     onClick={handleGetUpdatesOnly}
                     className="text-slate-400 hover:text-indigo-600 font-bold transition-all text-xs underline cursor-pointer font-mono"
                   >
-                    Get Updates Only
+                    Build Progress &amp; Updates
                   </button>
                   
                   {/* Final microcopy */}
                   <span className="text-slate-500 font-medium tracking-tight flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    Limited cohort spots left in Toronto. Escrow protection guaranteed.
+                    Limited cohort access — Canada only.
                   </span>
                 </div>
 
@@ -1796,7 +1791,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   }}
                   className="text-slate-300 hover:text-indigo-400 transition-colors font-bold text-left outline-none cursor-pointer"
                 >
-                  How DriveGuard Works
+                  See How It Works
                 </button>
                 <button 
                   onClick={() => {
@@ -1814,7 +1809,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   }}
                   className="text-slate-300 hover:text-indigo-400 transition-colors font-bold text-left outline-none cursor-pointer"
                 >
-                  Try Compatibility Tool
+                  Verify Eligibility (30 sec)
                 </button>
                 <button 
                   onClick={() => {

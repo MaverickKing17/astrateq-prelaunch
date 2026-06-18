@@ -213,12 +213,12 @@ export default function Footer({ onScrollToSection }: FooterProps) {
               </li>
               <li>
                 <button onClick={() => onScrollToSection('how-it-works')} className="hover:text-white transition-colors cursor-pointer text-left focus:outline-none">
-                  How Edge Sync Works
+                  See How It Works
                 </button>
               </li>
               <li>
                 <button onClick={() => onScrollToSection('compatibility')} className="hover:text-white transition-colors cursor-pointer text-left focus:outline-none">
-                  Check OBD Compatibility
+                  Verify Eligibility (30 sec)
                 </button>
               </li>
               <li>
