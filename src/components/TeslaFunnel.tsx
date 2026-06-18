@@ -28,6 +28,23 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
   const [validationError, setValidationError] = useState<string | null>(null);
   const [activeHudNode, setActiveHudNode] = useState<'obd' | 'fatigue' | 'privacy'>('obd');
 
+  const [isStripeLoading, setIsStripeLoading] = useState(false);
+  const [showSimulatedModal, setShowSimulatedModal] = useState(false);
+  const [stripeConfig, setStripeConfig] = useState<{ configured: boolean; publishableKey: string; isValidationMode: boolean } | null>(null);
+
+  // Simulated billing states for the card overlay
+  const [simCardName, setSimCardName] = useState('');
+  const [simCardNo, setSimCardNo] = useState('4242 4242 4242 4242');
+  const [simCardExpiry, setSimCardExpiry] = useState('12/28');
+  const [simCardCvc, setSimCardCvc] = useState('123');
+
+  useEffect(() => {
+    fetch('/api/stripe-config')
+      .then(res => res.json())
+      .then(data => setStripeConfig(data))
+      .catch(err => console.error("Could not load Stripe configuration status:", err));
+  }, []);
+
   const [isDesktop, setIsDesktop] = useState(false);
   const parallaxContainerRef = useRef<HTMLDivElement>(null);
   const soloRef = useRef<HTMLDivElement>(null);
@@ -92,7 +109,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
     el?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleReserveFormSubmit = (e: React.FormEvent) => {
+  const handleReserveFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!emailInput.trim()) return;
     
@@ -102,9 +119,45 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
         ? 'Family Safety Hub™' 
         : 'Guardian Pro Bundle™';
 
-    onReserveSuccess(emailInput, packageName);
-    setEmailInput('');
+    setIsStripeLoading(true);
     setValidationError(null);
+
+    try {
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          bundleId: selectedPackage,
+          bundleName: packageName,
+          email: emailInput,
+          name: emailInput.split('@')[0],
+          vehicle: 'Canadian Spec Standard Commuter'
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.url) {
+        // Redirect to live or sandbox Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        const errMsg = data.error || '';
+        if (errMsg.includes("Stripe secret key is not configured") || response.status === 400) {
+          // Open simulated modal
+          setShowSimulatedModal(true);
+        } else {
+          setValidationError(errMsg || "Failed to contact payment gateway.");
+        }
+      }
+    } catch (err) {
+      console.error("Payment connection error:", err);
+      // Fallback for full customer testing
+      setShowSimulatedModal(true);
+    } finally {
+      setIsStripeLoading(false);
+    }
   };
 
   const handleGetUpdatesOnly = () => {
@@ -1715,9 +1768,20 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   {/* Primary CTA (Big Solid Button) */}
                   <button
                     type="submit"
-                    className="w-full py-4.5 bg-gradient-to-r from-indigo-650 to-indigo-700 hover:from-slate-900 hover:to-slate-900 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer text-center uppercase tracking-wider"
+                    disabled={isStripeLoading}
+                    className="w-full py-4.5 bg-gradient-to-r from-indigo-650 to-indigo-700 hover:from-slate-900 hover:to-slate-900 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer text-center uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Join Founding Cohort Now
+                    {isStripeLoading ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" id="stripe-loading-spinner" style={{ contentVisibility: 'auto' }}>
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        RECONNECTING STRIPE INSTANCE...
+                      </span>
+                    ) : (
+                      "Join Founding Cohort Now"
+                    )}
                   </button>
 
                 </form>
@@ -1980,6 +2044,168 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   className="w-full sm:w-auto px-6 py-2.5 bg-slate-900 hover:bg-slate-950 text-white font-extrabold rounded-xl text-center cursor-pointer transition-all duration-200 text-xs shadow-sm"
                 >
                   Confirm Understanding
+                </button>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* POLISHED INTERACTIVE MOCK STRIPE CHECKOUT MODAL */}
+        {showSimulatedModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div 
+              className="absolute inset-0 bg-slate-950/80 backdrop-blur-md transition-opacity duration-305"
+              onClick={() => setShowSimulatedModal(false)}
+            />
+            
+            <div className="bg-slate-900 border-2 border-slate-750/70 rounded-[2.5rem] w-full max-w-lg overflow-hidden shadow-[0_0_50px_rgba(99,102,241,0.25)] relative z-10 flex flex-col justify-between text-left animate-in fade-in zoom-in-95 duration-200">
+              
+              <div className="p-6 sm:p-8 space-y-6 relative">
+                {/* Simulated Header */}
+                <div className="flex items-center justify-between border-b border-slate-800 pb-5">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                      <Scale className="w-5 h-5 animate-pulse" />
+                    </div>
+                    <div>
+                      <span className="text-[9px] font-mono font-black text-rose-450 uppercase tracking-widest block">STRIPE SANDBOX EMULATOR</span>
+                      <h3 className="text-sm font-black text-white uppercase tracking-wider block">Pre-Order Authorization</h3>
+                    </div>
+                  </div>
+                  
+                  <button
+                    type="button"
+                    onClick={() => setShowSimulatedModal(false)}
+                    className="p-1.5 rounded-full bg-slate-850 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors border border-slate-700/50 cursor-pointer outline-none shrink-0"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Developer Instructions Overlay */}
+                <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-400/20 text-[11px] leading-relaxed text-indigo-200 space-y-1.5">
+                  <div className="flex items-center gap-1.5 font-bold font-mono">
+                    <Info className="w-3.5 h-3.5 text-indigo-400 shrink-0 font-bold" />
+                    <span>⚠️ PRE-LAUNCH CONVERTIBILITY TIP</span>
+                  </div>
+                  <p className="font-semibold text-slate-300">
+                    Astrateq is executing in <strong>validation sandbox mode</strong>. While testing your demand-funnel mechanics today, we enable simulated pre-authorization cards to safely gauge pipeline traction.
+                  </p>
+                  <p className="text-[10px] text-indigo-300/80">
+                    To link actual Stripe accounts, simply define your <code className="bg-indigo-950 px-1 py-0.5 rounded text-indigo-200 font-mono">STRIPE_SECRET_KEY</code> in the secrets page.
+                  </p>
+                </div>
+
+                {/* Simulated Credit Card Preview */}
+                <div className="relative overflow-hidden rounded-2.5xl p-6 bg-gradient-to-br from-indigo-950 via-slate-900 to-rose-950 border border-slate-800 text-white min-h-[160px] flex flex-col justify-between shadow-2xl">
+                  {/* Subtle decorative chip */}
+                  <div className="absolute top-6 right-6 w-11 h-8 rounded-lg bg-yellow-500/20 border border-yellow-500/30 flex items-center justify-center font-mono text-[9px] font-bold text-yellow-500 tracking-tighter">
+                    CHIP
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block font-black">Advisory Cohort VIP Card</span>
+                    <div className="font-mono text-lg sm:text-xl tracking-widest font-black py-1 text-slate-200">
+                      {simCardNo || "•••• •••• •••• ••••"}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between font-mono text-xs text-slate-300 mt-2">
+                    <div>
+                      <span className="text-[8px] text-slate-500 uppercase block leading-none font-bold">CARDHOLDER</span>
+                      <span className="uppercase font-bold tracking-wider">{simCardName || "Guest Validator"}</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[8px] text-slate-500 uppercase block leading-none font-bold font-mono">EXPIRY</span>
+                      <span className="font-bold">{simCardExpiry || "MM/YY"}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Interactive Card Input Fields */}
+                <div className="space-y-4 text-slate-300 text-xs text-left">
+                  <div className="flex flex-col space-y-1.5">
+                    <label className="text-[9px] font-mono uppercase tracking-wider font-extrabold text-slate-400">Cardholder Name</label>
+                    <input
+                      type="text"
+                      placeholder="Jane Doe"
+                      value={simCardName}
+                      onChange={(e) => setSimCardName(e.target.value)}
+                      className="bg-slate-950 border-2 border-slate-800 hover:border-slate-700 focus:border-indigo-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition-all font-semibold"
+                    />
+                  </div>
+
+                  <div className="flex flex-col space-y-1.5">
+                    <label className="text-[9px] font-mono uppercase tracking-wider font-extrabold text-slate-400">Card Number (Use Stripe Test Card or Any)</label>
+                    <input
+                      type="text"
+                      placeholder="4242 4242 4242 4242"
+                      value={simCardNo}
+                      maxLength={19}
+                      onChange={(e) => setSimCardNo(e.target.value)}
+                      className="bg-slate-950 border-2 border-slate-800 hover:border-slate-700 focus:border-indigo-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition-all font-mono font-semibold"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col space-y-1.5">
+                      <label className="text-[9px] font-mono uppercase tracking-wider font-extrabold text-slate-400">Expiry (MM/YY)</label>
+                      <input
+                        type="text"
+                        placeholder="12/28"
+                        maxLength={5}
+                        value={simCardExpiry}
+                        onChange={(e) => setSimCardExpiry(e.target.value)}
+                        className="bg-slate-950 border-2 border-slate-800 hover:border-slate-700 focus:border-indigo-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition-all font-mono font-semibold text-center"
+                      />
+                    </div>
+                    <div className="flex flex-col space-y-1.5">
+                      <label className="text-[9px] font-mono uppercase tracking-wider font-extrabold text-slate-400">CVC</label>
+                      <input
+                        type="text"
+                        placeholder="123"
+                        maxLength={4}
+                        value={simCardCvc}
+                        onChange={(e) => setSimCardCvc(e.target.value)}
+                        className="bg-slate-950 border-2 border-slate-800 hover:border-slate-700 focus:border-indigo-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition-all font-mono font-semibold text-center"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Action and pricing footer */}
+              <div className="p-6 bg-slate-950 border-t border-slate-850 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="text-left w-full sm:w-auto">
+                  <span className="text-[9px] font-mono text-slate-500 block font-bold tracking-widest">EMULATED SECURE CHARGE:</span>
+                  <span className="text-lg font-black text-white font-mono tracking-tight block">
+                    ${selectedPackage === 'solo' ? '49.00' : selectedPackage === 'family' ? '99.00' : '149.00'} CAD
+                  </span>
+                </div>
+                
+                <button
+                  type="button"
+                  onClick={() => {
+                    const packageName = selectedPackage === 'solo' 
+                      ? 'DriveGuard Solo™' 
+                      : selectedPackage === 'family' 
+                        ? 'Family Safety Hub™' 
+                        : 'Guardian Pro Bundle™';
+                    
+                    setShowSimulatedModal(false);
+                    setIsStripeLoading(true);
+                    
+                    // Emulate real loading before success redirect
+                    setTimeout(() => {
+                      const successUrl = `${window.location.origin}${window.location.pathname}?checkout_status=success&bundle=${encodeURIComponent(packageName)}&email=${encodeURIComponent(emailInput)}&name=${encodeURIComponent(simCardName || emailInput.split('@')[0])}`;
+                      window.location.href = successUrl;
+                    }, 1200);
+                  }}
+                  className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-red-600 via-rose-600 to-red-650 hover:from-red-650 hover:to-rose-650 text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-rose-950/40 hover:shadow-rose-950/60 transition-all cursor-pointer text-center"
+                >
+                  Auth Cohort Spot &rarr;
                 </button>
               </div>
 

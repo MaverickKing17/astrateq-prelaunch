@@ -388,7 +388,7 @@ export default function HowItWorks() {
               {/* Secure spots button */}
               <button
                 type="button"
-                onClick={() => handleScroll('pricing')}
+                onClick={() => handleScroll('reserve')}
                 className="w-full sm:w-auto px-7 py-4 bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-650 hover:to-rose-650 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 text-center shadow-[0_15px_30px_rgba(225,29,72,0.25)] hover:shadow-[0_20px_40px_rgba(225,29,72,0.4)] hover:scale-[1.03] active:scale-[0.97]"
               >
                 Pre-order Now ($49 Fully Refundable)
