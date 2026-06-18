@@ -280,9 +280,31 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
     <div id="launch-funnel-root" className="bg-[#FAF9F6] text-slate-900 min-h-screen selection:bg-indigo-100 selection:text-indigo-900 antialiased font-sans transition-all duration-500">
       
       {/* 2026/2027 CRO STANDARD BAR */}
-      <div className="bg-slate-950 text-white py-2 px-6 text-center text-[11px] font-mono font-bold uppercase tracking-widest border-b border-white/5 flex items-center justify-center gap-2">
-        <span className="inline-flex h-2 w-2 rounded-full bg-indigo-500 animate-ping" />
-        <span>Pre-Launch Reservation Funnel • Model Year 2026/2027 CRO Standard Active</span>
+      <div className="bg-slate-950 text-slate-300 py-2.5 px-4 sm:px-6 text-center text-[10px] md:text-[11px] font-mono font-bold uppercase tracking-wider border-b border-white/5 shadow-inner">
+        <div className="max-w-[1240px] mx-auto flex flex-wrap items-center justify-center gap-y-1.5 gap-x-4 md:gap-x-6">
+          <div className="flex items-center gap-1.5">
+            <span className="relative flex h-1.5 w-1.5 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-indigo-500"></span>
+            </span>
+            <span className="text-white text-[11px]">COHORT PHASE 1: <span className="text-indigo-400 font-black">ACTIVE</span></span>
+          </div>
+          <span className="hidden sm:inline text-slate-800">|</span>
+          <div className="flex items-center gap-1">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span>100% ESCROW REFUND GUARANTEE</span>
+          </div>
+          <span className="hidden sm:inline text-slate-800">|</span>
+          <div className="flex items-center gap-1">
+            <Cpu className="w-3.5 h-3.5 text-indigo-400" />
+            <span>PASSIVE OBD-II HARNESS STANDARD</span>
+          </div>
+          <span className="hidden md:inline text-slate-800">|</span>
+          <div className="flex items-center gap-1">
+            <Zap className="w-3.5 h-3.5 text-amber-400" />
+            <span>LIFETIME LOOPS SUBSCRIPTION WAIVED</span>
+          </div>
+        </div>
       </div>
 
       {/* GLOBAL WRAPPER WITH MAX WIDTH 1200-1280PX COMPLIANT WITH DESIGN SYSTEM */}
