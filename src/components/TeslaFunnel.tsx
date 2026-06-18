@@ -4,6 +4,8 @@ import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send,
 
 import DigitalOBDScanner from './DigitalOBDScanner';
 import CompatibilityChecker from './CompatibilityChecker';
+import HowItWorks from './HowItWorks';
+import FaqAccordion from './FaqAccordion';
 
 // Import image assets to ensure Vite builds and hashes them correctly for both production and development
 import vehicleHudImg from '../assets/images/vehicle_3d_hud_1781636888483.jpg';
@@ -882,6 +884,8 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
           />
         </div>
 
+        <HowItWorks />
+
         {/* 4. CORE VALUE MODULES (3-CARD SYSTEM) */}
         <section id="funnel-values" className="py-20 border-b border-slate-200/50 flex flex-col justify-center min-h-[60vh]">
           
@@ -1298,6 +1302,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
 
         </section>
 
+        <FaqAccordion />
 
         {/* 6. FINAL CONVERSION SECTION (DECISION ZONE) */}
         <section id="reserve" className="py-28 md:py-32 border-b border-slate-200/60 flex flex-col justify-center min-h-[90vh] relative overflow-hidden bg-slate-50/75">

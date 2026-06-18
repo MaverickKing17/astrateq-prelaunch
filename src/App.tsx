@@ -79,16 +79,18 @@ export default function App() {
   };
 
   const handleScrollToSection = (sectionId: string) => {
+    let targetId = sectionId;
+    if (sectionId === 'pricing') targetId = 'reserve';
     if (currentPage !== 'home') {
       setCurrentPage('home');
       setTimeout(() => {
-        const el = document.getElementById(sectionId);
+        const el = document.getElementById(targetId);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100);
     } else {
-      const el = document.getElementById(sectionId);
+      const el = document.getElementById(targetId);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
       }
