@@ -5,6 +5,12 @@ import { Shield, Cpu, EyeOff, Activity, AlertTriangle, ShieldCheck, Heart, Send,
 import DigitalOBDScanner from './DigitalOBDScanner';
 import CompatibilityChecker from './CompatibilityChecker';
 
+// Import image assets to ensure Vite builds and hashes them correctly for both production and development
+import vehicleHudImg from '../assets/images/vehicle_3d_hud_1781636888483.jpg';
+import driveguardSoloImg from '../assets/images/driveguard_solo_modern_1781714862550.jpg';
+import driveguardFamilyImg from '../assets/images/driveguard_family_modern_1781714875124.jpg';
+import guardianProImg from '../assets/images/guardian_pro_modern_1781714886921.jpg';
+
 interface TeslaFunnelProps {
   onReserveSuccess: (email: string, bundle: string) => void;
   onNavigate?: (page: 'home' | 'about') => void;
@@ -369,7 +375,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     {/* The Premium 3D Rendered Vehicle */}
                     <div className="relative w-[98%] h-[178px] rounded-2xl overflow-hidden border-2 border-indigo-400/60 shadow-[0_0_30px_rgba(99,102,241,0.35)] group-hover:border-cyan-400/70 transition-all duration-500 z-10 bg-slate-950/80">
                       <img 
-                        src="/src/assets/images/vehicle_3d_hud_1781636888483.jpg" 
+                        src={vehicleHudImg} 
                         alt="3D Vehicle Diagnostic Intel" 
                         className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-out brightness-115 contrast-[1.08] saturate-110"
                         referrerPolicy="no-referrer"
@@ -1314,7 +1320,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   {/* Header Image */}
                   <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
                     <img 
-                      src="/src/assets/images/driveguard_solo_modern_1781714862550.jpg" 
+                      src={driveguardSoloImg} 
                       alt="DriveGuard Solo Hardware"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
@@ -1415,7 +1421,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   {/* Header Image */}
                   <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-indigo-100">
                     <img 
-                      src="/src/assets/images/driveguard_family_modern_1781714875124.jpg" 
+                      src={driveguardFamilyImg} 
                       alt="DriveGuard Family Hardware Bundle"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
@@ -1516,7 +1522,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   {/* Header Image */}
                   <div className="relative h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
                     <img 
-                      src="/src/assets/images/guardian_pro_modern_1781714886921.jpg" 
+                      src={guardianProImg} 
                       alt="Guardian Pro System Suite"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
