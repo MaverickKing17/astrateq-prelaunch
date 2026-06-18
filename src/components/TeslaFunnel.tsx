@@ -2069,8 +2069,8 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                       <Scale className="w-5 h-5 animate-pulse" />
                     </div>
                     <div>
-                      <span className="text-[9px] font-mono font-black text-rose-450 uppercase tracking-widest block">STRIPE SANDBOX EMULATOR</span>
-                      <h3 className="text-sm font-black text-white uppercase tracking-wider block">Pre-Order Authorization</h3>
+                      <span className="text-[9px] font-mono font-black text-indigo-400 uppercase tracking-widest block">ASTRATEQ SECURE COHORT</span>
+                      <h3 className="text-sm font-black text-white uppercase tracking-wider block">Local Validation Reservation</h3>
                     </div>
                   </div>
                   
@@ -2084,17 +2084,35 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 </div>
 
                 {/* Developer Instructions Overlay */}
-                <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-400/20 text-[11px] leading-relaxed text-indigo-200 space-y-1.5">
-                  <div className="flex items-center gap-1.5 font-bold font-mono">
+                <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-400/20 text-[11px] leading-relaxed text-indigo-200 space-y-2.5">
+                  <div className="flex items-center gap-1.5 font-bold font-mono text-xs">
                     <Info className="w-3.5 h-3.5 text-indigo-400 shrink-0 font-bold" />
-                    <span>⚠️ PRE-LAUNCH CONVERTIBILITY TIP</span>
+                    <span>PRE-LAUNCH RESERVATION NOTICE</span>
                   </div>
-                  <p className="font-semibold text-slate-300">
-                    Astrateq is executing in <strong>validation sandbox mode</strong>. While testing your demand-funnel mechanics today, we enable simulated pre-authorization cards to safely gauge pipeline traction.
+                  
+                  {/* MAIN MESSAGE — MUST BE VISUALLY EMPHASIZED */}
+                  <div className="text-sm font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-2 rounded-lg text-center font-bold">
+                    No payment is being charged today.
+                  </div>
+
+                  <p className="font-semibold text-slate-200">
+                    This is a demand validation reservation for early access allocation only.
                   </p>
-                  <p className="text-[10px] text-indigo-300/80">
-                    To link actual Stripe accounts, simply define your <code className="bg-indigo-950 px-1 py-0.5 rounded text-indigo-200 font-mono">STRIPE_SECRET_KEY</code> in the secrets page.
+
+                  <ul className="space-y-1 list-disc pl-4 text-slate-300 text-[10.5px]">
+                    <li>Your card will <span className="font-bold text-white">NOT</span> be charged</li>
+                    <li>No payment authorization hold will be placed</li>
+                    <li>No financial commitment is created at this stage</li>
+                    <li>This step only reserves your potential founding cohort position</li>
+                  </ul>
+
+                  <p className="text-[10.5px] font-semibold text-slate-300">
+                    We are validating real market demand before manufacturing begins.
                   </p>
+
+                  <div className="text-[9.5px] text-indigo-300/80 border-t border-indigo-500/15 pt-2">
+                    If selected, you will receive priority early access and founding pricing before public launch.
+                  </div>
                 </div>
 
                 {/* Simulated Credit Card Preview */}
@@ -2137,7 +2155,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   </div>
 
                   <div className="flex flex-col space-y-1.5">
-                    <label className="text-[9px] font-mono uppercase tracking-wider font-extrabold text-slate-400">Card Number (Use Stripe Test Card or Any)</label>
+                    <label className="text-[9px] font-mono uppercase tracking-wider font-extrabold text-slate-400">Card Number (Mock card accepted)</label>
                     <input
                       type="text"
                       placeholder="4242 4242 4242 4242"
@@ -2179,9 +2197,9 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
               {/* Action and pricing footer */}
               <div className="p-6 bg-slate-950 border-t border-slate-850 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-left w-full sm:w-auto">
-                  <span className="text-[9px] font-mono text-slate-500 block font-bold tracking-widest">EMULATED SECURE CHARGE:</span>
+                  <span className="text-[9px] font-mono text-slate-500 block font-bold tracking-widest text-emerald-500">DUE TODAY (100% FREE):</span>
                   <span className="text-lg font-black text-white font-mono tracking-tight block">
-                    ${selectedPackage === 'solo' ? '49.00' : selectedPackage === 'family' ? '99.00' : '149.00'} CAD
+                    $0.00 CAD
                   </span>
                 </div>
                 
@@ -2203,9 +2221,9 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                       window.location.href = successUrl;
                     }, 1200);
                   }}
-                  className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-red-600 via-rose-600 to-red-650 hover:from-red-650 hover:to-rose-650 text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-rose-950/40 hover:shadow-rose-950/60 transition-all cursor-pointer text-center"
+                  className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-650 hover:from-emerald-650 hover:to-teal-650 text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-emerald-950/40 hover:shadow-emerald-950/60 transition-all cursor-pointer text-center"
                 >
-                  Auth Cohort Spot &rarr;
+                  Confirm Reservation &rarr;
                 </button>
               </div>
 
