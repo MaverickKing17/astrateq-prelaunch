@@ -66,7 +66,7 @@ export default async function handler(req, res) {
       <body>
         <div class="container">
           <div class="header">
-            <div class="brand-stub">Astrateq Security Systems</div>
+            <div class="brand-stub">Astrateq Gadgets</div>
             <h1 class="title">Reservation Status Received</h1>
           </div>
           <div class="content">
@@ -103,9 +103,9 @@ export default async function handler(req, res) {
           </div>
           
           <div class="footer">
-            <p style="margin: 0 0 10px 0; font-weight: 700; color: #475569;">ASTRATEQ SECURE EDGE HARDWARE DEPLOYMENT</p>
+            <p style="margin: 0 0 10px 0; font-weight: 700; color: #475569;">ASTRATEQ PRE-LAUNCH VALIDATION</p>
             <p style="margin: 0 0 10px 0;">This transmission is intended strictly for the registered recipient. Hardware read-only CAN bus integrations conform securely to ICES-003 constraints and Transport Canada passive framework guidelines.</p>
-            <p style="margin: 0; color: #94a3b8;">© 2026 Astrateq Technologies. Toronto, ON, Canada.</p>
+            <p style="margin: 0; color: #94a3b8;">© 2026 Astrateq Gadgets. Toronto, ON, Canada.</p>
           </div>
         </div>
       </body>
