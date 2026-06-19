@@ -44,12 +44,18 @@ export default function HowItWorks() {
           </div>
           
           <h2 className="font-display font-black text-3.5xl sm:text-5xl text-slate-900 tracking-tight mb-4 leading-tight">
-            Uncompromising Vehicle Intelligence & Security, Activated in 4 Simple Steps
+            Planned Activation Flow
           </h2>
           
           <p className="text-slate-600 text-xs sm:text-base leading-relaxed max-w-xl mx-auto font-medium">
-            No professional installation needed. Setup takes <span className="text-indigo-650 font-extrabold">under 2 minutes</span>, operates 100% offline, and costs <span className="text-emerald-600 font-extrabold">$0 in monthly fees</span>.
+            If production proceeds, early access setup is planned to be simple and seamless. Setup is envisioned to take under 2 minutes, operate entirely offline, and cost $0 in ongoing monthly subscription fees.
           </p>
+          
+          <div className="inline-block bg-indigo-50/65 border border-indigo-100/50 py-1.5 px-4 rounded-xl mt-3">
+            <p className="text-xs text-indigo-700 font-mono font-semibold tracking-wide">
+              * Proposed activation flow concept. Final hardware features and setup protocols may evolve through validation.
+            </p>
+          </div>
         </div>
 
         {/* Dynamic, Illustrated Steps Grid with Sleek Timeline Connector */}

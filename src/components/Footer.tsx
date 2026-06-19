@@ -352,7 +352,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             Pre-Launch Validation Transparency Framework
           </span>
           <p className="text-white font-normal leading-relaxed text-[11px] max-w-3xl mx-auto">
-            <strong>Astrateq Gadgets</strong> is currently operating in an active pre-launch validation phase. By selecting a package and submitting this reservation form, you are securing a priority reservation position for our upcoming product release. No actual financial transaction will occur and your payment method will not be charged. This checkout experience utilizes Stripe's secure test environment to simulate a $49 CAD Founding Member reservation for market validation and demand analysis purposes. Your financial information is not processed for real currency exchange, stored for billing purposes, or shared with third parties. Upon official product launch, priority reservation holders will receive exclusive early-access opportunities and will be invited to complete a production order if they choose to proceed.
+            <strong>Astrateq is in a pre-launch market validation phase. No vehicle hardware is currently manufactured, stocked, or shipping. Finding driver reservations help measure initial demand before final production capital commitments are allocated. This website is a simulation of the potential reservation experience.</strong>
           </p>
           <div className="text-[10px] text-neutral-600 font-semibold mt-3 flex items-center justify-center gap-1.5 font-mono">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />

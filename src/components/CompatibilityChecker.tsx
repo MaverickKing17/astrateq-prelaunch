@@ -162,12 +162,18 @@ export default function CompatibilityChecker({ onCheckSuccess, onScrollToSection
           </div>
           
           <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-950 tracking-tight leading-tight mb-4 animate-fade-in-up">
-            Vehicle Compatibility Preview
+            Vehicle Compatibility Assessment
           </h2>
           
-          <p className="text-slate-750 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-bold">
-            Select your model year below to test integration specs. Over <span className="text-rose-700 font-black">98.4% of vehicles</span> driven in Canada (2010 onwards) are fully compatible with our dual-device hardware suite.
+          <p className="text-slate-750 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-bold mb-3">
+            Check if your vehicle model will be supported in our planned safety intelligence rollout.
           </p>
+          
+          <div className="inline-block bg-rose-50/60 border border-rose-100 py-1.5 px-4 rounded-xl mt-3">
+            <p className="text-xs text-rose-800 font-mono font-semibold tracking-wide">
+              * Concept interface shown for validation purposes. Final product experience may change before launch.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 max-w-6xl mx-auto items-start">

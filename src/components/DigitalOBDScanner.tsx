@@ -339,14 +339,19 @@ export default function DigitalOBDScanner() {
         {/* Title / Marketing Pitch */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-3.5 py-1.5 rounded-full text-indigo-700 text-[10px] sm:text-xs font-black uppercase tracking-wider mb-4 shadow-sm select-none">
-            ⚡ Leads & Drivers Resource
+            ⚡ Interactive Diagnostic Preview
           </div>
           <h2 className="font-display font-black text-3xl sm:text-4.5xl md:text-5xl text-slate-900 tracking-tight leading-tight mb-4">
-            Astrateq Gadgets Interactive OBD Diagnostic Portal
+            Interactive Diagnostic Preview
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-medium">
-            Got a glowing check-engine light or diagnostic trouble? Use our custom Bluetooth remote simulator to isolate your automotive fault code, estimate labor costs, and review recommended verified mechanics instantly.
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-medium mb-3">
+            Explore how Astrateq may translate vehicle signals into clearer driver awareness during the validation phase.
           </p>
+          <div className="inline-block bg-indigo-50/65 border border-indigo-100/50 py-2 px-4 rounded-xl mt-4">
+            <p className="text-xs text-indigo-700 font-mono font-semibold tracking-wide leading-relaxed">
+              * Concept preview only. Final hardware, compatibility, and interface details may evolve before launch.
+            </p>
+          </div>
         </div>
 
         {/* Dynamic Inner Layout */}

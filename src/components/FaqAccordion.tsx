@@ -40,12 +40,36 @@ export default function FaqAccordion() {
 
   const faqs: FAQItem[] = [
     {
+      id: "deposits-and-payment",
+      category: "pricing",
+      badge: "NO PAYMENT REASSURANCE",
+      q: "Are my deposits safe and is there any payment today?",
+      a: "No payment is processed or charged today. This is a pre-launch market validation reservation used purely to assess Canadian driver commitment and vehicle compatibility statistics. Because this is a simulated reservation, you are joining the risk-free founding driver cohort without any financial obligation.",
+      icon: <Lock className="w-4 h-4 text-emerald-500" />
+    },
+    {
+      id: "who-is-astrateq",
+      category: "privacy",
+      badge: "FOUNDERS & ORIGIN",
+      q: "Who is behind Astrateq?",
+      a: "Astrateq is a Canadian-led automotive electronics design initiative. We are a specialized team of privacy-advocate hardware engineers and software developers working to bring localized, cloud-independent safety intelligence directly to vehicle owners, protecting your dashboard telemetry from third-party monetization.",
+      icon: <HelpCircle className="w-4 h-4 text-indigo-500" />
+    },
+    {
+      id: "verification-duration",
+      category: "vehicle",
+      badge: "ELIGIBILITY AUDIT",
+      q: "How long does verification take?",
+      a: "Our vehicle compatibility assessment takes less than 30 seconds. By choosing your car model year, make, and body profile inside our real-time compatibility checker, you'll immediately see whether your vehicle's CAN-bus signals are planned to be supportable.",
+      icon: <RefreshCw className="w-4 h-4 text-rose-500" />
+    },
+    {
       id: "vehicle-fit",
       category: "vehicle",
       badge: "VEHICLE FIT",
       q: "Will it work with my vehicle?",
-      a: "Yes. Astrateq is compatible with over 98.4% of vehicles driven throughout Canada manufactured since 2010. Fits gasoline, diesel, hybrid, and pure electric passenger vehicles universally.",
-      icon: <Car className="w-4 h-4 text-emerald-500" />
+      a: "Yes. Astrateq is designed to be compatible with over 98.4% of vehicles driven throughout Canada manufactured since 2010. Fits gasoline, diesel, hybrid, and pure electric passenger vehicles universally.",
+      icon: <Car className="w-4 h-4 text-blue-500" />
     },
     {
       id: "subscription",
@@ -60,8 +84,8 @@ export default function FaqAccordion() {
       category: "installation",
       badge: "PLUG & PLAY",
       q: "Is the installation process difficult?",
-      a: "No, installation is completely user-managed and takes under 30 seconds. The secure transceiver harness clicks directly into the local OBD-II port below your steering column. Zero wire splicing, battery drains, or tools are required.",
-      icon: <Settings className="w-4 h-4 text-blue-500" />
+      a: "No, installation is completely user-managed and planned to take under 30 seconds. The secure transceiver harness clicks directly into the local OBD-II port below your steering column. Zero wire splicing, battery drains, or tools are required.",
+      icon: <Settings className="w-4 h-4 text-violet-500" />
     },
     {
       id: "privacy-sovereign",
@@ -69,31 +93,7 @@ export default function FaqAccordion() {
       badge: "DATA SOVEREIGNTY",
       q: "Will my driving details leave my car?",
       a: "Never. All diagnostic signals, road telemetry, and cabin vehicle files are processed natively inside our local physical hardware edge. Astrateq does not upload, store, or transmit your records to external cloud databases.",
-      icon: <ShieldAlert className="w-4 h-4 text-rose-500" />
-    },
-    {
-      id: "regulatory-warranty",
-      category: "installation",
-      badge: "REGULATORY SAFETY",
-      q: "Does utilizing Astrateq affect my manufacturer warranty?",
-      a: "No. Astrateq is a passive diagnostic monitoring tool compliant with ICES-003 safety benchmarks. Because it doesn't execute harmful rewrite commands or modify ECU firmware, your vehicle warranty remains fully protected.",
-      icon: <CheckCircle2 className="w-4 h-4 text-violet-500" />
-    },
-    {
-      id: "portability-swap",
-      category: "vehicle",
-      badge: "SWAPPABLE HARNESS",
-      q: "Can I migrate the device to a different vehicle?",
-      a: "Yes! Simply unplug the transceiver from your steering column and plug it into any other supported passenger vehicle. All calibrated metrics profile sets swap instantly with zero recalibration downtime.",
-      icon: <RefreshCw className="w-4 h-4 text-cyan-500" />
-    },
-    {
-      id: "architecture-edge",
-      category: "privacy",
-      badge: "EDGE INTELLIGENCE",
-      q: "How is zero-telemetry achieved technically?",
-      a: "We deploy decentralized edge technology. Video signals and safety metrics are calculated within an integrated offline neural processor on the unit itself. No cloud server holds your private geolocation trails.",
-      icon: <Zap className="w-4 h-4 text-amber-500" />
+      icon: <ShieldAlert className="w-4 h-4 text-pink-500" />
     }
   ];
 

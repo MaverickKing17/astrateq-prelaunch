@@ -37,6 +37,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
   const [simCardNo, setSimCardNo] = useState('4242 4242 4242 4242');
   const [simCardExpiry, setSimCardExpiry] = useState('12/28');
   const [simCardCvc, setSimCardCvc] = useState('123');
+  const [understandConfirmation, setUnderstandConfirmation] = useState(false);
 
   useEffect(() => {
     fetch('/api/stripe-config')
@@ -377,9 +378,9 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
             {/* Left Col (60% Width Layout equivalent: col-span-7) */}
             <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-6">
               
-              <div className="inline-flex items-center gap-2 bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-bold tracking-widest px-3.5 py-1.5 rounded-full uppercase w-fit font-mono">
-                <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping inline-block" />
-                <span>Limited Canadian early access — allocation closing soon.</span>
+              <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 text-indigo-700 text-[11px] font-bold tracking-widest px-3.5 py-1.5 rounded-full uppercase w-fit font-mono">
+                <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse inline-block" />
+                <span>Pre-Launch Market Validation</span>
               </div>
 
               {/* H1 Primary Hook */}
@@ -394,10 +395,10 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
 
               {/* Clarity line under Hero list */}
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
-                A pre-launch vehicle intelligence system designed to improve driving awareness using privacy-first on-device processing.
+                A Canadian pre-launch validation program for early drivers. No payment is charged today.
               </p>
 
-              {/* CTA BLOCK (Strictly ONE primary CTA for absolute conversions focus) */}
+              {/* CTA BLOCK */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
                 
                 {/* Primary CTA */}
@@ -409,6 +410,17 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                   className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base rounded-xl cursor-pointer transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 text-center uppercase tracking-wider"
                 >
                   Join Founding Cohort Now
+                </button>
+
+                {/* Secondary CTA */}
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('compatibility');
+                    el?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="px-6 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm sm:text-base rounded-xl cursor-pointer transition-all duration-300 text-center border border-slate-300/60"
+                >
+                  Verify Eligibility in 30 Seconds
                 </button>
 
               </div>
@@ -764,13 +776,13 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
 
               {/* H2 Title */}
               <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight">
-                Pre-launch demand validation
+                Why We Are Validating First
               </h2>
 
               {/* Body Text Context with explicit validation declaration */}
               <div className="space-y-4 text-slate-600 font-medium text-sm sm:text-base leading-relaxed">
                 <p className="text-slate-700 font-semibold">
-                  Astrateq Gadgets is currently validating interest before manufacturing decisions are made. This page is designed to measure demand, gather feedback, and identify which vehicle intelligence concepts drivers value most.
+                  Before manufacturing at scale, Astrateq is measuring real driver interest, vehicle compatibility, and demand signals from Canadian drivers. This helps reduce risk before committing major capital to hardware production.
                 </p>
                 <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 flex flex-col gap-1.5 text-slate-700 text-xs shadow-sm">
                   <span className="block font-bold text-amber-900 uppercase tracking-wider text-[10px] font-mono">⚠️ Transparency Declaration</span>
@@ -945,14 +957,22 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
           <div className="space-y-12">
             
             {/* Header Title block */}
-            <div className="text-center space-y-4 max-w-2xl mx-auto">
+            <div className="text-center space-y-4 max-w-3xl mx-auto">
               <span className="text-[11px] font-mono tracking-widest uppercase font-black text-indigo-600 font-bold">
                 ⚡ Tech Capabilities
               </span>
               {/* H2 Section Title */}
               <h2 className="text-3xl sm:text-4xl text-slate-950 font-black tracking-tight leading-tight">
-                Core concept modules
+                What Astrateq Aims to Deliver
               </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
+                This pre-launch validation phase helps us gauge interest in three primary areas: hardware speed, visual clarity, and data independence. Explore our proposed design concepts below.
+              </p>
+              <div className="inline-block bg-slate-50 border border-slate-200 py-1 px-3.5 rounded-lg mt-1 shadow-xs">
+                <span className="text-[10px] text-slate-500 font-mono font-medium">
+                  * Concept preview only — final hardware and interfaces may evolve through validation.
+                </span>
+              </div>
             </div>
 
             {/* 3 EQUAL HORIZONTAL CARDS (Desktop) / STACKED (Mobile) */}
@@ -1230,10 +1250,10 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 </span>
               </div>
               <h2 className="text-3xl sm:text-4.5xl font-black tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300 max-w-3xl mx-auto pb-1">
-                Transparent pre-launch validation
+                Transparent Pre-Launch Validation
               </h2>
-              <p className="text-slate-300 max-w-xl mx-auto text-sm sm:text-base font-medium leading-relaxed">
-                Unlock early access to direct cockpit co-design and parameter validation with absolute security guarantees.
+              <p className="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base font-medium leading-relaxed">
+                Astrateq is not currently shipping hardware. This page is used to validate demand, compatibility interest, and early cohort intent before manufacturing decisions are finalized.
               </p>
             </div>
 
@@ -1251,7 +1271,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 
                 <div className="absolute top-3 right-4 pointer-events-none">
                   <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-blue-300 bg-blue-500/20 border border-blue-500/40 px-2.5 py-0.5 rounded-md">
-                    100% SECURED
+                    NO CHARGE
                   </span>
                 </div>
 
@@ -1260,8 +1280,8 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     <ShieldCheck className="w-6 h-6" />
                   </div>
                   <div className="space-y-2 px-1">
-                    <span className="block text-[15px] sm:text-[15.5px] font-black text-white leading-tight tracking-tight">Fully refundable reservation</span>
-                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Get your full deposit back instantly at any time</span>
+                    <span className="block text-[15px] sm:text-[15.5px] font-black text-white leading-tight tracking-tight">No payment charged today</span>
+                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Express interest completely risk free. No funds are processed today.</span>
                   </div>
                 </div>
                 <div className="w-2 h-2 rounded-full bg-blue-500/50 group-hover:bg-blue-400 group-hover:shadow-[0_0_10px_rgba(59,130,246,1)] transition-all duration-300 mt-4" />
@@ -1274,7 +1294,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 <div className="absolute top-3 right-4 pointer-events-none flex items-center gap-1.5 bg-violet-500/20 border border-violet-500/40 px-2.5 py-0.5 rounded-md">
                   <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse inline-block" />
                   <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-violet-300">
-                    COHORT #1
+                    NOT SHIPPING
                   </span>
                 </div>
 
@@ -1283,8 +1303,8 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     <CheckCircle className="w-6 h-6" />
                   </div>
                   <div className="space-y-2 px-1">
-                    <span className="block text-[15px] sm:text-[15.5px] font-black text-white leading-tight tracking-tight">Limited validation cohort</span>
-                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Accepting early validation subscribers only</span>
+                    <span className="block text-[15px] sm:text-[15.5px] font-black text-white leading-tight tracking-tight">No hardware shipping yet</span>
+                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Measuring compatibility and demand before pipeline commitment.</span>
                   </div>
                 </div>
                 <div className="w-2 h-2 rounded-full bg-violet-500/50 group-hover:bg-violet-400 group-hover:shadow-[0_0_10px_rgba(139,92,246,1)] transition-all duration-300 mt-4" />
@@ -1296,7 +1316,7 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 
                 <div className="absolute top-3 right-4 pointer-events-none">
                   <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-rose-300 bg-rose-500/20 border border-rose-500/40 px-2.5 py-0.5 rounded-md">
-                    CO-DESIGN
+                    MARKET SIGNAL
                   </span>
                 </div>
 
@@ -1305,8 +1325,8 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     <Activity className="w-6 h-6" />
                   </div>
                   <div className="space-y-2 px-1">
-                    <span className="block text-[15px] sm:text-[15.5px] font-black text-white leading-tight tracking-tight">Early validation access</span>
-                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Co-design concepts and hardware direction directly</span>
+                    <span className="block text-[15px] sm:text-[15.5px] font-black text-white leading-tight tracking-tight">Demand validation interest</span>
+                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Real interest parameters help validate Canadian driver needs.</span>
                   </div>
                 </div>
                 <div className="w-2 h-2 rounded-full bg-rose-500/50 group-hover:bg-rose-400 group-hover:shadow-[0_0_10px_rgba(244,63,94,1)] transition-all duration-300 mt-4" />
@@ -1317,8 +1337,8 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/[0.04] group-hover:bg-emerald-500/[0.08] transition-all duration-300 rounded-full blur-xl pointer-events-none" />
                 
                 <div className="absolute top-3 right-4 pointer-events-none">
-                  <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-emerald-300 bg-emerald-500/20 border border-emerald-500/40 px-2.5 py-0.5 rounded-md">
-                    OBLIGATION FREE
+                  <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-emerald-300 bg-emerald-50/20 border border-emerald-500/40 px-2.5 py-0.5 rounded-md">
+                    PRIORITY QUEUE
                   </span>
                 </div>
 
@@ -1327,8 +1347,8 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                     <EyeOff className="w-6 h-6" />
                   </div>
                   <div className="space-y-2 px-1">
-                    <span className="block text-[15px] sm:text-[15.5px] font-black text-white leading-tight tracking-tight">No production commitment</span>
-                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Transparent pre-manufacturing driver assessment</span>
+                    <span className="block text-[15px] sm:text-[15.5px] font-black text-white leading-tight tracking-tight">Founding cohort priority</span>
+                    <span className="block text-[12px] text-slate-300 leading-relaxed font-semibold group-hover:text-slate-100 transition-colors">Participants receive first queue priority if production proceeds.</span>
                   </div>
                 </div>
                 <div className="w-2 h-2 rounded-full bg-emerald-500/50 group-hover:bg-emerald-400 group-hover:shadow-[0_0_8px_rgba(16,185,129,0.8)] transition-all duration-300 mt-4" />
@@ -1371,17 +1391,17 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
             
             {/* Header copy precisely mapped */}
             <div className="space-y-5 max-w-3xl mx-auto text-center">
-              <span className="inline-flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase font-black text-indigo-700 bg-indigo-50/80 px-4 py-2 rounded-full border border-indigo-100 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse inline-block shrink-0" />
-                🛡️ 100% SECURE PRE-ORDER • CANCEL & REFUND INSTANTLY ANYTIME
+              <span className="inline-flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase font-black text-emerald-750 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-100 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse inline-block shrink-0" />
+                No payment is charged today — 100% simulated reservation
               </span>
               {/* Dynamic Marketing Hook Title */}
               <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-[1.1] text-slate-950">
-                Forge your sovereign shield. <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-500">Secure early hardware priority.</span>
+                Choose Your Preferred Early-Access Tier
               </h2>
               {/* High-Converting Subtext */}
-              <p className="text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
-                Configure your passive offline intelligence suite below to secure your slots. Help guide final production decisions and lock in pilot-run savings before Canadian regional manufacturing allocations close.
+              <p className="text-base sm:text-lg text-slate-650 font-medium max-w-2xl mx-auto leading-relaxed">
+                Help validate demand before manufacturing begins. No payment is charged today. This is a simulated reservation used for market validation. You are expressing interest in a potential early-access allocation before manufacturing decisions are finalized.
               </p>
             </div>
 
@@ -1438,6 +1458,9 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                         <Shield className="w-5 h-5 text-indigo-650 shrink-0" />
                         DriveGuard Solo™
                       </h3>
+                      <span className="inline-block text-[10px] font-mono font-black uppercase tracking-wider text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded">
+                        Refundable reservation interest — no charge today
+                      </span>
                       <p className="text-xs text-slate-500 font-medium leading-relaxed">
                         Designed for single commuter vehicles. Equips your car with robust voice diagnostics and discrete crash-recording capabilities.
                       </p>
@@ -1543,6 +1566,9 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                         <ShieldCheck className="w-5.5 h-5.5 text-indigo-655 shrink-0" />
                         Family Safety Hub™
                       </h3>
+                      <span className="inline-block text-[10px] font-mono font-black uppercase tracking-wider text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded">
+                        Pre-launch validation tier — no payment charged today
+                      </span>
                       <p className="text-xs text-slate-500 font-medium leading-relaxed">
                         Slightly optimized for teenage, senior, or dual drivers in Canada. Keeps multiple vehicles synced inside a single unified dashboard.
                       </p>
@@ -1644,6 +1670,9 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                         <Cpu className="w-5 h-5 text-indigo-650 shrink-0" />
                         Guardian Pro Bundle™
                       </h3>
+                      <span className="inline-block text-[10px] font-mono font-black uppercase tracking-wider text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded">
+                        Pre-launch validation tier — no payment charged today
+                      </span>
                       <p className="text-xs text-slate-500 font-medium leading-relaxed">
                         Our ultimate multi-car and professional package. Configured with priority concierge support and early access testing blocks.
                       </p>
@@ -2069,8 +2098,8 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                       <Scale className="w-5 h-5 animate-pulse" />
                     </div>
                     <div>
-                      <span className="text-[9px] font-mono font-black text-indigo-400 uppercase tracking-widest block">ASTRATEQ SECURE COHORT</span>
-                      <h3 className="text-sm font-black text-white uppercase tracking-wider block">Local Validation Reservation</h3>
+                      <span className="text-[9px] font-mono font-black text-indigo-400 uppercase tracking-widest block">ASTRATEQ COHORT RESERVE</span>
+                      <h3 className="text-sm font-black text-white uppercase tracking-wider block">Founding Cohort Reservation Interest</h3>
                     </div>
                   </div>
                   
@@ -2084,35 +2113,30 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 </div>
 
                 {/* Developer Instructions Overlay */}
-                <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-400/20 text-[11px] leading-relaxed text-indigo-200 space-y-2.5">
-                  <div className="flex items-center gap-1.5 font-bold font-mono text-xs">
+                <div className="p-5 rounded-2xl bg-indigo-950/40 border border-indigo-500/20 text-[11.5px] leading-relaxed text-indigo-200 space-y-4">
+                  <div className="flex items-center gap-1.5 font-bold font-mono text-xs text-indigo-300">
                     <Info className="w-3.5 h-3.5 text-indigo-400 shrink-0 font-bold" />
-                    <span>PRE-LAUNCH RESERVATION NOTICE</span>
+                    <span>PRE-LAUNCH VALIDATION RESERVATION</span>
                   </div>
                   
-                  {/* MAIN MESSAGE — MUST BE VISUALLY EMPHASIZED */}
-                  <div className="text-sm font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-2 rounded-lg text-center font-bold">
-                    No payment is being charged today.
-                  </div>
-
-                  <p className="font-semibold text-slate-200">
-                    This is a demand validation reservation for early access allocation only.
+                  <p className="text-[12px] font-semibold text-white leading-relaxed">
+                    Real interest parameters help determine final pilot-run volume. This is a pre-launch market validation reservation. No payment is charged today.
                   </p>
 
-                  <ul className="space-y-1 list-disc pl-4 text-slate-300 text-[10.5px]">
-                    <li>Your card will <span className="font-bold text-white">NOT</span> be charged</li>
-                    <li>No payment authorization hold will be placed</li>
-                    <li>No financial commitment is created at this stage</li>
-                    <li>This step only reserves your potential founding cohort position</li>
+                  <ul className="space-y-2 list-none text-slate-300 text-[11px] font-semibold pl-1">
+                    <li className="flex items-center gap-2">
+                      <span className="text-emerald-400 text-xs font-bold leading-none shrink-0">✓</span>
+                      Secure early queue priority
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-emerald-400 text-xs font-bold leading-none shrink-0">✓</span>
+                      Locked-in waiver of potential subscription fees
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-emerald-400 text-xs font-bold leading-none shrink-0">✓</span>
+                      Participate in exclusive co-design surveys
+                    </li>
                   </ul>
-
-                  <p className="text-[10.5px] font-semibold text-slate-300">
-                    We are validating real market demand before manufacturing begins.
-                  </p>
-
-                  <div className="text-[9.5px] text-indigo-300/80 border-t border-indigo-500/15 pt-2">
-                    If selected, you will receive priority early access and founding pricing before public launch.
-                  </div>
                 </div>
 
                 {/* Simulated Credit Card Preview */}
@@ -2190,6 +2214,30 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                       />
                     </div>
                   </div>
+
+                  {/* Checkbox confirmation */}
+                  <div className="pt-4 border-t border-slate-800 mt-4 flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="understand-confirm-check"
+                      checked={understandConfirmation}
+                      onChange={(e) => {
+                        setUnderstandConfirmation(e.target.checked);
+                        setValidationError(null);
+                      }}
+                      className="w-4 h-4 rounded border-slate-700 text-indigo-600 focus:ring-indigo-500/30 bg-slate-950 mt-1 cursor-pointer shrink-0"
+                    />
+                    <label htmlFor="understand-confirm-check" className="text-[11px] leading-relaxed text-slate-300 select-none cursor-pointer font-bold">
+                      I understand this is a pre-launch reservation to measure demand and that <span className="text-white font-extrabold underline">no payment is processed today.</span>
+                    </label>
+                  </div>
+
+                  {/* Validation Error Banner inside Modal */}
+                  {validationError && (
+                    <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-[11px] text-rose-450 font-semibold leading-relaxed animate-shake">
+                      ⚠️ {validationError}
+                    </div>
+                  )}
                 </div>
 
               </div>
@@ -2206,6 +2254,10 @@ export default function TeslaFunnel({ onReserveSuccess, onNavigate }: TeslaFunne
                 <button
                   type="button"
                   onClick={() => {
+                    if (!understandConfirmation) {
+                      setValidationError("Please check the confirmation box to acknowledge this is a pre-launch reservation with no payment today.");
+                      return;
+                    }
                     const packageName = selectedPackage === 'solo' 
                       ? 'DriveGuard Solo™' 
                       : selectedPackage === 'family' 
