@@ -32,6 +32,10 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<'info' | 'success' | 'gift'>('info');
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [emailDebugStatus, setEmailDebugStatus] = useState<string | null>(null);
+  const [emailDebugError, setEmailDebugError] = useState<string | null>(null);
+  const [emailApiStatus, setEmailApiStatus] = useState<number | null>(null);
+  const [emailApiId, setEmailApiId] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,11 +55,54 @@ export default function App() {
     const params = new URLSearchParams(window.location.search);
     const status = params.get('checkout_status');
     if (status === 'success') {
-      const bundleName = params.get('bundle') || 'DriveGuard Setup';
+      const selectedTier = params.get('bundle') || 'DriveGuard Setup';
       const email = params.get('email') || '';
-      const name = params.get('name') || '';
+      const simulatedAmount = "$0.00 CAD";
       
-      showToast(`Stripe Spot Confirmed! Reserved ${bundleName} for ${name || 'your household'}. Receipt sent to ${email}`, 'success');
+      console.log('Initiating reservation success email pipeline...');
+      setEmailDebugStatus('Processing reservation...');
+      setEmailDebugError(null);
+      setEmailApiStatus(null);
+      setEmailApiId(null);
+      showToast('Processing reservation...', 'info');
+      
+      // Call secure server action to trigger Resend confirmation email
+      fetch('/api/send-reservation-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          selectedTier: selectedTier,
+          simulatedAmount: simulatedAmount,
+          timestamp: new Date().toISOString()
+        })
+      })
+      .then(async response => {
+        setEmailApiStatus(response.status);
+        const data = await response.json();
+        console.log('Email API response:', response.status, data);
+        
+        if (response.ok && data && data.success) {
+          setEmailApiId(data.resendId || null);
+          setEmailDebugStatus('Reservation received. Confirmation email sent.');
+          showToast('Reservation received. Confirmation email sent.', 'success');
+        } else {
+          const errMsg = data.error || 'Email dispatch failed';
+          setEmailDebugStatus('Reservation received, but confirmation email could not be sent.');
+          setEmailDebugError(errMsg);
+          showToast(`Reservation received, but confirmation email could not be sent. Error: ${errMsg}`, 'info');
+        }
+      })
+      .catch(err => {
+        console.error("Error dispatching reservation confirmation email:", err);
+        const errMsg = err.message || 'Network error';
+        setEmailApiStatus(500);
+        setEmailDebugStatus('Reservation received, but confirmation email could not be sent.');
+        setEmailDebugError(errMsg);
+        showToast(`Reservation received, but confirmation email could not be sent. Error: ${errMsg}`, 'info');
+      });
       
       // Clear URL query parameters cleanly
       window.history.replaceState({}, document.title, window.location.pathname);
@@ -121,6 +168,40 @@ export default function App() {
 
       {/* 2. Sticky Navigation Bar */}
       <Navbar onScrollToSection={handleScrollToSection} currentPage={currentPage} onNavigate={setCurrentPage} />
+
+      {/* Visual Email Reservation Pipeline Debug Status Banner */}
+      {emailDebugStatus && (
+        <div className="bg-slate-900 border-b-2 border-indigo-500 text-white py-4 px-6 relative z-50">
+          <div className="max-w-4xl mx-auto flex flex-col gap-3 font-mono text-xs">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <span className={`w-3 h-3 rounded-full ${
+                  emailDebugStatus.includes('could not') || emailDebugStatus.includes('failed')
+                    ? 'bg-rose-500'
+                    : emailDebugStatus.includes('sent') || emailDebugStatus.includes('successfully')
+                      ? 'bg-emerald-500'
+                      : 'bg-indigo-500 animate-pulse'
+                }`} />
+                <span className="font-extrabold text-indigo-400">RESERVATION DISPATCH DEBUGGER:</span>
+                <span className="text-slate-100 font-bold">{emailDebugStatus}</span>
+              </div>
+              <button 
+                onClick={() => setEmailDebugStatus(null)}
+                className="text-slate-400 hover:text-white text-xs font-bold cursor-pointer underline hover:no-underline"
+              >
+                [Dismiss]
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-800 text-[11px] text-slate-300">
+              <div>• Email API called: <strong className="text-white">yes</strong></div>
+              <div>• API response status: <strong className="text-white">{emailApiStatus !== null ? emailApiStatus : 'N/A'}</strong></div>
+              <div>• Resend email ID if available: <strong className="text-emerald-400">{emailApiId || 'N/A'}</strong></div>
+              <div>• Error message if failed: <strong className="text-rose-400">{emailDebugError || 'none'}</strong></div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {currentPage === 'home' ? (
         <TeslaFunnel onReserveSuccess={handleReserveSuccess} onNavigate={setCurrentPage} />

@@ -24,6 +24,13 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
   const [stripeConfig, setStripeConfig] = useState({ configured: false, publishableKey: '', isValidationMode: true });
   const [stripeError, setStripeError] = useState<string | null>(null);
 
+  // Email API validation/success states
+  const [emailApiCalled, setEmailApiCalled] = useState<boolean>(false);
+  const [emailApiStatus, setEmailApiStatus] = useState<number | null>(null);
+  const [emailApiResendId, setEmailApiResendId] = useState<string | null>(null);
+  const [emailApiError, setEmailApiError] = useState<string | null>(null);
+  const [emailApiSuccess, setEmailApiSuccess] = useState<boolean | null>(null);
+
   // States for interactive mock credit card entries in Validation Mode
   const [cardNumber, setCardNumber] = useState('');
   const [cardExpiry, setCardExpiry] = useState('');
@@ -177,6 +184,11 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
 
     setIsSubmitting(true);
     setStripeError(null);
+    setEmailApiCalled(false);
+    setEmailApiStatus(null);
+    setEmailApiResendId(null);
+    setEmailApiError(null);
+    setEmailApiSuccess(null);
 
     // Only attempt real Stripe Checkout redirection if keys are fully configured AND we are in live production mode (sk_live_)
     if (stripeConfig.configured && !stripeConfig.isValidationMode) {
@@ -237,50 +249,56 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
       console.error(err);
     }
 
-    // Auto-dispatch tailored Canva-style diagnostics and blueprint PDF documents via Resend on checkout success
-    try {
-      let year = "2026";
-      let make = "Vehicle";
-      let model = "Model";
-      const parts = (vehicleInfo || "").trim().split(/\s+/);
-      if (parts.length > 0) {
-        if (/^\d{4}$/.test(parts[0])) {
-          year = parts[0];
-          if (parts.length > 1) make = parts[1];
-          if (parts.length > 2) model = parts.slice(2).join(" ");
-        } else {
-          make = parts[0];
-          if (parts.length > 1) model = parts.slice(1).join(" ");
-        }
-      }
-      const reportData = getFallbackReportData(year, make, model);
-      const diagDoc = generateDiagnosticReportPDF(year, make, model, reportData.diagnosticReport);
-      const blueprintDoc = generateConfigurationBlueprintPDF(year, make, model, reportData.configurationBlueprint);
-      
-      const diagBase64 = diagDoc.output('datauristring');
-      const blueprintBase64 = blueprintDoc.output('datauristring');
+    // Auto-dispatch dynamic validation email via Resend on simulated checkout success
+    setEmailApiCalled(true);
+    let success = false;
+    let resId: string | null = null;
+    let resStatus: number | null = null;
+    let resErrorText: string | null = null;
 
-      await fetch('/api/send-email', {
+    try {
+      const emailRes = await fetch('/api/send-reservation-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           email: checkoutEmail,
-          name: checkoutName,
-          vehicle: vehicleInfo,
-          bundle: selectedBundle?.name,
-          pdfDiagnostics: diagBase64,
-          pdfBlueprint: blueprintBase64
+          selectedTier: selectedBundle?.name || 'DriveGuard Setup',
+          simulatedAmount: `$${selectedBundle?.deposit || 49} CAD`,
+          timestamp: new Date().toISOString()
         })
       });
-    } catch (emailErr) {
+
+      resStatus = emailRes.status;
+      setEmailApiStatus(resStatus);
+
+      const emailData = await emailRes.json();
+      console.log('Reservation email API response:', resStatus, emailData);
+
+      if (emailRes.ok && emailData && emailData.success) {
+        success = true;
+        resId = emailData.resendId;
+        setEmailApiResendId(resId);
+        setEmailApiSuccess(true);
+      } else {
+        resErrorText = emailData.error || 'Failed to dispatch email via Resend API.';
+        setEmailApiError(resErrorText);
+        setEmailApiSuccess(false);
+      }
+    } catch (emailErr: any) {
       console.error("Automated checkout email delivery failed:", emailErr);
+      resErrorText = emailErr.message || 'Network connection failed.';
+      setEmailApiError(resErrorText);
+      setEmailApiSuccess(false);
     }
 
     setIsSubmitting(false);
     setCheckoutStep('success');
-    onReserveSuccess(checkoutEmail, selectedBundle.name);
+
+    if (success && resId) {
+      onReserveSuccess(checkoutEmail, selectedBundle.name);
+    }
   };
 
   return (
@@ -887,6 +905,53 @@ export default function Pricing({ onReserveSuccess }: PricingProps) {
                     <div>• RESERVATION NUMBER: <strong className="text-indigo-400 font-black">FN-4912-CA</strong></div>
                     <div>• ACCESS WAITING QUEUE: <strong className="text-emerald-400 font-black">#4,912 in Canada</strong></div>
                     <div>• ALLOCATION CLASSIFICATION: <strong className="text-rose-400 font-black">Phase 1 Early Adopter Pool</strong></div>
+                  </div>
+                </div>
+
+                {/* Real-time Resend API Status Alerts */}
+                <div className="max-w-sm mx-auto p-4 rounded-2.5xl border border-slate-200 bg-white text-left text-xs space-y-3 shadow-sm">
+                  {!emailApiCalled ? (
+                    <div className="flex items-center gap-2 text-amber-700 font-extrabold">
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
+                      <span>Processing reservation...</span>
+                    </div>
+                  ) : emailApiSuccess === null ? (
+                    <div className="flex items-center gap-2 text-indigo-700 font-extrabold">
+                      <span className="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse" />
+                      <span>Processing reservation...</span>
+                    </div>
+                  ) : emailApiSuccess === true ? (
+                    <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl flex items-start gap-2.5 font-extrabold">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0 mt-1" />
+                      <span>Reservation received. Confirmation email sent.</span>
+                    </div>
+                  ) : (
+                    <div className="space-y-1.5 p-3 bg-rose-50 border border-rose-200 rounded-xl">
+                      <div className="flex items-start gap-2 text-rose-800 font-extrabold">
+                        <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0 mt-1" />
+                        <span>Reservation received, but confirmation email could not be sent.</span>
+                      </div>
+                      {emailApiError && (
+                        <p className="text-[11px] text-rose-700 font-semibold leading-relaxed pl-5">
+                          Safe Error Details: {emailApiError}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Visible Temporary Debug Output */}
+                  <div className="pt-3 border-t border-slate-150 text-[11px] font-mono text-slate-500 space-y-1">
+                    <div className="font-extrabold text-slate-700 uppercase tracking-wide text-[9px] mb-1">
+                      🔍 RESERVATION PIPELINE DEBUG OUTPUT:
+                    </div>
+                    <div>• Email API called: <strong>{emailApiCalled ? "yes" : "no"}</strong></div>
+                    <div>• API response status: <strong>{emailApiStatus !== null ? emailApiStatus : "N/A"}</strong></div>
+                    <div>• Resend email ID if available: <strong className="text-emerald-700 font-bold">{emailApiResendId || "N/A"}</strong></div>
+                    {emailApiError && (
+                      <div className="text-rose-600 block text-[10.5px] font-semibold mt-1">
+                        • Error message if failed: {emailApiError}
+                      </div>
+                    )}
                   </div>
                 </div>
 
