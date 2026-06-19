@@ -193,7 +193,7 @@ app.post("/api/send-email", async (req, res) => {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
-    const fromAddress = process.env.RESEND_FROM_EMAIL || "Astrateq Labs <onboarding@resend.dev>";
+    const fromAddress = "Astrateq Reservations <reservations@astrateqgadgets.com>";
     const isBundlePurchase = !!bundle;
     
     // Choose subject line depending on context (Checkout vs. Waitlist Free Report)
@@ -298,6 +298,8 @@ app.post("/api/send-email", async (req, res) => {
     if (!apiKey) {
       console.log("---- RESEND DEMO DISPATCH MODE (NO API KEY SET) ----");
       console.log(`To: ${email}`);
+      console.log(`From: ${fromAddress}`);
+      console.log(`Reply-To: kingnarmer702@gmail.com`);
       console.log(`Subject: ${subject}`);
       console.log(`Attachments Loaded: ${attachments.length} files`);
       console.log("----------------------------------------------------");
@@ -321,6 +323,7 @@ app.post("/api/send-email", async (req, res) => {
         to: email,
         subject: subject,
         html: htmlContent,
+        reply_to: "kingnarmer702@gmail.com",
         attachments: attachments.length > 0 ? attachments : undefined
       })
     });
